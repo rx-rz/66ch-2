@@ -1,18 +1,11 @@
 
-import { useQuery } from "@tanstack/react-query";
-import {   GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useLocation } from "react-router-dom";
 import { auth } from "src/utils/firebaseConfig";
 
 const googleProvider = new GoogleAuthProvider();
 export const signInWithGoogle = async () => {
-
-  const  {user}= await signInWithPopup(auth, googleProvider);
-};
-
-const onSuccess = () => {
-  window.location.href = "/";
-};
-
-export const useGoogleSignIn = () => {
-  return useQuery(["user"], signInWithGoogle, {onSuccess});
+  await signInWithPopup(auth, googleProvider)
+    .then()
+    .catch((err) => console.log(err));
 };
