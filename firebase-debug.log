@@ -1,0 +1,51 @@
+[debug] [2022-08-06T09:57:24.052Z] ----------------------------------------------------------------------
+[debug] [2022-08-06T09:57:24.054Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Temiloluwa\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-08-06T09:57:24.054Z] CLI Version:   11.2.2
+[debug] [2022-08-06T09:57:24.054Z] Platform:      win32
+[debug] [2022-08-06T09:57:24.054Z] Node Version:  v18.4.0
+[debug] [2022-08-06T09:57:24.055Z] Time:          Sat Aug 06 2022 10:57:24 GMT+0100 (West Africa Standard Time)
+[debug] [2022-08-06T09:57:24.055Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-08-06T09:57:24.058Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2022-08-06T09:57:24.130Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-08-06T09:57:24.130Z] > authorizing via signed-in user (adeleyetemiloluwa674@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Temiloluwa\Documents\ReactProjects\sixty-six-ch
+
+[debug] [2022-08-06T09:57:25.610Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2022-08-06T09:57:25.611Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2022-08-06T09:57:45.228Z] > refreshing access token with scopes: []
+[debug] [2022-08-06T09:57:45.232Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2022-08-06T09:57:45.232Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-08-06T09:57:45.718Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2022-08-06T09:57:45.719Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-08-06T09:57:45.735Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2022-08-06T09:57:46.725Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2022-08-06T09:57:46.725Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project sixty-six-ch (sixty-six-ch) 
+[info] 
+=== Database Setup
+[info] i  database: ensuring required API firebasedatabase.googleapis.com is enabled... 
+[debug] [2022-08-06T09:57:49.336Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/sixty-six-ch/services/firebasedatabase.googleapis.com [none]
+[debug] [2022-08-06T09:57:51.129Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/sixty-six-ch/services/firebasedatabase.googleapis.com 200
+[debug] [2022-08-06T09:57:51.129Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/sixty-six-ch/services/firebasedatabase.googleapis.com [omitted]
+[warn] !  database: missing required API firebasedatabase.googleapis.com. Enabling now... 
+[debug] [2022-08-06T09:57:51.132Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/sixty-six-ch/services/firebasedatabase.googleapis.com:enable [none]
+[debug] [2022-08-06T09:57:53.290Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/sixty-six-ch/services/firebasedatabase.googleapis.com:enable 200
+[debug] [2022-08-06T09:57:53.290Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/sixty-six-ch/services/firebasedatabase.googleapis.com:enable [omitted]
+[debug] [2022-08-06T09:58:03.306Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/sixty-six-ch/services/firebasedatabase.googleapis.com [none]
