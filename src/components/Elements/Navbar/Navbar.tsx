@@ -12,8 +12,6 @@ export function Navbar() {
   const navigate = useNavigate();
   const handleMenuToggle = () => {
     menu.current!.classList.toggle("hidden");
-    menubutton.current!.classList.toggle("bg-primary");
-    menubutton.current!.classList.toggle("text-white");
   };
 
   const handleLogOut = () => {

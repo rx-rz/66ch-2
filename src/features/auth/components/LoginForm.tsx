@@ -1,4 +1,3 @@
-
 import { signInWithGoogle } from '../api/signUpUser'
 
 export  function LoginForm() {

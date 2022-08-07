@@ -4,7 +4,7 @@ type FieldWrapperProps = {
   label?: string;
   className?: string;
   children: React.ReactNode;
-  error?: FieldError | undefined;
+  error?: FieldError | undefined ;
   description?: string;
 };
 
@@ -13,7 +13,7 @@ export type FieldWrapperPassThroughProps = Omit<
   "className" | "children"
 >;
 export const FieldWrapper = (props: FieldWrapperProps) => {
-  const { label, className, error, children } = props;
+  const { label,  error, children } = props;
   return (
     <div className="mt-8">
       <label className="font-Synonym font-medium md:text-xl text-lg">
