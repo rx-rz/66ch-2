@@ -1,10 +1,10 @@
-import Layout from "../components/Layout"
+import { AuthLayout } from "src/components/Layout/Layout"
 import { RegisterForm } from "../components/RegisterForm"
 
 export const Register = () => {
     return (
-        <Layout title="Register">
+        <AuthLayout title="Register">
             <RegisterForm/>
-        </Layout>
+        </AuthLayout>
     )
 }

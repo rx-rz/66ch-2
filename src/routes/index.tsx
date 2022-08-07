@@ -1,9 +1,9 @@
 import { useRoutes } from "react-router-dom"
-import HomePage from "src/features/misc/HomePage"
+import { Home } from "src/features/misc/home/routes/Home";
 import { publicRoutes } from "./public"
 
 export const AppRoutes = () => {
-    const commonRoutes = [{path: '/', element: <HomePage/>}];
+    const commonRoutes = [{path: '/', element: <Home/>}];
 
     const routes = publicRoutes
 
