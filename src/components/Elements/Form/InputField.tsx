@@ -3,6 +3,7 @@ import { FieldWrapper, FieldWrapperPassThroughProps } from "./FieldWrapper";
 
 type InputFieldProps = FieldWrapperPassThroughProps & {
   type?: "text" | "email" | "password";
+  inputStyle?: string;
   className?: string;
   placeHolder?: string;
   registration: Partial<UseFormRegisterReturn>;

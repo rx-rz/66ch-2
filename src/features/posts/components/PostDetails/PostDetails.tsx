@@ -13,7 +13,15 @@ export default function PostDetails() {
     <div>
       {error && <strong>Error: {JSON.stringify(error)}</strong>}
       {loading && <span>Document: Loading...</span>}
-      {value && <span>Document: {JSON.stringify(value.data())}</span>}
+
+      {value && (
+        <div >
+          <div
+          className="[&>p]:text-blue-700 [&>h1]:text-3xl"
+            dangerouslySetInnerHTML={{ __html: value.data()!.postContent }}
+          ></div>
+        </div>
+      )}
     </div>
   );
 }

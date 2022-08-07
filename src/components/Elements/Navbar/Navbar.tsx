@@ -100,7 +100,7 @@ export function Navbar() {
         )}
       </nav>
       <div
-        className=" h-screen hidden lg:hidden bg-primary lg:top-24 top-16 left-0 right-0 bottom-0 fixed"
+        className=" h-screen hidden lg:hidden bg-primary lg:top-24 top-16 left-0 right-0 bottom-0 fixed z-50"
         ref={menu}
       >
         {!user ? (
