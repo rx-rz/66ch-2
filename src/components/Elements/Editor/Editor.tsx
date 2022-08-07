@@ -20,6 +20,7 @@ export const Editor = ({handleContentChange}: EditorProps) => {
     <>
     <ReactQuill
       theme="snow"
+      placeholder="Enter your post content here"
       value={value}
       onChange={setValue}
       className="w-full"
