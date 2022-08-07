@@ -3,7 +3,7 @@ import { Editor } from "src/components/Elements/Editor/Editor";
 import { Form } from "src/components/Elements/Form/Form";
 import { InputField } from "src/components/Elements/Form/InputField";
 
-export default function PostDetails() {
+export default function PostContent() {
     const [editorContent, setEditorContent] = useState("")
     
     //passing a setter function down to the editor component to monitor

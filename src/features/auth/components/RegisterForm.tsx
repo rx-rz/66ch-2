@@ -10,7 +10,6 @@ import { RegisterFormValues } from "../types";
 export function RegisterForm() {
   const navigate = useNavigate();
   const handleSubmit = async (data: RegisterFormValues) => {
-
     await createUserWithEmailAndPassword(auth, data.email, data.password)
     navigate("/");
   };
