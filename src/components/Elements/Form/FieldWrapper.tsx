@@ -16,7 +16,7 @@ export const FieldWrapper = (props: FieldWrapperProps) => {
   const { label,  error, children } = props;
   return (
     <div className="mt-8">
-      <label className="font-Synonym font-medium md:text-xl text-lg">
+      <label className="font-Synonym font-medium md:text-lg text-md">
         {label}
         <div>{children}</div>
       </label>
@@ -24,7 +24,7 @@ export const FieldWrapper = (props: FieldWrapperProps) => {
         <p
           role="alert"
           aria-label={error?.message}
-          className="text-sm text-red-500"
+          className="text-sm font-Amulya font-bold text-red-500"
         >
           {error.message}
         </p>

@@ -1,6 +1,8 @@
 import { addDoc, collection } from "firebase/firestore";
 import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { Link } from "react-router-dom";
+import { Button } from "src/components/Elements/Button/Button";
 import { Editor } from "src/components/Elements/Editor/Editor";
 import { Form } from "src/components/Elements/Form/Form";
 import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
@@ -41,14 +43,15 @@ export default function PostContent({
       tag: tag,
       description: description,
     });
-    console.log("done")
+    console.log("done");
   };
 
   const changeEditorContent = (editorContent: string) => {
     setEditorContent(editorContent);
   };
   return (
-    <div className="w-11/12 mx-auto">
+    <div className="w-11/12 mx-auto my-10">
+      <Link to="/" className="text-xl font-bold">&#8592; Home</Link>
       <Form onSubmit={handleSubmit}>
         {({ register, formState }) => (
           <>
@@ -56,10 +59,22 @@ export default function PostContent({
               error={formState.errors.postTitle}
               placeholder="Enter your post title here..."
               registration={register("postTitle")}
-              className="resize-none focus:outline-none w-11/12 m-auto"
+              className="resize-none focus:outline-none w-11/12 m-auto text-2xl md:text-3xl ml-1"
             />
+            {imageUrl && (
+              <img
+                src={imageUrl}
+                alt={description}
+                className="w-full object-cover"
+              />
+            )}
             <Editor handleContentChange={changeEditorContent} />
-            <button type="submit">Submit</button>
+            <Button
+              type="submit"
+              className="text-xl font-Synonym lg:w-5/12 w-full border border-black bg-black text-white p-1 py-2 text-center lg:mt-0 mt-6 transition-opacity duration-300  hover:opacity-80"
+            >
+              Create Post
+            </Button>
           </>
         )}
       </Form>

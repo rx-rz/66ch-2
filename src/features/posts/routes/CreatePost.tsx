@@ -27,25 +27,26 @@ export default function CreatePost() {
 
   return (
     <MainLayout>
-      <nav className="flex">
+      {/* <nav className="flex">
         <div className="justify-end">
           <button>Save As Draft</button>
           <button onClick={handleMenuToggle}>Settings</button>
         </div>
-      </nav>
-      <main className="relative">
-        <div className="w-full">
+      </nav> */}
+      <main className="relative flex justify-between">
+        <div
+          ref={settings}
+          className="sticky h-screen border-2  w-11/12 md:w-3/12 bg-tertiary"
+        >
+          <PostSettings editPostSettings={editPostSettings} />
+        </div>
+        <div className="w-9/12 ">
+          
           <PostContent
             description={postSettings?.description}
             tag={postSettings?.tag}
             imageUrl={postSettings?.imageUrl}
           />
-        </div>
-        <div
-          ref={settings}
-          className="lg:top-32 top-24 border-2 right-0 bottom-0 fixed z-20 bg-white"
-        >
-          <PostSettings editPostSettings={editPostSettings} />
         </div>
       </main>
     </MainLayout>

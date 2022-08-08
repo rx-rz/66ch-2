@@ -6,6 +6,7 @@ import { auth } from "src/utils/firebaseConfig";
 import { signInWithGoogle } from "../api/signUpUser";
 import googleLogo from "src/assets/google.svg";
 import { useState } from "react";
+import { Button } from "src/components/Elements/Button/Button";
 type LoginFormValues = {
   email: string;
   password: string;
@@ -20,48 +21,78 @@ export function LoginForm() {
     setPending(false);
     navigate("/");
   };
+
+  const handleNavigateToRegister = () => {
+    navigate("/auth/register");
+  };
+
   return (
     <div className="sm:w-8/12 w-10/12 mx-auto py-16">
-      <button
-        onClick={signInWithGoogle}
-        className="flex text-2xl items-center  bg-primary text-white  transition-opacity duration-300  hover:opacity-90"
+      <h1 className="text-3xl text-center my-4 font-bold">Log In </h1>
+
+      <Button
+        handleClick={signInWithGoogle}
+        className="flex text-2xl items-center  bg-primary text-white  transition-opacity duration-300  hover:opacity-80 mx-auto my-12"
       >
         <img
           src={googleLogo}
           width="40px"
           alt="Google Logo"
-          className="mr-2 border-r-2 border-primary invert"
+          className=" border-primary invert"
         />
-        <p className="mr-2">Sign up With Google</p>{" "}
-      </button>
-      <hr className="mt-12 " />
-      <Form onSubmit={handleSubmit} options={{ mode: "onBlur" }}>
-        {({ register, formState }) => (
-          <>
-            <InputField
-              className=" border-primary border-b-2 mt-1 mb-3 w-full focus:outline-none focus:border-b-4"
-              type="text"
-              label="Email"
-              error={formState.errors.email}
-              registration={register("email")}
-            />
+      </Button>
+      <hr className="border border-black" />
+      <div className="my-16">
+        <Form onSubmit={handleSubmit} options={{ mode: "onBlur" }}>
+          {({ register, formState }) => (
+            <>
+              <InputField
+                className=" border-primary w-full border p-1  bg-slate-100 focus:outline-none focus:bg-white mt-2"
+                type="text"
+                label="Email"
+                error={formState.errors.email}
+                registration={register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value:
+                      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                    message: "Please enter a valid email",
+                  },
+                })}
+              />
 
-            <InputField
-              className=" border-primary border-b-2 mt-1 mb-3 w-full focus:outline-none focus:border-b-4"
-              type="password"
-              label="Password"
-              error={formState.errors.password}
-              registration={register("password")}
-            />
-            <button
-              type="submit"
-              className="flex text-2xl items-center border-2 px-2 border-primary mt-8 transition-colors duration-300  hover:bg-primary hover:text-white"
-            >
-              {pending ? <p>Loading....</p> : <p>Log In</p>}
-            </button>
-          </>
-        )}
-      </Form>
+              <InputField
+                className=" border-primary w-full border p-1  bg-slate-100 focus:outline-none focus:bg-white mt-2"
+                type="password"
+                label="Password"
+                error={formState.errors.password}
+                registration={register("password", {
+                  minLength: {
+                    value: 6,
+                    message:
+                      "Your password should not be less than 6 characters long",
+                  },
+                })}
+              />
+              <div className="lg:flex mt-12 justify-between">
+                <Button
+                  type="submit"
+                  className="text-xl font-Synonym lg:w-5/12 w-full bg-black text-white p-1 py-2 transition-opacity duration-300  hover:opacity-80"
+                >
+                  {pending ? <>Loading....</> : <>Log In</>}
+                </Button>
+                <Button
+                  type="submit"
+                  handleClick={handleNavigateToRegister}
+                  className="text-xl font-Synonym lg:w-5/12 w-full border border-black bg-white text-black p-1 py-2 text-center lg:mt-0 mt-6 transition-opacity duration-300  hover:opacity-80"
+                >
+                  Register
+                </Button>
+              </div>
+            </>
+          )}
+        </Form>
+      </div>
     </div>
   );
 }

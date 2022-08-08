@@ -1,13 +1,14 @@
 type ButtonProps = {
     text?: string;
     className?: string;
-    handleClick: () => void;
+    type?: "button" | "submit" | "reset" | undefined;
+    handleClick?: () => void;
     children?: React.ReactNode
   };
  
-  export  function Button({ text, className, handleClick, children }: ButtonProps) {
+  export  function Button({ text, className, handleClick, children, type }: ButtonProps) {
     return (
-      <button onClick={handleClick} className={className} data-testid="button">
+      <button onClick={handleClick} className={className} data-testid="button" type={type}>
         {text && text}  {children && children}
       </button>
     );
