@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "src/components/Elements/Button/Button";
-import MainLayout from "src/components/Layout/Layout";
+import {MainLayout} from "src/components/Layout/Layout";
 import { PostContent } from "../components/CreatePost/PostContent";
 import PostSettings from "../components/CreatePost/PostSettings";
 import closeButton from "src/assets/close.svg";

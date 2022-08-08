@@ -1,8 +1,8 @@
 import { useRoutes } from "react-router-dom";
 import { Home } from "src/features/home/routes/Home";
-import PostDetails from "src/features/posts/components/PostDetails/PostDetails";
 import Postlist from "src/features/posts/components/PostList/Postlist";
 import CreatePost from "src/features/posts/routes/CreatePost";
+import { PostContent } from "src/features/posts/routes/PostContent";
 import { publicRoutes } from "./public";
 
 export const AppRoutes = () => {
@@ -10,7 +10,8 @@ export const AppRoutes = () => {
     { path: "/", element: <Home /> },
     { path: "/createpost", element: <CreatePost/> },
     { path: "/postlist", element: <Postlist /> },
-    {path: "/post/:id", element: <PostDetails/>}
+    {path: "/post/:id", element: <PostContent/>},
+    
   ];
 
   const routes = publicRoutes;

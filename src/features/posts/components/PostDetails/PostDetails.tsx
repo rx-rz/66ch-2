@@ -10,14 +10,23 @@ export default function PostDetails() {
     snapshotListenOptions: { includeMetadataChanges: true },
   });
   return (
-    <div>
+    <div className="w-11/12 mx-auto md:mt-36 mt-12">
       {error && <strong>Error: {JSON.stringify(error)}</strong>}
       {loading && <span>Document: Loading...</span>}
 
       {value && (
-        <div >
+        <div>
+          <div className="w-9/12 mb-24">
+            <div className="flex mb-8">
+            <p className="text-2xl mr-6">{value.data()!.author.name} </p>
+            <p className="text-2xl">{value.data()!.dateCreated}</p>
+
+            </div>
+            <h1 className="font-bold text-7xl mb-24 ">{value.data()!.postTitle}</h1>
+            <img src={value.data()!.imageDownloadUrl} alt="" className="aspect-video object-cover"/>
+          </div>
           <div
-          className="text-lg md:text-2xl"
+          className="text-lg md:text-2xl max-w-3xl w-11/12 [&>strong:text-4xl]"
             dangerouslySetInnerHTML={{ __html: value.data()!.postContent }}
           ></div>
         </div>
