@@ -29,10 +29,10 @@ export default function CreatePost() {
     <MainLayout>
       <main className=" flex justify-between h-screen w-full">
         <div
-          className="fixed  md:sticky md:block z-40 md:top-0  hidden w-96 "
+          className="fixed  md:sticky md:flex z-40 md:top-0  hidden md:w-4/12 w-full "
           ref={settings}
         >
-          <div className="z-40 h-screen border-2  bg-tertiary ">
+          <div className="z-40 h-screen border-2  bg-primary ">
             <div className="w-11/12 mx-auto mt-6 md:hidden cursor-pointer">
               <img
                 src={closeButton}
@@ -42,7 +42,7 @@ export default function CreatePost() {
                 onClick={handleMenuToggle}
               />
             </div>
-            <PostSettings editPostSettings={editPostSettings} />
+            <PostSettings editPostSettings={editPostSettings} handleMenuToggle={handleMenuToggle}/>
           </div>
         </div>
         <div className=" h-screen overflow-y-scroll w-full ">

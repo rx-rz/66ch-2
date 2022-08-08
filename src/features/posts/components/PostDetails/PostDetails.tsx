@@ -17,7 +17,7 @@ export default function PostDetails() {
       {value && (
         <div >
           <div
-          className="[&>p]:text-blue-700 [&>h1]:text-3xl"
+          className="text-lg md:text-2xl"
             dangerouslySetInnerHTML={{ __html: value.data()!.postContent }}
           ></div>
         </div>

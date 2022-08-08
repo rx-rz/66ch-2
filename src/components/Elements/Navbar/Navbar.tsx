@@ -24,7 +24,7 @@ export function Navbar() {
     return null;
   } else {
     return (
-      <header>
+      <header className="pt-4 px-8">
         <nav className=" h-16 lg:h-24  flex  justify-between items-center ">
           <NavLink
             to="/"

@@ -1,6 +1,5 @@
-import { forwardRef, useEffect, useState } from "react";
+import { useState } from "react";
 import { Form } from "src/components/Elements/Form/Form";
-import { InputField } from "src/components/Elements/Form/InputField";
 import { usePostImage } from "src/hooks/usePostImage";
 import { FileUploader } from "react-drag-drop-files";
 import { Button } from "src/components/Elements/Button/Button";
@@ -14,11 +13,11 @@ type PostSettingProps = {
 
 type EditPostSettingsProps = {
   editPostSettings: (postSettings: PostSettingProps) => void;
+  handleMenuToggle: () => void
 };
 
-
 export default function PostSettings({
-  editPostSettings,
+  editPostSettings, handleMenuToggle
 }: EditPostSettingsProps) {
   type PostSettingProps = {
     tag: string;
@@ -47,8 +46,8 @@ export default function PostSettings({
   const types = ["image/png", "image/jpeg", "image/jpg"];
 
   const handleChange = (e: any) => {
-    console.log(e)
-    let selectedFile = e
+    console.log(e);
+    let selectedFile = e;
     if (selectedFile) {
       if (types.includes(selectedFile.type)) {
         setError(null);
@@ -69,8 +68,8 @@ export default function PostSettings({
         {({ register, formState }) => (
           <>
             <FileUploader handleChange={handleChange} name="File">
-              <div className="cursor-pointer h-36  w-full border-dotted border-2 border-slate-400 grid items-center">
-                <p className="mx-auto text-slate-400 w-9/12 text-center">
+              <div className="cursor-pointer h-36  w-full border-dotted border-2 border-white grid items-center">
+                <p className="mx-auto text-white w-9/12 text-center">
                   Click to upload image or drag and drop image files here
                 </p>
               </div>
@@ -78,19 +77,36 @@ export default function PostSettings({
             {/* <input type="file" onChange={handleSave}  /> */}
             <SelectField
               options={tagNames.map((tagName) => ({ value: tagName }))}
-              className="border border-black w-full focus:outline-none bg-tertiary"
+              className="border border-black w-full focus:outline-none bg-tertiary py-2 text-black mt-3"
               defaultValue="Nature"
               registration={register("tag")}
               label="tag"
               error={formState.errors.tag}
             />
             <TextAreaField
-              registration={register("description", {maxLength: {value: 500, message: "Your description should not be more than 500 characters long"}, required: "Please enter a post description"})}
-              className="resize-none bg-tertiary w-full border-dotted border border-black focus:border-2 focus:outline-none"
+              registration={register("description", {
+                maxLength: {
+                  value: 500,
+                  message:
+                    "Your description should not be more than 500 characters long",
+                },
+                required: "Please enter a post description",
+              })}
+              className="resize-none bg-tertiary text-black w-full border-dotted border border-black focus:border-2 focus:outline-none mt-3"
               label="description"
               error={formState.errors.description}
             />
-            <Button type="submit" className="text-xl font-Synonym  w-full  mt-8 md:mt-12 bottom-10 mx-auto bg-black text-white p-1 py-2 transition-opacity duration-300  hover:opacity-80">
+            <Button
+              type="submit"
+              className="text-xl font-Synonym self-end w-full  hidden md:block md:mt-12 bottom-0 mx-auto bg-white text-black p-1 py-2 transition-opacity duration-300  hover:opacity-80"
+            >
+              Save Settings
+            </Button>
+            <Button
+            handleClick={handleMenuToggle}
+              type="submit"
+              className="text-xl font-Synonym self-end w-full md:hidden  md:mt-12 bottom-0 mx-auto bg-white text-black p-1 py-2 transition-opacity duration-300  hover:opacity-80"
+            >
               Save Settings
             </Button>
           </>

@@ -50,7 +50,7 @@ export const PostContent = ({
     setEditorContent(editorContent);
   };
   return (
-    <div className="w-11/12 mx-auto my-6">
+    <div className="w-11/12 mx-auto my-12">
       <Form onSubmit={handleSubmit}>
         {({ register, formState }) => (
           <>
