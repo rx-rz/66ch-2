@@ -16,11 +16,11 @@ type PostSettingProps = {
 
 const date = new Date();
 
-export default function PostContent({
+export const PostContent = ({
   tag,
   description,
   imageUrl,
-}: PostSettingProps) {
+}: PostSettingProps) => {
   const [editorContent, setEditorContent] = useState("");
 
   const postsRef = collection(database, "posts");
@@ -50,8 +50,7 @@ export default function PostContent({
     setEditorContent(editorContent);
   };
   return (
-    <div className="w-11/12 mx-auto my-10">
-      <Link to="/" className="text-xl font-bold">&#8592; Home</Link>
+    <div className="w-11/12 mx-auto my-6">
       <Form onSubmit={handleSubmit}>
         {({ register, formState }) => (
           <>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { Form } from "src/components/Elements/Form/Form";
 import { InputField } from "src/components/Elements/Form/InputField";
 import { usePostImage } from "src/hooks/usePostImage";
@@ -15,6 +15,7 @@ type PostSettingProps = {
 type EditPostSettingsProps = {
   editPostSettings: (postSettings: PostSettingProps) => void;
 };
+
 
 export default function PostSettings({
   editPostSettings,
@@ -47,7 +48,7 @@ export default function PostSettings({
 
   const handleChange = (e: any) => {
     console.log(e)
-    let selectedFile = e;
+    let selectedFile = e
     if (selectedFile) {
       if (types.includes(selectedFile.type)) {
         setError(null);
@@ -89,7 +90,7 @@ export default function PostSettings({
               label="description"
               error={formState.errors.description}
             />
-            <Button type="submit"                   className="text-xl font-Synonym w-10/12 lg:w-11/12 absolute bottom-10 mx-auto bg-black text-white p-1 py-2 transition-opacity duration-300  hover:opacity-80">
+            <Button type="submit" className="text-xl font-Synonym  w-full  mt-8 md:mt-12 bottom-10 mx-auto bg-black text-white p-1 py-2 transition-opacity duration-300  hover:opacity-80">
               Save Settings
             </Button>
           </>
