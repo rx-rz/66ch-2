@@ -1,8 +1,7 @@
 import { collection } from "firebase/firestore";
-import React from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
-import { ProductCard } from "src/components/Elements/BlogCard/BlogCard";
+import { BlogCard } from "src/components/Elements/BlogCard/BlogCard";
 import { database } from "src/utils/firebaseConfig";
 export default function Postlist() {
   const postsRef = collection(database, "posts");
@@ -10,29 +9,25 @@ export default function Postlist() {
     snapshotListenOptions: { includeMetadataChanges: true },
   });
   return (
-    <div>
-      <div>
-        {error && <strong>Error: {JSON.stringify(error)}</strong>}
-        {loading && <span>Collection: Loading...</span>}
-        {value && (
-          <section className="flex flex-wrap">
-            {value.docs.map((doc) => (
-              <Link
-                to={`/post/${doc.id}`}
-                key={doc.id}
-                className="w-fit"
-              >
-                <ProductCard
-                  authorName={doc.data().author.name}
-                  dateCreated={doc.data().dateCreated}
-                  imageUrl={doc.data().imageDownloadUrl}
-                  postTitle={doc.data().postTitle}
-                />
-              </Link>
-            ))}
-          </section>
-        )}
+    <div className="mx-auto w-11/12">
+      {error && <strong>Error: {JSON.stringify(error)}</strong>}
+      {loading && <span>Collection: Loading...</span>}
+      {value && (
+        <article className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 xl:grid-cols-4">
+          {value.docs.map((doc) => (
+            <Link to={`/post/${doc.id}`} key={doc.id} className="w-fit">
+              <BlogCard
+                authorName={doc.data().author.name}
+                tag={doc.data().tags}
+                description={doc.data().description}
+                dateCreated={doc.data().dateCreated}
+                imageUrl={doc.data().imageDownloadUrl}
+                postTitle={doc.data().postTitle}
+              />
+            </Link>
+          ))}
+        </article>
+      )}
       </div>
-    </div>
   );
 }

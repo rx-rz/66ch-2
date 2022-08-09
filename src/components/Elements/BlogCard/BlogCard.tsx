@@ -5,26 +5,37 @@ type CardProps = {
   postTitle: string;
   dateCreated: string;
   imageUrl: string;
+  tag: string;
+  description: string;
 };
 
-export function ProductCard({
+export function BlogCard({
   authorName,
   postTitle,
   imageUrl,
   dateCreated,
+  tag,
+  description,
 }: CardProps) {
   return (
-    <article className=" m-4 p-8 border border-black">
-      <div className="flex justify-between mb-4">
-        <p>{authorName}</p>
-        <p>{dateCreated}</p>
-      </div>
+    <article className=" m-4 p-4 shadow-sm shadow-primary hover:bg-primary hover:text-white transition-colors duration-300">
       <img
         src={imageUrl}
         alt={postTitle}
-        className="w-full h-full object-cover max-w-sm aspect-square"
+        className="w-full h-full object-cover max-w-sm aspect-video"
       />
-      <p className="font-medium  mt-4 text-2xl font-Synonym max-w-sm">{postTitle}</p>
+      <div className="h-72 overflow-hidden">
+        <div className="flex opacity-80 mb-8 text-lg mt-6">
+          <p className="mr-3 font-bold">{authorName}</p>
+          <p>{dateCreated}</p>
+        </div>
+        <p className="font-medium text-3xl md:text-4xl font-Amulya max-w-sm">
+          {postTitle}
+        </p>
+        <p className=" my-6 text-md md:text-xl w-10/12 font-Synonym max-w-sm">
+          {description.substring(0, 100)}...
+        </p>
+      </div>
     </article>
   );
 }
