@@ -10,19 +10,19 @@ export default function PostDetails() {
     snapshotListenOptions: { includeMetadataChanges: true },
   });
   return (
-    <div className="w-11/12 mx-auto md:mt-36 mt-12">
+    <div className="mx-auto md:mt-36 mt-12 w-11/12">
       {error && <strong>Error: {JSON.stringify(error)}</strong>}
       {loading && <span>Document: Loading...</span>}
 
       {value && (
         <div>
-          <div className="w-9/12 mb-24">
+          <div className="w-11/12 md:w-9/12 md:mb-24 mb-16">
             <div className="flex mb-8">
-            <p className="text-2xl mr-6">{value.data()!.author.name} </p>
-            <p className="text-2xl">{value.data()!.dateCreated}</p>
+            <p className=" text-xl md:text-2xl mr-6">{value.data()!.author.name} </p>
+            <p className=" text-xl md:text-2xl">{value.data()!.dateCreated}</p>
 
             </div>
-            <h1 className="font-bold text-7xl mb-24 ">{value.data()!.postTitle}</h1>
+            <h1 className="font-bold text-5xl md:text-7xl md:mb-24 mb-16 ">{value.data()!.postTitle}</h1>
             <img src={value.data()!.imageDownloadUrl} alt="" className="aspect-video object-cover"/>
           </div>
           <div

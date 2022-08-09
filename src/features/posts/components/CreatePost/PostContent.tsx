@@ -1,7 +1,6 @@
 import { addDoc, collection } from "firebase/firestore";
 import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
 import { Button } from "src/components/Elements/Button/Button";
 import { Editor } from "src/components/Elements/Editor/Editor";
 import { Form } from "src/components/Elements/Form/Form";

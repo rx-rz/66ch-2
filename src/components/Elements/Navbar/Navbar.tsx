@@ -24,11 +24,11 @@ export function Navbar() {
     return null;
   } else {
     return (
-      <header className="pt-4 px-8">
-        <nav className=" h-16 lg:h-24  flex  justify-between items-center ">
+      <header className="w-11/12 mx-auto">
+        <nav className=" h-16 lg:h-24  flex  justify-between items-center">
           <NavLink
             to="/"
-            className="lg:text-5xl text-4xl text-primary  h-full grid f font-medium  content-center lg:pr-12 transition-colors duration-300 font-Synonym  ml-4"
+            className="lg:text-5xl text-3xl md:text-4xl text-primary  h-full grid f font-medium  content-center transition-colors duration-300 font-Synonym"
           >
             6 6 C H
           </NavLink>
@@ -56,7 +56,7 @@ export function Navbar() {
               </div>
               <div className="h-full lg:hidden block">
                 <button
-                  className="text-primary  h-full grid font-extrabold  content-center px-4   font-Synonym"
+                  className="text-primary  h-full grid font-extrabold  content-center   font-Synonym"
                   onClick={handleMenuToggle}
                   ref={menubutton}
                 >
@@ -94,7 +94,7 @@ export function Navbar() {
               </div>
               <div className="h-full lg:hidden block">
                 <button
-                  className="text-primary h-full grid font-extrabold  content-center px-4   font-Synonym"
+                  className="text-primary h-full grid font-extrabold  content-center   font-Synonym"
                   onClick={handleMenuToggle}
                   ref={menubutton}
                 >

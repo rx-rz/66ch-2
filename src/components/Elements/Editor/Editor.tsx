@@ -2,7 +2,7 @@
 import  { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-
+// import Editor from ''
 
 type EditorProps = {
     handleContentChange: (value: string) => void
