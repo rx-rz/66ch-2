@@ -12,8 +12,8 @@ export default function HomePage() {
     <main className="my-12 w-11/12 mx-auto ">
       {homePageBlogPost && (
         <Link className="cursor-pointer" to={`/post/${homePageBlogPost.id}`}>
-          <main className="flex flex-wrap justify-between">
-            <div className=" mb-8  top-1/2 text-black">
+          <main className="flex justify-between">
+            <div className=" mb-8 md:w-5/12  top-1/2 text-black">
               <div className="flex opacity-80 md:mb-8 mb-3 md:text-xl mt-6">
                 <p className="mr-3 font-bold">{homePageBlogPost.author.name}</p>
                 <p>{homePageBlogPost.dateCreated}</p>
@@ -25,7 +25,7 @@ export default function HomePage() {
             <img
               src={homePageBlogPost.imageDownloadUrl}
               alt={homePageBlogPost.postTitle}
-              className="aspect-video object-cover max-h-optimal mx-auto  "
+              className="aspect-video object-cover max-h-optimal mx-auto  md:w-7/12"
             />
           </main>
         </Link>

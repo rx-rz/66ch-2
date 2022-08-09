@@ -15,7 +15,7 @@ module.exports = {
         tertiary: "#f5f5f5"
       },
       maxHeight: {
-        optimal: "80vh"
+        optimal: "65vh"
       }
     },
   },

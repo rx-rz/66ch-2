@@ -10,9 +10,9 @@ export default function Postlist() {
   const ref = collection(database, "posts").withConverter(postConverter);
   const [data] = useCollectionData(ref);
   return (
-    <div className="mx-auto w-11/12 my-20">
+    <div className="m-auto w-11/12 my-20">
       {data && (
-        <article className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <article className="grid gap-24 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {data.map((doc) => (
             <Link to={`/post/${doc.id}`} key={doc.id} className="w-fit">
               <BlogCard

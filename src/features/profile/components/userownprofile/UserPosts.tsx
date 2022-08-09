@@ -14,7 +14,7 @@ export default function UserPosts() {
   return (
     <div className="mx-auto w-11/12 my-20">
       {userPosts && (
-        <article className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <article className="grid gap-24 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {userPosts.map((doc) => (
             <Link to={`/post/${doc.id}`} key={doc.id} className="w-fit">
               <BlogCard

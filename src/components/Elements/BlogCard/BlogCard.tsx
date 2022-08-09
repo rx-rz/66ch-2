@@ -18,7 +18,7 @@ export function BlogCard({
   description,
 }: CardProps) {
   return (
-    <article className=" m-4 p-4 hover:bg-primary hover:text-white transition-colors duration-300">
+    <article className="  p-4 hover:bg-primary hover:text-white transition-colors duration-300 mx-auto">
       <img
         src={imageUrl}
         alt={postTitle}
