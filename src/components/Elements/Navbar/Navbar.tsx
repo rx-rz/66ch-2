@@ -20,7 +20,7 @@ export function Navbar() {
     signOut(auth);
     navigate("/auth/login");
   };
-  if ((location.pathname === "/createpost")) {
+  if (location.pathname === "/createpost") {
     return null;
   } else {
     return (
@@ -36,7 +36,7 @@ export function Navbar() {
             <div className="h-full">
               <div className="h-full hidden lg:flex">
                 <NavLink
-                  to="/auth/login"
+                  to="/search"
                   className="sm:text-xl text-md text-primary hover:text-white px-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya active:border-b-4"
                 >
                   Search
@@ -67,12 +67,15 @@ export function Navbar() {
           ) : (
             <div className="h-full">
               <div className="h-full hidden lg:flex">
-                <NavLink
-                  to="/auth/register"
-                  className="sm:text-xl text-md text-primary hover:text-white px-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya"
-                >
-                  {user.displayName}
-                </NavLink>
+                {location.pathname !== "/profile" ? (
+                  <NavLink
+                    to="/profile"
+                    className="sm:text-xl text-md text-primary hover:text-white px-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya"
+                  >
+                    {user.displayName}
+                  </NavLink>
+                ) : null}
+
                 <NavLink
                   to="/createpost"
                   className="sm:text-xl text-md text-primary hover:text-white px-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya"
@@ -80,7 +83,7 @@ export function Navbar() {
                   Create Post
                 </NavLink>
                 <NavLink
-                  to="/auth/login"
+                  to="/search"
                   className="sm:text-xl text-md text-primary hover:text-white px-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya active:border-b-4"
                 >
                   Search
@@ -111,7 +114,7 @@ export function Navbar() {
           {!user ? (
             <div className="flex flex-col">
               <NavLink
-                to="/auth/login"
+                to="/search"
                 className="text-4xl font-Synonym text-white my-8 ml-4 "
               >
                 Search
@@ -131,12 +134,14 @@ export function Navbar() {
             </div>
           ) : (
             <div className="flex flex-col">
-              <NavLink
-                to="/auth/login"
-                className="text-4xl font-Synonym text-white my-8 ml-4 mt-14"
-              >
-                Profile
-              </NavLink>
+              {location.pathname !== "/profile" ? (
+                <NavLink
+                  to="/profile"
+                  className="text-4xl font-Synonym text-white my-8 ml-4 mt-14"
+                >
+                  {user.displayName}
+                </NavLink>
+              ) : null}
               <NavLink
                 to="/auth/login"
                 className="text-4xl font-Synonym text-white my-8 ml-4"
