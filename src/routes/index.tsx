@@ -3,6 +3,7 @@ import { Home } from "src/features/home/routes/Home";
 import Postlist from "src/features/posts/components/PostList/Postlist";
 import CreatePost from "src/features/posts/routes/CreatePost";
 import { PostContent } from "src/features/posts/routes/PostContent";
+import { UserProfile } from "src/features/profile/routes/UserProfile";
 import { publicRoutes } from "./public";
 
 export const AppRoutes = () => {
@@ -11,6 +12,7 @@ export const AppRoutes = () => {
     { path: "/createpost", element: <CreatePost/> },
     { path: "/postlist", element: <Postlist /> },
     {path: "/post/:id", element: <PostContent/>},
+    {path: "/profile", element: <UserProfile/>}
     
   ];
 

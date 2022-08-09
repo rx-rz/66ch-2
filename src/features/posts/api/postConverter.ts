@@ -16,6 +16,7 @@ type Blog = {
   postTitle: string;
   ref: DocumentReference<DocumentData>;
   dateCreated: string;
+  description: string;
 };
 
 export const postConverter: FirestoreDataConverter<Blog> = {
@@ -36,6 +37,7 @@ export const postConverter: FirestoreDataConverter<Blog> = {
       dateCreated: data.dateCreated,
       imageDownloadUrl: data.imageDownloadUrl,
       ref: snapshot.ref,
+      description: data.description
     };
   },
 };

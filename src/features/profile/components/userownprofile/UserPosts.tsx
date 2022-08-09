@@ -1,19 +1,21 @@
 import { collection } from "firebase/firestore";
-import { useCollection, useCollectionData } from "react-firebase-hooks/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
 import { BlogCard } from "src/components/Elements/BlogCard/BlogCard";
-import { database } from "src/utils/firebaseConfig";
-import { postConverter } from "../../api/postConverter";
+import { postConverter } from "src/features/posts/api/postConverter";
+import { auth, database } from "src/utils/firebaseConfig";
 
-export default function Postlist() {
-
+export default function UserPosts() {
+  const [user, loading, error] = useAuthState(auth);
   const ref = collection(database, "posts").withConverter(postConverter);
   const [data] = useCollectionData(ref);
+  const userPosts = data?.filter((doc) => doc.author.id === user?.uid);
   return (
     <div className="mx-auto w-11/12 my-20">
-      {data && (
+      {userPosts && (
         <article className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {data.map((doc) => (
+          {userPosts.map((doc) => (
             <Link to={`/post/${doc.id}`} key={doc.id} className="w-fit">
               <BlogCard
                 authorName={doc.author.name}
@@ -27,6 +29,6 @@ export default function Postlist() {
           ))}
         </article>
       )}
-      </div>
+    </div>
   );
 }
