@@ -47,7 +47,7 @@ export default function CreatePost() {
         </div>
         <div className=" h-screen overflow-y-scroll w-full ">
           <div className="w-11/12 mx-auto my-4">
-            <nav className="flex justify-between  bg-white ">
+            <nav className="flex justify-between  bg-white w-11/12 mx-auto">
               <Link to="/" className="text-xl font-bold">
                 &#8592; Home
               </Link>
