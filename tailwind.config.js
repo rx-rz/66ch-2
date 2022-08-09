@@ -13,6 +13,9 @@ module.exports = {
         primary: "#101010",
         secondary: "#ffffff",
         tertiary: "#f5f5f5"
+      },
+      maxHeight: {
+        optimal: "80vh"
       }
     },
   },

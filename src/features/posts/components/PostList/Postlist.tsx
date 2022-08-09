@@ -9,11 +9,11 @@ export default function Postlist() {
     snapshotListenOptions: { includeMetadataChanges: true },
   });
   return (
-    <div className="mx-auto w-11/12">
+    <div className="mx-auto w-11/12 my-20">
       {error && <strong>Error: {JSON.stringify(error)}</strong>}
       {loading && <span>Collection: Loading...</span>}
       {value && (
-        <article className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 xl:grid-cols-4">
+        <article className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {value.docs.map((doc) => (
             <Link to={`/post/${doc.id}`} key={doc.id} className="w-fit">
               <BlogCard
