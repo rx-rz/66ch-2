@@ -16,14 +16,14 @@ export default function PostDetails() {
 
       {value && (
         <div>
-          <div className="w-11/12 md:w-9/12 md:mb-24 mb-16">
+          <div className="w-full md:w-9/12 md:mb-24 mb-16">
             <div className="flex mb-8">
             <p className=" text-xl md:text-2xl mr-6">{value.data()!.author.name} </p>
             <p className=" text-xl md:text-2xl">{value.data()!.dateCreated}</p>
 
             </div>
-            <h1 className="font-bold text-5xl md:text-7xl md:mb-24 mb-16 ">{value.data()!.postTitle}</h1>
-            <img src={value.data()!.imageDownloadUrl} alt="" className="border border-black object-cover" loading="eager"/>
+            <h1 className="font-bold text-4xl md:text-7xl md:mb-24 mb-16 ">{value.data()!.postTitle}</h1>
+            <img src={value.data()!.imageDownloadUrl} alt="" className="border border-black object-cover w-full" loading="eager"/>
           </div>
           <div
           className="text-lg md:text-2xl max-w-3xl w-11/12 [&>strong:text-4xl]"

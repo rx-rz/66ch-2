@@ -24,7 +24,7 @@ export function Navbar() {
     return null;
   } else {
     return (
-      <header className="w-11/12 mx-auto md:py-8 py-4  sticky top-0  z-50 bg-white">
+      <header className="w-11/12 mx-auto md:py-8 py-4  sticky top-0  z-50">
         <nav className=" h-16 lg:h-24  flex  justify-between items-center">
           <NavLink
             to="/"
