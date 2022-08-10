@@ -107,8 +107,8 @@ export function Navbar() {
             </div>
           )}
         </nav>
-        <div
-          className=" h-screen hidden lg:hidden bg-primary lg:top-24 top-16 left-0 right-0 bottom-0 fixed z-50"
+        <nav
+          className=" hidden lg:hidden bg-primary md:top-36 top-24 left-0 right-0 bottom-0 fixed z-50"
           ref={menu}
         >
           {!user ? (
@@ -143,7 +143,7 @@ export function Navbar() {
                 </NavLink>
               ) : null}
               <NavLink
-                to="/auth/login"
+                to="/createpost"
                 className="text-4xl font-Synonym text-white my-8 ml-4"
               >
                 Create Post
@@ -162,7 +162,7 @@ export function Navbar() {
               </button>
             </div>
           )}
-        </div>
+        </nav>
       </header>
     );
   }

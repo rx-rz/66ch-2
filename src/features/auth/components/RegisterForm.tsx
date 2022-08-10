@@ -1,9 +1,12 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import {  useNavigate } from "react-router-dom";
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import { Form } from "src/components/Elements/Form/Form";
 import { InputField } from "src/components/Elements/Form/InputField";
 import { auth } from "src/utils/firebaseConfig";
-import { signInWithGoogle } from "../api/signUpUser";
 import googleLogo from "src/assets/google.svg";
 import { RegisterFormValues } from "../types";
 import { Button } from "src/components/Elements/Button/Button";
@@ -12,6 +15,14 @@ export function RegisterForm() {
   const navigate = useNavigate();
   const handleSubmit = async (data: RegisterFormValues) => {
     await createUserWithEmailAndPassword(auth, data.email, data.password);
+    navigate("/");
+  };
+
+  const googleProvider = new GoogleAuthProvider();
+  const signInWithGoogle = async () => {
+    await signInWithPopup(auth, googleProvider)
+      .then()
+      .catch((err) => console.log(err));
     navigate("/");
   };
 
@@ -34,7 +45,7 @@ export function RegisterForm() {
           className=" border-primary invert"
         />
       </Button>
-      <hr className="border border-black"/>
+      <hr className="border border-black" />
       <div className="my-16">
         <Form onSubmit={handleSubmit} options={{ mode: "onBlur" }}>
           {({ register, formState }) => (
@@ -44,7 +55,9 @@ export function RegisterForm() {
                 type="text"
                 label="First Name"
                 error={formState.errors.firstName}
-                registration={register("firstName", {required: "Please enter your first name"})}
+                registration={register("firstName", {
+                  required: "Please enter your first name",
+                })}
               />
 
               <InputField
@@ -52,7 +65,9 @@ export function RegisterForm() {
                 type="text"
                 label="Last Name"
                 error={formState.errors.lastName}
-                registration={register("lastName", {required: "Please enter your last name"})}
+                registration={register("lastName", {
+                  required: "Please enter your last name",
+                })}
               />
 
               <InputField
