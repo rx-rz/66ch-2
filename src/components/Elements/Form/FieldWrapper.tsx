@@ -1,5 +1,4 @@
 import { FieldError } from "react-hook-form";
-import { useLocation } from "react-router-dom";
 
 type FieldWrapperProps = {
   label?: string;
@@ -14,7 +13,6 @@ export type FieldWrapperPassThroughProps = Omit<
   "className" | "children"
 >;
 export const FieldWrapper = (props: FieldWrapperProps) => {
-  const location = useLocation()
   const { label,  error, children } = props;
   return (
     <div className="mt-8">

@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { Form } from "src/components/Elements/Form/Form";
 import { InputField } from "src/components/Elements/Form/InputField";
 import { auth } from "src/utils/firebaseConfig";
@@ -20,7 +20,7 @@ export function RegisterForm() {
   };
 
   return (
-    <div className="sm:w-8/12 w-10/12 mx-auto py-16">
+    <div className="sm:w-8/12 w-10/12 mx-auto py-16 bg-tertiary">
       <h1 className="text-3xl text-center my-4 font-bold">Create Account</h1>
 
       <Button
@@ -82,14 +82,14 @@ export function RegisterForm() {
               <div className="lg:flex mt-12 justify-between">
                 <Button
                   type="submit"
-                  className="text-xl font-Synonym lg:w-5/12 w-full bg-black text-white p-1 py-2 transition-opacity duration-300  hover:opacity-80"
+                  className="text-xl font-Synonym lg:w-5/12 w-full bg-primary text-white p-1 py-2 transition-opacity duration-300  hover:opacity-80"
                 >
                   Register
                 </Button>
 
                 <Button
                   handleClick={handleNavigateToLogin}
-                  className="text-xl font-Synonym lg:w-5/12 w-full border border-black bg-white text-black p-1 py-2 text-center lg:mt-0 mt-6 transition-opacity duration-300  hover:opacity-80"
+                  className="text-xl font-Synonym lg:w-5/12 w-full border border-black bg-tertiary text-primary p-1 py-2 text-center lg:mt-0 mt-6 transition-opacity duration-300  hover:opacity-80"
                 >
                   Log In
                 </Button>

@@ -10,9 +10,9 @@ export function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <div className="flex h-screen">
       <picture className="lg:block hidden w-8/12 bg-black">
-        <source srcSet={authAvif} type="image/avif" className="h-screen object-cover grayscale"/>
-        <source srcSet={authWebp} type="image/webp" className="h-screen object-cover grayscale"/>
-        <img src={authJpg} alt="#" className="h-screen object-cover grayscale"/>
+        <source srcSet={authAvif} type="image/avif" className="h-screen object-cover "/>
+        <source srcSet={authWebp} type="image/webp" className="h-screen object-cover "/>
+        <img src={authJpg} alt="#" className="h-screen object-cover "/>
       </picture>
       <div className="lg:w-4/12 w-full">{children}</div>
     </div>

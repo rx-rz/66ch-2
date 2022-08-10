@@ -15,6 +15,7 @@ type LoginFormValues = {
 export function LoginForm() {
   const navigate = useNavigate();
   const [pending, setPending] = useState(false);
+  
   const handleSubmit = async (data: LoginFormValues) => {
     setPending(true);
     await signInWithEmailAndPassword(auth, data.email, data.password);

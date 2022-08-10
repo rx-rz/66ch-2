@@ -29,8 +29,6 @@ export const PostContent = ({
 
   const [user] = useAuthState(auth);
 
-  //passing a setter function down to the editor component to monitor
-  //its values.
 
   const handleSubmit = async (data: EditorProps) => {
     await addDoc(postsRef, {
@@ -42,7 +40,7 @@ export const PostContent = ({
       tag: tag,
       description: description,
     });
-    console.log("done");
+    window.location.pathname = "/home"
   };
 
   const changeEditorContent = (editorContent: string) => {

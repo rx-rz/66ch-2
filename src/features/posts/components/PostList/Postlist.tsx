@@ -1,12 +1,12 @@
 import { collection } from "firebase/firestore";
-import { useCollection, useCollectionData } from "react-firebase-hooks/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import {  useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
 import { BlogCard } from "src/components/Elements/BlogCard/BlogCard";
-import { database } from "src/utils/firebaseConfig";
+import { auth, database } from "src/utils/firebaseConfig";
 import { postConverter } from "../../api/postConverter";
 
 export default function Postlist() {
-
   const ref = collection(database, "posts").withConverter(postConverter);
   const [data] = useCollectionData(ref);
   return (

@@ -13,6 +13,7 @@ export default function UserPosts() {
   const userPosts = data?.filter((doc) => doc.author.id === user?.uid);
   return (
     <div className="mx-auto w-11/12 my-20">
+      <h1 className="text-3xl mb-16 font-bold">ARTICLES</h1>
       {userPosts && (
         <article className="grid gap-24 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {userPosts.map((doc) => (

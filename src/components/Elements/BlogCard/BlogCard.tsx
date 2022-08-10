@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 type CardProps = {
   authorName: string;
   postTitle: string;
@@ -7,6 +5,7 @@ type CardProps = {
   imageUrl: string;
   tag: string;
   description: string;
+
 };
 
 export function BlogCard({
@@ -17,17 +16,21 @@ export function BlogCard({
   tag,
   description,
 }: CardProps) {
+
   return (
-    <article className="  p-4 hover:bg-primary hover:text-white transition-colors duration-300 mx-auto">
+    <article className=" mx-auto">
       <img
         src={imageUrl}
         alt={postTitle}
         className="w-full h-full object-cover max-w-sm aspect-video"
       />
-      <div className="h-72 overflow-hidden">
-        <div className="flex opacity-80 mb-8 text-lg mt-6">
-          <p className="mr-3 font-bold">{authorName}</p>
-          <p>{dateCreated}</p>
+      <div className="h-96 overflow-hidden p-2">
+        <div className="opacity-80 mb-8 text-lg mt-6">
+          <div className="flex ">
+            <p className="mr-3 font-bold">{authorName}</p>
+            <p>{dateCreated}</p>
+          </div>
+          <button className="border border-black px-2 mt-2">{tag}</button>
         </div>
         <p className="font-medium text-3xl md:text-4xl font-Amulya max-w-sm">
           {postTitle}

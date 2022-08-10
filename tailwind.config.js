@@ -11,8 +11,8 @@ module.exports = {
       },
       colors: {
         primary: "#101010",
-        secondary: "#ffffff",
-        tertiary: "#f5f5f5"
+        secondary: "#3A7CA5",
+        tertiary: "#FCF7FF"
       },
       maxHeight: {
         optimal: "65vh"
