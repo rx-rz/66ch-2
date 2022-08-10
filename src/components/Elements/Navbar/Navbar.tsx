@@ -115,19 +115,19 @@ export function Navbar() {
             <div className="flex flex-col">
               <NavLink
                 to="/search"
-                className="text-4xl font-Synonym text-white my-8 ml-4 "
+                className="text-2xl font-Synonym text-white my-8 ml-4 "
               >
                 Search
               </NavLink>
               <NavLink
                 to="/auth/login"
-                className="text-4xl font-Synonym text-white my-8 ml-4"
+                className="text-2xl font-Synonym text-white my-8 ml-4"
               >
                 Login
               </NavLink>
               <NavLink
                 to="/auth/register"
-                className="text-4xl font-Synonym text-white my-8 ml-4"
+                className="text-2xl font-Synonym text-white my-8 ml-4"
               >
                 Sign Up
               </NavLink>
@@ -137,26 +137,26 @@ export function Navbar() {
               {location.pathname !== "/profile" ? (
                 <NavLink
                   to="/profile"
-                  className="text-4xl font-Synonym text-white my-8 ml-4 mt-14"
+                  className="text-2xl font-Synonym text-white my-8 ml-4 mt-14"
                 >
                   Profile
                 </NavLink>
               ) : null}
               <NavLink
                 to="/createpost"
-                className="text-4xl font-Synonym text-white my-8 ml-4"
+                className="text-2xl font-Synonym text-white my-8 ml-4"
               >
                 Create Post
               </NavLink>
               <NavLink
                 to="/auth/register"
-                className="text-4xl font-Synonym text-white my-8 ml-4"
+                className="text-2xl font-Synonym text-white my-8 ml-4"
               >
                 Search
               </NavLink>
               <button
                 onClick={handleLogOut}
-                className="text-4xl font-Synonym text-white my-8 ml-4 w-fit"
+                className="text-2xl font-Synonym text-white my-8 ml-4 w-fit"
               >
                 Log Out
               </button>
