@@ -1,6 +1,4 @@
-
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { useLocation } from "react-router-dom";
 import { auth } from "src/utils/firebaseConfig";
 
 const googleProvider = new GoogleAuthProvider();
