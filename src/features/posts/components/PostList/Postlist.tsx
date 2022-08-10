@@ -14,7 +14,7 @@ export default function Postlist() {
     <div className="m-auto w-11/12 my-20">
       {loading && <p>Loading...</p>}
       {data && (
-        <article className="grid md:gap-20 lg:gap-28  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <article className="grid md:gap-24 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {data.map((doc) => (
             <Link to={`/post/${doc.id}`} key={doc.id} className="w-fit">
               <BlogCard

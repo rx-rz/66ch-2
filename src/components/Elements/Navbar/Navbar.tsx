@@ -24,8 +24,9 @@ export function Navbar() {
     return null;
   } else {
     return (
-      <header className="w-11/12 mx-auto md:py-8 py-4  sticky top-0  z-50">
-        <nav className=" h-16 lg:h-24  flex  justify-between items-center">
+
+      <header className=" bg-yellow-200 sticky top-0  z-50 w-full mx-auto md:py-4 ">
+        <nav className=" h-16 lg:h-24 w-11/12 mx-auto flex  justify-between items-center">
           <NavLink
             to="/"
             className="lg:text-5xl text-3xl md:text-4xl text-primary  h-full grid f font-medium  content-center transition-colors duration-300 font-Synonym"
@@ -108,26 +109,26 @@ export function Navbar() {
           )}
         </nav>
         <nav
-          className=" hidden lg:hidden bg-primary md:top-32 top-24 left-0 right-0 bottom-0 fixed z-50"
+          className=" hidden lg:hidden bg-yellow-200 top-16 left-0 right-0  fixed z-20"
           ref={menu}
         >
           {!user ? (
             <div className="flex flex-col">
               <NavLink
                 to="/search"
-                className="text-2xl font-Synonym text-white my-8 ml-4 "
+                className="text-2xl font-Synonym text-black font-medium my-8 ml-4 "
               >
                 Search
               </NavLink>
               <NavLink
                 to="/auth/login"
-                className="text-2xl font-Synonym text-white my-8 ml-4"
+                className="text-2xl font-Synonym text-black font-medium my-8 ml-4"
               >
                 Login
               </NavLink>
               <NavLink
                 to="/auth/register"
-                className="text-2xl font-Synonym text-white my-8 ml-4"
+                className="text-2xl font-Synonym text-black font-medium my-8 ml-4"
               >
                 Sign Up
               </NavLink>
@@ -137,26 +138,26 @@ export function Navbar() {
               {location.pathname !== "/profile" ? (
                 <NavLink
                   to="/profile"
-                  className="text-2xl font-Synonym text-white my-8 ml-4 mt-14"
+                  className="text-2xl font-Synonym text-black font-medium my-8 ml-4 mt-14"
                 >
                   Profile
                 </NavLink>
               ) : null}
               <NavLink
                 to="/createpost"
-                className="text-2xl font-Synonym text-white my-8 ml-4"
+                className="text-2xl font-Synonym text-black font-medium my-8 ml-4"
               >
                 Create Post
               </NavLink>
               <NavLink
                 to="/auth/register"
-                className="text-2xl font-Synonym text-white my-8 ml-4"
+                className="text-2xl font-Synonym text-black font-medium my-8 ml-4"
               >
                 Search
               </NavLink>
               <button
                 onClick={handleLogOut}
-                className="text-2xl font-Synonym text-white my-8 ml-4 w-fit"
+                className="text-2xl font-Synonym text-black font-medium my-8 ml-4 w-fit"
               >
                 Log Out
               </button>
