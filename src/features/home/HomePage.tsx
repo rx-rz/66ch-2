@@ -6,7 +6,8 @@ import { postConverter } from "../posts/api/postConverter";
 export default function HomePage() {
   const ref = collection(database, "posts").withConverter(postConverter);
   const [data] = useCollectionData(ref);
-  const homePageBlogPost = data && data![10];
+  const homePageBlogPost =
+    data && data![Math.floor(Math.random() * data.length)];
 
   return (
     <main className="py-24 w-11/12 mx-auto border-b border-b-black">
