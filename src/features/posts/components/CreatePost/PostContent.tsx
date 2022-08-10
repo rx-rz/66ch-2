@@ -40,7 +40,7 @@ export const PostContent = ({
       tag: tag,
       description: description,
     });
-    window.location.pathname = "/home"
+    window.location.pathname = "/"
   };
 
   const changeEditorContent = (editorContent: string) => {
