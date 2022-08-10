@@ -24,7 +24,7 @@ export function Navbar() {
     return null;
   } else {
     return (
-      <header className="w-11/12 mx-auto md:mt-8 mt-4 sticky top-0  z-50">
+      <header className="w-11/12 mx-auto md:pt-8 pt-4 sticky top-0  z-50">
         <nav className=" h-16 lg:h-24  flex  justify-between items-center">
           <NavLink
             to="/"
@@ -108,7 +108,7 @@ export function Navbar() {
           )}
         </nav>
         <nav
-          className=" hidden lg:hidden bg-primary md:top-36 top-24 left-0 right-0 bottom-0 fixed z-50"
+          className=" hidden lg:hidden bg-primary md:top-32 top-24 left-0 right-0 bottom-0 fixed z-50"
           ref={menu}
         >
           {!user ? (
