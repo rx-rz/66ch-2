@@ -24,7 +24,7 @@ export function Navbar() {
     return null;
   } else {
     return (
-      <header className="w-11/12 mx-auto md:pt-8 pt-4 sticky top-0  z-50">
+      <header className="w-11/12 mx-auto md:py-8 py-4  sticky top-0  z-50 bg-white">
         <nav className=" h-16 lg:h-24  flex  justify-between items-center">
           <NavLink
             to="/"
@@ -72,7 +72,7 @@ export function Navbar() {
                     to="/profile"
                     className="sm:text-xl text-md text-primary hover:text-white px-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya"
                   >
-                    {user.displayName}
+                    Profile
                   </NavLink>
                 ) : null}
 
@@ -139,7 +139,7 @@ export function Navbar() {
                   to="/profile"
                   className="text-4xl font-Synonym text-white my-8 ml-4 mt-14"
                 >
-                  {user.displayName}
+                  Profile
                 </NavLink>
               ) : null}
               <NavLink

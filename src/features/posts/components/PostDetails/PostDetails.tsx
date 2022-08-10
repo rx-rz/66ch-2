@@ -10,9 +10,9 @@ export default function PostDetails() {
     snapshotListenOptions: { includeMetadataChanges: true },
   });
   return (
-    <div className="mx-auto md:mt-36 mt-12 w-11/12">
-      {error && <strong>Error: {JSON.stringify(error)}</strong>}
-      {loading && <span>Document: Loading...</span>}
+    <div className="mx-auto md:my-36 my-12 w-11/12">
+      {error && <strong>{error.message}</strong>}
+      {loading && <span>Loading...</span>}
 
       {value && (
         <div>
