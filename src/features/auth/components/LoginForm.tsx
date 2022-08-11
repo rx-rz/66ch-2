@@ -37,12 +37,13 @@ export function LoginForm() {
   };
 
   return (
+    <div className="border border-tertiary min-h-screen">
     <div className="sm:w-8/12 w-10/12 mx-auto py-16">
       <h1 className="text-3xl text-center my-4 font-bold">Log In </h1>
 
       <Button
         handleClick={signInWithGoogle}
-        className="flex text-2xl items-center  bg-primary text-white  transition-opacity duration-300  hover:opacity-80 mx-auto my-12"
+        className="flex text-2xl items-center  bg-tertiary text-white  transition-opacity duration-300  hover:opacity-80 mx-auto my-12"
       >
         <img
           src={googleLogo}
@@ -57,7 +58,7 @@ export function LoginForm() {
           {({ register, formState }) => (
             <>
               <InputField
-                className=" border-primary w-full border p-1  bg-slate-100 focus:outline-none focus:bg-white mt-2"
+                className=" border-tertiary w-full border p-1  bg-secondary focus:outline-none focus:bg-white mt-2"
                 type="text"
                 label="Email"
                 error={formState.errors.email}
@@ -72,7 +73,7 @@ export function LoginForm() {
               />
 
               <InputField
-                className=" border-primary w-full border p-1  bg-slate-100 focus:outline-none focus:bg-white mt-2"
+                className=" border-tertiary w-full border p-1  bg-secondary  focus:outline-none focus:bg-white mt-2"
                 type="password"
                 label="Password"
                 error={formState.errors.password}
@@ -87,14 +88,14 @@ export function LoginForm() {
               <div className="lg:flex mt-12 justify-between">
                 <Button
                   type="submit"
-                  className="text-xl font-Synonym lg:w-5/12 w-full bg-black text-white p-1 py-2 transition-opacity duration-300  hover:opacity-80"
+                  className="text-xl font-Synonym lg:w-5/12 w-full bg-tertiary text-white p-1 py-2 transition-opacity duration-300  hover:opacity-80"
                 >
                   {pending ? <>Loading....</> : <>Log In</>}
                 </Button>
                 <Button
                   type="submit"
                   handleClick={handleNavigateToRegister}
-                  className="text-xl font-Synonym lg:w-5/12 w-full border border-black bg-white text-black p-1 py-2 text-center lg:mt-0 mt-6 transition-opacity duration-300  hover:opacity-80"
+                  className="text-xl font-Synonym lg:w-5/12 w-full border border-tertiary bg-white text-black p-1 py-2 text-center lg:mt-0 mt-6 transition-opacity duration-300  hover:opacity-80"
                 >
                   Register
                 </Button>
@@ -103,6 +104,7 @@ export function LoginForm() {
           )}
         </Form>
       </div>
+    </div>
     </div>
   );
 }

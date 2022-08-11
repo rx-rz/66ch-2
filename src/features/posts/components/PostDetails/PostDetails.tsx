@@ -22,7 +22,7 @@ export default function PostDetails() {
             <p className=" text-xl md:text-2xl">{value.data()!.dateCreated}</p>
 
             </div>
-            <h1 className="font-bold text-4xl md:text-7xl md:mb-24 mb-16 ">{value.data()!.postTitle}</h1>
+            <h1 className="font-bold text-4xl md:text-7xl md:mb-24 mb-16 text-tertiary">{value.data()!.postTitle}</h1>
             <img src={value.data()!.imageDownloadUrl} alt="" className="border border-black object-cover w-full" loading="eager"/>
           </div>
           <div

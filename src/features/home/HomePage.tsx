@@ -10,12 +10,12 @@ export default function HomePage() {
     data && data![Math.floor(Math.random() * data.length)];
 
   return (
-    <div className="w-full bg-yellow-200 border-b border-b-black">
+    <div className="w-full bg-tertiary border-b border-b-black">
     <main className="py-24 w-11/12 mx-auto ">
       {homePageBlogPost && (
         <Link className="cursor-pointer" to={`/post/${homePageBlogPost.id}`}>
           <main className="md:flex justify-between">
-            <div className=" mb-8 md:w-5/12  top-1/2 text-black">
+            <div className=" mb-8 md:w-5/12  top-1/2 text-primary">
               <div className="flex opacity-80 md:mb-8 mb-3 md:text-xl mt-6">
                 <p className="mr-3 font-bold">{homePageBlogPost.author.name}</p>
                 <p>{homePageBlogPost.dateCreated}</p>
