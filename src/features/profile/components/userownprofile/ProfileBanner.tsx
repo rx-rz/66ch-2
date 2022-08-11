@@ -4,6 +4,7 @@ import { auth } from "src/utils/firebaseConfig";
 
 export default function ProfileBanner() {
   const [user, loading, error] = useAuthState(auth);
+  console.log(user)
   return (
     <div className="w-11/12 mx-auto md:flex block my-16">
       {user && (

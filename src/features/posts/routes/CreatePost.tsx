@@ -1,11 +1,7 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { Button } from "src/components/Elements/Button/Button";
-import {MainLayout} from "src/components/Layout/Layout";
+import { MainLayout } from "src/components/Layout/Layout";
 import { PostContent } from "../components/CreatePost/PostContent";
 import PostSettings from "../components/CreatePost/PostSettings";
-import closeButton from "src/assets/close.svg";
-
 export default function CreatePost() {
   const settings = useRef<HTMLDivElement>(null);
 
@@ -33,37 +29,16 @@ export default function CreatePost() {
           ref={settings}
         >
           <div className="z-40 h-screen mx-auto">
-            <div className="w-11/12 mx-auto mt-6 md:hidden cursor-pointer invert">
-              <img
-                src={closeButton}
-                alt="Close"
-                width="30px"
-                
-                onClick={handleMenuToggle}
-              />
-            </div>
-            <PostSettings editPostSettings={editPostSettings} handleMenuToggle={handleMenuToggle}/>
+            <PostSettings
+              editPostSettings={editPostSettings}
+              handleMenuToggle={handleMenuToggle}
+            />
           </div>
         </div>
         <div className=" h-screen overflow-y-scroll w-full ">
           <div className="w-11/12 mx-auto my-4">
-            <nav className="flex justify-between  w-11/12 mx-auto">
-              <Link to="/" className="text-xl font-bold">
-                &#8592; Home
-              </Link>
-              <div className="justify-between flex max-w-6xl ">
-                <Button className="border border-black px-1 md:text-xl ">
-                  Save As Draft
-                </Button>
-                <Button
-                  handleClick={handleMenuToggle}
-                  className="border border-black px-1 bg-black text-white md:text-xl md:hidden ml-3"
-                >
-                  Settings
-                </Button>
-              </div>
-            </nav>
             <PostContent
+              handleMenuToggle={handleMenuToggle}
               description={postSettings?.description}
               tag={postSettings?.tag}
               imageUrl={postSettings?.imageUrl}

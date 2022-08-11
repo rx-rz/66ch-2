@@ -25,8 +25,8 @@ export function Navbar() {
   } else {
     return (
 
-      <header className=" bg-tertiary sticky top-0  z-50 w-full mx-auto md:py-4 ">
-        <nav className=" h-16 lg:h-24 w-11/12 mx-auto flex  justify-between items-center">
+      <nav className=" bg-tertiary sticky top-0  z-50 w-full mx-auto md:py-4 ">
+        <div className=" h-16 lg:h-24 w-11/12 mx-auto flex  justify-between items-center">
           <NavLink
             to="/"
             className="lg:text-5xl text-3xl md:text-4xl text-primary  h-full grid f font-medium  content-center transition-colors duration-300 font-Synonym"
@@ -107,8 +107,8 @@ export function Navbar() {
               </div>
             </div>
           )}
-        </nav>
-        <nav
+        </div>
+        <div
           className=" hidden lg:hidden bg-tertiary top-16 left-0 right-0  fixed z-20"
           ref={menu}
         >
@@ -163,8 +163,8 @@ export function Navbar() {
               </button>
             </div>
           )}
-        </nav>
-      </header>
+        </div>
+      </nav>
     );
   }
 }

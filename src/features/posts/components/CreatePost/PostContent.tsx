@@ -1,6 +1,7 @@
 import { addDoc, collection } from "firebase/firestore";
 import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { Link } from "react-router-dom";
 import { Button } from "src/components/Elements/Button/Button";
 import { Editor } from "src/components/Elements/Editor/Editor";
 import { Form } from "src/components/Elements/Form/Form";
@@ -11,6 +12,7 @@ type PostSettingProps = {
   tag: string | undefined;
   description: string | undefined;
   imageUrl: string | undefined;
+  handleMenuToggle: () => void;
 };
 
 const date = new Date();
@@ -19,6 +21,7 @@ export const PostContent = ({
   tag,
   description,
   imageUrl,
+  handleMenuToggle,
 }: PostSettingProps) => {
   const [editorContent, setEditorContent] = useState("");
 
@@ -29,7 +32,6 @@ export const PostContent = ({
 
   const [user] = useAuthState(auth);
 
-
   const handleSubmit = async (data: EditorProps) => {
     await addDoc(postsRef, {
       postTitle: data.postTitle,
@@ -39,8 +41,9 @@ export const PostContent = ({
       dateCreated: date.toLocaleDateString(),
       tag: tag,
       description: description,
+      isDraft: false
     });
-    window.location.pathname = "/"
+    window.location.pathname = "/";
   };
 
   const changeEditorContent = (editorContent: string) => {
@@ -48,6 +51,22 @@ export const PostContent = ({
   };
   return (
     <div className="w-11/12 mx-auto my-12">
+      <nav className="flex justify-between mx-auto">
+        <Link to="/" className="text-xl font-bold">
+          &#8592; Home
+        </Link>
+        <div className="justify-between flex max-w-6xl ">
+          <Button className="border border-black px-1 md:text-xl ">
+            Save As Draft
+          </Button>
+          <Button
+            handleClick={handleMenuToggle}
+            className="border border-black px-1 bg-black text-white md:text-xl md:hidden ml-3"
+          >
+            Settings
+          </Button>
+        </div>
+      </nav>
       <Form onSubmit={handleSubmit}>
         {({ register, formState }) => (
           <>
@@ -55,7 +74,7 @@ export const PostContent = ({
               error={formState.errors.postTitle}
               placeholder="Enter your post title here..."
               registration={register("postTitle")}
-              className="resize-none focus:outline-none w-11/12 m-auto text-2xl md:text-3xl ml-1 bg-primary text-tertiary"
+              className="resize-none focus:outline-none w-11/12 m-auto text-2xl md:text-4xl lg:text-6xl ml-1 bg-primary text-tertiary"
             />
             {imageUrl && (
               <img
@@ -76,4 +95,4 @@ export const PostContent = ({
       </Form>
     </div>
   );
-}
+};

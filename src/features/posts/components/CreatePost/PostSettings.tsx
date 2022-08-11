@@ -5,6 +5,8 @@ import { FileUploader } from "react-drag-drop-files";
 import { Button } from "src/components/Elements/Button/Button";
 import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
 import { SelectField } from "src/components/Elements/Form/SelectField";
+import closeButton from "src/assets/close.svg";
+
 type PostSettingProps = {
   tag: string;
   description: string;
@@ -13,11 +15,12 @@ type PostSettingProps = {
 
 type EditPostSettingsProps = {
   editPostSettings: (postSettings: PostSettingProps) => void;
-  handleMenuToggle: () => void
+  handleMenuToggle: () => void;
 };
 
 export default function PostSettings({
-  editPostSettings, handleMenuToggle
+  editPostSettings,
+  handleMenuToggle,
 }: EditPostSettingsProps) {
   type PostSettingProps = {
     tag: string;
@@ -38,6 +41,8 @@ export default function PostSettings({
     "Technology",
     "Art",
     "Lifestyle",
+    "Fashion",
+    "Tourism"
   ];
   const [file, setFile] = useState<File>({} as File);
   const [error, setError] = useState<string | null>(null);
@@ -61,6 +66,14 @@ export default function PostSettings({
 
   return (
     <>
+      <div className="w-11/12 mx-auto mt-6 md:hidden cursor-pointer invert">
+        <img
+          src={closeButton}
+          alt="Close"
+          width="30px"
+          onClick={handleMenuToggle}
+        />
+      </div>
       <Form onSubmit={handleSave} className="w-11/12 mx-auto my-24">
         {({ register, formState }) => (
           <>
@@ -99,7 +112,7 @@ export default function PostSettings({
               Save Settings
             </Button>
             <Button
-            handleClick={handleMenuToggle}
+              handleClick={handleMenuToggle}
               type="submit"
               className="text-xl font-Synonym self-end w-full md:hidden mt-8  md:mt-12 bottom-0 mx-auto bg-tertiary border border-primary text-primary p-1 py-2 transition-colors duration-300  hover:bg-secondary hover:text-tertiary"
             >

@@ -1,7 +1,9 @@
 import {
   createUserWithEmailAndPassword,
+  getAuth,
   GoogleAuthProvider,
   signInWithPopup,
+  updateProfile,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Form } from "src/components/Elements/Form/Form";
@@ -10,19 +12,29 @@ import { auth } from "src/utils/firebaseConfig";
 import googleLogo from "src/assets/google.svg";
 import { RegisterFormValues } from "../types";
 import { Button } from "src/components/Elements/Button/Button";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export function RegisterForm() {
+  const user = getAuth().currentUser
+  
   const navigate = useNavigate();
+
   const handleSubmit = async (data: RegisterFormValues) => {
     await createUserWithEmailAndPassword(auth, data.email, data.password);
-    navigate("/");
+    user && await updateProfile(user!, {
+      displayName: data.firstName + " " + data.lastName,
+      // photoURL:
+      //   "https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/profile.jpg?alt=media&token=0051e87b-ac54-4465-8358-8a7507aa2902",
+    });
+    console.log(user)
+
   };
 
   const googleProvider = new GoogleAuthProvider();
   const signInWithGoogle = async () => {
-    await signInWithPopup(auth, googleProvider)
-      .then()
-      .catch((err) => console.log(err));
+    await signInWithPopup(auth, googleProvider).catch((err) =>
+      console.log(err)
+    );
     navigate("/");
   };
 

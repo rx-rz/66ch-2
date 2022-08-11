@@ -17,6 +17,7 @@ export const Editor = ({handleContentChange}: EditorProps) => {
   return (
     <>
     <ReactQuill
+    
       theme="snow"
       placeholder="Enter your post content here"
       value={value}

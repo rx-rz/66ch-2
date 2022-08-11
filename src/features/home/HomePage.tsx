@@ -20,9 +20,9 @@ export default function HomePage() {
                 <p className="mr-3 font-bold">{homePageBlogPost.author.name}</p>
                 <p>{homePageBlogPost.dateCreated}</p>
               </div>
-              <p className="font-medium text-4xl md:text-6xl font-Amulya max-w-sm">
+              <h1 className="font-medium text-4xl md:text-5xl lg:text-6xl  font-Amulya max-w-sm">
                 {homePageBlogPost.postTitle}
-              </p>
+              </h1>
             </div>
             <img
               src={homePageBlogPost.imageDownloadUrl}
