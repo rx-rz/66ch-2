@@ -16,10 +16,13 @@ export const FieldWrapper = (props: FieldWrapperProps) => {
   const { label,  error, children } = props;
   return (
     <div className="mt-8">
-      <label className="font-Synonym font-medium md:text-lg text-md pb-1">
+      {window.location.pathname === "creaatepost" ? <label className="font-Synonym font-medium text-tertiary md:text-lg text-md pb-1">
         {label}
         <div>{children}</div>
-      </label>
+      </label> : <label className="font-Synonym text-primary font-medium md:text-lg text-md pb-1">
+        {label}
+        <div>{children}</div>
+      </label>}
       {error?.message && (
         <p
           role="alert"

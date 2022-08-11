@@ -29,11 +29,11 @@ export default function CreatePost() {
     <MainLayout>
       <main className=" flex justify-between h-screen w-full">
         <div
-          className="fixed  md:sticky md:flex z-40 md:top-0  hidden md:w-4/12 w-full "
+          className="fixed  md:sticky md:flex z-40 md:top-0  hidden md:w-4/12 w-full bg-tertiary"
           ref={settings}
         >
-          <div className="z-40 h-screen border-2  bg-primary ">
-            <div className="w-11/12 mx-auto mt-6 md:hidden cursor-pointer">
+          <div className="z-40 h-screen mx-auto">
+            <div className="w-11/12 mx-auto mt-6 md:hidden cursor-pointer invert">
               <img
                 src={closeButton}
                 alt="Close"
@@ -47,7 +47,7 @@ export default function CreatePost() {
         </div>
         <div className=" h-screen overflow-y-scroll w-full ">
           <div className="w-11/12 mx-auto my-4">
-            <nav className="flex justify-between  bg-white w-11/12 mx-auto">
+            <nav className="flex justify-between  w-11/12 mx-auto">
               <Link to="/" className="text-xl font-bold">
                 &#8592; Home
               </Link>

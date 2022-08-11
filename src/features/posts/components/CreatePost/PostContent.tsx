@@ -55,7 +55,7 @@ export const PostContent = ({
               error={formState.errors.postTitle}
               placeholder="Enter your post title here..."
               registration={register("postTitle")}
-              className="resize-none focus:outline-none w-11/12 m-auto text-2xl md:text-3xl ml-1"
+              className="resize-none focus:outline-none w-11/12 m-auto text-2xl md:text-3xl ml-1 bg-primary text-tertiary"
             />
             {imageUrl && (
               <img
@@ -67,7 +67,7 @@ export const PostContent = ({
             <Editor handleContentChange={changeEditorContent} />
             <Button
               type="submit"
-              className="text-xl font-Synonym lg:w-5/12 w-full border border-black bg-black text-white p-1 py-2 text-center lg:mt-0 mt-6 transition-opacity duration-300  hover:opacity-80"
+              className="text-xl font-Synonym lg:w-5/12 w-full border border-tertiary bg-tertiary text-primary p-1 py-2 text-center lg:mt-0 mt-6 transition-opacity duration-300  hover:opacity-80"
             >
               Create Post
             </Button>

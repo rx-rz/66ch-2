@@ -38,19 +38,19 @@ export function Navbar() {
               <div className="h-full hidden lg:flex">
                 <NavLink
                   to="/search"
-                  className="sm:text-xl text-md text-primary hover:text-white mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya active:border-b-4"
+                  className="sm:text-xl text-md text-primary hover:text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya active:border-b-4"
                 >
                   Search
                 </NavLink>
                 <NavLink
                   to="/auth/login"
-                  className="sm:text-xl text-md text-primary hover:text-white mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya"
+                  className="sm:text-xl text-md text-primary hover:text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya"
                 >
                   Login
                 </NavLink>
                 <NavLink
                   to="/auth/register"
-                  className="sm:text-xl text-md text-primary  px-3 bg-primary h-full grid font-medium  content-center lg:px-4 font-Amulya"
+                  className="sm:text-xl text-md text-tertiary border border-tertiary  px-3 bg-primary h-full grid font-medium  content-center lg:px-4 font-Amulya"
                 >
                   Sign Up
                 </NavLink>
@@ -71,7 +71,7 @@ export function Navbar() {
                 {location.pathname !== "/profile" ? (
                   <NavLink
                     to="/profile"
-                    className="sm:text-xl text-md text-primary hover:text-white mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya"
+                    className="sm:text-xl text-md text-primary hover:text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya"
                   >
                     Profile
                   </NavLink>
@@ -79,19 +79,19 @@ export function Navbar() {
 
                 <NavLink
                   to="/createpost"
-                  className="sm:text-xl text-md text-primary hover:text-white mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-2  transition-colors duration-300 font-Amulya"
+                  className="sm:text-xl text-md text-primary hover:text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-2  transition-colors duration-300 font-Amulya"
                 >
                   Create Post
                 </NavLink>
                 <NavLink
                   to="/search"
-                  className="sm:text-xl text-md text-primary hover:text-white mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya active:border-b-4"
+                  className="sm:text-xl text-md text-primary hover:text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya active:border-b-4"
                 >
                   Search
                 </NavLink>
                 <button
                   onClick={handleLogOut}
-                  className="sm:text-xl text-md text-white  px-3 bg-primary h-full grid font-medium  content-center lg:px-4 font-Amulya"
+                  className="sm:text-xl text-md  px-3 bg-primary text-tertiary border-tertiary h-full grid font-medium  content-center lg:px-4 font-Amulya"
                 >
                   Log Out
                 </button>

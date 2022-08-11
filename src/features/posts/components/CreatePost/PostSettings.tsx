@@ -59,25 +59,21 @@ export default function PostSettings({
     }
   };
 
-  // useEffect(() => {
-  //   console.log(url);
-  // }, [url]);
   return (
     <>
       <Form onSubmit={handleSave} className="w-11/12 mx-auto my-24">
         {({ register, formState }) => (
           <>
             <FileUploader handleChange={handleChange} name="File">
-              <div className="cursor-pointer h-36  w-full border-dotted border-2 border-white grid items-center">
-                <p className="mx-auto text-white w-9/12 text-center">
+              <div className="cursor-pointer h-36  w-full border-dotted border-2 border-primary grid items-center">
+                <p className="mx-auto text-primary w-9/12 text-center">
                   Click to upload image or drag and drop image files here
                 </p>
               </div>
             </FileUploader>
-            {/* <input type="file" onChange={handleSave}  /> */}
             <SelectField
               options={tagNames.map((tagName) => ({ value: tagName }))}
-              className="border border-black w-full focus:outline-none bg-tertiary py-2 text-black mt-3"
+              className="border border-primary w-full focus:outline-none bg-tertiary py-2 text-primary mt-3"
               defaultValue="Nature"
               registration={register("tag")}
               label="tag"
@@ -92,20 +88,20 @@ export default function PostSettings({
                 },
                 required: "Please enter a post description",
               })}
-              className="resize-none bg-tertiary text-black w-full border-dotted border border-black focus:border-2 focus:outline-none mt-3"
+              className="resize-none bg-primary text-black w-full border-dotted border border-primary focus:bg-white focus:outline-none mt-3"
               label="description"
               error={formState.errors.description}
             />
             <Button
               type="submit"
-              className="text-xl font-Synonym self-end w-full  hidden md:block md:mt-12 bottom-0 mx-auto bg-white text-black p-1 py-2 transition-opacity duration-300  hover:opacity-80"
+              className="text-xl font-Synonym self-end w-full  hidden md:block md:mt-12 bottom-0 mx-auto bg-tertiary border border-primary text-primary p-1 py-2 transition-colors duration-300  hover:bg-secondary hover:text-tertiary"
             >
               Save Settings
             </Button>
             <Button
             handleClick={handleMenuToggle}
               type="submit"
-              className="text-xl font-Synonym self-end w-full md:hidden  md:mt-12 bottom-0 mx-auto bg-white text-black p-1 py-2 transition-opacity duration-300  hover:opacity-80"
+              className="text-xl font-Synonym self-end w-full md:hidden mt-8  md:mt-12 bottom-0 mx-auto bg-tertiary border border-primary text-primary p-1 py-2 transition-colors duration-300  hover:bg-secondary hover:text-tertiary"
             >
               Save Settings
             </Button>
