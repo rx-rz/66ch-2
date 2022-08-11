@@ -16,7 +16,7 @@ export const FieldWrapper = (props: FieldWrapperProps) => {
   const { label,  error, children } = props;
   return (
     <div className="mt-8">
-      {window.location.pathname === "creaatepost" ? <label className="font-Synonym font-medium text-tertiary md:text-lg text-md pb-1">
+      {window.location.pathname !== "/createpost" ? <label className="font-Synonym font-medium text-tertiary md:text-lg text-md pb-1">
         {label}
         <div>{children}</div>
       </label> : <label className="font-Synonym text-primary font-medium md:text-lg text-md pb-1">
