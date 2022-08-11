@@ -150,7 +150,7 @@ export function Navbar() {
                 Create Post
               </NavLink>
               <NavLink
-                to="/auth/register"
+                to="/search"
                 className="text-2xl font-Synonym text-black font-medium my-8 ml-4"
               >
                 Search
