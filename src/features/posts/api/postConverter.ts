@@ -7,7 +7,7 @@ import {
   WithFieldValue,
 } from "firebase/firestore";
 
-type Blog = {
+export type Blog = {
   author: { name: string; id: string };
   tag: string;
   id: string;
