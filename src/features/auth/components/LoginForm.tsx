@@ -58,7 +58,7 @@ export function LoginForm() {
           {({ register, formState }) => (
             <>
               <InputField
-                className=" border-tertiary w-full border p-1  bg-secondary focus:outline-none focus:bg-white mt-2"
+                className=" border-tertiary w-full border p-1  bg-primary focus:outline-none focus:bg-white mt-2"
                 type="text"
                 label="Email"
                 error={formState.errors.email}
@@ -73,7 +73,7 @@ export function LoginForm() {
               />
 
               <InputField
-                className=" border-tertiary w-full border p-1  bg-secondary  focus:outline-none focus:bg-white mt-2"
+                className=" border-tertiary w-full border p-1  bg-primary  focus:outline-none focus:bg-white mt-2"
                 type="password"
                 label="Password"
                 error={formState.errors.password}

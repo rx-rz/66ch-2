@@ -52,7 +52,7 @@ export function RegisterForm() {
             {({ register, formState }) => (
               <>
                 <InputField
-                  className=" border-tertiary w-full border p-1  bg-secondary focus:outline-none focus:bg-white mt-2"
+                  className=" border-tertiary w-full border p-1  bg-primary focus:outline-none focus:bg-white mt-2"
                   type="text"
                   label="First Name"
                   error={formState.errors.firstName}
@@ -62,7 +62,7 @@ export function RegisterForm() {
                 />
 
                 <InputField
-                  className=" border-tertiary w-full border p-1  bg-secondary focus:outline-none focus:bg-white mt-2"
+                  className=" border-tertiary w-full border p-1  bg-primary focus:outline-none focus:bg-white mt-2"
                   type="text"
                   label="Last Name"
                   error={formState.errors.lastName}
@@ -72,17 +72,22 @@ export function RegisterForm() {
                 />
 
                 <InputField
-                  className=" border-tertiary w-full border p-1  bg-secondary focus:outline-none focus:bg-white mt-2"
+                  className=" border-tertiary w-full border p-1  bg-primary focus:outline-none focus:bg-white mt-2"
                   type="email"
                   label="Email"
                   error={formState.errors.email}
                   registration={register("email", {
-                    required: "Please enter an email",
+                    required: "Email is required",
+                    pattern: {
+                      value:
+                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                      message: "Please enter a valid email",
+                    },
                   })}
                 />
 
                 <InputField
-                  className=" border-tertiary w-full border p-1  bg-secondary focus:outline-none focus:bg-white mt-2"
+                  className=" border-tertiary w-full border p-1  bg-primary focus:outline-none focus:bg-white mt-2"
                   type="password"
                   label="Password"
                   error={formState.errors.password}
@@ -96,7 +101,6 @@ export function RegisterForm() {
                 />
 
                 <div className="lg:flex mt-12 justify-between">
-
                   <Button
                     handleClick={handleNavigateToLogin}
                     className="text-xl font-Synonym lg:w-5/12 w-full border border-black bg-tertiary text-primary p-1 py-2 text-center lg:mt-0 mt-6 transition-opacity duration-300  hover:opacity-80 mb-8 lg:mb-0"
