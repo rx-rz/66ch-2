@@ -6,18 +6,18 @@ import { BlogCard } from "src/components/Elements/BlogCard/BlogCard";
 import { postConverter } from "src/features/posts/api/postConverter";
 import { auth, database } from "src/utils/firebaseConfig";
 
-export default function UserPosts() {
+export default function UserDrafts() {
   const [user, loading, error] = useAuthState(auth);
-  const ref = collection(database, "drafts").withConverter(postConverter);
+  const ref = collection(database, "posts").withConverter(postConverter);
   const [data] = useCollectionData(ref);
-  const userPosts = data?.filter((doc) => doc.author.id === user?.uid);
+  const userPosts = data?.filter((doc) => doc.author.id === user?.uid && doc.isDraft === true) ;
   return (
     <div className="mx-auto w-11/12 md:my-20 ">
-      <h1 className="md:text-3xl text-2xl mb-16 font-bold">ARTICLES</h1>
+      <h1 className="md:text-3xl text-2xl mb-16 font-bold">DRAFTS</h1>
       {userPosts && (
         <article className="grid gap-24 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {userPosts.map((doc) => (
-            <Link to={`/post/${doc.id}`} key={doc.id} className="w-fit">
+            <Link to={`/createpost/${doc.id}`} key={doc.id} className="w-fit">
               <BlogCard
                 authorName={doc.author.name}
                 tag={doc.tag}

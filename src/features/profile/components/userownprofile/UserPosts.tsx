@@ -10,7 +10,7 @@ export default function UserPosts() {
   const [user, loading, error] = useAuthState(auth);
   const ref = collection(database, "posts").withConverter(postConverter);
   const [data] = useCollectionData(ref);
-  const userPosts = data?.filter((doc) => doc.author.id === user?.uid);
+  const userPosts = data?.filter((doc) => doc.author.id === user?.uid && doc.isDraft === false) ;
   return (
     <div className="mx-auto w-11/12 md:my-20 ">
       <h1 className="md:text-3xl text-2xl mb-16 font-bold">ARTICLES</h1>

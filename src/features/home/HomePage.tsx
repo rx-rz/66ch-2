@@ -10,7 +10,7 @@ export default function HomePage() {
     data && data![Math.floor(Math.random() * data.length)];
 
   return (
-    <div className="w-full bg-tertiary border-b border-b-black">
+    <div className="w-full bg-tertiary border-b-2 border-b-primary">
     <main className="py-24 w-11/12 mx-auto ">
       {homePageBlogPost && (
         <Link className="cursor-pointer" to={`/post/${homePageBlogPost.id}`}>

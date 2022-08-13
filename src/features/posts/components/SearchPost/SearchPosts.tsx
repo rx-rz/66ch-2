@@ -14,7 +14,8 @@ export const SearchPosts = () => {
   const [blogs, setBlogs] = useState<Blog[] | null>(null);
 
   const handleSearch = () => {
-    if (data && searchTerm) {
+    data &&
+      searchTerm &&
       setBlogs(
         data.filter(
           (doc) =>
@@ -22,19 +23,7 @@ export const SearchPosts = () => {
             doc.postTitle.toLowerCase().includes(searchTerm.toLowerCase())
         )
       );
-    }
   };
-  //   useEffect(() => {
-  //     if (data && searchTerm) {
-  //       setBlogs(
-  //         data.filter(
-  //           (doc) =>
-  //             doc.author.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  //             doc.postTitle.toLowerCase().includes(searchTerm.toLowerCase())
-  //         )
-  //       );
-  //     }
-  //   }, [data, searchTerm]);
 
   return (
     <div className="min-h-screen">
@@ -64,7 +53,9 @@ export const SearchPosts = () => {
             </Link>
           ))}
         </article>
-      ): <p>No post matches your search term. 😶</p>}
+      ) : (
+        <p>No post matches your search term. 😶</p>
+      )}
     </div>
   );
 };

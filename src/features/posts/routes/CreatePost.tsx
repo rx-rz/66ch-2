@@ -1,10 +1,19 @@
+import { doc } from "firebase/firestore";
 import { useRef, useState } from "react";
+import { useDocument } from "react-firebase-hooks/firestore";
+import { useParams } from "react-router-dom";
 import { MainLayout } from "src/components/Layout/Layout";
+import { database } from "src/utils/firebaseConfig";
 import { PostContent } from "../components/CreatePost/PostContent";
 import PostSettings from "../components/CreatePost/PostSettings";
 export default function CreatePost() {
   const settings = useRef<HTMLDivElement>(null);
 
+  const {id = "@!@#$%^&*()(*&^%#@#$%%"} = useParams()
+  const draftRef  = doc(database, "posts", id) 
+  const [value] = useDocument(draftRef)
+  
+  
   type PostSettingProps = {
     tag: string;
     description: string;
@@ -31,6 +40,7 @@ export default function CreatePost() {
           <div className="z-40 h-screen mx-auto">
             <PostSettings
               editPostSettings={editPostSettings}
+              draft={value?.data()}
               handleMenuToggle={handleMenuToggle}
             />
           </div>
@@ -40,6 +50,7 @@ export default function CreatePost() {
             <PostContent
               handleMenuToggle={handleMenuToggle}
               description={postSettings?.description}
+              draft={value?.data()}
               tag={postSettings?.tag}
               imageUrl={postSettings?.imageUrl}
             />

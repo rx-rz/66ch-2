@@ -13,6 +13,7 @@ export const AppRoutes = () => {
   const commonRoutes = [
     { path: "/", element: <Home /> },
     { path: "/createpost", element: <CreatePost/> },
+    { path: "/createpost/:id", element: <CreatePost/> },
     { path: "/postlist", element: <Postlist /> },
     {path: "/post/:id", element: <PostContent/>},
     {path: "/profile", element: <UserProfile/>},

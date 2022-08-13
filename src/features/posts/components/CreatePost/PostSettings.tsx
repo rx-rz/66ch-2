@@ -6,6 +6,7 @@ import { Button } from "src/components/Elements/Button/Button";
 import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
 import { SelectField } from "src/components/Elements/Form/SelectField";
 import closeButton from "src/assets/close.svg";
+import { Blog } from "../../api/postConverter";
 
 type PostSettingProps = {
   tag: string;
@@ -13,14 +14,17 @@ type PostSettingProps = {
   imageUrl: string;
 };
 
+
 type EditPostSettingsProps = {
   editPostSettings: (postSettings: PostSettingProps) => void;
   handleMenuToggle: () => void;
+  draft?: Partial<Blog>
 };
 
 export default function PostSettings({
   editPostSettings,
   handleMenuToggle,
+  draft
 }: EditPostSettingsProps) {
   type PostSettingProps = {
     tag: string;
@@ -75,8 +79,10 @@ export default function PostSettings({
         />
       </div>
       <Form onSubmit={handleSave} className="w-11/12 mx-auto my-24">
-        {({ register, formState }) => (
+        {({ register, formState, setValue }) => (
           <>
+          {draft && setValue("description", `${draft.description}`)}
+          {draft && setValue("tag", `${draft.tag}`)}
             <FileUploader handleChange={handleChange} name="File">
               <div className="cursor-pointer h-36  w-full border-dotted border-2 border-primary grid items-center">
                 <p className="mx-auto text-primary w-9/12 text-center">

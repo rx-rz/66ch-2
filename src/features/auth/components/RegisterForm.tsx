@@ -12,8 +12,6 @@ import { auth } from "src/utils/firebaseConfig";
 import googleLogo from "src/assets/google.svg";
 import { RegisterFormValues } from "../types";
 import { Button } from "src/components/Elements/Button/Button";
-import { useAuthState } from "react-firebase-hooks/auth";
-
 export function RegisterForm() {
   const user = getAuth().currentUser
   
@@ -63,6 +61,7 @@ export function RegisterForm() {
           <Form onSubmit={handleSubmit} options={{ mode: "onBlur" }}>
             {({ register, formState }) => (
               <>
+
                 <InputField
                   className=" border-tertiary w-full border p-1  bg-primary focus:outline-none focus:bg-white mt-2"
                   type="text"

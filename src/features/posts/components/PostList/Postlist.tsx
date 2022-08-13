@@ -9,13 +9,13 @@ import { postConverter } from "../../api/postConverter";
 export default function Postlist() {
   const ref = collection(database, "posts").withConverter(postConverter);
   const [data, loading] = useCollectionData(ref);
-
+  const posts = data && data.filter((doc) => doc.isDraft === false)
   return (
     <div className="m-auto w-11/12 my-20">
       {loading && <p>Loading...</p>}
-      {data && (
+      {posts && (
         <article className="grid md:gap-24 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {data.map((doc) => (
+          {posts.map((doc) => (
             <Link to={`/post/${doc.id}`} key={doc.id} className="w-fit">
               <BlogCard
                 authorName={doc.author.name}
