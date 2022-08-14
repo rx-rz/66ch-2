@@ -10,12 +10,16 @@ type EditorProps = {
 export const Editor = ({handleContentChange, draftContent}: EditorProps) => {
   const draftValue = draftContent ?? ""
   const [value, setValue] = useState(draftValue);
-
+  const [draftValueAdded, setDraftValueAdded] = useState(false)
+  
 
   useEffect(() => {
     handleContentChange(value)
-    setValue(draftValue)
-  }, [value, handleContentChange, draftValue])
+    if(draftValue && !draftValueAdded){
+      setValue(draftValue)
+      setDraftValueAdded(true)
+    }
+  }, [value, handleContentChange, draftValue, draftValueAdded])
 
     
   return (

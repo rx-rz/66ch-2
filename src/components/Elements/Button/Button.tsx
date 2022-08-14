@@ -2,7 +2,7 @@ type ButtonProps = {
     text?: string;
     className?: string;
     type?: "button" | "submit" | "reset" | undefined;
-    handleClick?: () => void;
+    handleClick?: any;
     children?: React.ReactNode
   };
  

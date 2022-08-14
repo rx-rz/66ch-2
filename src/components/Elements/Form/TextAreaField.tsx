@@ -6,17 +6,25 @@ type TextAreaFieldProps = FieldWrapperPassThroughProps & {
   className?: string;
   registration: Partial<UseFormRegisterReturn>;
   placeholder?: string;
-  reset?: any
-  defaultValue?: any
+  defaultValue?: any;
+  setPostTitle?: any;
   onChange?: any
+  
 };
 
 export const TextAreaField = (props: TextAreaFieldProps) => {
-  
-  const { label, className, registration, error, placeholder, reset , defaultValue, onChange} = props;
+  const { label, className, registration, error, placeholder, defaultValue,  onChange} =
+    props;
   return (
     <FieldWrapper label={label} error={error}>
-      <textarea className={className} {...registration} placeholder={placeholder} defaultValue={defaultValue} onChange={onChange}/>
+      <textarea
+        className={className}
+        {...registration}
+        placeholder={placeholder}
+        onChange={onChange}
+        defaultValue={defaultValue}
+        
+      />
     </FieldWrapper>
   );
 };

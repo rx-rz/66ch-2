@@ -68,6 +68,7 @@ export default function PostSettings({
     }
   };
 
+
   return (
     <>
       <div className="w-11/12 mx-auto mt-6 md:hidden cursor-pointer invert">
@@ -101,9 +102,9 @@ export default function PostSettings({
             <TextAreaField
               registration={register("description", {
                 maxLength: {
-                  value: 500,
+                  value: 200,
                   message:
-                    "Your description should not be more than 500 characters long",
+                    "Your description should not be more than 200 characters long",
                 },
                 required: "Please enter a post description",
               })}

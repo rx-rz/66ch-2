@@ -1,6 +1,7 @@
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
-import { useEffect, useRef, useState } from "react";
+import {  useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import toast from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
 import { Button } from "src/components/Elements/Button/Button";
 import { Editor } from "src/components/Elements/Editor/Editor";
@@ -29,43 +30,89 @@ export const PostContent = ({
   draft,
 }: PostSettingProps) => {
   const { id } = useParams();
-  const postsRef = collection(database, "posts");
   const [user] = useAuthState(auth);
+  const postsRef = collection(database, "posts");
+  const [postId, setPostId] = useState<string | null>(null);
   const [editorContent, setEditorContent] = useState("");
-  const [postTitleForDraft, setPostTitleForDraft] = useState("");
-  const postTitleRef = useRef<HTMLTextAreaElement | null>(null);
-  const [draftClicked, setDraftClicked] = useState(false);
-  
+
+  const changeEditorContent = (editorContent: string) => {
+    setEditorContent(editorContent);
+  };
+
+  const errorToast = () =>
+    toast.error(
+      "Specify a blog image, tag and description in the post settings",
+      {
+        style: {
+          borderRadius: 0,
+          color: "#2F3630",
+          backgroundColor: "#EEECE7",
+          border: "1px solid #2F3630",
+          width: "300px",
+        },
+        duration: 4000,
+      }
+    );
+
   const handleSubmit = async (data: EditorProps) => {
-    await addDoc(postsRef, {
-      postTitle: data.postTitle,
-      postContent: editorContent,
-      imageDownloadUrl: imageUrl,
-      author: { name: user?.displayName, id: user?.uid },
-      dateCreated: date.toLocaleDateString(),
-      tag: tag,
-      description: description,
-      isDraft: false,
-    });
-    window.location.pathname = "/";
+    if (imageUrl && tag && description) {
+      if (!draft) {
+        await addDoc(postsRef, {
+          postTitle: data.postTitle,
+          postContent: editorContent,
+          imageDownloadUrl: imageUrl ,
+          author: { name: user?.displayName, id: user?.uid },
+          dateCreated: date.toLocaleDateString(),
+          tag: tag,
+          description: description,
+          isDraft: false,
+        });
+      } else {
+        await updateDoc(doc(database, "posts", id!), {
+          postTitle: data.postTitle,
+          postContent: editorContent,
+          imageDownloadUrl: imageUrl ?? draft?.imageDownloadUrl,
+          author: { name: user?.displayName, id: user?.uid },
+          dateCreated: date.toLocaleDateString(),
+          tag: tag ?? "",
+          description: description ?? "",
+          isDraft: false,
+        });
+      }
+      window.location.pathname = "/";
+    } else {
+      errorToast();
+    }
   };
 
   const handleDraft = async () => {
     if (!draft) {
-      await addDoc(postsRef, {
-        postTitle: postTitleForDraft ?? "",
-        postContent: editorContent ?? "",
-        imageDownloadUrl: imageUrl ?? "",
-        author: { name: user?.displayName, id: user?.uid },
-        dateCreated: date.toLocaleDateString(),
-        tag: tag ?? "",
-        description: description ?? "",
-        isDraft: true,
-      });
+      if (!postId) {
+        await addDoc(postsRef, {
+          postContent: editorContent ?? "",
+          imageDownloadUrl: imageUrl ,
+          author: { name: user?.displayName, id: user?.uid },
+          dateCreated: date.toLocaleDateString(),
+          tag: tag ?? "",
+          description: description ?? "",
+          isDraft: true,
+        }).then((docRef) => setPostId(docRef.id));
+      } else {
+        console.log("draft update here");
+        await updateDoc(doc(database, "posts", postId!), {
+          postContent: editorContent ?? "",
+          imageDownloadUrl: imageUrl ?? "",
+          author: { name: user?.displayName, id: user?.uid },
+          dateCreated: date.toLocaleDateString(),
+          tag: tag ?? "",
+          description: description ?? "",
+          isDraft: true,
+        });
+      }
     } else {
       await updateDoc(doc(database, "posts", id!), {
-        postTitle: postTitleForDraft ?? "",
-        imageDownloadUrl: imageUrl ?? "",
+        postContent: editorContent ?? "",
+        imageDownloadUrl: imageUrl ?? draft.imageDownloadUrl,
         author: { name: user?.displayName, id: user?.uid },
         dateCreated: date.toLocaleDateString(),
         tag: tag ?? "",
@@ -75,9 +122,6 @@ export const PostContent = ({
     }
   };
 
-  const changeEditorContent = (editorContent: string) => {
-    setEditorContent(editorContent);
-  };
   return (
     <div className="w-11/12 mx-auto my-12">
       <nav className="flex justify-between mx-auto">
@@ -99,32 +143,38 @@ export const PostContent = ({
           </Button>
         </div>
       </nav>
+
       <Form onSubmit={handleSubmit}>
         {({ register, formState, setValue }) => (
           <>
             {draft && setValue("postTitle", `${draft.postTitle}`)}
             <TextAreaField
               error={formState.errors.postTitle}
-              onChange={(e: any) => setPostTitleForDraft(e.target.value)}
               placeholder="Enter your post title here..."
-              registration={register("postTitle")}
+              registration={register("postTitle", {
+                required: "Please enter a post title",
+                maxLength: {
+                  value: 200,
+                  message:
+                    "Your post title cannot be more than 200 characters long",
+                },
+              })}
               className="resize-none focus:outline-none w-11/12 m-auto text-2xl md:text-4xl lg:text-6xl ml-1 bg-primary text-tertiary"
             />
 
-            {imageUrl && (
+            {imageUrl ? (
               <img
                 src={imageUrl}
                 alt={description}
                 className="w-full object-cover"
               />
-            )}
-            {/* {draft && (
+            ) : (
               <img
-                src={draft.imageDownloadUrl}
+                src={draft?.imageDownloadUrl}
                 alt={description}
                 className="w-full object-cover"
               />
-            )} */}
+            )}
             <Editor
               handleContentChange={changeEditorContent}
               draftContent={draft?.postContent}
