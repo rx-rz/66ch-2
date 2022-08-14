@@ -1,21 +1,33 @@
-import { Suspense } from "react";
+import React, { Suspense } from "react";
+import { auth } from "src/utils/firebaseConfig";
+import { authRoutes } from "./public";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRoutes } from "react-router-dom";
 import PageNotFound from "src/features/404/PageNotFound";
-import { Home } from "src/features/home/routes/Home";
-import Postlist from "src/features/posts/components/PostList/Postlist";
-import CreatePost from "src/features/posts/routes/CreatePost";
-import { PostContent } from "src/features/posts/routes/PostContent";
-import { PostSearch } from "src/features/posts/routes/SearchPosts";
-import { UpdateUserProfile } from "src/features/profile/routes/UpdateUserProfile";
-import { UserProfile } from "src/features/profile/routes/UserProfile";
-import { auth } from "src/utils/firebaseConfig";
-import { authRoutes } from "./public";
+const Home = React.lazy(() => import("src/features/home/routes/Home"));
+const PostList = React.lazy(
+  () => import("src/features/posts/components/PostList/Postlist")
+);
+const CreatePost = React.lazy(
+  () => import("src/features/posts/routes/CreatePost")
+);
+const PostContent = React.lazy(
+  () => import("src/features/posts/routes/PostContent")
+);
+const PostSearch = React.lazy(
+  () => import("src/features/posts/routes/SearchPosts")
+);
+const UpdateProfile = React.lazy(
+  () => import("src/features/profile/routes/UpdateUserProfile")
+);
+const UserProfile = React.lazy(
+  () => import("src/features/profile/routes/UserProfile")
+);
 
 export const AppRoutes = () => {
   const commonRoutes = [
     { path: "/", element: <Home /> },
-    { path: "/postlist", element: <Postlist /> },
+    { path: "/postlist", element: <PostList /> },
     { path: "/post/:id", element: <PostContent /> },
     { path: "/search", element: <PostSearch /> },
     { path: "*", element: <PageNotFound /> },
@@ -25,17 +37,16 @@ export const AppRoutes = () => {
     { path: "/createpost", element: <CreatePost /> },
     { path: "/createpost/:id", element: <CreatePost /> },
     { path: "/profile", element: <UserProfile /> },
-    { path: "/updateprofile", element: <UpdateUserProfile /> },
+    { path: "/updateprofile", element: <UpdateProfile /> },
     { path: "*", element: <PageNotFound /> },
   ];
 
   const user = useAuthState(auth);
-  console.log(user)
   const element = useRoutes(
     user[0] === null
       ? [...commonRoutes, ...authRoutes]
       : [...commonRoutes, ...authRoutes, ...authenticatedRoutes]
   );
 
-  return <Suspense>{element}</Suspense>;
+  return <Suspense fallback={<p>Loading...</p>}>{element}</Suspense>;
 };

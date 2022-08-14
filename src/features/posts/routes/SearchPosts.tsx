@@ -1,11 +1,11 @@
-import React from 'react'
-import { MainLayout } from 'src/components/Layout/Layout'
-import { SearchPosts } from '../components/SearchPost/SearchPosts'
+import React from "react";
+import { MainLayout } from "src/components/Layout/Layout";
+import { SearchPosts } from "../components/SearchPost/SearchPosts";
 
-export const PostSearch = () => {
+export default function PostSearch() {
   return (
     <MainLayout>
-      <SearchPosts/>
+      <SearchPosts />
     </MainLayout>
-  )
+  );
 }

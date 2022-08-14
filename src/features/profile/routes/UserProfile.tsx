@@ -3,13 +3,12 @@ import ProfileBanner from "../components/userownprofile/ProfileBanner";
 import UserDrafts from "../components/userownprofile/UserDrafts";
 import UserPosts from "../components/userownprofile/UserPosts";
 
-export const UserProfile = () => {
+export default function UserProfile() {
   return (
     <MainLayout>
       <ProfileBanner />
-      <UserDrafts/>
-      <UserPosts/>
-
+      <UserDrafts />
+      <UserPosts />
     </MainLayout>
   );
-};
+}

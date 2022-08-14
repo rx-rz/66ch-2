@@ -7,7 +7,7 @@ import { MainLayout } from "src/components/Layout/Layout";
 import { database } from "src/utils/firebaseConfig";
 import { PostContent } from "../components/CreatePost/PostContent";
 import PostSettings from "../components/CreatePost/PostSettings";
-export default function CreatePost() {
+export default function CreatePost (){
   const settings = useRef<HTMLDivElement>(null);
 
   const { id = "@!@#$%^&*()(*&^%#@#$%%" } = useParams();
