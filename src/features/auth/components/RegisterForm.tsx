@@ -8,24 +8,25 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Form } from "src/components/Elements/Form/Form";
 import { InputField } from "src/components/Elements/Form/InputField";
-import { auth } from "src/utils/firebaseConfig";
+
 import googleLogo from "src/assets/google.svg";
 import { RegisterFormValues } from "../types";
 import { Button } from "src/components/Elements/Button/Button";
 export function RegisterForm() {
-  const user = getAuth().currentUser
-  
+  const auth = getAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (data: RegisterFormValues) => {
-    await createUserWithEmailAndPassword(auth, data.email, data.password);
-    // user && await updateProfile(user!, {
-    //   displayName: data.firstName + " " + data.lastName,
-    //   // photoURL:
-    //   //   "https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/profile.jpg?alt=media&token=0051e87b-ac54-4465-8358-8a7507aa2902",
-    // });
-    // console.log(user)
-
+    await createUserWithEmailAndPassword(auth, data.email, data.password).then(
+      (user) => {
+        updateProfile(user.user, {
+          displayName: data.firstName + " " + data.lastName,
+          photoURL:
+            "https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/profile.jpg?alt=media&token=0051e87b-ac54-4465-8358-8a7507aa2902",
+        });
+      }
+    );
+    navigate("/");
   };
 
   const googleProvider = new GoogleAuthProvider();
@@ -61,7 +62,6 @@ export function RegisterForm() {
           <Form onSubmit={handleSubmit} options={{ mode: "onBlur" }}>
             {({ register, formState }) => (
               <>
-
                 <InputField
                   className=" border-tertiary w-full border p-1  bg-primary focus:outline-none focus:bg-white mt-2"
                   type="text"
@@ -113,16 +113,16 @@ export function RegisterForm() {
 
                 <div className="lg:flex mt-12 justify-between">
                   <Button
-                    handleClick={handleNavigateToLogin}
+                    type="submit"
                     className="text-xl font-Synonym lg:w-5/12 w-full border border-black bg-tertiary text-primary p-1 py-2 text-center lg:mt-0 mt-6 transition-opacity duration-300  hover:opacity-80 mb-8 lg:mb-0"
                   >
-                    Log In
+                    Register
                   </Button>
                   <Button
-                    type="submit"
-                    className="text-xl font-Synonym border border-tertiary lg:w-5/12 w-full bg-primary text-tertiary p-1 py-2 transition-opacity duration-300  hover:opacity-80"
+                    handleClick={handleNavigateToLogin}
+                    className="text-xl font-Synonym border border-tertiary lg:w-5/12 w-full bg-white text-tertiary p-1 py-2 transition-opacity duration-300  hover:opacity-80"
                   >
-                    Register
+                    Log In
                   </Button>
                 </div>
               </>

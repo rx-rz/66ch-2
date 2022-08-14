@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Button } from "src/components/Elements/Button/Button";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
+
 type LoginFormValues = {
   email: string;
   password: string;
@@ -27,7 +28,8 @@ export function LoginForm() {
 
   const handleSubmit = async (data: LoginFormValues) => {
     setPending(true);
-    await signInWithEmailAndPassword(auth, data.email, data.password);
+    await signInWithEmailAndPassword(auth, data.email, data.password)
+  
     setPending(false);
     navigate("/");
   };
