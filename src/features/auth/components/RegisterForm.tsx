@@ -19,12 +19,12 @@ export function RegisterForm() {
 
   const handleSubmit = async (data: RegisterFormValues) => {
     await createUserWithEmailAndPassword(auth, data.email, data.password);
-    user && await updateProfile(user!, {
-      displayName: data.firstName + " " + data.lastName,
-      // photoURL:
-      //   "https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/profile.jpg?alt=media&token=0051e87b-ac54-4465-8358-8a7507aa2902",
-    });
-    console.log(user)
+    // user && await updateProfile(user!, {
+    //   displayName: data.firstName + " " + data.lastName,
+    //   // photoURL:
+    //   //   "https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/profile.jpg?alt=media&token=0051e87b-ac54-4465-8358-8a7507aa2902",
+    // });
+    // console.log(user)
 
   };
 

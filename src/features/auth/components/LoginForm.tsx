@@ -48,6 +48,7 @@ export function LoginForm() {
         <img
           src={googleLogo}
           width="40px"
+          height="40px"
           alt="Google Logo"
           className=" border-primary invert"
         />
