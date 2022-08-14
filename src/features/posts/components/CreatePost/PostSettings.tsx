@@ -7,6 +7,7 @@ import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
 import { SelectField } from "src/components/Elements/Form/SelectField";
 import closeButton from "src/assets/close.svg";
 import { Blog } from "../../api/postConverter";
+import toast from "react-hot-toast";
 
 type PostSettingProps = {
   tag: string;
@@ -14,17 +15,28 @@ type PostSettingProps = {
   imageUrl: string;
 };
 
+const errorToast = () =>
+  toast.error("Uploaded files can only be PNG, JPEG or JPG", {
+    style: {
+      borderRadius: 0,
+      color: "#2F3630",
+      backgroundColor: "#EEECE7",
+      border: "1px solid #2F3630",
+      width: "300px",
+    },
+    duration: 4000,
+  });
 
 type EditPostSettingsProps = {
   editPostSettings: (postSettings: PostSettingProps) => void;
   handleMenuToggle: () => void;
-  draft?: Partial<Blog>
+  draft?: Partial<Blog>;
 };
 
 export default function PostSettings({
   editPostSettings,
   handleMenuToggle,
-  draft
+  draft,
 }: EditPostSettingsProps) {
   type PostSettingProps = {
     tag: string;
@@ -46,28 +58,24 @@ export default function PostSettings({
     "Art",
     "Lifestyle",
     "Fashion",
-    "Tourism"
+    "Tourism",
   ];
   const [file, setFile] = useState<File | null | any>(null);
-  const [error, setError] = useState<string | null>(null);
   const { progress, url } = usePostImage(file);
 
   const types = ["image/png", "image/jpeg", "image/jpg"];
 
   const handleChange = (e: any) => {
-    console.log(e);
     let selectedFile = e;
     if (selectedFile) {
       if (types.includes(selectedFile.type)) {
-        setError(null);
         setFile(selectedFile);
       } else {
         setFile(null);
-        setError("Please select an image file (png or jpg)!");
+        errorToast();
       }
     }
   };
-
 
   return (
     <>
@@ -82,12 +90,13 @@ export default function PostSettings({
       <Form onSubmit={handleSave} className="w-11/12 mx-auto my-24">
         {({ register, formState, setValue }) => (
           <>
-          {draft && setValue("description", `${draft.description}`)}
-          {draft && setValue("tag", `${draft.tag}`)}
+            {draft && setValue("description", `${draft.description}`)}
+            {draft && setValue("tag", `${draft.tag}`)}
             <FileUploader handleChange={handleChange} name="File">
               <div className="cursor-pointer h-36  w-full border-dotted border-2 border-primary grid items-center">
                 <p className="mx-auto text-primary w-9/12 text-center">
-                  Click to upload image or drag and drop image files here
+                  Click to upload image or drag and drop image files here (PNG,
+                  JPG or JPEG, preferably landscape images.)
                 </p>
               </div>
             </FileUploader>
@@ -96,20 +105,21 @@ export default function PostSettings({
               className="border border-primary w-full focus:outline-none bg-tertiary py-2 text-primary mt-3"
               defaultValue="Nature"
               registration={register("tag")}
-              label="tag"
+              label="Tag"
               error={formState.errors.tag}
             />
             <TextAreaField
+              placeholder="enter the post description here (300 characters maximum)"
               registration={register("description", {
                 maxLength: {
-                  value: 200,
+                  value: 300,
                   message:
-                    "Your description should not be more than 200 characters long",
+                    "Your description should not be more than 300 characters long",
                 },
                 required: "Please enter a post description",
               })}
               className="resize-none bg-primary text-black w-full border-dotted border border-primary focus:bg-white focus:outline-none mt-3"
-              label="description"
+              label="Description"
               error={formState.errors.description}
             />
             <Button

@@ -21,6 +21,32 @@ const date = new Date();
 type EditorProps = {
   postTitle: string;
 };
+const errorToast = () =>
+  toast.error(
+    "Specify a blog image, tag and description in the post settings",
+    {
+      style: {
+        borderRadius: 0,
+        color: "#2F3630",
+        backgroundColor: "#EEECE7",
+        border: "1px solid #2F3630",
+        width: "300px",
+      },
+      duration: 4000,
+    }
+  );
+
+const draftToast = () =>
+  toast.success("Draft saved. Check your profile to view drafts.", {
+    style: {
+      borderRadius: 0,
+      color: "#2F3630",
+      backgroundColor: "#EEECE7",
+      border: "1px solid #2F3630",
+      width: "300px",
+    },
+    duration: 4000,
+  });
 
 export const PostContent = ({
   tag,
@@ -38,33 +64,6 @@ export const PostContent = ({
   const changeEditorContent = (editorContent: string) => {
     setEditorContent(editorContent);
   };
-
-  const errorToast = () =>
-    toast.error(
-      "Specify a blog image, tag and description in the post settings",
-      {
-        style: {
-          borderRadius: 0,
-          color: "#2F3630",
-          backgroundColor: "#EEECE7",
-          border: "1px solid #2F3630",
-          width: "300px",
-        },
-        duration: 4000,
-      }
-    );
-
-  const draftToast = () =>
-    toast.success("Draft saved. Check your profile to view drafts.", {
-      style: {
-        borderRadius: 0,
-        color: "#2F3630",
-        backgroundColor: "#EEECE7",
-        border: "1px solid #2F3630",
-        width: "300px",
-      },
-      duration: 4000,
-    });
 
   const handleSubmit = async (data: EditorProps) => {
     if (imageUrl && tag && description) {
@@ -158,12 +157,12 @@ export const PostContent = ({
         </div>
       </nav>
 
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} options={{ mode: "onBlur" }}>
         {({ register, formState }) => (
           <>
             <TextAreaField
               error={formState.errors.postTitle}
-              placeholder="Enter your post title here..."
+              placeholder="Enter your post title here...(200 characters max)"
               registration={register("postTitle", {
                 required: "Please enter a post title",
                 maxLength: {
@@ -172,7 +171,7 @@ export const PostContent = ({
                     "Your post title cannot be more than 200 characters long",
                 },
               })}
-              className="resize-none focus:outline-none w-11/12 m-auto text-2xl md:text-4xl lg:text-6xl ml-1 bg-primary text-tertiary"
+              className="resize-none focus:outline-none w-11/12 m-auto text-2xl md:text-4xl lg:text-6xl ml-1 bg-primary text-tertiary border"
             />
 
             {imageUrl ? (
