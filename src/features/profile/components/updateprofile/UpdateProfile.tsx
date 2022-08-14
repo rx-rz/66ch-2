@@ -1,6 +1,6 @@
 import { updateProfile } from "firebase/auth";
 import { collection, doc, updateDoc } from "firebase/firestore";
-import React, { useState } from "react";
+import { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
@@ -20,6 +20,7 @@ export default function UpdateProfile() {
   };
   const navigate = useNavigate();
   const [user, loading] = useAuthState(auth);
+  const [pending, setPending] = useState(false);
   const ref = collection(database, "posts").withConverter(postConverter);
   const [data] = useCollectionData(ref);
   const userPosts = data?.filter((doc) => doc.author.id === user?.uid);
@@ -41,24 +42,24 @@ export default function UpdateProfile() {
       }
     }
   };
+  console.log(user?.photoURL)
 
   const submitData = async (data: UpdateFormValues) => {
+    setPending(true);
     await updateProfile(user!, {
-      displayName: data.firstName + " " + data.lastName,
-      photoURL: url,
+      displayName:
+        (data.firstName ?? namesOfUser![0]) +
+        " " +
+        (data.lastName ?? namesOfUser![1]),
+      photoURL: url ?? user!.photoURL,
     });
-
     userPosts!.forEach(async (document) => {
       const postsRef = doc(database, "posts", document.id);
       await updateDoc(postsRef, {
         author: { name: user!.displayName, id: user!.uid },
       });
     });
-    const usersRef = doc(database, "users", user!.uid);
-    await updateDoc(usersRef, {
-      displayName: data.firstName + " " + data.lastName,
-      photoUrl: url,
-    });
+    setPending(false);
     navigate("/profile");
   };
 
@@ -67,7 +68,7 @@ export default function UpdateProfile() {
       {({ register, formState }) => (
         <>
           <p className="font-medium mb-4">Profile Picture</p>
-          <FileUploader handleChange={handleChange} name="File" >
+          <FileUploader handleChange={handleChange} name="File">
             <div className="cursor-pointer h-36  w-full border-dotted border-2 border-black grid items-center">
               <p className="mx-auto text-black w-9/12 text-center">
                 Click to upload image or drag and drop image files here
@@ -75,16 +76,20 @@ export default function UpdateProfile() {
             </div>
           </FileUploader>
           <InputField
-            className="border-b border-b-black w-full my-4 focus:outline-none focus:border-b-2"
-            registration={register("firstName", {required: "Please enter a first name"})}
+            className=" border-tertiary w-full border p-1  bg-primary focus:outline-none focus:bg-white mt-2"
+            registration={register("firstName", {
+              required: "Please enter a first name",
+            })}
             label="First Name"
             type="text"
             defaultValue={namesOfUser![0]}
             error={formState.errors.firstName}
           />
           <InputField
-            className="border-b border-b-black w-full my-4 focus:outline-none focus:border-b-2"
-            registration={register("lastName", {required: "Please enter a last name"})}
+            className=" border-tertiary w-full border p-1  bg-primary focus:outline-none focus:bg-white mt-2"
+            registration={register("lastName", {
+              required: "Please enter a last name",
+            })}
             label="Last Name"
             type="text"
             defaultValue={namesOfUser![1]}
@@ -92,9 +97,9 @@ export default function UpdateProfile() {
           />
           <Button
             type="submit"
-            className="text-xl font-Synonym  w-full bg-primary text-white p-1 py-2 transition-opacity duration-300  hover:opacity-80 mt-8"
+            className="text-xl font-Synonym  w-full bg-tertiary text-white p-1 py-2 transition-opacity duration-300  hover:opacity-80 mt-8"
           >
-            Update Profile
+            {!pending ? <>Update Profile</> : <>Loading...</>}
           </Button>
         </>
       )}
