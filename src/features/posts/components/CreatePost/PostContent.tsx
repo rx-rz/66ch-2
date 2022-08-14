@@ -137,26 +137,6 @@ export const PostContent = ({
 
   return (
     <div className="w-11/12 mx-auto my-12">
-      <nav className="flex justify-between mx-auto">
-        <Link to="/" className="text-xl font-bold">
-          &#8592; Home
-        </Link>
-        <div className="justify-between flex max-w-6xl ">
-          <Button
-            className="border border-black px-1 md:text-xl "
-            handleClick={handleDraft}
-          >
-            Save As Draft
-          </Button>
-          <Button
-            handleClick={handleMenuToggle}
-            className="border border-black px-1 bg-black text-white md:text-xl md:hidden ml-3"
-          >
-            Settings
-          </Button>
-        </div>
-      </nav>
-
       <Form onSubmit={handleSubmit} options={{ mode: "onBlur" }}>
         {({ register, formState }) => (
           <>
@@ -173,6 +153,12 @@ export const PostContent = ({
               })}
               className="resize-none focus:outline-none w-11/12 m-auto text-2xl md:text-4xl lg:text-6xl ml-1 bg-primary text-tertiary border"
             />
+            {!imageUrl && !description && !tag && (
+              <p className="md:text-xl md:mt-8 mt-4">
+                Please specify the needed settings for the blog post in the post
+                settings
+              </p>
+            )}
 
             {imageUrl ? (
               <img
