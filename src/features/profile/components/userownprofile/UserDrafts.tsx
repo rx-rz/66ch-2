@@ -16,7 +16,7 @@ export default function UserDrafts() {
       <h1 className="md:text-3xl text-2xl mb-16 font-bold">DRAFTS</h1>
       {userPosts && (
         <article className="grid gap-24 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {userPosts.map((doc) => (
+          {userPosts.map((doc, index) => (
             <Link to={`/createpost/${doc.id}`} key={doc.id} className="w-fit">
               <BlogCard
                 authorName={doc.author.name}
@@ -24,7 +24,7 @@ export default function UserDrafts() {
                 description={doc.description}
                 dateCreated={doc.dateCreated}
                 imageUrl={doc.imageDownloadUrl}
-                postTitle={doc.postTitle}
+                postTitle={`Draft ${index + 1}`}
               />
             </Link>
           ))}

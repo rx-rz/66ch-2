@@ -48,7 +48,7 @@ export default function PostSettings({
     "Fashion",
     "Tourism"
   ];
-  const [file, setFile] = useState<File>({} as File);
+  const [file, setFile] = useState<File | null | any>(null);
   const [error, setError] = useState<string | null>(null);
   const { progress, url } = usePostImage(file);
 
@@ -62,7 +62,7 @@ export default function PostSettings({
         setError(null);
         setFile(selectedFile);
       } else {
-        setFile(selectedFile);
+        setFile(null);
         setError("Please select an image file (png or jpg)!");
       }
     }

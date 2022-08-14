@@ -1,5 +1,5 @@
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
-import {  useState } from "react";
+import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import toast from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
@@ -54,13 +54,25 @@ export const PostContent = ({
       }
     );
 
+  const draftToast = () =>
+    toast.success("Draft saved. Check your profile to view drafts.", {
+      style: {
+        borderRadius: 0,
+        color: "#2F3630",
+        backgroundColor: "#EEECE7",
+        border: "1px solid #2F3630",
+        width: "300px",
+      },
+      duration: 4000,
+    });
+
   const handleSubmit = async (data: EditorProps) => {
     if (imageUrl && tag && description) {
       if (!draft) {
         await addDoc(postsRef, {
           postTitle: data.postTitle,
           postContent: editorContent,
-          imageDownloadUrl: imageUrl ,
+          imageDownloadUrl: imageUrl,
           author: { name: user?.displayName, id: user?.uid },
           dateCreated: date.toLocaleDateString(),
           tag: tag,
@@ -90,15 +102,15 @@ export const PostContent = ({
       if (!postId) {
         await addDoc(postsRef, {
           postContent: editorContent ?? "",
-          imageDownloadUrl: imageUrl ,
+          imageDownloadUrl: imageUrl ?? "",
           author: { name: user?.displayName, id: user?.uid },
           dateCreated: date.toLocaleDateString(),
           tag: tag ?? "",
           description: description ?? "",
           isDraft: true,
         }).then((docRef) => setPostId(docRef.id));
+        draftToast();
       } else {
-        console.log("draft update here");
         await updateDoc(doc(database, "posts", postId!), {
           postContent: editorContent ?? "",
           imageDownloadUrl: imageUrl ?? "",
@@ -108,17 +120,19 @@ export const PostContent = ({
           description: description ?? "",
           isDraft: true,
         });
+        draftToast();
       }
     } else {
       await updateDoc(doc(database, "posts", id!), {
         postContent: editorContent ?? "",
-        imageDownloadUrl: imageUrl ?? draft.imageDownloadUrl,
+        imageDownloadUrl: imageUrl ?? draft.imageDownloadUrl ?? "",
         author: { name: user?.displayName, id: user?.uid },
         dateCreated: date.toLocaleDateString(),
         tag: tag ?? "",
         description: description ?? "",
         isDraft: true,
       });
+      draftToast();
     }
   };
 
@@ -145,9 +159,8 @@ export const PostContent = ({
       </nav>
 
       <Form onSubmit={handleSubmit}>
-        {({ register, formState, setValue }) => (
+        {({ register, formState }) => (
           <>
-            {draft && setValue("postTitle", `${draft.postTitle}`)}
             <TextAreaField
               error={formState.errors.postTitle}
               placeholder="Enter your post title here..."
