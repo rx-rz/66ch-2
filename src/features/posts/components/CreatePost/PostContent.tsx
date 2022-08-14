@@ -137,6 +137,26 @@ export const PostContent = ({
 
   return (
     <div className="w-11/12 mx-auto my-12">
+      <nav className="flex justify-between mx-auto">
+        <Link to="/" className="md:text-xl text-md font-bold">
+          {" "}
+          &#8592; Home
+        </Link>
+        <div className="justify-between flex">
+          <Button
+            className="border border-tertiary px-1 md:text-xl text-md"
+            handleClick={handleDraft}
+          >
+            Save As Draft
+          </Button>
+          <Button
+            className="border bg-tertiary  border-tertiary text-primary px-1 md:text-xl text-md md:hidden ml-3"
+            handleClick={handleMenuToggle}
+          >
+            Settings
+          </Button>
+        </div>
+      </nav>
       <Form onSubmit={handleSubmit} options={{ mode: "onBlur" }}>
         {({ register, formState }) => (
           <>
