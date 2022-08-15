@@ -1,13 +1,11 @@
 import { addDoc, collection } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import { useParams } from "react-router-dom";
-import { CommentCard } from "src/components/Elements/CommentCard/CommentCard";
+import { useCollection } from "react-firebase-hooks/firestore";
 import { Form } from "src/components/Elements/Form/Form";
 import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
 import { auth, database } from "src/utils/firebaseConfig";
-import { commentConverter } from "src/features/posts/api/commentConverter";
 import { User } from "firebase/auth";
+import React, { useEffect } from "react";
 type ReplyListProps = {
   commentId: string;
   reply: string;
@@ -22,11 +20,15 @@ export default function ReplyList({
   commentId,
 }: Partial<ReplyListProps>) {
   const [user] = useAuthState(auth);
-  const ref = collection(database, "replies").withConverter(commentConverter);
-  const { id } = useParams();
-  const [data, loading] = useCollectionData(ref);
+  const [value, loading, error] = useCollection(
+    collection(database, "replies"),
+    {
+      snapshotListenOptions: { includeMetadataChanges: true },
+    }
+  );
+  const replies =
+    value && value.docs.filter((doc) => doc.data().commentId === commentId);
   const date = new Date();
-  const posts = data && data.filter((doc) => doc.postId === id).reverse();
   const replyRef = collection(database, "replies");
   const handleReplySubmit = async (data: ReplyListProps) => {
     await addDoc(replyRef, {
@@ -41,6 +43,7 @@ export default function ReplyList({
 
   return (
     <div>
+      {replies && replies.map((doc) => <React.Fragment key={doc.id}>{doc.data().commentAuthor} {doc.data().reply} {doc.data().dateCreated}</React.Fragment>)}
       <Form onSubmit={handleReplySubmit}>
         {({ register, formState }) => (
           <>
