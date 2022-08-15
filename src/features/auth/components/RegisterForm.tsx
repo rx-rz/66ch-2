@@ -12,29 +12,46 @@ import { InputField } from "src/components/Elements/Form/InputField";
 import googleLogo from "src/assets/google.svg";
 import { RegisterFormValues } from "../types";
 import { Button } from "src/components/Elements/Button/Button";
+import { errorToast } from "../api/errorToast";
+import { useState } from "react";
 export function RegisterForm() {
   const auth = getAuth();
   const navigate = useNavigate();
+  const googleProvider = new GoogleAuthProvider();
+  const [pending, setPending] = useState(false);
 
   const handleSubmit = async (data: RegisterFormValues) => {
-    await createUserWithEmailAndPassword(auth, data.email, data.password).then(
-      (user) => {
+    try {
+      setPending(true);
+      await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      ).then((user) => {
         updateProfile(user.user, {
           displayName: data.firstName + " " + data.lastName,
           photoURL:
             "https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/profile.jpg?alt=media&token=0051e87b-ac54-4465-8358-8a7507aa2902",
         });
-      }
-    );
-    navigate("/");
+      });
+      setPending(false);
+      navigate("/");
+    } catch (err: any) {
+      setPending(false);
+      errorToast(err);
+    }
   };
 
-  const googleProvider = new GoogleAuthProvider();
   const signInWithGoogle = async () => {
-    await signInWithPopup(auth, googleProvider).catch((err) =>
-      console.log(err)
-    );
-    navigate("/");
+    try {
+      await signInWithPopup(auth, googleProvider).catch((err) =>
+        console.log(err)
+      );
+      navigate("/");
+    } catch (err: any) {
+      setPending(false);
+      errorToast(err);
+    }
   };
 
   const handleNavigateToLogin = () => {
@@ -116,7 +133,7 @@ export function RegisterForm() {
                     type="submit"
                     className="text-xl font-Synonym lg:w-5/12 w-full border border-black bg-tertiary text-primary p-1 py-2 text-center lg:mt-0 mt-6 transition-opacity duration-300  hover:opacity-80 mb-8 lg:mb-0"
                   >
-                    Register
+                    {!pending ? <>Register</> : <>Loading...</>}
                   </Button>
                   <Button
                     handleClick={handleNavigateToLogin}
