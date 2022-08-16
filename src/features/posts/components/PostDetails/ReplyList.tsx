@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Form } from "src/components/Elements/Form/Form";
@@ -38,27 +38,36 @@ export default function ReplyList({
       replyLikers: [],
     });
   };
-
+  const replyTag = useRef<HTMLDivElement | null>(null);
+  const handleReplyDisplay = () => {
+    replyTag.current?.classList.toggle("hidden");
+  };
   return (
     <div className="w-11/12">
+      <button onClick={handleReplyDisplay}>{replies!.length > 0 && <>Show Replies ( {replies?.length} )</>}</button>
       {replies &&
         replies.map((doc) => (
-          <React.Fragment key={doc.id}>
-            <ReplyCard
-              replyLikers={doc.replyLikers}
-              authorName={doc.replyAuthor!}
-              dateCreated={doc.dateCreated}
-              likes={doc.likes}
-              reply={doc.reply!}
-              replyId={doc.id}
-              userId={user?.uid!}
-            />
-          </React.Fragment>
+          <div ref={replyTag} className="hidden">
+            <React.Fragment key={doc.id}>
+              <ReplyCard
+                replyLikers={doc.replyLikers}
+                authorName={doc.replyAuthor!}
+                dateCreated={doc.dateCreated}
+                likes={doc.likes}
+                reply={doc.reply!}
+                replyId={doc.id}
+                userId={user?.uid!}
+              />
+            </React.Fragment>
+          </div>
         ))}
       <Form onSubmit={handleReplySubmit}>
-        {({ register, formState }) => (
+        {({ register }) => (
           <>
-            <TextAreaField registration={register("reply")} className="border border-black resize-none w-11/12"/>
+            <TextAreaField
+              registration={register("reply")}
+              className="border border-black resize-none w-11/12"
+            />
             <button className=" border-black px-3 my-2 border-2">Reply</button>
           </>
         )}

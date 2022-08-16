@@ -14,12 +14,11 @@ export default function PostComments() {
   const { id } = useParams();
   const [user] = useAuthState(auth);
 
-
-  const replyRef = useRef<HTMLDivElement | null>(null)
+  const replyRef = useRef<HTMLDivElement | null>(null);
 
   const handeDisplayReplies = () => {
-    replyRef.current?.classList.toggle("hidden")
-  }
+    replyRef.current?.classList.toggle("hidden");
+  };
   const [data, loading] = useCollectionData(ref);
   const comments = data && data.filter((doc) => doc.postId === id).reverse();
 
@@ -42,15 +41,13 @@ export default function PostComments() {
                 userId={user?.uid!}
                 dateCreated={doc.dateCreated}
               />
-{              <button onClick={handeDisplayReplies}>Show replies...</button>}
-              <div ref={replyRef} className="hidden">
-                <ReplyList
-                  commentId={doc.id}
-                  dateCreated={doc.dateCreated}
-                  likes={0}
-                  user={user!}
-                />
-              </div>
+
+              <ReplyList
+                commentId={doc.id}
+                dateCreated={doc.dateCreated}
+                likes={0}
+                user={user!}
+              />
             </div>
           ))}
         </article>
