@@ -11,19 +11,20 @@ export default function HomePage() {
     posts && posts[Math.floor(Math.random() * posts.length)];
 
   return (
-    <div className="w-full bg-tertiary border-b-2 border-b-primary">
-      <main className="py-24 w-11/12 mx-auto ">
+    <div className="w-full bg-primary border-b border-b-tertiary">
+
+      <main className="py-24 w-11/12 mx-auto">
         {homePageBlogPost && (
           <Link className="cursor-pointer" to={`/post/${homePageBlogPost.id}`}>
             <main className="md:flex justify-between">
-              <div className=" mb-8 md:w-5/12  top-1/2 text-primary">
+              <div className=" mb-8 md:w-5/12  top-1/2 text-tertiary">
                 <div className="flex opacity-80 md:mb-8 mb-3 md:text-xl mt-6">
                   <p className="mr-3 font-bold">
                     {homePageBlogPost.author.name}
                   </p>
                   <p>{homePageBlogPost.dateCreated}</p>
                 </div>
-                <h1 className="font-medium text-4xl md:text-5xl lg:text-6xl  font-Amulya max-w-sm">
+                <h1 className="font-medium text-4xl md:text-5xl xl:text-6xl  font-Amulya max-w-sm">
                   {homePageBlogPost.postTitle}
                 </h1>
               </div>

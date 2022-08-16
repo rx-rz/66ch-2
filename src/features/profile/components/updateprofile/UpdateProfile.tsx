@@ -19,7 +19,7 @@ export default function UpdateProfile() {
     profileUrl: string;
   };
   const navigate = useNavigate();
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const [pending, setPending] = useState(false);
   const ref = collection(database, "posts").withConverter(postConverter);
   const [data] = useCollectionData(ref);
@@ -28,21 +28,17 @@ export default function UpdateProfile() {
 
   const [file, setFile] = useState<File>({} as File);
   const types = ["image/png", "image/jpeg", "image/jpg"];
-  const [error, setError] = useState<string | null>(null);
   const { progress, url } = usePostImage(file);
   const handleChange = (e: any) => {
     let selectedFile = e;
     if (selectedFile) {
       if (types.includes(selectedFile.type)) {
-        setError(null);
         setFile(selectedFile);
       } else {
         setFile(selectedFile);
-        setError("Please select an image file (png or jpg)!");
       }
     }
   };
-  console.log(user?.photoURL)
 
   const submitData = async (data: UpdateFormValues) => {
     setPending(true);

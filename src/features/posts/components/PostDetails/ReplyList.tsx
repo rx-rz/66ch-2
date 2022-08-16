@@ -1,11 +1,13 @@
+import React from "react";
 import { addDoc, collection } from "firebase/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollection } from "react-firebase-hooks/firestore";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Form } from "src/components/Elements/Form/Form";
 import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
-import { auth, database } from "src/utils/firebaseConfig";
+import { database } from "src/utils/firebaseConfig";
 import { User } from "firebase/auth";
-import React, { useEffect } from "react";
+import { ReplyCard } from "src/components/Elements/ReplyCard/ReplyCard";
+import { replyConverter } from "../../api/replyConverter";
+
 type ReplyListProps = {
   commentId: string;
   reply: string;
@@ -15,40 +17,49 @@ type ReplyListProps = {
 };
 
 export default function ReplyList({
-  dateCreated,
-  likes,
   commentId,
+  user,
 }: Partial<ReplyListProps>) {
-  const [user] = useAuthState(auth);
-  const [value, loading, error] = useCollection(
-    collection(database, "replies"),
-    {
-      snapshotListenOptions: { includeMetadataChanges: true },
-    }
-  );
+  const ref = collection(database, "replies").withConverter(replyConverter);
+  const [data] = useCollectionData(ref);
   const replies =
-    value && value.docs.filter((doc) => doc.data().commentId === commentId);
+    data && data.filter((doc) => doc.commentId === commentId).reverse();
+
   const date = new Date();
   const replyRef = collection(database, "replies");
   const handleReplySubmit = async (data: ReplyListProps) => {
     await addDoc(replyRef, {
       reply: data.reply,
       commentId: commentId,
-      commentAuthor: user?.displayName,
-      commentAuthorId: user?.uid,
+      replyAuthor: user?.displayName,
       dateCreated: date.toLocaleDateString(),
       likes: 0,
+      isLiked: false,
+      replyLikers: [],
     });
   };
 
   return (
-    <div>
-      {replies && replies.map((doc) => <React.Fragment key={doc.id}>{doc.data().commentAuthor} {doc.data().reply} {doc.data().dateCreated}</React.Fragment>)}
+    <div className="w-11/12">
+      {replies &&
+        replies.map((doc) => (
+          <React.Fragment key={doc.id}>
+            <ReplyCard
+              replyLikers={doc.replyLikers}
+              authorName={doc.replyAuthor!}
+              dateCreated={doc.dateCreated}
+              likes={doc.likes}
+              reply={doc.reply!}
+              replyId={doc.id}
+              userId={user?.uid!}
+            />
+          </React.Fragment>
+        ))}
       <Form onSubmit={handleReplySubmit}>
         {({ register, formState }) => (
           <>
-            <TextAreaField registration={register("reply")} />
-            <button>Submit</button>
+            <TextAreaField registration={register("reply")} className="border border-black resize-none w-11/12"/>
+            <button className=" border-black px-3 my-2 border-2">Reply</button>
           </>
         )}
       </Form>

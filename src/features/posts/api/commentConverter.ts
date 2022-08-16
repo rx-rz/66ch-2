@@ -13,7 +13,9 @@ export type Comment = {
   dateCreated: string;
   postId: string;
   id: string;
-  likes: number
+  likes: number;
+  isLiked: boolean;
+  commentLikers: string[]
 };
 
 export const commentConverter: FirestoreDataConverter<Comment> = {
@@ -32,7 +34,9 @@ export const commentConverter: FirestoreDataConverter<Comment> = {
       dateCreated: data.dateCreated,
       postId: data.postId,
       id: snapshot.id,
-      likes: data.likes
+      likes: data.likes,
+      isLiked: data.isLiked,
+      commentLikers: data.commentLikers
     };
   },
 };

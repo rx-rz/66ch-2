@@ -14,9 +14,9 @@ export default function UserPosts() {
   return (
     <div className="mx-auto w-11/12 md:my-20 ">
       <h1 className="md:text-3xl text-2xl mb-16 font-bold">ARTICLES</h1>
-      {userPosts && (
+      {userPosts!.length > 0 ? (
         <article className="grid gap-24 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {userPosts.map((doc) => (
+          {userPosts!.map((doc) => (
             <Link to={`/post/${doc.id}`} key={doc.id} className="w-fit">
               <BlogCard
                 authorName={doc.author.name}
@@ -29,7 +29,7 @@ export default function UserPosts() {
             </Link>
           ))}
         </article>
-      )}
+      ) : <p>No available posts</p>}
     </div>
   );
 }

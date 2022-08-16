@@ -22,7 +22,7 @@ export function BlogCard({
         alt={postTitle}
         className="w-full h-full object-cover max-w-sm aspect-video"
       />
-      <div className="md:h-96 h-72 overflow-hidden pb-2 w-full">
+      <div className="md:h-96 h-80 overflow-hidden pb-2 w-full">
         <div className="opacity-80 mb-4 text-lg mt-6">
           <div className="flex ">
             <p className="mr-3 font-bold ">{authorName}</p>
@@ -30,11 +30,11 @@ export function BlogCard({
           </div>
           <hr className="w-4/12 border border-black mt-4" />
         </div>
-        <p className="font-bold text-2xl md:text-4xl font-Amulya w-11/12 text-tertiary">
+        <p className=" text-3xl xl:text-4xl font-medium font-Amulya w-11/12 text-tertiary">
           {postTitle}
         </p>
-        <p className=" my-3 text-md md:text-xl  font-Synonym max-w-sm w-11/12">
-          {description.substring(0, 100)}...
+        <p className=" my-3 text-lg opacity-90 md:text-xl  font-Synonym max-w-sm w-11/12">
+          {description.substring(0, 200)}...
         </p>
       </div>
     </article>

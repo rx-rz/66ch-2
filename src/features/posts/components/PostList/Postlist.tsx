@@ -11,10 +11,10 @@ export default function Postlist() {
   const [data, loading] = useCollectionData(ref);
   const posts = data && data.filter((doc) => doc.isDraft === false)
   return (
-    <div className="m-auto w-11/12 my-20">
+    <div className="mx-auto w-11/12 my-20">
       {loading && <p>Loading...</p>}
       {posts && (
-        <article className="grid md:gap-24 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <article className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-20">
           {posts.map((doc) => (
             <Link to={`/post/${doc.id}`} key={doc.id} className="w-fit">
               <BlogCard

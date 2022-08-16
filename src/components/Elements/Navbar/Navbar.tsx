@@ -25,11 +25,11 @@ export function Navbar() {
   } else {
     return (
 
-      <nav className=" bg-tertiary sticky top-0  z-50 w-full mx-auto md:py-4 ">
-        <div className=" h-16 lg:h-24 w-11/12 mx-auto flex  justify-between items-center">
+      <nav className=" bg-primary sticky top-0 z-50 w-full mx-auto ">
+        <div className=" h-16 lg:h-16 border-b border-b-tertiary  flex  justify-between items-center mx-2">
           <NavLink
             to="/"
-            className="lg:text-5xl text-3xl md:text-4xl text-primary  h-full grid f font-medium  content-center transition-colors duration-300 font-Synonym"
+            className="lg:text-5xl text-3xl md:text-4xl text-tertiary  h-full grid f font-medium  content-center transition-colors duration-300 font-Synonym"
           >
             6 6 C H
           </NavLink>
@@ -38,13 +38,13 @@ export function Navbar() {
               <div className="h-full hidden lg:flex">
                 <NavLink
                   to="/search"
-                  className="sm:text-xl text-md text-primary hover:text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya active:border-b-4"
+                  className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya active:border-b-4"
                 >
                   Search
                 </NavLink>
                 <NavLink
                   to="/auth/login"
-                  className="sm:text-xl text-md text-primary hover:text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya"
+                  className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya"
                 >
                   Login
                 </NavLink>
@@ -57,7 +57,7 @@ export function Navbar() {
               </div>
               <div className="h-full lg:hidden block">
                 <button
-                  className="text-primary  h-full grid font-extrabold  content-center   font-Synonym"
+                  className="text-tertiary  h-full grid font-extrabold  content-center   font-Synonym"
                   onClick={handleMenuToggle}
                   ref={menubutton}
                 >
@@ -71,7 +71,7 @@ export function Navbar() {
                 {location.pathname !== "/profile" ? (
                   <NavLink
                     to="/profile"
-                    className="sm:text-xl text-md text-primary hover:text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya"
+                    className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya"
                   >
                     Profile
                   </NavLink>
@@ -79,13 +79,13 @@ export function Navbar() {
 
                 <NavLink
                   to="/createpost"
-                  className="sm:text-xl text-md text-primary hover:text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-2  transition-colors duration-300 font-Amulya"
+                  className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-2  transition-colors duration-300 font-Amulya"
                 >
                   Create Post
                 </NavLink>
                 <NavLink
                   to="/search"
-                  className="sm:text-xl text-md text-primary hover:text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya active:border-b-4"
+                  className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya active:border-b-4"
                 >
                   Search
                 </NavLink>
@@ -98,7 +98,7 @@ export function Navbar() {
               </div>
               <div className="h-full lg:hidden block">
                 <button
-                  className="text-primary h-full grid font-extrabold  content-center   font-Synonym"
+                  className="text-tertiary h-full grid font-extrabold  content-center   font-Synonym"
                   onClick={handleMenuToggle}
                   ref={menubutton}
                 >
@@ -109,7 +109,7 @@ export function Navbar() {
           )}
         </div>
         <div
-          className=" hidden lg:hidden bg-tertiary top-16 left-0 right-0  fixed z-20"
+          className=" hidden lg:hidden bg-tertiary top-16 left-0 right-0  fixed z-20 h-screen"
           ref={menu}
         >
           {!user ? (

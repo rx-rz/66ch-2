@@ -20,11 +20,13 @@ export default function PostCommentForm() {
       commentAuthorId: user?.uid,
       dateCreated: date.toLocaleDateString(),
       likes: 0,
+      isLiked: false,
+      commentLikers: []
     });
   };
 
   return (
-    <Form onSubmit={handleCommentSubmit}>
+    <Form onSubmit={handleCommentSubmit} className="w-full max-w-3xl ">
       {({ register, formState }) => (
         <>
           <TextAreaField
@@ -33,9 +35,9 @@ export default function PostCommentForm() {
             })}
             placeholder="Enter a comment here"
             error={formState.errors.comment}
-
+            className="border w-full border-black resize-none"
           />
-          <button type="submit">Submit</button>
+          <button type="submit" className="border-2 px-3 border-black">Comment</button>
         </>
       )}
     </Form>

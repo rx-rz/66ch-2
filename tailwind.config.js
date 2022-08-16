@@ -10,12 +10,14 @@ module.exports = {
         Amulya: ["General Sans, sans-serif"]
       },
       colors: {
-        primary: "#EEECE7",
-        secondary: "#8E9789",
-        tertiary: "#2F3630"
+        primary: "#ffffff",
+        secondary: "#ffffff",
+        tertiary: "#000000"
       },
       maxHeight: {
-        optimal: "65vh"
+        optimal: "65vh",
+        profile: "55vh",
+        details: "80vh"
       }
     },
   },

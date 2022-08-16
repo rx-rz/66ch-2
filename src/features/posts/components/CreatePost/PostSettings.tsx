@@ -61,7 +61,7 @@ export default function PostSettings({
     "Tourism",
   ];
   const [file, setFile] = useState<File | null | any>(null);
-  const { progress, url } = usePostImage(file);
+  const {  url } = usePostImage(file);
 
   const types = ["image/png", "image/jpeg", "image/jpg"];
 

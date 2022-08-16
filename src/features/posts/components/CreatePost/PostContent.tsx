@@ -171,7 +171,7 @@ export const PostContent = ({
                     "Your post title cannot be more than 200 characters long",
                 },
               })}
-              className="resize-none focus:outline-none w-11/12 m-auto text-2xl md:text-4xl lg:text-6xl ml-1 bg-primary text-tertiary border"
+              className="resize-none focus:outline-none w-full m-auto text-3xl md:text-4xl lg:text-5xl ml-1 bg-primary text-tertiary "
             />
             {!imageUrl && !description && !tag && (
               <p className="md:text-xl md:mt-8 mt-4">

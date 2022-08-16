@@ -7,8 +7,10 @@ export default function PostContent () {
   return (
     <MainLayout>
       <PostDetails />
+      <div className="w-11/12  mx-auto max-w-6xl mb-8">
       <PostComments/>
       <PostCommentForm/>
+      </div>
     </MainLayout>
   );
 };
