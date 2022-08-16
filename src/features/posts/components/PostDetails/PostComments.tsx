@@ -1,5 +1,4 @@
 import { collection } from "firebase/firestore";
-import { useRef } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useParams } from "react-router-dom";
@@ -13,25 +12,16 @@ const ref = collection(database, "comments").withConverter(commentConverter);
 export default function PostComments() {
   const { id } = useParams();
   const [user] = useAuthState(auth);
-
-  const replyRef = useRef<HTMLDivElement | null>(null);
-
-  const handeDisplayReplies = () => {
-    replyRef.current?.classList.toggle("hidden");
-  };
   const [data, loading] = useCollectionData(ref);
   const comments = data && data.filter((doc) => doc.postId === id).reverse();
 
   return (
-    <div className=" my-20">
+    <div className="my-20 max-w-4xl mx-auto">
       {loading && <p>Loading...</p>}
       {comments && (
         <article>
-          <h1 className=" text-2xl my-4 mb-12 md:text-3xl font-medium">
-            COMMENTS
-          </h1>
           {comments.map((doc) => (
-            <div key={doc.id}>
+            <div key={doc.id} className="md:my-12 my-4 ">
               <CommentCard
                 commentLikers={doc.commentLikers}
                 comment={doc.comment}

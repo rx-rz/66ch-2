@@ -36,16 +36,16 @@ export function CommentCard({
     }
   };
   return (
-    <article className="border-2 rounded-md p-4 border-tertiary my-4">
+    <article className=" rounded-md my-4">
       <div className="flex font-bold">
-        <h3>{authorName}</h3>
+        <h3 className="mr-2">{authorName}</h3>
         <h2>{dateCreated}</h2>
       </div>
       <div>
-        <p className="text-2xl my-2">{comment}</p>
+        <p className="text-xl my-2">{comment}</p>
       </div>
       <div>
-        Likes: <button onClick={handleLikeClick}>{likes}</button>
+      <button onClick={handleLikeClick}>{commentLikers.includes(userId) ? <>💗 {likes}</> : <>🤍 {likes}</>}</button>
       </div>
     </article>
   );

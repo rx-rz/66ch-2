@@ -7,7 +7,7 @@ import { postConverter } from "src/features/posts/api/postConverter";
 import { auth, database } from "src/utils/firebaseConfig";
 
 export default function UserDrafts() {
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const ref = collection(database, "posts").withConverter(postConverter);
   const [data] = useCollectionData(ref);
   const userPosts = data?.filter((doc) => doc.author.id === user?.uid && doc.isDraft === true) ;

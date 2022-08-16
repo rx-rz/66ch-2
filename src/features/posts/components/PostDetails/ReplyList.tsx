@@ -23,7 +23,12 @@ export default function ReplyList({
   const ref = collection(database, "replies").withConverter(replyConverter);
   const [data] = useCollectionData(ref);
   const replies =
-    data && data.filter((doc) => doc.commentId === commentId).reverse();
+    data &&
+    data
+      .filter((doc) => doc.commentId === commentId)
+      .sort(function (a, b) {
+        return Date.parse(a.dateCreated) - Date.parse(b.dateCreated);
+      });
 
   const date = new Date();
   const replyRef = collection(database, "replies");
@@ -32,7 +37,7 @@ export default function ReplyList({
       reply: data.reply,
       commentId: commentId,
       replyAuthor: user?.displayName,
-      dateCreated: date.toLocaleDateString(),
+      dateCreated: date.toLocaleTimeString(),
       likes: 0,
       isLiked: false,
       replyLikers: [],
@@ -73,7 +78,7 @@ export default function ReplyList({
                 registration={register("reply")}
                 className="border border-black resize-none w-11/12"
               />
-              <button className=" border-black px-3 my-2 border-2">
+              <button type="submit" className=" border-black px-3 my-2 border-2">
                 Reply
               </button>
             </>

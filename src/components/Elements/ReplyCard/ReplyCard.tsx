@@ -39,16 +39,16 @@ export function ReplyCard({
   };
   
   return (
-    <article className=" my-4 p-4 border border-tertiary rounded-md">
-      <div className="flex">
-        <h3>{authorName}</h3>
+    <article className="ml-4 md:ml-8">
+      <div className="flex text-sm font-bold my-2">
+        <h3 className="mr-2">{authorName}</h3>
         <h2>{dateCreated}</h2>
       </div>
       <div>
         <p>{reply}</p>
       </div>
       <div>
-        Likes: <button onClick={handleLikeClick}>{likes}</button>
+        <button onClick={handleLikeClick}>{replyLikers.includes(userId) ? <>💗 {likes}</> : <>🤍 {likes}</>}</button>
       </div>
     </article>
   );

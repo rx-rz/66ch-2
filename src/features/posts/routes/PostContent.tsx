@@ -7,8 +7,9 @@ export default function PostContent() {
   return (
     <MainLayout>
         <PostDetails />
-        {/* <PostComments />
-        <PostCommentForm /> */}
+        <hr className="border border-black"/>
+        <PostComments />
+        <PostCommentForm />
     </MainLayout>
   );
 }
