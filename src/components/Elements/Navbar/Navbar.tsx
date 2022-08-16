@@ -26,7 +26,7 @@ export function Navbar() {
     return (
 
       <nav className=" bg-primary sticky top-0 z-50 w-full mx-auto ">
-        <div className=" h-16 lg:h-16 border-b border-b-tertiary  flex  justify-between items-center mx-2">
+        <div className=" h-16 lg:h-16  flex  justify-between items-center mx-2">
           <NavLink
             to="/"
             className="lg:text-5xl text-3xl md:text-4xl text-tertiary  h-full grid f font-medium  content-center transition-colors duration-300 font-Synonym"

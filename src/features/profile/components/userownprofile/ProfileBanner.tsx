@@ -5,7 +5,7 @@ import { auth } from "src/utils/firebaseConfig";
 export default function ProfileBanner() {
   const [user] = useAuthState(auth);
   return (
-    <div className="w-11/12 mx-auto md:flex block my-16">
+    <div className="mx-2  md:flex block my-16">
       {user && (
         <>
           <img className="md:w-4/12 w-full border border-black max-h-profile object-cover" src={user.photoURL!} alt={user.displayName!} />

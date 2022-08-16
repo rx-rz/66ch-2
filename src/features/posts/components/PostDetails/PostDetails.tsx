@@ -15,23 +15,20 @@ export default function PostDetails() {
       {loading && <span>Loading...</span>}
 
       {value && (
-        <div className="mx-auto">
+        <div className="mx-auto text-center">
           <div className="w-full md:mb-24  mb-16">
-            <div className="flex mb-8 md:w-6/12">
-              <p className=" text-xl md:text-2xl mr-6">
-                {value.data()!.author.name}{" "}
-              </p>
-              <p className=" text-xl md:text-2xl">
-                {value.data()!.dateCreated}
+            <div className="md:my-12 my-6">
+              <h1 className="font-bold text-4xl md:text-5xl lg:text-8xl md:mb-10 mb-4 text-tertiary ">
+                {value.data()!.postTitle}
+              </h1>
+              <p className="mx-auto max-w-7xl text-3xl">
+                {value.data()!.description}
               </p>
             </div>
-            <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl md:mb-24 mb-16 text-tertiary ">
-              {value.data()!.postTitle}
-            </h1>
             <img
               src={value.data()!.imageDownloadUrl}
               alt=""
-              className="border border-black object-cover w-full max-h-details"
+              className=" object-cover w-full max-h-details"
               loading="eager"
             />
           </div>

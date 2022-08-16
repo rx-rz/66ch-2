@@ -12,28 +12,21 @@ export default function HomePage() {
 
   return (
     <div className="w-full bg-primary border-b border-b-tertiary">
-
-      <main className="py-24 w-11/12 mx-auto">
+      <main className="pt-24 md:pt-48 mx-auto relative">
         {homePageBlogPost && (
           <Link className="cursor-pointer" to={`/post/${homePageBlogPost.id}`}>
-            <main className="md:flex justify-between">
-              <div className=" mb-8 md:w-5/12  top-1/2 text-tertiary">
-                <div className="flex opacity-80 md:mb-8 mb-3 md:text-xl mt-6">
-                  <p className="mr-3 font-bold">
-                    {homePageBlogPost.author.name}
-                  </p>
-                  <p>{homePageBlogPost.dateCreated}</p>
-                </div>
-                <h1 className="font-medium text-4xl md:text-5xl xl:text-6xl  font-Amulya max-w-sm">
-                  {homePageBlogPost.postTitle}
-                </h1>
+            <div className="my-6">
+              <div className="flex font-medium md:text-3xl w-11/12">
+              <h2 className="mr-4 ml-1">{homePageBlogPost.author.name}</h2>
+              <h2>{homePageBlogPost.dateCreated}</h2>
               </div>
-              <img
-                src={homePageBlogPost.imageDownloadUrl}
-                alt={homePageBlogPost.postTitle}
-                className="aspect-video object-cover max-h-optimal mx-auto  md:w-7/12"
-              />
-            </main>
+              <h1 className="font-bold xl:text-8xl lg:text-6xl md:text-5xl text-4xl">{homePageBlogPost.postTitle}</h1>
+            </div>
+            <img
+              src={homePageBlogPost.imageDownloadUrl}
+              alt={homePageBlogPost.postTitle}
+              className="max-h-[80vh] w-full object-cover"
+            />
           </Link>
         )}
       </main>

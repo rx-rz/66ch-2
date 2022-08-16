@@ -7,7 +7,7 @@ import { postConverter } from "src/features/posts/api/postConverter";
 import { auth, database } from "src/utils/firebaseConfig";
 
 export default function UserPosts() {
-  const [user, loading, error] = useAuthState(auth);
+  const [user,] = useAuthState(auth);
   const ref = collection(database, "posts").withConverter(postConverter);
   const [data] = useCollectionData(ref);
   const userPosts = data?.filter((doc) => doc.author.id === user?.uid && doc.isDraft === false) ;
@@ -15,7 +15,7 @@ export default function UserPosts() {
     <div className="mx-auto w-11/12 md:my-20 ">
       <h1 className="md:text-3xl text-2xl mb-16 font-bold">ARTICLES</h1>
       {userPosts && userPosts.length > 0 ? (
-        <article className="grid gap-24 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <article className="grid md:grid-cols-2  lg:grid-cols-3  gap-20">
           {userPosts!.map((doc) => (
             <Link to={`/post/${doc.id}`} key={doc.id} className="w-fit">
               <BlogCard

@@ -16,11 +16,11 @@ export function BlogCard({
   description,
 }: CardProps) {
   return (
-    <article className=" mx-auto">
+    <article className="mx-auto">
       <img
         src={imageUrl}
         alt={postTitle}
-        className="w-full h-full object-cover max-w-sm aspect-video"
+        className="w-full h-full object-cover max-w-4xl aspect-video "
       />
       <div className="md:h-96 h-80 overflow-hidden pb-2 w-full">
         <div className="opacity-80 mb-4 text-lg mt-6">

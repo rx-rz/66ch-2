@@ -14,7 +14,7 @@ export default function Postlist() {
     <div className="mx-auto w-11/12 my-20">
       {loading && <p>Loading...</p>}
       {posts && (
-        <article className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-20">
+        <article className="grid md:grid-cols-2  lg:grid-cols-3  gap-20">
           {posts.map((doc) => (
             <Link to={`/post/${doc.id}`} key={doc.id} className="w-fit">
               <BlogCard
