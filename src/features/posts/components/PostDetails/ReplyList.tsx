@@ -44,10 +44,16 @@ export default function ReplyList({
   };
   return (
     <div className="w-11/12">
-      <button onClick={handleReplyDisplay}>{replies!.length > 0 && <>Show Replies ( {replies?.length} )</>}</button>
-      {replies &&
-        replies.map((doc) => (
-          <div ref={replyTag} className="hidden">
+      <button onClick={handleReplyDisplay}>
+        {replies && replies.length > 0 ? (
+          <>Show Replies ( {replies.length} )</>
+        ) : (
+          <>Reply</>
+        )}
+      </button>
+      <div ref={replyTag} className="hidden">
+        {replies &&
+          replies.map((doc) => (
             <React.Fragment key={doc.id}>
               <ReplyCard
                 replyLikers={doc.replyLikers}
@@ -59,19 +65,21 @@ export default function ReplyList({
                 userId={user?.uid!}
               />
             </React.Fragment>
-          </div>
-        ))}
-      <Form onSubmit={handleReplySubmit}>
-        {({ register }) => (
-          <>
-            <TextAreaField
-              registration={register("reply")}
-              className="border border-black resize-none w-11/12"
-            />
-            <button className=" border-black px-3 my-2 border-2">Reply</button>
-          </>
-        )}
-      </Form>
+          ))}
+        <Form onSubmit={handleReplySubmit}>
+          {({ register }) => (
+            <>
+              <TextAreaField
+                registration={register("reply")}
+                className="border border-black resize-none w-11/12"
+              />
+              <button className=" border-black px-3 my-2 border-2">
+                Reply
+              </button>
+            </>
+          )}
+        </Form>
+      </div>
     </div>
   );
 }

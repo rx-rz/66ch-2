@@ -39,7 +39,7 @@ export function ReplyCard({
   };
   
   return (
-    <article className=" my-4 p-4 border border-tertiary">
+    <article className=" my-4 p-4 border border-tertiary rounded-md">
       <div className="flex">
         <h3>{authorName}</h3>
         <h2>{dateCreated}</h2>
