@@ -17,11 +17,11 @@ export default function PostDetails() {
       {value && (
         <div className="mx-auto text-center">
           <div className="w-full md:mb-24  mb-16">
-            <div className="md:my-12 my-6">
+            <div className="md:my-12 my-8">
               <h1 className="font-bold text-4xl md:text-5xl lg:text-8xl md:mb-10 mb-4 text-tertiary ">
                 {value.data()!.postTitle}
               </h1>
-              <p className="mx-auto max-w-7xl text-3xl">
+              <p className="mx-auto max-w-7xl w-11/12 md:text-3xl text-xl">
                 {value.data()!.description}
               </p>
             </div>
