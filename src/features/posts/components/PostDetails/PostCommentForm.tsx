@@ -26,7 +26,7 @@ export default function PostCommentForm() {
   };
 
   return (
-    <Form onSubmit={handleCommentSubmit} className="w-full max-w-4xl mx-auto ">
+    <Form onSubmit={handleCommentSubmit} className="max-w-4xl mx-auto w-11/12">
       {({ register, formState }) => (
         <>
           <TextAreaField
