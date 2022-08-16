@@ -15,7 +15,7 @@ export default function PostDetails() {
       {loading && <span>Loading...</span>}
 
       {value && (
-        <div className="w-11/12 mx-auto">
+        <div className="mx-auto">
           <div className="w-full md:mb-24  mb-16">
             <div className="flex mb-8 md:w-6/12">
               <p className=" text-xl md:text-2xl mr-6">
