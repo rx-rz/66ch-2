@@ -36,6 +36,18 @@ const errorToast = () =>
     }
   );
 
+const postContentToast = () =>
+  toast.error("Post cannot be empty", {
+    style: {
+      borderRadius: 0,
+      color: "#2F3630",
+      backgroundColor: "#EEECE7",
+      border: "1px solid #2F3630",
+      width: "300px",
+    },
+    duration: 4000,
+  });
+
 const draftToast = () =>
   toast.success("Draft saved. Check your profile to view drafts.", {
     style: {
@@ -66,33 +78,37 @@ export const PostContent = ({
   };
 
   const handleSubmit = async (data: EditorProps) => {
-    if (imageUrl && tag && description) {
-      if (!draft) {
-        await addDoc(postsRef, {
-          postTitle: data.postTitle,
-          postContent: editorContent,
-          imageDownloadUrl: imageUrl,
-          author: { name: user?.displayName, id: user?.uid },
-          dateCreated: date.toLocaleDateString(),
-          tag: tag,
-          description: description,
-          isDraft: false,
-        });
+    if (/[a-z]/i.test(data.postTitle) && /[a-z]/i.test(editorContent)) {
+      if (imageUrl && tag && description) {
+        if (!draft) {
+          await addDoc(postsRef, {
+            postTitle: data.postTitle,
+            postContent: editorContent,
+            imageDownloadUrl: imageUrl,
+            author: { name: user?.displayName, id: user?.uid },
+            dateCreated: date.toLocaleDateString(),
+            tag: tag,
+            description: description,
+            isDraft: false,
+          });
+        } else {
+          await updateDoc(doc(database, "posts", id!), {
+            postTitle: data.postTitle,
+            postContent: editorContent,
+            imageDownloadUrl: imageUrl ?? draft?.imageDownloadUrl,
+            author: { name: user?.displayName, id: user?.uid },
+            dateCreated: date.toLocaleDateString(),
+            tag: tag ?? "",
+            description: description ?? "",
+            isDraft: false,
+          });
+        }
+        window.location.pathname = "/";
       } else {
-        await updateDoc(doc(database, "posts", id!), {
-          postTitle: data.postTitle,
-          postContent: editorContent,
-          imageDownloadUrl: imageUrl ?? draft?.imageDownloadUrl,
-          author: { name: user?.displayName, id: user?.uid },
-          dateCreated: date.toLocaleDateString(),
-          tag: tag ?? "",
-          description: description ?? "",
-          isDraft: false,
-        });
+        errorToast();
       }
-      window.location.pathname = "/";
     } else {
-      errorToast();
+      postContentToast();
     }
   };
 
