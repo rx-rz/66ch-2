@@ -1,11 +1,13 @@
 import {MainLayout} from 'src/components/Layout/Layout'
 import Postlist from 'src/features/posts/components/PostList/Postlist'
-import HomePage from '../HomePage'
+import HomePage from '../components/HomePage'
+import { TagMarquee } from '../components/TagMarquee'
 
 export default function Home ()  {
   return (
     <MainLayout>
       <HomePage/>
+      <TagMarquee/>
       <Postlist/>
     </MainLayout>
   )

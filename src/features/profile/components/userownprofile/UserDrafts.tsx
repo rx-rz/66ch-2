@@ -3,14 +3,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
 import { BlogCard } from "src/components/Elements/BlogCard/BlogCard";
-import { postConverter } from "src/features/posts/api/postConverter";
+import { blogConverter } from "src/features/posts/api/blogConverter";
 import { auth, database } from "src/utils/firebaseConfig";
 
 export default function UserDrafts() {
   const [user] = useAuthState(auth);
-  const ref = collection(database, "posts").withConverter(postConverter);
+  const ref = collection(database, "posts").withConverter(blogConverter);
   const [data] = useCollectionData(ref);
-  const userPosts = data?.filter((doc) => doc.author.id === user?.uid && doc.isDraft === true) ;
+  const userPosts = data?.filter((doc) => doc.author.id === user?.uid ) ;
   return (
     <div className="mx-auto w-11/12 md:my-20 ">
       <h1 className="md:text-3xl text-2xl mb-16 font-bold">DRAFTS</h1>

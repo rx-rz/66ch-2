@@ -17,10 +17,10 @@ export type Blog = {
   ref: DocumentReference<DocumentData>;
   dateCreated: string;
   description: string;
-  isDraft?: boolean
+
 };
 
-export const postConverter: FirestoreDataConverter<Blog> = {
+export const blogConverter: FirestoreDataConverter<Blog> = {
   toFirestore(blog: WithFieldValue<Blog>): DocumentData {
     return { author: blog.author };
   },
@@ -39,7 +39,6 @@ export const postConverter: FirestoreDataConverter<Blog> = {
       imageDownloadUrl: data.imageDownloadUrl,
       ref: snapshot.ref,
       description: data.description,
-      isDraft: data.isDraft
     };
   },
 };

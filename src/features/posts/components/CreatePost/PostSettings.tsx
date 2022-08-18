@@ -6,7 +6,7 @@ import { Button } from "src/components/Elements/Button/Button";
 import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
 import { SelectField } from "src/components/Elements/Form/SelectField";
 import closeButton from "src/assets/close.svg";
-import { Blog } from "../../api/postConverter";
+import { Blog } from "../../api/blogConverter";
 import toast from "react-hot-toast";
 
 type PostSettingProps = {

@@ -6,8 +6,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        Synonym: ["Satoshi, sans-serif"],
-        Amulya: ["General Sans, sans-serif"]
+        albertsans: ["Albert Sans, sans-serif"],
+        cormorant: ["EB Garamond, serif"]
       },
       colors: {
         primary: "#DBEEF4",

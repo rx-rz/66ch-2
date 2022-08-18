@@ -1,15 +1,15 @@
 import { collection } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { BlogCard } from "src/components/Elements/BlogCard/BlogCard";
 import { database } from "src/utils/firebaseConfig";
-import { postConverter } from "../../api/postConverter";
-import { Blog } from "../../api/postConverter";
+import { blogConverter } from "../../api/blogConverter";
+import { Blog } from "../../api/blogConverter";
 
 export const SearchPosts = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const ref = collection(database, "posts").withConverter(postConverter);
+  const ref = collection(database, "posts").withConverter(blogConverter);
   const [data, loading] = useCollectionData(ref);
   const [blogs, setBlogs] = useState<Blog[] | null>(null);
 
@@ -19,10 +19,24 @@ export const SearchPosts = () => {
       setBlogs(
         data.filter(
           (doc) =>
-            doc.author.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            doc.postTitle.toLowerCase().includes(searchTerm.toLowerCase())
+            (doc.postTitle !== undefined &&
+              doc.author.name
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())) ||
+            doc.description.toLowerCase().includes(searchTerm)
         )
       );
+
+    // setBlogs(
+    //   data.filter(
+    //     (doc) =>
+    //       (doc.isDraft === false &&
+    //         doc.author.name
+    //           .toLowerCase()
+    //           .includes(searchTerm.toLowerCase())) ||
+    //       doc.postTitle.toLowerCase().includes(searchTerm.toLowerCase())
+    //   )
+    // );
   };
 
   return (

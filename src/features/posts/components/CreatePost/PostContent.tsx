@@ -8,7 +8,7 @@ import { Editor } from "src/components/Elements/Editor/Editor";
 import { Form } from "src/components/Elements/Form/Form";
 import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
 import { auth, database } from "src/utils/firebaseConfig";
-import { Blog } from "../../api/postConverter";
+import { Blog } from "../../api/blogConverter";
 
 type PostSettingProps = {
   tag: string | undefined;
@@ -152,7 +152,7 @@ export const PostContent = ({
   };
 
   return (
-    <div className="w-11/12 mx-auto my-12">
+    <div className="w-11/12 mx-auto my-12 font-albertsans">
       <nav className="flex justify-between mx-auto">
         <Link to="/" className="md:text-xl text-md font-bold">
           {" "}

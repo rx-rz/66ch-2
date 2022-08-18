@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "src/components/Elements/Button/Button";
 import { Form } from "src/components/Elements/Form/Form";
 import { InputField } from "src/components/Elements/Form/InputField";
-import { postConverter } from "src/features/posts/api/postConverter";
+import { blogConverter } from "src/features/posts/api/blogConverter";
 import { usePostImage } from "src/hooks/usePostImage";
 import { auth, database } from "src/utils/firebaseConfig";
 
@@ -21,7 +21,7 @@ export default function UpdateProfile() {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
   const [pending, setPending] = useState(false);
-  const ref = collection(database, "posts").withConverter(postConverter);
+  const ref = collection(database, "posts").withConverter(blogConverter);
   const [data] = useCollectionData(ref);
   const userPosts = data?.filter((doc) => doc.author.id === user?.uid);
   const namesOfUser = user && user.displayName!.split(" ");

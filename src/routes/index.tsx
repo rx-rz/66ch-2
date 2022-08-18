@@ -30,6 +30,7 @@ export const AppRoutes = () => {
     { path: "/postlist", element: <PostList /> },
     { path: "/post/:id", element: <PostContent /> },
     { path: "/search", element: <PostSearch /> },
+    { path: "/search/:tag", element: <PostSearch /> },
     { path: "*", element: <PageNotFound /> },
   ];
 
