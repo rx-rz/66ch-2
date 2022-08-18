@@ -26,17 +26,6 @@ export const SearchPosts = () => {
             doc.description.toLowerCase().includes(searchTerm)
         )
       );
-
-    // setBlogs(
-    //   data.filter(
-    //     (doc) =>
-    //       (doc.isDraft === false &&
-    //         doc.author.name
-    //           .toLowerCase()
-    //           .includes(searchTerm.toLowerCase())) ||
-    //       doc.postTitle.toLowerCase().includes(searchTerm.toLowerCase())
-    //   )
-    // );
   };
 
   return (

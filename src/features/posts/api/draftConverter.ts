@@ -19,7 +19,7 @@ import {
     description: string;
   };
   
-  export const postConverter: FirestoreDataConverter<Draft> = {
+  export const draftConverter: FirestoreDataConverter<Draft> = {
     toFirestore(blog: WithFieldValue<Draft>): DocumentData {
       return { author: blog.author };
     },

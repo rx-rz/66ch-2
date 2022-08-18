@@ -7,18 +7,19 @@ import { MainLayout } from "src/components/Layout/Layout";
 import { database } from "src/utils/firebaseConfig";
 import { PostContent } from "../components/CreatePost/PostContent";
 import PostSettings from "../components/CreatePost/PostSettings";
+
+type PostSettingProps = {
+  tag: string;
+  description: string;
+  imageUrl: string;
+};
+
 export default function CreatePost() {
+
   const settings = useRef<HTMLDivElement>(null);
-
   const { id = "@!@#$%^&*()(*&^%#@#$%%" } = useParams();
-  const draftRef = doc(database, "posts", id);
+  const draftRef = doc(database, "drafts", id);
   const [value] = useDocument(draftRef);
-
-  type PostSettingProps = {
-    tag: string;
-    description: string;
-    imageUrl: string;
-  };
 
   const [postSettings, setPostSettings] = useState<PostSettingProps>();
 

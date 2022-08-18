@@ -1,4 +1,10 @@
-import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import toast from "react-hot-toast";
@@ -67,10 +73,11 @@ export const PostContent = ({
   handleMenuToggle,
   draft,
 }: PostSettingProps) => {
-  const { id } = useParams();
   const [user] = useAuthState(auth);
   const postsRef = collection(database, "posts");
-  const [postId, setPostId] = useState<string | null>(null);
+  const draftsRef = collection(database, "drafts");
+  const { id } = useParams();
+  const [draftId, setDraftId] = useState<string | null>(null);
   const [editorContent, setEditorContent] = useState("");
 
   const changeEditorContent = (editorContent: string) => {
@@ -80,28 +87,17 @@ export const PostContent = ({
   const handleSubmit = async (data: EditorProps) => {
     if (/[a-z]/i.test(data.postTitle) && /[a-z]/i.test(editorContent)) {
       if (imageUrl && tag && description) {
-        if (!draft) {
-          await addDoc(postsRef, {
-            postTitle: data.postTitle,
-            postContent: editorContent,
-            imageDownloadUrl: imageUrl,
-            author: { name: user?.displayName, id: user?.uid },
-            dateCreated: date.toLocaleDateString(),
-            tag: tag,
-            description: description,
-            isDraft: false,
-          });
-        } else {
-          await updateDoc(doc(database, "posts", id!), {
-            postTitle: data.postTitle,
-            postContent: editorContent,
-            imageDownloadUrl: imageUrl ?? draft?.imageDownloadUrl,
-            author: { name: user?.displayName, id: user?.uid },
-            dateCreated: date.toLocaleDateString(),
-            tag: tag ?? "",
-            description: description ?? "",
-            isDraft: false,
-          });
+        await addDoc(postsRef, {
+          postTitle: data.postTitle,
+          postContent: editorContent,
+          imageDownloadUrl: imageUrl ?? draft?.imageDownloadUrl,
+          author: { name: user?.displayName, id: user?.uid },
+          dateCreated: date.toLocaleDateString(),
+          tag: tag,
+          description: description,
+        });
+        if (draft) {
+          await deleteDoc(doc(database, "drafts", id!));
         }
         window.location.pathname = "/";
       } else {
@@ -112,40 +108,38 @@ export const PostContent = ({
     }
   };
 
+
   const handleDraft = async () => {
     if (!draft) {
-      if (!postId) {
-        await addDoc(postsRef, {
+      if (!draftId) {
+        await addDoc(draftsRef, {
           postContent: editorContent ?? "",
           imageDownloadUrl: imageUrl ?? "",
           author: { name: user?.displayName, id: user?.uid },
           dateCreated: date.toLocaleDateString(),
           tag: tag ?? "",
           description: description ?? "",
-          isDraft: true,
-        }).then((docRef) => setPostId(docRef.id));
+        }).then((docRef) => setDraftId(docRef.id));
         draftToast();
       } else {
-        await updateDoc(doc(database, "posts", postId!), {
+        await updateDoc(doc(database, "drafts", draftId!), {
           postContent: editorContent ?? "",
           imageDownloadUrl: imageUrl ?? "",
           author: { name: user?.displayName, id: user?.uid },
           dateCreated: date.toLocaleDateString(),
           tag: tag ?? "",
           description: description ?? "",
-          isDraft: true,
         });
         draftToast();
       }
     } else {
-      await updateDoc(doc(database, "posts", id!), {
+      await updateDoc(doc(database, "drafts", id!), {
         postContent: editorContent ?? "",
         imageDownloadUrl: imageUrl ?? draft.imageDownloadUrl ?? "",
         author: { name: user?.displayName, id: user?.uid },
         dateCreated: date.toLocaleDateString(),
         tag: tag ?? "",
         description: description ?? "",
-        isDraft: true,
       });
       draftToast();
     }
