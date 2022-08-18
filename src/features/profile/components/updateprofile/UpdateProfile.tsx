@@ -9,6 +9,8 @@ import { Button } from "src/components/Elements/Button/Button";
 import { Form } from "src/components/Elements/Form/Form";
 import { InputField } from "src/components/Elements/Form/InputField";
 import { blogConverter } from "src/features/posts/api/blogConverter";
+import { commentConverter } from "src/features/posts/api/commentConverter";
+import { replyConverter } from "src/features/posts/api/replyConverter";
 import { usePostImage } from "src/hooks/usePostImage";
 import { auth, database } from "src/utils/firebaseConfig";
 
@@ -20,15 +22,26 @@ export default function UpdateProfile() {
   };
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
-  const [pending, setPending] = useState(false);
-  const ref = collection(database, "posts").withConverter(blogConverter);
-  const [data] = useCollectionData(ref);
-  const userPosts = data?.filter((doc) => doc.author.id === user?.uid);
+
+  const postsRef = collection(database, "posts").withConverter(blogConverter);
+  const commentsRef = collection(database, "comments").withConverter(commentConverter);
+  const repliesRef = collection(database, "replies").withConverter(replyConverter);
+
+  const [posts] = useCollectionData(postsRef);
+  const [comments] = useCollectionData(commentsRef);
+  const [replies] = useCollectionData(repliesRef);
+
+  const userPosts = posts?.filter((doc) => doc.author.id === user?.uid);
+  const userComments = comments?.filter((doc) => doc.commentAuthorId === user?.uid);
+  const userReplies = replies?.filter((doc) => doc.replyAuthorId === user?.uid);
   const namesOfUser = user && user.displayName!.split(" ");
 
+  const [pending, setPending] = useState(false);
   const [file, setFile] = useState<File>({} as File);
+
   const types = ["image/png", "image/jpeg", "image/jpg"];
-  const { progress, url } = usePostImage(file);
+  const { url } = usePostImage(file);
+
   const handleChange = (e: any) => {
     let selectedFile = e;
     if (selectedFile) {
@@ -49,10 +62,22 @@ export default function UpdateProfile() {
         (data.lastName ?? namesOfUser![1]),
       photoURL: url ?? user!.photoURL,
     });
-    userPosts!.forEach(async (document) => {
+    userPosts && userPosts!.forEach(async (document) => {
       const postsRef = doc(database, "posts", document.id);
       await updateDoc(postsRef, {
         author: { name: user!.displayName, id: user!.uid },
+      });
+    });
+    userReplies && userReplies!.forEach(async (document) => {
+      const repliesRef = doc(database, "replies", document.id);
+      await updateDoc(repliesRef, {
+        replyAuthor: data.firstName + " " + data.lastName
+      });
+    });
+    userComments && userComments!.forEach(async (document) => {
+      const commentsRef = doc(database, "replies", document.id);
+      await updateDoc(commentsRef, {
+        commentAuthor: data.firstName + " " + data.lastName
       });
     });
     setPending(false);
