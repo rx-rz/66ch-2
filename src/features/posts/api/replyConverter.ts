@@ -30,6 +30,7 @@ export const replyConverter: FirestoreDataConverter<Reply> = {
     return {
       reply: data.reply,
       replyAuthor: data.replyAuthor,
+      replyAuthorId: data.replyAuthorId,
       commentId: data.commentId,
       dateCreated: data.dateCreated,
       id: snapshot.id,

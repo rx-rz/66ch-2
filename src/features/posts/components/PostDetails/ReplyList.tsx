@@ -15,6 +15,7 @@ type ReplyListProps = {
   dateCreated: string;
   user: User;
 };
+const date = new Date();
 
 export default function ReplyList({
   commentId,
@@ -30,14 +31,14 @@ export default function ReplyList({
         return Date.parse(a.dateCreated) - Date.parse(b.dateCreated);
       });
 
-  const date = new Date();
   const replyRef = collection(database, "replies");
   const handleReplySubmit = async (data: ReplyListProps) => {
     await addDoc(replyRef, {
       reply: data.reply,
       commentId: commentId,
       replyAuthor: user?.displayName,
-      dateCreated: date.toLocaleTimeString(),
+      replyAuthorId: user?.uid,
+      dateCreated: date.toLocaleString(),
       likes: 0,
       isLiked: false,
       replyLikers: [],
