@@ -8,6 +8,7 @@ import { SelectField } from "src/components/Elements/Form/SelectField";
 import closeButton from "src/assets/close.svg";
 import { Blog } from "../../api/blogConverter";
 import toast from "react-hot-toast";
+import useOptimizeImage from "src/hooks/useOptimiseImage";
 
 type PostSettingProps = {
   tag: string;
@@ -61,9 +62,10 @@ export default function PostSettings({
     "Tourism",
   ];
   const [file, setFile] = useState<File | null | any>(null);
-  const {  url } = usePostImage(file);
+  const {imageFile} = useOptimizeImage(file)
+  const { url } = usePostImage(imageFile);
 
-  const types = ["image/png", "image/jpeg", "image/jpg"];
+  const types = ["image/jpg", "image/jpeg", "image/png"];
 
   const handleChange = (e: any) => {
     let selectedFile = e;
