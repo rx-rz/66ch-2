@@ -19,8 +19,7 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
     userConverter
   );
   const [authorData] = useDocumentData(authorRef);
-  const authorNotifications = authorData && authorData.notifications;
-  console.log(authorNotifications);
+  // const authorNotifications = authorData && authorData.notifications;
   const acceptPost = () => {
     updateDoc(doc(database, "posts", id!), {
       status: "approved",

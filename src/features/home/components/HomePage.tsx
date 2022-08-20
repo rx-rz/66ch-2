@@ -1,14 +1,8 @@
-import { collection } from "firebase/firestore";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
-import { database } from "src/utils/firebaseConfig";
-import { postConverter } from "src/features/home/api/postConverter";
+import { usePostContext } from "src/context/postContext";
 export default function HomePage() {
-  const ref = collection(database, "posts").withConverter(postConverter);
-  const [data] = useCollectionData(ref);
-  const posts = data && data.filter((doc) => doc.status === "approved");
-  const homePageBlogPost =
-    posts && posts[posts.length - 1];
+  const { data } = usePostContext()!;
+  const homePageBlogPost = data && data[data.length - 1];
 
   return (
     <div className="w-full bg-primary border-b border-b-tertiary">
@@ -17,7 +11,9 @@ export default function HomePage() {
           <Link className="cursor-pointer" to={`/post/${homePageBlogPost.id}`}>
             <div className="my-6">
               <div className="flex md:text-3xl w-11/12 font-cormorant font-bold">
-                <h2 className="mr-4 ml-1 font-extrabold">{homePageBlogPost.author.name}</h2>
+                <h2 className="mr-4 ml-1 font-extrabold">
+                  {homePageBlogPost.author.name}
+                </h2>
                 <h2>{homePageBlogPost.dateCreated}</h2>
               </div>
               <h1 className="font-medium xl:text-8xl lg:text-6xl md:text-5xl text-4xl">

@@ -66,7 +66,6 @@ export default function PostSettings({
   const { url } = usePostImage(imageFile);
 
   const types = ["image/jpg", "image/jpeg", "image/png"];
-
   const handleChange = (e: any) => {
     let selectedFile = e;
     if (selectedFile) {

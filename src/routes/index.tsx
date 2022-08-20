@@ -56,8 +56,7 @@ export const AppRoutes = () => {
     { path: "/updateprofile", element: <UpdateProfile /> },
     { path: "*", element: <PageNotFound /> },
   ];
-  console.log(user)
-
+  
   const adminRoutes = [{ path: "/pendingposts", element: <PendingPosts /> }];
   const element = useRoutes(
     user === null

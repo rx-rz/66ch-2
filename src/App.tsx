@@ -3,12 +3,15 @@ import { BrowserRouter } from "react-router-dom";
 
 import { AppRoutes } from "./routes";
 import { UserContextProvider } from "./context/userContext";
+import { PostContextProvider } from "./context/postContext";
 function App() {
   return (
     <UserContextProvider>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
+      <PostContextProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </PostContextProvider>
     </UserContextProvider>
   );
 }
