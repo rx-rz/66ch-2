@@ -5,8 +5,8 @@ import PostComments from "../components/PostDetails/PostComments";
 import PostDetails from "../components/PostDetails/PostDetails";
 
 export default function PostContent() {
-  const {status = "!@#@$%#%%($*%"} = useParams()
-  const {authorId = "#$*@(@*%(@*%("} = useParams()
+  const {status = "null"} = useParams()
+  const {authorId = "null"} = useParams()
   return (
     <MainLayout>
         <PostDetails status={status} authorId={authorId}/>

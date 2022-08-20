@@ -26,6 +26,7 @@ export default function UpdateProfile() {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
 
+
   const postsRef = collection(database, "posts").withConverter(blogConverter);
   const usersRef = collection(database, "posts").withConverter(userConverter);
   const commentsRef = collection(database, "comments").withConverter(
