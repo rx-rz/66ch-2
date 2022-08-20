@@ -1,16 +1,12 @@
-import { collection } from "firebase/firestore";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
 import { BlogCard } from "src/components/Elements/BlogCard/BlogCard";
+import { usePostContext } from "src/context/postContext";
 import { useUserContext } from "src/context/userContext";
-import { blogConverter } from "src/features/posts/api/blogConverter";
-import {  database } from "src/utils/firebaseConfig";
 
 export default function UserPosts() {
-const {user} = useUserContext()!
-  const ref = collection(database, "posts").withConverter(blogConverter);
-  const [data] = useCollectionData(ref);
-  const userPosts = data?.filter((doc) => doc.author.id === user?.uid) ;
+  const { user } = useUserContext()!;
+  const { data } = usePostContext()!;
+  const userPosts = data?.filter((doc) => doc.author.id === user?.uid);
   return (
     <div className="mx-auto w-11/12 md:my-20 ">
       <h1 className="md:text-3xl text-2xl mb-16 font-bold">ARTICLES</h1>
@@ -29,7 +25,9 @@ const {user} = useUserContext()!
             </Link>
           ))}
         </article>
-      ) : <p>No available posts</p>}
+      ) : (
+        <p>No available posts</p>
+      )}
     </div>
   );
 }

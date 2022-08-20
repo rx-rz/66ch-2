@@ -1,13 +1,9 @@
-import { collection } from "firebase/firestore";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
 import { BlogCard } from "src/components/Elements/BlogCard/BlogCard";
-import { database } from "src/utils/firebaseConfig";
-import { blogConverter } from "../../api/blogConverter";
+import { usePostContext } from "src/context/postContext";
 
 export const PendingPosts = () => {
-  const ref = collection(database, "posts").withConverter(blogConverter);
-  const [data] = useCollectionData(ref);
+  const {data} = usePostContext()!
   const posts = data?.filter((doc) => doc.status === "pending");
 
   return (

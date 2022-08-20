@@ -1,16 +1,12 @@
-import { collection } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import { Link, useParams } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { BlogCard } from "src/components/Elements/BlogCard/BlogCard";
-import { database } from "src/utils/firebaseConfig";
-import { blogConverter } from "../../api/blogConverter";
+import { usePostContext } from "src/context/postContext";
 import { Blog } from "../../api/blogConverter";
 
 export const SearchPosts = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const ref = collection(database, "posts").withConverter(blogConverter);
-  const [data, loading] = useCollectionData(ref);
+  const { data } = usePostContext()!;
   const [blogs, setBlogs] = useState<Blog[] | null>(null);
 
   const handleSearch = () => {
@@ -40,7 +36,6 @@ export const SearchPosts = () => {
           <button onClick={handleSearch}>Search</button>
         </div>
       </main>
-      {loading && <p>Loading...</p>}
       {blogs && blogs.length > 0 ? (
         <article className="grid md:gap-24 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 m-auto w-11/12 my-20">
           {blogs.map((doc) => (

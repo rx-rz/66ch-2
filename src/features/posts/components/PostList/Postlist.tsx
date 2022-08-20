@@ -1,17 +1,13 @@
-import { collection } from "firebase/firestore";
-import {  useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
 import { BlogCard } from "src/components/Elements/BlogCard/BlogCard";
-import {  database } from "src/utils/firebaseConfig";
-import { blogConverter } from "../../api/blogConverter";
+import { usePostContext } from "src/context/postContext";
+
 
 export default function Postlist() {
-  const ref = collection(database, "posts").withConverter(blogConverter);
-  const [data, loading] = useCollectionData(ref);
-  const posts = data && data.filter((doc) => doc.status === "approved")
+  const { data } = usePostContext()!;
+  const posts = data && data.filter((doc) => doc.status === "approved");
   return (
     <div className="mx-auto w-11/12 my-20">
-      {loading && <p>Loading...</p>}
       {posts && (
         <article className="grid md:grid-cols-2  lg:grid-cols-3  gap-20">
           {posts.map((doc) => (
@@ -28,6 +24,6 @@ export default function Postlist() {
           ))}
         </article>
       )}
-      </div>
+    </div>
   );
 }
