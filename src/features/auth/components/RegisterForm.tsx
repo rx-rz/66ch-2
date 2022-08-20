@@ -14,12 +14,18 @@ import { RegisterFormValues } from "../types";
 import { Button } from "src/components/Elements/Button/Button";
 import { errorToast } from "../api/errorToast";
 import { useState } from "react";
+import { addDoc, collection } from "firebase/firestore";
+import { database } from "src/utils/firebaseConfig";
+
+const date = new Date();
+
 export function RegisterForm() {
   const auth = getAuth();
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
   const [pending, setPending] = useState(false);
 
+  const usersRef = collection(database, "users");
   const handleSubmit = async (data: RegisterFormValues) => {
     try {
       setPending(true);
@@ -33,9 +39,16 @@ export function RegisterForm() {
           photoURL:
             "https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/profile.jpg?alt=media&token=0051e87b-ac54-4465-8358-8a7507aa2902",
         });
+        addDoc(usersRef, {
+          name: data.firstName + " " + data.lastName,
+          photoURL:
+            "https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/profile.jpg?alt=media&token=0051e87b-ac54-4465-8358-8a7507aa2902",
+          uid: user.user.uid,
+          dateCreated: date.toLocaleTimeString(),
+        });
+        navigate("/");
       });
       setPending(false);
-      navigate("/");
     } catch (err: any) {
       setPending(false);
       errorToast(err);
@@ -44,9 +57,16 @@ export function RegisterForm() {
 
   const signInWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, googleProvider).catch((err) =>
-        console.log(err)
-      );
+      await signInWithPopup(auth, googleProvider).then((user) => {
+        addDoc(usersRef, {
+          name: user.user.displayName,
+          photoURL:
+            "https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/profile.jpg?alt=media&token=0051e87b-ac54-4465-8358-8a7507aa2902",
+          uid: user.user.uid,
+          dateCreated: date.toLocaleTimeString(),
+        });
+      });
+
       navigate("/");
     } catch (err: any) {
       setPending(false);

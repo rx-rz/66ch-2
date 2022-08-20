@@ -1,14 +1,14 @@
 import { toast } from "react-hot-toast";
-function replaceErrorDiscrepancies(x: string) {
-  return x
-    .replace("Firebase: Error", "")
-    .replace("(auth/", "")
-    .replace("-", " ")
-    .replace(")", "");
-}
+// function replaceErrorDiscrepancies(x: string) {
+//   return x
+//     .replace("Firebase: Error", "")
+//     .replace("(auth/", "")
+//     .replace("-", " ")
+//     .replace(")", "");
+// }
 
 export const errorToast = (err: any) =>
-  toast.error(replaceErrorDiscrepancies(err.message), {
+  toast.error(err.message, {
     style: {
       borderRadius: 0,
       color: "#2F3630",
