@@ -17,7 +17,7 @@ import {
     ref: DocumentReference<DocumentData>;
     dateCreated: string;
     description: string;
-    isDraft?: boolean
+    status: string
   };
   
   export const postConverter: FirestoreDataConverter<Blog> = {
@@ -39,7 +39,7 @@ import {
         imageDownloadUrl: data.imageDownloadUrl,
         ref: snapshot.ref,
         description: data.description,
-        isDraft: data.isDraft
+        status: data.status
       };
     },
   };

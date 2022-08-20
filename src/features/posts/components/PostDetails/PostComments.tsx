@@ -1,17 +1,17 @@
 import { collection } from "firebase/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useParams } from "react-router-dom";
 import { CommentCard } from "src/components/Elements/CommentCard/CommentCard";
+import { useUserContext } from "src/context/userContext";
 import ReplyList from "src/features/posts/components/PostDetails/ReplyList";
-import { auth, database } from "src/utils/firebaseConfig";
+import {  database } from "src/utils/firebaseConfig";
 import { commentConverter } from "../../api/commentConverter";
 
 const ref = collection(database, "comments").withConverter(commentConverter);
 
 export default function PostComments() {
   const { id } = useParams();
-  const [user] = useAuthState(auth);
+  const {user} = useUserContext()!
   const [data, loading] = useCollectionData(ref);
   const comments = data && data.filter((doc) => doc.postId === id).reverse();
 

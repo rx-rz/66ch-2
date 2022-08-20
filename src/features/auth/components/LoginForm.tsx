@@ -2,27 +2,50 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Form } from "src/components/Elements/Form/Form";
 import { InputField } from "src/components/Elements/Form/InputField";
-import { auth } from "src/utils/firebaseConfig";
+import { auth, database } from "src/utils/firebaseConfig";
 import googleLogo from "src/assets/google.svg";
 import { useState } from "react";
 import { Button } from "src/components/Elements/Button/Button";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { errorToast } from "../api/errorToast";
+import { addDoc, collection } from "firebase/firestore";
+import { userConverter } from "../api/userConverter";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 type LoginFormValues = {
   email: string;
   password: string;
 };
 
+const date = new Date()
+const googleProvider = new GoogleAuthProvider();
+const ref = collection(database, "users").withConverter(userConverter);
+
 export function LoginForm() {
+
+  const [users] = useCollectionData(ref);
   const navigate = useNavigate();
-  const googleProvider = new GoogleAuthProvider();
   const [pending, setPending] = useState(false);
 
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider)
-        .then()
+        .then((user) => {
+          const usersInDatabase =
+            users &&
+            users.filter(
+              (usersInDatabase) => usersInDatabase.uid === user.user.uid
+            );
+          if (usersInDatabase!.length === 0) {
+            addDoc(collection(database, "users"), {
+              name: user.user.displayName,
+              photoURL: process.env.REACT_APP_DEFAULT_PFP,
+              uid: user.user.uid,
+              dateCreated: date.toUTCString(),
+              role: "writer"
+            });
+          }
+        })
         .catch((err) => console.log(err));
       navigate("/");
     } catch (err: any) {

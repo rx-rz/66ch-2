@@ -6,9 +6,9 @@ import { postConverter } from "src/features/home/api/postConverter";
 export default function HomePage() {
   const ref = collection(database, "posts").withConverter(postConverter);
   const [data] = useCollectionData(ref);
-  const posts = data && data.filter((doc) => doc.isDraft !== true);
+  const posts = data && data.filter((doc) => doc.status === "approved");
   const homePageBlogPost =
-    posts && posts[Math.floor(Math.random() * posts.length)];
+    posts && posts[posts.length - 1];
 
   return (
     <div className="w-full bg-primary border-b border-b-tertiary">

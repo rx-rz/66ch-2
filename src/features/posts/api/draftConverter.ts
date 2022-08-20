@@ -20,8 +20,8 @@ import {
   };
   
   export const draftConverter: FirestoreDataConverter<Draft> = {
-    toFirestore(blog: WithFieldValue<Draft>): DocumentData {
-      return { author: blog.author };
+    toFirestore(draft: WithFieldValue<Draft>): DocumentData {
+      return { author: draft.author };
     },
     fromFirestore(
       snapshot: QueryDocumentSnapshot,

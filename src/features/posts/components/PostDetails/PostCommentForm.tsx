@@ -1,14 +1,15 @@
 import { addDoc, collection } from "firebase/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
+
 import { useParams } from "react-router-dom";
 import { Form } from "src/components/Elements/Form/Form";
 import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
-import { auth, database } from "src/utils/firebaseConfig";
+import { useUserContext } from "src/context/userContext";
+import {  database } from "src/utils/firebaseConfig";
 type CommentProps = {
   comment: string;
 };
 export default function PostCommentForm() {
-  const [user] = useAuthState(auth);
+const {user} = useUserContext()!
   const { id } = useParams();
   const date = new Date();
   const commentRef = collection(database, "comments");
@@ -16,7 +17,7 @@ export default function PostCommentForm() {
     await addDoc(commentRef, {
       comment: data.comment,
       postId: id,
-      commentAuthor: user?.displayName,
+      commentAuthor: user?.name,
       commentAuthorId: user?.uid,
       dateCreated: date.toLocaleTimeString(),
       likes: 0,

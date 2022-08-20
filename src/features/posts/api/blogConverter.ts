@@ -17,6 +17,7 @@ export type Blog = {
   ref: DocumentReference<DocumentData>;
   dateCreated: string;
   description: string;
+  status: string,
 
 };
 
@@ -39,6 +40,7 @@ export const blogConverter: FirestoreDataConverter<Blog> = {
       imageDownloadUrl: data.imageDownloadUrl,
       ref: snapshot.ref,
       description: data.description,
+      status: data.status
     };
   },
 };

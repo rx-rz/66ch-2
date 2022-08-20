@@ -1,10 +1,21 @@
 import React, { Suspense } from "react";
-import { auth } from "src/utils/firebaseConfig";
-import { authRoutes } from "./public";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useRoutes } from "react-router-dom";
 import PageNotFound from "src/features/404/PageNotFound";
+import { useUserContext } from "src/context/userContext";
+import Register from "src/features/auth/routes/Register";
+import Login from "src/features/auth/routes/Login";
+
 const Home = React.lazy(() => import("src/features/home/routes/Home"));
+const PendingPosts = React.lazy(
+  () => import("src/features/posts/routes/PendingPosts")
+);
+// const Login = React.lazy(
+//   () => import("src/features/auth/routes/Login")
+// );
+
+// const Register = React.lazy(
+//   () => import("src/features/auth/routes/Register")
+// );
 const PostList = React.lazy(
   () => import("src/features/posts/components/PostList/Postlist")
 );
@@ -25,10 +36,14 @@ const UserProfile = React.lazy(
 );
 
 export const AppRoutes = () => {
+  const { user } = useUserContext()!;
   const commonRoutes = [
+    {path: "/auth/register", element: <Register/>},
+    {path: "/auth/login", element: <Login/>},
     { path: "/", element: <Home /> },
     { path: "/postlist", element: <PostList /> },
     { path: "/post/:id", element: <PostContent /> },
+    { path: "/post/:id/:status/:authorId", element: <PostContent /> },
     { path: "/search", element: <PostSearch /> },
     { path: "/search/:tag", element: <PostSearch /> },
     { path: "*", element: <PageNotFound /> },
@@ -41,12 +56,15 @@ export const AppRoutes = () => {
     { path: "/updateprofile", element: <UpdateProfile /> },
     { path: "*", element: <PageNotFound /> },
   ];
+  console.log(user)
 
-  const user = useAuthState(auth);
+  const adminRoutes = [{ path: "/pendingposts", element: <PendingPosts /> }];
   const element = useRoutes(
-    user[0] === null
-      ? [...commonRoutes, ...authRoutes]
-      : [...commonRoutes, ...authRoutes, ...authenticatedRoutes]
+    user === null
+      ? [...commonRoutes]
+      : user?.role === "admin"
+      ? [...commonRoutes, ...authenticatedRoutes, ...adminRoutes]
+      : [...commonRoutes, ...authenticatedRoutes]
   );
 
   return <Suspense fallback={<p>Loading...</p>}>{element}</Suspense>;

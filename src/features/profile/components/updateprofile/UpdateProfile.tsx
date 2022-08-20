@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "src/components/Elements/Button/Button";
 import { Form } from "src/components/Elements/Form/Form";
 import { InputField } from "src/components/Elements/Form/InputField";
+import { userConverter } from "src/features/auth/api/userConverter";
 import { blogConverter } from "src/features/posts/api/blogConverter";
 import { commentConverter } from "src/features/posts/api/commentConverter";
 import { draftConverter } from "src/features/posts/api/draftConverter";
@@ -21,12 +22,12 @@ type UpdateFormValues = {
   profileUrl: string;
 };
 
-
 export default function UpdateProfile() {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
 
   const postsRef = collection(database, "posts").withConverter(blogConverter);
+  const usersRef = collection(database, "posts").withConverter(userConverter);
   const commentsRef = collection(database, "comments").withConverter(
     commentConverter
   );
@@ -41,8 +42,10 @@ export default function UpdateProfile() {
   const [comments] = useCollectionData(commentsRef);
   const [replies] = useCollectionData(repliesRef);
   const [drafts] = useCollectionData(draftsRef);
+  const [users] = useCollectionData(usersRef);
 
   const userPosts = posts?.filter((doc) => doc.author.id === user?.uid);
+  const userDocuments = users?.filter((doc) => doc.uid === user?.uid);
   const userComments = comments?.filter(
     (doc) => doc.commentAuthorId === user?.uid
   );
@@ -82,6 +85,14 @@ export default function UpdateProfile() {
         const postsRef = doc(database, "posts", document.id);
         await updateDoc(postsRef, {
           author: { name: user!.displayName, id: user!.uid },
+        });
+      });
+
+    userDocuments &&
+      userDocuments!.forEach(async (document) => {
+        const usersRef = doc(database, "users", document.uid);
+        await updateDoc(usersRef, {
+          name: data.firstName + " " + data.lastName,
         });
       });
 

@@ -4,9 +4,16 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Form } from "src/components/Elements/Form/Form";
 import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
 import { database } from "src/utils/firebaseConfig";
-import { User } from "firebase/auth";
 import { ReplyCard } from "src/components/Elements/ReplyCard/ReplyCard";
 import { replyConverter } from "../../api/replyConverter";
+
+type User = {
+  name: string,
+  uid: string,
+  role: "admin" | "writer",
+  dateCreated: string,
+  photoURL: string
+}
 
 type ReplyListProps = {
   commentId: string;
@@ -36,7 +43,7 @@ export default function ReplyList({
     await addDoc(replyRef, {
       reply: data.reply,
       commentId: commentId,
-      replyAuthor: user?.displayName,
+      replyAuthor: user?.name,
       replyAuthorId: user?.uid,
       dateCreated: date.toLocaleString(),
       likes: 0,
@@ -45,6 +52,7 @@ export default function ReplyList({
     });
   };
   const replyTag = useRef<HTMLDivElement | null>(null);
+
   const handleReplyDisplay = () => {
     replyTag.current?.classList.toggle("hidden");
   };

@@ -19,8 +19,7 @@ export default function CreatePost() {
   const settings = useRef<HTMLDivElement>(null);
   const { id = "@!@#$%^&*()(*&^%#@#$%%" } = useParams();
   const draftRef = doc(database, "drafts", id);
-  const [value] = useDocument(draftRef);
-
+  const [draft] = useDocument(draftRef);
   const [postSettings, setPostSettings] = useState<PostSettingProps>();
 
   const handleMenuToggle = () => {
@@ -44,7 +43,7 @@ export default function CreatePost() {
             <div className="z-40 h-screen mx-auto">
               <PostSettings
                 editPostSettings={editPostSettings}
-                draft={value?.data()}
+                draft={draft?.data()}
                 handleMenuToggle={handleMenuToggle}
               />
             </div>
@@ -54,7 +53,7 @@ export default function CreatePost() {
               <PostContent
                 handleMenuToggle={handleMenuToggle}
                 description={postSettings?.description}
-                draft={value?.data()}
+                draft={draft?.data()}
                 tag={postSettings?.tag}
                 imageUrl={postSettings?.imageUrl}
               />

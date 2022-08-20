@@ -16,16 +16,22 @@ import { errorToast } from "../api/errorToast";
 import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { database } from "src/utils/firebaseConfig";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { userConverter } from "../api/userConverter";
 
+const auth = getAuth();
 const date = new Date();
+const googleProvider = new GoogleAuthProvider();
+
+const ref = collection(database, "users").withConverter(userConverter);
+const usersRef = collection(database, "users");
 
 export function RegisterForm() {
-  const auth = getAuth();
+  const [users] = useCollectionData(ref);
+
   const navigate = useNavigate();
-  const googleProvider = new GoogleAuthProvider();
   const [pending, setPending] = useState(false);
 
-  const usersRef = collection(database, "users");
   const handleSubmit = async (data: RegisterFormValues) => {
     try {
       setPending(true);
@@ -36,15 +42,14 @@ export function RegisterForm() {
       ).then((user) => {
         updateProfile(user.user, {
           displayName: data.firstName + " " + data.lastName,
-          photoURL:
-            "https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/profile.jpg?alt=media&token=0051e87b-ac54-4465-8358-8a7507aa2902",
+          photoURL: process.env.REACT_APP_DEFAULT_PFP,
         });
         addDoc(usersRef, {
           name: data.firstName + " " + data.lastName,
-          photoURL:
-            "https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/profile.jpg?alt=media&token=0051e87b-ac54-4465-8358-8a7507aa2902",
+          photoURL: process.env.REACT_APP_DEFAULT_PFP,
           uid: user.user.uid,
-          dateCreated: date.toLocaleTimeString(),
+          dateCreated: date.toUTCString(),
+          role: "writer"
         });
         navigate("/");
       });
@@ -60,13 +65,25 @@ export function RegisterForm() {
       await signInWithPopup(auth, googleProvider).then((user) => {
         addDoc(usersRef, {
           name: user.user.displayName,
-          photoURL:
-            "https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/profile.jpg?alt=media&token=0051e87b-ac54-4465-8358-8a7507aa2902",
+          photoURL: process.env.REACT_APP_DEFAULT_PFP,
           uid: user.user.uid,
-          dateCreated: date.toLocaleTimeString(),
+          dateCreated: date.toUTCString(),
         });
+        const usersInDatabase =
+          users &&
+          users.filter(
+            (usersInDatabase) => usersInDatabase.uid === user.user.uid
+          );
+        if (usersInDatabase!.length === 0) {
+          addDoc(collection(database, "users"), {
+            name: user.user.displayName,
+            photoURL: process.env.REACT_APP_DEFAULT_PFP,
+            uid: user.user.uid,
+            dateCreated: date.toUTCString(),
+            role: "writer",
+          });
+        }
       });
-
       navigate("/");
     } catch (err: any) {
       setPending(false);

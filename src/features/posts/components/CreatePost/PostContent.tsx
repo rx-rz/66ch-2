@@ -6,14 +6,14 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import toast from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
 import { Button } from "src/components/Elements/Button/Button";
 import { Editor } from "src/components/Elements/Editor/Editor";
 import { Form } from "src/components/Elements/Form/Form";
 import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
-import { auth, database } from "src/utils/firebaseConfig";
+import { useUserContext } from "src/context/userContext";
+import { database } from "src/utils/firebaseConfig";
 import { Blog } from "../../api/blogConverter";
 
 type PostSettingProps = {
@@ -73,7 +73,7 @@ export const PostContent = ({
   handleMenuToggle,
   draft,
 }: PostSettingProps) => {
-  const [user] = useAuthState(auth);
+  const { user } = useUserContext()!;
   const postsRef = collection(database, "posts");
   const draftsRef = collection(database, "drafts");
   const { id } = useParams();
@@ -91,10 +91,11 @@ export const PostContent = ({
           postTitle: data.postTitle,
           postContent: editorContent,
           imageDownloadUrl: imageUrl ?? draft?.imageDownloadUrl,
-          author: { name: user?.displayName, id: user?.uid },
+          author: { name: user?.name, id: user?.uid },
           dateCreated: date.toLocaleDateString(),
           tag: tag,
           description: description,
+          status: user && user.role === "admin" ? "approved" : "pending",
         });
         if (draft) {
           await deleteDoc(doc(database, "drafts", id!));
@@ -108,14 +109,13 @@ export const PostContent = ({
     }
   };
 
-
   const handleDraft = async () => {
     if (!draft) {
       if (!draftId) {
         await addDoc(draftsRef, {
           postContent: editorContent ?? "",
           imageDownloadUrl: imageUrl ?? "",
-          author: { name: user?.displayName, id: user?.uid },
+          author: { name: user?.name, id: user?.uid },
           dateCreated: date.toLocaleDateString(),
           tag: tag ?? "",
           description: description ?? "",
@@ -125,7 +125,7 @@ export const PostContent = ({
         await updateDoc(doc(database, "drafts", draftId!), {
           postContent: editorContent ?? "",
           imageDownloadUrl: imageUrl ?? "",
-          author: { name: user?.displayName, id: user?.uid },
+          author: { name: user?.name, id: user?.uid },
           dateCreated: date.toLocaleDateString(),
           tag: tag ?? "",
           description: description ?? "",
@@ -136,7 +136,7 @@ export const PostContent = ({
       await updateDoc(doc(database, "drafts", id!), {
         postContent: editorContent ?? "",
         imageDownloadUrl: imageUrl ?? draft.imageDownloadUrl ?? "",
-        author: { name: user?.displayName, id: user?.uid },
+        author: { name: user?.name, id: user?.uid },
         dateCreated: date.toLocaleDateString(),
         tag: tag ?? "",
         description: description ?? "",
