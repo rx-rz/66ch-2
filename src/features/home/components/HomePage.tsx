@@ -22,6 +22,7 @@ export default function HomePage() {
             </div>
             <img
               src={homePageBlogPost.imageDownloadUrl}
+              loading="eager"
               alt={homePageBlogPost.postTitle}
               className="max-h-[80vh] w-full object-cover"
             />

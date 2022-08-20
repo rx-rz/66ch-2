@@ -7,6 +7,7 @@ import PostDetails from "../components/PostDetails/PostDetails";
 export default function PostContent() {
   const {status = "null"} = useParams()
   const {authorId = "null"} = useParams()
+
   return (
     <MainLayout>
         <PostDetails status={status} authorId={authorId}/>
@@ -15,3 +16,4 @@ export default function PostContent() {
     </MainLayout>
   );
 }
+

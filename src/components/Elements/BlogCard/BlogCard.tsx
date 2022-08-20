@@ -5,6 +5,7 @@ type CardProps = {
   imageUrl: string;
   tag: string;
   description: string;
+  loading?: "eager" | "lazy"
 };
 
 export function BlogCard({
@@ -13,6 +14,7 @@ export function BlogCard({
   imageUrl,
   dateCreated,
   tag,
+  loading,
   description,
 }: CardProps) {
   return (
@@ -20,7 +22,8 @@ export function BlogCard({
       <img
         src={imageUrl}
         alt={postTitle}
-        className="w-full h-full object-cover max-w-4xl aspect-video "
+        loading={loading}
+        className="w-full max-h-full h-80  block object-cover aspect-video"
       />
       <div className="md:h-96 h-80 overflow-hidden pb-2 w-full">
         <div className="opacity-80 mb-4 text-lg mt-6">

@@ -14,6 +14,9 @@ module.exports = {
         secondary: "#DBEEF4",
         tertiary: "#000000"
       },
+      minHeight: {
+        details: "50vh"
+      },
       maxHeight: {
         optimal: "65vh",
         profile: "55vh",

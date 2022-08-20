@@ -1,5 +1,8 @@
-import { doc, updateDoc } from "firebase/firestore";
-import { useDocumentData } from "react-firebase-hooks/firestore";
+import { collection, doc, updateDoc } from "firebase/firestore";
+import {
+  useCollectionData,
+  useDocumentData,
+} from "react-firebase-hooks/firestore";
 import { useNavigate, useParams } from "react-router-dom";
 import { userConverter } from "src/features/auth/api/userConverter";
 import { postConverter } from "src/features/home/api/postConverter";
@@ -15,27 +18,38 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
   const navigate = useNavigate();
 
   const postRef = doc(database, "posts", id!).withConverter(postConverter);
-  const authorRef = doc(database, "users", authorId!).withConverter(
-    userConverter
-  );
-  const [authorData] = useDocumentData(authorRef);
-  // const authorNotifications = authorData && authorData.notifications;
+  const usersRef = collection(database, "users").withConverter(userConverter);
+
+  const [author] = useCollectionData(usersRef);
+  const authorData = author && author.filter((doc) => doc.uid === authorId!)[0];
+
   const acceptPost = () => {
     updateDoc(doc(database, "posts", id!), {
       status: "approved",
     });
-    updateDoc(doc(database, "users", authorId!), {
+    console.log(authorData?.notifications, "accept");
+    updateDoc(doc(database, "users", authorData?.uid!), {
       notifications: [
-        { message: "Your post has been approved", type: "sucess" },
+        ...authorData!.notifications!,
+        {
+          message: "Your post has been approved by the admin",
+          type: "success",
+        },
       ],
     });
     navigate("/pendingposts");
   };
 
   const rejectPost = () => {
-    updateDoc(doc(database, "users", authorId!), {
+    console.log(authorData?.notifications, "reject");
+    updateDoc(doc(database, "users", authorData?.uid!), {
       notifications: [
-        { message: "Your post has not been approved", type: "sucess" },
+        ...authorData!.notifications!,
+        {
+          message:
+            "Your post has not been approved. Review it and submit once again",
+          type: "failure",
+        },
       ],
     });
     navigate("/pendingposts");
@@ -63,8 +77,8 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
             </header>
             <img
               src={data.imageDownloadUrl}
-              alt=""
-              className=" object-cover w-full max-h-details"
+              alt="Header"
+              className=" object-cover w-full max-h-details h-details"
               loading="eager"
             />
           </div>
