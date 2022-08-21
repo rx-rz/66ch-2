@@ -1,12 +1,17 @@
-import { collection, doc, updateDoc } from "firebase/firestore";
 import {
-  useCollectionData,
-  useDocumentData,
-} from "react-firebase-hooks/firestore";
+  collection,
+  doc,
+  getDocs,
+  limit,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
+
+import { useDocumentData } from "react-firebase-hooks/firestore";
 import { useNavigate, useParams } from "react-router-dom";
-import { userConverter } from "src/features/auth/api/userConverter";
-import { postConverter } from "src/features/home/api/postConverter";
-import { database } from "src/utils/firebaseConfig";
+import { blogConverter } from "src/utils";
+import { database } from "src/config/firebaseConfig";
 
 type PostContentProps = {
   status: string;
@@ -17,40 +22,50 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const postRef = doc(database, "posts", id!).withConverter(postConverter);
-  const usersRef = collection(database, "users").withConverter(userConverter);
+  const postRef = doc(database, "posts", id!).withConverter(blogConverter);
 
-  const [author] = useCollectionData(usersRef);
-  const authorData = author && author.filter((doc) => doc.uid === authorId!)[0];
+  const authorQuery = query(
+    collection(database, "users"),
+    where("uid", "==", authorId),
+    limit(1)
+  );
 
-  const acceptPost = () => {
+  const acceptPost = async () => {
     updateDoc(doc(database, "posts", id!), {
       status: "approved",
     });
-    console.log(authorData?.notifications, "accept");
-    updateDoc(doc(database, "users", authorData?.uid!), {
-      notifications: [
-        ...authorData!.notifications!,
-        {
-          message: "Your post has been approved by the admin",
-          type: "success",
-        },
-      ],
+    const querySnapshot = await getDocs(authorQuery);
+    querySnapshot.forEach((docData) => {
+      updateDoc(doc(database, "users", docData.id), {
+        notifications: [
+          ...docData.data().notifications,
+          {
+            message: "Your post has been approved by the admin",
+            type: "success",
+            docId: id,
+          },
+        ],
+        isChecked: true
+      });
     });
-    navigate("/pendingposts");
+    navigate("/pendingposts")
   };
 
-  const rejectPost = () => {
-    console.log(authorData?.notifications, "reject");
-    updateDoc(doc(database, "users", authorData?.uid!), {
-      notifications: [
-        ...authorData!.notifications!,
-        {
-          message:
-            "Your post has not been approved. Review it and submit once again",
-          type: "failure",
-        },
-      ],
+  const rejectPost = async () => {
+    const querySnapshot = await getDocs(authorQuery);
+    querySnapshot.forEach((docData) => {
+      updateDoc(doc(database, "users", docData.id), {
+        notifications: [
+          ...docData.data().notifications,
+          {
+            message:
+              "Your post has not been approved. Review it and submit for approval once again",
+            type: "failure",
+            docId: id,
+          },
+        ],
+        isChecked: true
+      });
     });
     navigate("/pendingposts");
   };

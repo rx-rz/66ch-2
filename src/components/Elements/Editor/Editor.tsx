@@ -9,7 +9,7 @@ import {
 import { useEffect, useMemo, useRef, useState } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { storage } from "src/utils/firebaseConfig";
+import { storage } from "src/config/firebaseConfig";
 
 type EditorProps = {
   handleContentChange: (value: string) => void;

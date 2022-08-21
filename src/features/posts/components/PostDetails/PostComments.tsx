@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import { CommentCard } from "src/components/Elements/CommentCard/CommentCard";
 import { useUserContext } from "src/context/userContext";
 import ReplyList from "src/features/posts/components/PostDetails/ReplyList";
-import {  database } from "src/utils/firebaseConfig";
-import { commentConverter } from "../../api/commentConverter";
+import {  database } from "src/config/firebaseConfig";
+import { commentConverter } from "src/utils";
 
 const ref = collection(database, "comments").withConverter(commentConverter);
 

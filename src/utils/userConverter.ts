@@ -14,7 +14,7 @@ export type User = {
   uid: string;
   ref: DocumentReference<DocumentData>;
   dateCreated: string;
-  notifications: { message: string, type: "sucess" | "failure" }[] 
+  notifications: { message: string, type: "sucess" | "failure", docId: string }[] 
 };
 
 export const userConverter: FirestoreDataConverter<User> = {

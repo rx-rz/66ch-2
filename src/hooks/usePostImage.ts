@@ -1,6 +1,6 @@
 import { getDownloadURL, ref, StorageError, uploadBytesResumable } from "firebase/storage";
 import { useState, useEffect } from "react";
-import { storage } from "src/utils/firebaseConfig";
+import { storage } from "src/config/firebaseConfig";
 export const usePostImage = (file: File) => {
   const [progress, setProgres] = useState(0);
   const [error, setError] = useState<StorageError | null>(null);

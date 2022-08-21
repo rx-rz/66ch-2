@@ -1,5 +1,5 @@
 import { doc, updateDoc } from "firebase/firestore";
-import { database } from "src/utils/firebaseConfig";
+import { database } from "src/config/firebaseConfig";
 
 type CardProps = {
   authorName: string;

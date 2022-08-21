@@ -2,7 +2,7 @@ import { signOut } from "firebase/auth";
 import { useRef } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { auth } from "src/utils/firebaseConfig";
+import { auth } from "src/config/firebaseConfig";
 
 /**The Header Component accepts 3 link items as children and justifies them evenly */
 export function Navbar() {

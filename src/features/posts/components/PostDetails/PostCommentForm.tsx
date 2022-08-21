@@ -1,18 +1,22 @@
 import { addDoc, collection } from "firebase/firestore";
-
 import { useParams } from "react-router-dom";
 import { Form } from "src/components/Elements/Form/Form";
 import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
 import { useUserContext } from "src/context/userContext";
-import { database } from "src/utils/firebaseConfig";
+import { database } from "src/config/firebaseConfig";
+
 type CommentProps = {
   comment: string;
 };
+
+const commentRef = collection(database, "comments");
+const date = new Date();
+
 export default function PostCommentForm() {
   const { user } = useUserContext()!;
   const { id } = useParams();
-  const date = new Date();
-  const commentRef = collection(database, "comments");
+
+
   const handleCommentSubmit = async (data: CommentProps) => {
     await addDoc(commentRef, {
       comment: data.comment,

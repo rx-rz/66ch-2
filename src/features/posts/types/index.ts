@@ -1,4 +1,1 @@
-export type CreatePostFormValues = {
-    postContent: any
-    postTitle: string
-}
+export * from './types'

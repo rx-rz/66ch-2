@@ -6,14 +6,35 @@ import { Button } from "src/components/Elements/Button/Button";
 import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
 import { SelectField } from "src/components/Elements/Form/SelectField";
 import closeButton from "src/assets/close.svg";
-import { Blog } from "../../api/blogConverter";
 import toast from "react-hot-toast";
 import useOptimizeImage from "src/hooks/useOptimiseImage";
+import { DocumentData, DocumentReference } from "firebase/firestore";
 
 type PostSettingProps = {
   tag: string;
   description: string;
   imageUrl: string;
+};
+
+export type Blog = {
+  author: { name: string; id: string };
+  tag: string;
+  id: string;
+  postContent: string;
+  imageDownloadUrl: string;
+  postTitle: string;
+  ref: DocumentReference<DocumentData>;
+  dateCreated: string;
+  description: string;
+  status: string,
+  isChecked: boolean
+
+};
+
+type EditPostSettingsProps = {
+  editPostSettings: (postSettings: PostSettingProps) => void;
+  handleMenuToggle: () => void;
+  draft?: Partial<Blog>;
 };
 
 const errorToast = () =>
@@ -27,12 +48,6 @@ const errorToast = () =>
     },
     duration: 4000,
   });
-
-type EditPostSettingsProps = {
-  editPostSettings: (postSettings: PostSettingProps) => void;
-  handleMenuToggle: () => void;
-  draft?: Partial<Blog>;
-};
 
 export default function PostSettings({
   editPostSettings,

@@ -2,8 +2,8 @@ import { collection } from "firebase/firestore";
 import React, { createContext, useContext } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { userConverter } from "src/features/auth/api/userConverter";
-import { auth, database } from "src/utils/firebaseConfig";
+import { userConverter } from "src/utils/userConverter";
+import { auth, database } from "src/config/firebaseConfig";
 
 
 type User = {

@@ -3,9 +3,9 @@ import { addDoc, collection } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Form } from "src/components/Elements/Form/Form";
 import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
-import { database } from "src/utils/firebaseConfig";
+import { database } from "src/config/firebaseConfig";
 import { ReplyCard } from "src/components/Elements/ReplyCard/ReplyCard";
-import { replyConverter } from "../../api/replyConverter";
+import { replyConverter } from "src/utils";
 
 type User = {
   name: string,

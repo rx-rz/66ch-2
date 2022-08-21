@@ -7,8 +7,8 @@ import React, { createContext, useContext } from "react";
 import {
   useCollectionData,
 } from "react-firebase-hooks/firestore";
-import { blogConverter } from "src/features/posts/api/blogConverter";
-import { database } from "src/utils/firebaseConfig";
+import { blogConverter } from "src/utils/blogConverter";
+import { database } from "src/config/firebaseConfig";
 export type Blog = {
   author: { name: string; id: string };
   tag: string;
@@ -20,6 +20,7 @@ export type Blog = {
   dateCreated: string;
   description: string;
   status: string;
+  isChecked: boolean
 };
 export const PostContext = createContext<PostContextProps | null>(null);
 type PostContextProviderProps = {

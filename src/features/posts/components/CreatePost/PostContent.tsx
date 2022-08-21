@@ -3,18 +3,34 @@ import {
   collection,
   deleteDoc,
   doc,
+  DocumentData,
+  DocumentReference,
   updateDoc,
 } from "firebase/firestore";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import { draftToast, errorToast, postContentToast } from "../../api/createPost";
 import { Link, useParams } from "react-router-dom";
 import { Button } from "src/components/Elements/Button/Button";
 import { Editor } from "src/components/Elements/Editor/Editor";
 import { Form } from "src/components/Elements/Form/Form";
 import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
 import { useUserContext } from "src/context/userContext";
-import { database } from "src/utils/firebaseConfig";
-import { Blog } from "../../api/blogConverter";
+import { database } from "src/config/firebaseConfig";
+
+export type Blog = {
+  author: { name: string; id: string };
+  tag: string;
+  id: string;
+  postContent: string;
+  imageDownloadUrl: string;
+  postTitle: string;
+  ref: DocumentReference<DocumentData>;
+  dateCreated: string;
+  description: string;
+  status: string,
+  isChecked: boolean
+
+};
 
 type PostSettingProps = {
   tag: string | undefined;
@@ -27,44 +43,6 @@ const date = new Date();
 type EditorProps = {
   postTitle: string;
 };
-const errorToast = () =>
-  toast.error(
-    "Specify a blog image, tag and description in the post settings",
-    {
-      style: {
-        borderRadius: 0,
-        color: "#2F3630",
-        backgroundColor: "#EEECE7",
-        border: "1px solid #2F3630",
-        width: "300px",
-      },
-      duration: 4000,
-    }
-  );
-
-const postContentToast = () =>
-  toast.error("Post cannot be empty", {
-    style: {
-      borderRadius: 0,
-      color: "#2F3630",
-      backgroundColor: "#EEECE7",
-      border: "1px solid #2F3630",
-      width: "300px",
-    },
-    duration: 4000,
-  });
-
-const draftToast = () =>
-  toast.success("Draft saved. Check your profile to view drafts.", {
-    style: {
-      borderRadius: 0,
-      color: "#2F3630",
-      backgroundColor: "#EEECE7",
-      border: "1px solid #2F3630",
-      width: "300px",
-    },
-    duration: 4000,
-  });
 
 export const PostContent = ({
   tag,

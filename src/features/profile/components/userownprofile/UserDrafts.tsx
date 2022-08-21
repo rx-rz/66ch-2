@@ -3,8 +3,8 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
 import { BlogCard } from "src/components/Elements/BlogCard/BlogCard";
 import { useUserContext } from "src/context/userContext";
-import { draftConverter } from "src/features/posts/api/draftConverter";
-import { database } from "src/utils/firebaseConfig";
+import { draftConverter } from "src/utils";
+import { database } from "src/config/firebaseConfig";
 
 export default function UserDrafts() {
   const {user} = useUserContext()!

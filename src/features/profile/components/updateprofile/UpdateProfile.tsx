@@ -8,13 +8,13 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "src/components/Elements/Button/Button";
 import { Form } from "src/components/Elements/Form/Form";
 import { InputField } from "src/components/Elements/Form/InputField";
-import { userConverter } from "src/features/auth/api/userConverter";
-import { blogConverter } from "src/features/posts/api/blogConverter";
-import { commentConverter } from "src/features/posts/api/commentConverter";
-import { draftConverter } from "src/features/posts/api/draftConverter";
-import { replyConverter } from "src/features/posts/api/replyConverter";
+import { userConverter } from "src/utils/userConverter";
+import { blogConverter } from "src/utils/blogConverter";
+import { commentConverter } from "src/utils";
+import { draftConverter } from "src/utils";
+import { replyConverter } from "src/utils";
 import { usePostImage } from "src/hooks/usePostImage";
-import { auth, database } from "src/utils/firebaseConfig";
+import { auth, database } from "src/config/firebaseConfig";
 
 type UpdateFormValues = {
   firstName: string;
@@ -22,22 +22,21 @@ type UpdateFormValues = {
   profileUrl: string;
 };
 
+const postsRef = collection(database, "posts").withConverter(blogConverter);
+const usersRef = collection(database, "posts").withConverter(userConverter);
+const commentsRef = collection(database, "comments").withConverter(
+  commentConverter
+);
+const repliesRef = collection(database, "replies").withConverter(
+  replyConverter
+);
+const draftsRef = collection(database, "drafts").withConverter(
+  draftConverter
+);
+
 export default function UpdateProfile() {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
-
-
-  const postsRef = collection(database, "posts").withConverter(blogConverter);
-  const usersRef = collection(database, "posts").withConverter(userConverter);
-  const commentsRef = collection(database, "comments").withConverter(
-    commentConverter
-  );
-  const repliesRef = collection(database, "replies").withConverter(
-    replyConverter
-  );
-  const draftsRef = collection(database, "drafts").withConverter(
-    draftConverter
-  );
 
   const [posts] = useCollectionData(postsRef);
   const [comments] = useCollectionData(commentsRef);

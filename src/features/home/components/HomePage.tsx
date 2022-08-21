@@ -6,7 +6,7 @@ export default function HomePage() {
 
   return (
     <div className="w-full bg-primary border-b border-b-tertiary">
-      <main className="pt-24 md:pt-48 mx-auto relative min-h-[90vh]">
+      <main className="pt-24 md:pt-48 mx-auto relative">
         {homePageBlogPost && (
           <Link className="cursor-pointer" to={`/post/${homePageBlogPost.id}`}>
             <div className="my-6">
@@ -24,7 +24,7 @@ export default function HomePage() {
               src={homePageBlogPost.imageDownloadUrl}
               loading="eager"
               alt={homePageBlogPost.postTitle}
-              className="max-h-[80vh] w-full object-cover"
+              className="max-h-[80vh] h-[60vh] md:h-[80vh] w-full object-cover"
             />
           </Link>
         )}

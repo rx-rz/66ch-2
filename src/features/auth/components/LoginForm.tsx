@@ -2,14 +2,14 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Form } from "src/components/Elements/Form/Form";
 import { InputField } from "src/components/Elements/Form/InputField";
-import { auth, database } from "src/utils/firebaseConfig";
+import { auth, database } from "src/config/firebaseConfig";
 import googleLogo from "src/assets/google.svg";
 import { useState } from "react";
 import { Button } from "src/components/Elements/Button/Button";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { errorToast } from "../api/errorToast";
 import { addDoc, collection } from "firebase/firestore";
-import { userConverter } from "../api/userConverter";
+import { userConverter } from "src/utils";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
 type LoginFormValues = {
@@ -43,7 +43,7 @@ export function LoginForm() {
               uid: user.user.uid,
               dateCreated: date.toUTCString(),
               role: "writer"
-            });
+            })
           }
         })
         .catch((err) => console.log(err));

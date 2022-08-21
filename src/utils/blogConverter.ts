@@ -18,6 +18,7 @@ export type Blog = {
   dateCreated: string;
   description: string;
   status: string,
+  isChecked: boolean
 
 };
 
@@ -40,7 +41,8 @@ export const blogConverter: FirestoreDataConverter<Blog> = {
       imageDownloadUrl: data.imageDownloadUrl,
       ref: snapshot.ref,
       description: data.description,
-      status: data.status
+      status: data.status,
+      isChecked: data.isChecked
     };
   },
 };

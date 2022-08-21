@@ -15,9 +15,9 @@ import { Button } from "src/components/Elements/Button/Button";
 import { errorToast } from "../api/errorToast";
 import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
-import { database } from "src/utils/firebaseConfig";
+import { database } from "src/config/firebaseConfig";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { userConverter } from "../api/userConverter";
+import { userConverter } from "src/utils";
 
 const auth = getAuth();
 const date = new Date();
@@ -28,9 +28,10 @@ const usersRef = collection(database, "users");
 
 export function RegisterForm() {
   const [users] = useCollectionData(ref);
+  const [pending, setPending] = useState(false);
 
   const navigate = useNavigate();
-  const [pending, setPending] = useState(false);
+
 
   const handleSubmit = async (data: RegisterFormValues) => {
     try {

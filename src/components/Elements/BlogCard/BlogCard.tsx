@@ -22,8 +22,8 @@ export function BlogCard({
       <img
         src={imageUrl}
         alt={postTitle}
-        loading={loading}
-        className="w-full max-h-full h-80  block object-cover aspect-video"
+        loading="lazy"
+        className="w-full max-h-full h-80 block object-cover aspect-video"
       />
       <div className="md:h-96 h-80 overflow-hidden pb-2 w-full">
         <div className="opacity-80 mb-4 text-lg mt-6">
