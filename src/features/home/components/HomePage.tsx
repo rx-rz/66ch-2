@@ -6,7 +6,7 @@ export default function HomePage() {
 
   return (
     <div className="w-full bg-primary border-b border-b-tertiary">
-      <main className="pt-24 md:pt-48 mx-auto relative">
+      <main className="pt-24 md:pt-48 mx-auto relative min-h-[90vh]">
         {homePageBlogPost && (
           <Link className="cursor-pointer" to={`/post/${homePageBlogPost.id}`}>
             <div className="my-6">
