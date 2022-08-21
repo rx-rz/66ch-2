@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useUserContext } from "src/context/userContext";
+import { useUserContext } from "src/context";
 
 export default function ProfileBanner() {
   const { user } = useUserContext()!;

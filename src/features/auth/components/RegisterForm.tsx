@@ -6,12 +6,8 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { Form } from "src/components/Elements/Form/Form";
-import { InputField } from "src/components/Elements/Form/InputField";
-
 import googleLogo from "src/assets/google.svg";
-import { RegisterFormValues } from "../types";
-import { Button } from "src/components/Elements/Button/Button";
+import { Button, Form, InputField } from "src/components";
 import { errorToast } from "../api/errorToast";
 import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
@@ -25,6 +21,14 @@ const googleProvider = new GoogleAuthProvider();
 
 const ref = collection(database, "users").withConverter(userConverter);
 const usersRef = collection(database, "users");
+
+export type RegisterFormValues = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  sike?: string
+  password: string;
+};
 
 export function RegisterForm() {
   const [users] = useCollectionData(ref);

@@ -10,10 +10,7 @@ import {
 import { useState } from "react";
 import { draftToast, errorToast, postContentToast } from "../../api/createPost";
 import { Link, useParams } from "react-router-dom";
-import { Button } from "src/components/Elements/Button/Button";
-import { Editor } from "src/components/Elements/Editor/Editor";
-import { Form } from "src/components/Elements/Form/Form";
-import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
+import { Button, Editor, Form, TextAreaField } from "src/components";
 import { useUserContext } from "src/context/userContext";
 import { database } from "src/config/firebaseConfig";
 

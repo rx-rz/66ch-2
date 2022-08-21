@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { BlogCard } from "src/components/Elements/BlogCard/BlogCard";
-import { usePostContext } from "src/context/postContext";
-import { useUserContext } from "src/context/userContext";
+import { usePostContext, useUserContext } from "src/context";
 
 export default function UserPosts() {
   const { user } = useUserContext()!;

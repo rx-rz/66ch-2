@@ -5,14 +5,14 @@ import { FileUploader } from "react-drag-drop-files";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useNavigate } from "react-router-dom";
-import { Button } from "src/components/Elements/Button/Button";
-import { Form } from "src/components/Elements/Form/Form";
-import { InputField } from "src/components/Elements/Form/InputField";
-import { userConverter } from "src/utils/userConverter";
-import { blogConverter } from "src/utils/blogConverter";
-import { commentConverter } from "src/utils";
-import { draftConverter } from "src/utils";
-import { replyConverter } from "src/utils";
+import { Form, Button, InputField } from "src/components";
+import {
+  commentConverter,
+  blogConverter,
+  draftConverter,
+  replyConverter,
+  userConverter,
+} from "src/utils";
 import { usePostImage } from "src/hooks/usePostImage";
 import { auth, database } from "src/config/firebaseConfig";
 
@@ -30,9 +30,7 @@ const commentsRef = collection(database, "comments").withConverter(
 const repliesRef = collection(database, "replies").withConverter(
   replyConverter
 );
-const draftsRef = collection(database, "drafts").withConverter(
-  draftConverter
-);
+const draftsRef = collection(database, "drafts").withConverter(draftConverter);
 
 export default function UpdateProfile() {
   const navigate = useNavigate();

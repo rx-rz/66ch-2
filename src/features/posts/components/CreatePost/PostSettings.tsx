@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { Form } from "src/components/Elements/Form/Form";
 import { usePostImage } from "src/hooks/usePostImage";
 import { FileUploader } from "react-drag-drop-files";
-import { Button } from "src/components/Elements/Button/Button";
-import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
-import { SelectField } from "src/components/Elements/Form/SelectField";
+import { Button, Form, TextAreaField, SelectField } from "src/components";
+
 import closeButton from "src/assets/close.svg";
 import toast from "react-hot-toast";
 import useOptimizeImage from "src/hooks/useOptimiseImage";

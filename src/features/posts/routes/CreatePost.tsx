@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { Toaster } from "react-hot-toast";
 import { useParams } from "react-router-dom";
-import { MainLayout } from "src/components/Layout/Layout";
+import { MainLayout } from "src/components";
 import { database } from "src/config/firebaseConfig";
 import { PostContent } from "../components/CreatePost/PostContent";
 import PostSettings from "../components/CreatePost/PostSettings";

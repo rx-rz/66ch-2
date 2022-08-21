@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { BlogCard } from "src/components/Elements/BlogCard/BlogCard";
 import { usePostContext } from "src/context/postContext";
-import { Blog } from "../../../../utils/blogConverter";
+import { Blog } from "src/utils";
 
 export const SearchPosts = () => {
   const [searchTerm, setSearchTerm] = useState("");

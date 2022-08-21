@@ -1,10 +1,8 @@
 import React, { useRef } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { Form } from "src/components/Elements/Form/Form";
-import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
+import { TextAreaField, Form, ReplyCard } from "src/components";
 import { database } from "src/config/firebaseConfig";
-import { ReplyCard } from "src/components/Elements/ReplyCard/ReplyCard";
 import { replyConverter } from "src/utils";
 
 type User = {

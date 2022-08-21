@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { MainLayout } from "src/components/Layout/Layout";
+import { MainLayout } from "src/components";
 import PostCommentForm from "../components/PostDetails/PostCommentForm";
 import PostComments from "../components/PostDetails/PostComments";
 import PostDetails from "../components/PostDetails/PostDetails";

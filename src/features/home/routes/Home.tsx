@@ -1,14 +1,14 @@
-import {MainLayout} from 'src/components/Layout/Layout'
-import Postlist from 'src/features/posts/components/PostList/Postlist'
-import HomePage from '../components/HomePage'
-import { TagMarquee } from '../components/TagMarquee'
+import { MainLayout } from "src/components/Layout/Layout";
+import Postlist from "src/features/posts/components/PostList/Postlist";
+import HomePage from "../components/HomePage";
+import { TagMarquee } from "../components/TagMarquee";
 
-export default function Home ()  {
+export const Home = () => {
   return (
     <MainLayout>
-      <HomePage/>
-      <TagMarquee/>
-      <Postlist/>
+      <HomePage />
+      <TagMarquee />
+      <Postlist />
     </MainLayout>
-  )
-}
+  );
+};

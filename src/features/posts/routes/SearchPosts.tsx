@@ -1,5 +1,4 @@
-import React from "react";
-import { MainLayout } from "src/components/Layout/Layout";
+import { MainLayout } from "src/components";
 import { SearchPosts } from "../components/SearchPost/SearchPosts";
 
 export default function PostSearch() {

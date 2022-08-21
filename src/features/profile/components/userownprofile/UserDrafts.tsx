@@ -1,8 +1,8 @@
 import { collection } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
-import { BlogCard } from "src/components/Elements/BlogCard/BlogCard";
-import { useUserContext } from "src/context/userContext";
+import { BlogCard } from "src/components";
+import { useUserContext } from "src/context";
 import { draftConverter } from "src/utils";
 import { database } from "src/config/firebaseConfig";
 

@@ -1,9 +1,9 @@
 import { collection } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useParams } from "react-router-dom";
-import { CommentCard } from "src/components/Elements/CommentCard/CommentCard";
+import { CommentCard } from "src/components";
 import { useUserContext } from "src/context/userContext";
-import ReplyList from "src/features/posts/components/PostDetails/ReplyList";
+import ReplyList from "./ReplyList";
 import {  database } from "src/config/firebaseConfig";
 import { commentConverter } from "src/utils";
 

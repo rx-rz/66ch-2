@@ -2,20 +2,14 @@ import React, { Suspense } from "react";
 import { useRoutes } from "react-router-dom";
 import PageNotFound from "src/features/404/PageNotFound";
 import { useUserContext } from "src/context/userContext";
-import Register from "src/features/auth/routes/Register";
-import Login from "src/features/auth/routes/Login";
+import { Register } from "src/features";
+import { Login } from "src/features";
 
-const Home = React.lazy(() => import("src/features/home/routes/Home"));
+const Home = React.lazy(() => import("src/features/home"));
 const PendingPosts = React.lazy(
   () => import("src/features/posts/routes/PendingPosts")
 );
-// const Login = React.lazy(
-//   () => import("src/features/auth/routes/Login")
-// );
 
-// const Register = React.lazy(
-//   () => import("src/features/auth/routes/Register")
-// );
 const PostList = React.lazy(
   () => import("src/features/posts/components/PostList/Postlist")
 );
@@ -38,8 +32,8 @@ const UserProfile = React.lazy(
 export const AppRoutes = () => {
   const { user } = useUserContext()!;
   const commonRoutes = [
-    {path: "/auth/register", element: <Register/>},
-    {path: "/auth/login", element: <Login/>},
+    { path: "/auth/register", element: <Register /> },
+    { path: "/auth/login", element: <Login /> },
     { path: "/", element: <Home /> },
     { path: "/postlist", element: <PostList /> },
     { path: "/post/:id", element: <PostContent /> },
@@ -56,7 +50,7 @@ export const AppRoutes = () => {
     { path: "/updateprofile", element: <UpdateProfile /> },
     { path: "*", element: <PageNotFound /> },
   ];
-  
+
   const adminRoutes = [{ path: "/pendingposts", element: <PendingPosts /> }];
   const element = useRoutes(
     user === null

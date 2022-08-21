@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BlogCard } from "src/components/Elements/BlogCard/BlogCard";
+import { BlogCard } from "src/components";
 import { usePostContext } from "src/context/postContext";
 
 export const PendingPosts = () => {

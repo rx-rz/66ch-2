@@ -1,7 +1,6 @@
 import { addDoc, collection } from "firebase/firestore";
 import { useParams } from "react-router-dom";
-import { Form } from "src/components/Elements/Form/Form";
-import { TextAreaField } from "src/components/Elements/Form/TextAreaField";
+import { TextAreaField, Form } from "src/components";
 import { useUserContext } from "src/context/userContext";
 import { database } from "src/config/firebaseConfig";
 

@@ -1,10 +1,10 @@
-import { AuthLayout } from "src/components/Layout/Layout"
-import { LoginForm } from "../components/LoginForm"
+import { AuthLayout } from "src/components";
+import { LoginForm } from "../components/LoginForm";
 
-export default function Login (){
-    return (
-        <AuthLayout title="Login">
-            <LoginForm/>
-        </AuthLayout>
-    )
-}
+export const Login = () => {
+  return (
+    <AuthLayout title="Login">
+      <LoginForm />
+    </AuthLayout>
+  );
+};
