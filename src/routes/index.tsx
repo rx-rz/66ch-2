@@ -2,8 +2,7 @@ import React, { Suspense } from "react";
 import { useRoutes } from "react-router-dom";
 import PageNotFound from "src/features/404/PageNotFound";
 import { useUserContext } from "src/context/userContext";
-import { Register } from "src/features";
-import { Login } from "src/features";
+import { Register, Login } from "src/features";
 
 const Home = React.lazy(() => import("src/features/home"));
 const PendingPosts = React.lazy(
@@ -43,6 +42,8 @@ export const AppRoutes = () => {
     { path: "*", element: <PageNotFound /> },
   ];
 
+  const adminRoutes = [{ path: "/pendingposts", element: <PendingPosts /> }];
+
   const authenticatedRoutes = [
     { path: "/createpost", element: <CreatePost /> },
     { path: "/createpost/:id", element: <CreatePost /> },
@@ -51,7 +52,7 @@ export const AppRoutes = () => {
     { path: "*", element: <PageNotFound /> },
   ];
 
-  const adminRoutes = [{ path: "/pendingposts", element: <PendingPosts /> }];
+
   const element = useRoutes(
     user === null
       ? [...commonRoutes]
