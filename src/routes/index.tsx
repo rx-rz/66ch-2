@@ -24,6 +24,9 @@ const PostSearch = React.lazy(
 const UpdateProfile = React.lazy(
   () => import("src/features/profile/routes/UpdateUserProfile")
 );
+const UserOwnProfile = React.lazy(
+  () => import("src/features/profile/routes/UserOwnProfile")
+);
 const UserProfile = React.lazy(
   () => import("src/features/profile/routes/UserProfile")
 );
@@ -34,6 +37,7 @@ export const AppRoutes = () => {
     { path: "/auth/register", element: <Register /> },
     { path: "/auth/login", element: <Login /> },
     { path: "/", element: <Home /> },
+    { path: "/user/:id", element: <UserProfile /> },
     { path: "/postlist", element: <PostList /> },
     { path: "/post/:id", element: <PostContent /> },
     { path: "/post/:id/:status/:authorId", element: <PostContent /> },
@@ -47,11 +51,10 @@ export const AppRoutes = () => {
   const authenticatedRoutes = [
     { path: "/createpost", element: <CreatePost /> },
     { path: "/createpost/:id", element: <CreatePost /> },
-    { path: "/profile", element: <UserProfile /> },
+    { path: "/profile", element: <UserOwnProfile /> },
     { path: "/updateprofile", element: <UpdateProfile /> },
     { path: "*", element: <PageNotFound /> },
   ];
-
 
   const element = useRoutes(
     user === null

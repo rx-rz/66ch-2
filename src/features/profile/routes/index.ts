@@ -1,2 +1,2 @@
 export * from './UpdateUserProfile'
-export * from './UserProfile'
+export * from './UserOwnProfile'
