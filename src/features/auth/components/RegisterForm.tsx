@@ -1,100 +1,19 @@
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  updateProfile,
-} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import googleLogo from "src/assets/google.svg";
 import { Button, Form, InputField } from "src/components";
-import { errorToast } from "../api/errorToast";
-import { useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
-import { database } from "src/config/firebaseConfig";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import { userConverter } from "src/utils";
-
-const auth = getAuth();
-const date = new Date();
-const googleProvider = new GoogleAuthProvider();
-
-const ref = collection(database, "users").withConverter(userConverter);
-const usersRef = collection(database, "users");
+import { useRegister } from "../api/useRegister";
 
 export type RegisterFormValues = {
   firstName: string;
   lastName: string;
   email: string;
-  sike?: string
+  sike?: string;
   password: string;
 };
 
 export function RegisterForm() {
-  const [users] = useCollectionData(ref);
-  const [pending, setPending] = useState(false);
-
   const navigate = useNavigate();
-
-
-  const handleSubmit = async (data: RegisterFormValues) => {
-    try {
-      setPending(true);
-      await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      ).then((user) => {
-        updateProfile(user.user, {
-          displayName: data.firstName + " " + data.lastName,
-          photoURL: process.env.REACT_APP_DEFAULT_PFP,
-        });
-        addDoc(usersRef, {
-          name: data.firstName + " " + data.lastName,
-          photoURL: process.env.REACT_APP_DEFAULT_PFP,
-          uid: user.user.uid,
-          dateCreated: date.toUTCString(),
-          role: "writer"
-        });
-        navigate("/");
-      });
-      setPending(false);
-    } catch (err: any) {
-      setPending(false);
-      errorToast(err);
-    }
-  };
-
-  const signInWithGoogle = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider).then((user) => {
-        addDoc(usersRef, {
-          name: user.user.displayName,
-          photoURL: process.env.REACT_APP_DEFAULT_PFP,
-          uid: user.user.uid,
-          dateCreated: date.toUTCString(),
-        });
-        const usersInDatabase =
-          users &&
-          users.filter(
-            (usersInDatabase) => usersInDatabase.uid === user.user.uid
-          );
-        if (usersInDatabase!.length === 0) {
-          addDoc(collection(database, "users"), {
-            name: user.user.displayName,
-            photoURL: process.env.REACT_APP_DEFAULT_PFP,
-            uid: user.user.uid,
-            dateCreated: date.toUTCString(),
-            role: "writer",
-          });
-        }
-      });
-      navigate("/");
-    } catch (err: any) {
-      setPending(false);
-      errorToast(err);
-    }
-  };
+  const { handleRegistration, signInWithGoogle, pending } = useRegister();
 
   const handleNavigateToLogin = () => {
     navigate("/auth/login");
@@ -118,7 +37,10 @@ export function RegisterForm() {
         </Button>
         <hr className="border border-black" />
         <div className="my-16">
-          <Form onSubmit={handleSubmit} options={{ mode: "onBlur" }}>
+          <Form
+            onSubmit={(data: RegisterFormValues) => handleRegistration(data)}
+            options={{ mode: "onBlur" }}
+          >
             {({ register, formState }) => (
               <>
                 <InputField

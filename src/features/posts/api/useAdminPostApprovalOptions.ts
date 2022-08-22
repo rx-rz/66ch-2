@@ -13,18 +13,16 @@ import { blogConverter } from "src/utils";
 
 export const useAdminPostApprovalOptions = () => {
   const { id } = useParams();
-  const { authorId } = useParams();
   const navigate = useNavigate();
 
   const postRef = doc(database, "posts", id!).withConverter(blogConverter);
 
-  const authorQuery = query(
-    collection(database, "users"),
-    where("uid", "==", authorId),
-    limit(1)
-  );
-
-  const acceptPost = async () => {
+  const acceptPost = async (authorId: string) => {
+    const authorQuery = query(
+        collection(database, "users"),
+        where("uid", "==", authorId),
+        limit(1)
+      );
     updateDoc(doc(database, "posts", id!), {
       status: "approved",
     });
@@ -45,7 +43,12 @@ export const useAdminPostApprovalOptions = () => {
     navigate("/pendingposts");
   };
 
-  const rejectPost = async () => {
+  const rejectPost = async (authorId: string) => {
+    const authorQuery = query(
+        collection(database, "users"),
+        where("uid", "==", authorId),
+        limit(1)
+      );
     const querySnapshot = await getDocs(authorQuery);
     querySnapshot.forEach((docData) => {
       updateDoc(doc(database, "users", docData.id), {
@@ -64,5 +67,5 @@ export const useAdminPostApprovalOptions = () => {
     navigate("/pendingposts");
   };
 
-  return {postRef, acceptPost, rejectPost}
+  return { postRef, acceptPost, rejectPost };
 };

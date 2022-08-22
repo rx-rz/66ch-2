@@ -42,8 +42,8 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
           ></div>
           {status !== "null" && authorId !== "null" && (
             <div>
-              <button onClick={acceptPost}>Accept Post</button>
-              <button onClick={rejectPost}>Reject Post</button>
+              <button onClick={() => acceptPost(authorId)}>Accept Post</button>
+              <button onClick={() => rejectPost(authorId)}>Reject Post</button>
             </div>
           )}
         </div>

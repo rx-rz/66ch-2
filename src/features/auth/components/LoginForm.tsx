@@ -1,68 +1,17 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Form, InputField, Button } from "src/components";
-import { auth, database } from "src/config/firebaseConfig";
 import googleLogo from "src/assets/google.svg";
-import { useState } from "react";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { errorToast } from "../api/errorToast";
-import { addDoc, collection } from "firebase/firestore";
-import { userConverter } from "src/utils";
-import { useCollectionData } from "react-firebase-hooks/firestore";
+import { useLogin } from "../api/useLogin";
 
 type LoginFormValues = {
   email: string;
   password: string;
 };
 
-const date = new Date()
-const googleProvider = new GoogleAuthProvider();
-const ref = collection(database, "users").withConverter(userConverter);
-
 export function LoginForm() {
+  const navigate = useNavigate()
 
-  const [users] = useCollectionData(ref);
-  const navigate = useNavigate();
-  const [pending, setPending] = useState(false);
-
-  const signInWithGoogle = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider)
-        .then((user) => {
-          const usersInDatabase =
-            users &&
-            users.filter(
-              (usersInDatabase) => usersInDatabase.uid === user.user.uid
-            );
-          if (usersInDatabase!.length === 0) {
-            addDoc(collection(database, "users"), {
-              name: user.user.displayName,
-              photoURL: process.env.REACT_APP_DEFAULT_PFP,
-              uid: user.user.uid,
-              dateCreated: date.toUTCString(),
-              role: "writer"
-            })
-          }
-        })
-        .catch((err) => console.log(err));
-      navigate("/");
-    } catch (err: any) {
-      errorToast(err);
-    }
-  };
-
-  const handleSubmit = async (data: LoginFormValues) => {
-    try {
-      setPending(true);
-      await signInWithEmailAndPassword(auth, data.email, data.password);
-      setPending(false);
-      navigate("/");
-    } catch (err: any) {
-      setPending(false);
-      errorToast(err);
-    }
-  };
-
+const {handleSignIn, signInWithGoogle, pending} = useLogin()
   const handleNavigateToRegister = () => {
     navigate("/auth/register");
   };
@@ -86,7 +35,7 @@ export function LoginForm() {
         </Button>
         <hr className="border border-black" />
         <div className="my-16">
-          <Form onSubmit={handleSubmit} options={{ mode: "onBlur" }}>
+          <Form onSubmit={(data: LoginFormValues) => handleSignIn(data)} options={{ mode: "onBlur" }}>
             {({ register, formState }) => (
               <>
                 <InputField

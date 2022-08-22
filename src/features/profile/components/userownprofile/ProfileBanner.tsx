@@ -25,8 +25,8 @@ export default function ProfileBanner() {
             </Link>
           </aside>
           <div>
-              {user.notifications.map((notification) => (
-                <Link to={notification.type === "success" ? `/post/${notification.docId}` : "/yeet"}>{notification.message}</Link>
+              {user.notifications && user.notifications.map((notification, index) => (
+                <Link to={notification.type === "success" ? `/post/${notification.docId}` : "/yeet"} key={index}>{notification.message}</Link>
               ))}
             </div>
         </>
