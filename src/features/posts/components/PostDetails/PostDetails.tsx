@@ -1,17 +1,5 @@
-import {
-  collection,
-  doc,
-  getDocs,
-  limit,
-  query,
-  updateDoc,
-  where,
-} from "firebase/firestore";
-
 import { useDocumentData } from "react-firebase-hooks/firestore";
-import { useNavigate, useParams } from "react-router-dom";
-import { blogConverter } from "src/utils";
-import { database } from "src/config/firebaseConfig";
+import { useAdminPostApprovalOptions } from "../../api";
 
 type PostContentProps = {
   status: string;
@@ -19,56 +7,7 @@ type PostContentProps = {
 };
 
 export default function PostDetails({ status, authorId }: PostContentProps) {
-  const { id } = useParams();
-  const navigate = useNavigate();
-
-  const postRef = doc(database, "posts", id!).withConverter(blogConverter);
-
-  const authorQuery = query(
-    collection(database, "users"),
-    where("uid", "==", authorId),
-    limit(1)
-  );
-
-  const acceptPost = async () => {
-    updateDoc(doc(database, "posts", id!), {
-      status: "approved",
-    });
-    const querySnapshot = await getDocs(authorQuery);
-    querySnapshot.forEach((docData) => {
-      updateDoc(doc(database, "users", docData.id), {
-        notifications: [
-          ...docData.data().notifications,
-          {
-            message: "Your post has been approved by the admin",
-            type: "success",
-            docId: id,
-          },
-        ],
-        isChecked: true
-      });
-    });
-    navigate("/pendingposts")
-  };
-
-  const rejectPost = async () => {
-    const querySnapshot = await getDocs(authorQuery);
-    querySnapshot.forEach((docData) => {
-      updateDoc(doc(database, "users", docData.id), {
-        notifications: [
-          ...docData.data().notifications,
-          {
-            message:
-              "Your post has not been approved. Review it and submit for approval once again",
-            type: "failure",
-            docId: id,
-          },
-        ],
-        isChecked: true
-      });
-    });
-    navigate("/pendingposts");
-  };
+  const { postRef, acceptPost, rejectPost } = useAdminPostApprovalOptions();
 
   const [data, loading, error] = useDocumentData(postRef, {
     snapshotListenOptions: { includeMetadataChanges: true },

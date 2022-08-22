@@ -2,7 +2,6 @@ import { useState } from "react";
 import { usePostImage } from "src/hooks/usePostImage";
 import { FileUploader } from "react-drag-drop-files";
 import { Button, Form, TextAreaField, SelectField } from "src/components";
-
 import closeButton from "src/assets/close.svg";
 import toast from "react-hot-toast";
 import useOptimizeImage from "src/hooks/useOptimiseImage";
@@ -24,9 +23,8 @@ export type Blog = {
   ref: DocumentReference<DocumentData>;
   dateCreated: string;
   description: string;
-  status: string,
-  isChecked: boolean
-
+  status: string;
+  isChecked: boolean;
 };
 
 type EditPostSettingsProps = {
@@ -75,7 +73,7 @@ export default function PostSettings({
     "Tourism",
   ];
   const [file, setFile] = useState<File | null | any>(null);
-  const {imageFile} = useOptimizeImage(file)
+  const { imageFile } = useOptimizeImage(file);
   const { url } = usePostImage(imageFile);
 
   const types = ["image/jpg", "image/jpeg", "image/png"];

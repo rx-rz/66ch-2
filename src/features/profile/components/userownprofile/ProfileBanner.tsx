@@ -24,6 +24,11 @@ export default function ProfileBanner() {
               Update Profile
             </Link>
           </aside>
+          <div>
+              {user.notifications.map((notification) => (
+                <Link to={notification.type === "success" ? `/post/${notification.docId}` : "/yeet"}>{notification.message}</Link>
+              ))}
+            </div>
         </>
       )}
     </div>

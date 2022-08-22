@@ -4,7 +4,7 @@ import { usePostContext } from "src/context/postContext";
 
 export const PendingPosts = () => {
   const {data} = usePostContext()!
-  const posts = data?.filter((doc) => doc.status === "pending" && doc.isChecked === false);
+  const posts = data?.filter((doc) => doc.status === "pending");
 
   return (
     <div>

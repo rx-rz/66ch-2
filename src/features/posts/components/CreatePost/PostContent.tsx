@@ -1,18 +1,7 @@
-import {
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  DocumentData,
-  DocumentReference,
-  updateDoc,
-} from "firebase/firestore";
-import { useState } from "react";
-import { draftToast, errorToast, postContentToast } from "../../api/createPost";
-import { Link, useParams } from "react-router-dom";
+import { DocumentData, DocumentReference } from "firebase/firestore";
+import { useCreatePost } from "../../api/useCreatePost";
+import { Link } from "react-router-dom";
 import { Button, Editor, Form, TextAreaField } from "src/components";
-import { useUserContext } from "src/context/userContext";
-import { database } from "src/config/firebaseConfig";
 
 export type Blog = {
   author: { name: string; id: string };
@@ -24,9 +13,8 @@ export type Blog = {
   ref: DocumentReference<DocumentData>;
   dateCreated: string;
   description: string;
-  status: string,
-  isChecked: boolean
-
+  status: string;
+  isChecked: boolean;
 };
 
 type PostSettingProps = {
@@ -36,7 +24,7 @@ type PostSettingProps = {
   handleMenuToggle: () => void;
   draft?: Partial<Blog>;
 };
-const date = new Date();
+
 type EditorProps = {
   postTitle: string;
 };
@@ -48,77 +36,7 @@ export const PostContent = ({
   handleMenuToggle,
   draft,
 }: PostSettingProps) => {
-  const { user } = useUserContext()!;
-  const postsRef = collection(database, "posts");
-  const draftsRef = collection(database, "drafts");
-  const { id } = useParams();
-  const [draftId, setDraftId] = useState<string | null>(null);
-  const [editorContent, setEditorContent] = useState("");
-
-  const changeEditorContent = (editorContent: string) => {
-    setEditorContent(editorContent);
-  };
-
-  const handleSubmit = async (data: EditorProps) => {
-    if (/[a-z]/i.test(data.postTitle) && /[a-z]/i.test(editorContent)) {
-      if (imageUrl && tag && description) {
-        await addDoc(postsRef, {
-          postTitle: data.postTitle,
-          postContent: editorContent,
-          imageDownloadUrl: imageUrl ?? draft?.imageDownloadUrl,
-          author: { name: user?.name, id: user?.uid },
-          dateCreated: date.toLocaleDateString(),
-          tag: tag,
-          description: description,
-          status: user && user.role === "admin" ? "approved" : "pending",
-        });
-        if (draft) {
-          await deleteDoc(doc(database, "drafts", id!));
-        }
-        window.location.pathname = "/";
-      } else {
-        errorToast();
-      }
-    } else {
-      postContentToast();
-    }
-  };
-
-  const handleDraft = async () => {
-    if (!draft) {
-      if (!draftId) {
-        await addDoc(draftsRef, {
-          postContent: editorContent ?? "",
-          imageDownloadUrl: imageUrl ?? "",
-          author: { name: user?.name, id: user?.uid },
-          dateCreated: date.toLocaleDateString(),
-          tag: tag ?? "",
-          description: description ?? "",
-        }).then((docRef) => setDraftId(docRef.id));
-        draftToast();
-      } else {
-        await updateDoc(doc(database, "drafts", draftId!), {
-          postContent: editorContent ?? "",
-          imageDownloadUrl: imageUrl ?? "",
-          author: { name: user?.name, id: user?.uid },
-          dateCreated: date.toLocaleDateString(),
-          tag: tag ?? "",
-          description: description ?? "",
-        });
-        draftToast();
-      }
-    } else {
-      await updateDoc(doc(database, "drafts", id!), {
-        postContent: editorContent ?? "",
-        imageDownloadUrl: imageUrl ?? draft.imageDownloadUrl ?? "",
-        author: { name: user?.name, id: user?.uid },
-        dateCreated: date.toLocaleDateString(),
-        tag: tag ?? "",
-        description: description ?? "",
-      });
-      draftToast();
-    }
-  };
+  const { changeEditorContent, handleDraft, handleSubmit } = useCreatePost();
 
   return (
     <div className="w-11/12 mx-auto my-12 font-albertsans">
@@ -130,7 +48,7 @@ export const PostContent = ({
         <div className="justify-between flex">
           <Button
             className="border border-tertiary px-1 md:text-xl text-md"
-            handleClick={handleDraft}
+            handleClick={() => handleDraft(imageUrl, tag, description, draft)}
           >
             Save As Draft
           </Button>
@@ -142,7 +60,12 @@ export const PostContent = ({
           </Button>
         </div>
       </nav>
-      <Form onSubmit={handleSubmit} options={{ mode: "onBlur" }}>
+      <Form
+        onSubmit={(data: EditorProps) =>
+          handleSubmit(data, imageUrl, tag, description, draft)
+        }
+        options={{ mode: "onBlur" }}
+      >
         {({ register, formState }) => (
           <>
             <TextAreaField
