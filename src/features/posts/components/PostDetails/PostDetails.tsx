@@ -44,7 +44,7 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
             <div>
               <button onClick={() => acceptPost(authorId)}>Accept Post</button>
               <button onClick={() => rejectPost(authorId)}>Reject Post</button>
-            </div>
+            </div>    
           )}
         </div>
       )}

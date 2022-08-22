@@ -1,17 +1,14 @@
 import React, { useRef } from "react";
-import { addDoc, collection } from "firebase/firestore";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 import { TextAreaField, Form, ReplyCard } from "src/components";
-import { database } from "src/config/firebaseConfig";
-import { replyConverter } from "src/utils";
+import { useCreateReply } from "../../api/useCreateReply";
 
 type User = {
-  name: string,
-  uid: string,
-  role: "admin" | "writer",
-  dateCreated: string,
-  photoURL: string
-}
+  name: string;
+  uid: string;
+  role: "admin" | "writer";
+  dateCreated: string;
+  photoURL: string;
+};
 
 type ReplyListProps = {
   commentId: string;
@@ -20,35 +17,14 @@ type ReplyListProps = {
   dateCreated: string;
   user: User;
 };
-const date = new Date();
 
 export default function ReplyList({
   commentId,
   user,
 }: Partial<ReplyListProps>) {
-  const ref = collection(database, "replies").withConverter(replyConverter);
-  const [data] = useCollectionData(ref);
-  const replies =
-    data &&
-    data
-      .filter((doc) => doc.commentId === commentId)
-      .sort(function (a, b) {
-        return Date.parse(a.dateCreated) - Date.parse(b.dateCreated);
-      });
+  const { handleReplySubmit, replies: replyData } = useCreateReply();
+  const { data: replies } = replyData(commentId!);
 
-  const replyRef = collection(database, "replies");
-  const handleReplySubmit = async (data: ReplyListProps) => {
-    await addDoc(replyRef, {
-      reply: data.reply,
-      commentId: commentId,
-      replyAuthor: user?.name,
-      replyAuthorId: user?.uid,
-      dateCreated: date.toLocaleString(),
-      likes: 0,
-      isLiked: false,
-      replyLikers: [],
-    });
-  };
   const replyTag = useRef<HTMLDivElement | null>(null);
 
   const handleReplyDisplay = () => {
@@ -78,14 +54,21 @@ export default function ReplyList({
               />
             </React.Fragment>
           ))}
-        <Form onSubmit={handleReplySubmit}>
+        <Form
+          onSubmit={(data: ReplyListProps) =>
+            handleReplySubmit(data, commentId!, user!)
+          }
+        >
           {({ register }) => (
             <>
               <TextAreaField
                 registration={register("reply")}
                 className="border border-black resize-none w-11/12"
               />
-              <button type="submit" className=" border-black px-3 my-2 border-2">
+              <button
+                type="submit"
+                className=" border-black px-3 my-2 border-2"
+              >
                 Reply
               </button>
             </>

@@ -66,8 +66,9 @@ export const PostContent = ({
         }
         options={{ mode: "onBlur" }}
       >
-        {({ register, formState }) => (
+        {({ register, formState, setValue }) => (
           <>
+          {draft && setValue("postTitle", draft.postTitle ?? "")}
             <TextAreaField
               error={formState.errors.postTitle}
               placeholder="Enter your post title here...(200 characters max)"
