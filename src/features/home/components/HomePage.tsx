@@ -21,7 +21,7 @@ export default function HomePage() {
                 </p>
               </div>
               <img
-                className="aspect-video my-8 border border-black"
+                className="aspect-video my-8 border border-black object-cover"
                 src={blogPostOne.imageDownloadUrl}
                 alt={blogPostOne.postTitle}
               />
@@ -47,7 +47,7 @@ export default function HomePage() {
                 </p>
               </div>
               <img
-                className="aspect-video my-8 border border-black"
+                className="aspect-video my-8 border border-black object-cover"
                 src={blogPostTwo.imageDownloadUrl}
                 alt={blogPostTwo.postTitle}
               />

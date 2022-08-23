@@ -20,7 +20,7 @@ export function BlogCard({
 }: CardProps) {
   return (
     <article className="w-full border border-black dark:border-white md:h-[700px] text-clip overflow-clip h-fit dark:text-white dark:bg-tertiary">
-      <div className="md:p-8 p-2">
+      <div className="md:p-8 p-2 my-8 md:my-0">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

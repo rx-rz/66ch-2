@@ -6,10 +6,13 @@ type CommentProps = {
 };
 
 export default function PostCommentForm() {
-const {handleCommentSubmit} = useCreateComment()
+  const { handleCommentSubmit } = useCreateComment();
 
   return (
-    <Form onSubmit={(data: CommentProps) => handleCommentSubmit(data)} className="max-w-4xl  w-11/12 mb-12 md:mx-0 mx-auto">
+    <Form
+      onSubmit={(data: CommentProps) => handleCommentSubmit(data)}
+      className="max-w-4xl  w-11/12 mb-12 md:mx-0 mx-auto "
+    >
       {({ register, formState }) => (
         <>
           <TextAreaField
@@ -18,9 +21,12 @@ const {handleCommentSubmit} = useCreateComment()
             })}
             placeholder="Enter a comment here"
             error={formState.errors.comment}
-            className="border-2 border-black w-full  resize-none p-2"
+            className="border-2 border-black w-full  resize-none p-2 text-black"
           />
-          <button type="submit" className="border-2 px-3 border-black font-pilcrow bg-yellow-300">
+          <button
+            type="submit"
+            className="border-2 px-3 border-black font-pilcrow bg-yellow-300"
+          >
             Comment
           </button>
         </>
