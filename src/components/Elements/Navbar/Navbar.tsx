@@ -65,7 +65,7 @@ export function Navbar() {
               </div>
               <div className="h-full lg:hidden block">
                 <button
-                  className="text-tertiary  h-full grid font-extrabold  content-center   font-Synonym"
+                  className="text-tertiary  h-full grid font-extrabold  content-center   font-Synonym dark:text-white"
                   onClick={handleMenuToggle}
                   ref={menubutton}
                 >
@@ -134,7 +134,7 @@ export function Navbar() {
               <div className="h-full lg:hidden relative flex">
                 <Button  className="flex items-center mr-3" handleClick={handleMobileNotifToggle}><img src={notifButton} alt="" width="20px" className="mr-1"/>{user && user.notifications?.length}</Button>
                 <button
-                  className="text-tertiary h-full grid font-extrabold  content-center   font-Synonym"
+                  className="text-tertiary h-full grid font-extrabold  content-center   font-Synonym dark:text-white"
                   onClick={handleMenuToggle}
                   ref={menubutton}
                 >
