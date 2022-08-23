@@ -14,7 +14,7 @@ export function AuthLayout({ children }: AuthLayoutProps) {
       animate={{ opacity: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
     >
-      <div className=" h-screen flex">
+      <div className=" h-full flex dark:bg-tertiary">
         <picture className="lg:block hidden w-8/12 bg-black">
           <source
             srcSet={authAvif}
@@ -26,7 +26,7 @@ export function AuthLayout({ children }: AuthLayoutProps) {
             type="image/webp"
             className="h-screen object-cover "
           />
-          <img src={authJpg} alt="#" className="h-screen object-cover " />
+          <img src={authJpg} alt="#" className="h-full object-cover " />
         </picture>
         <div className="lg:w-4/12 w-full my-10">{children}</div>
       </div>

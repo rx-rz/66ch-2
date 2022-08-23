@@ -21,21 +21,21 @@ export function RegisterForm() {
 
   return (
     <div className=" min-h-screen">
-      <div className="sm:w-8/12 w-10/12 mx-auto font-pilcrow">
+      <div className="w-10/12 mx-auto font-pilcrow">
       <h1 className="text-4xl text-center my-4 font-bold">Register </h1>
 
         <Button
           handleClick={signInWithGoogle}
-          className="flex text-2xl items-center  border-tertiary border-2 rounded-full text-white  transition-opacity duration-300  hover:opacity-80 mx-auto my-12"
+          className="flex text-2xl items-center dark:border-white border-tertiary border-2 rounded-full text-white  transition-opacity duration-300  hover:opacity-80 mx-auto my-12"
         >
           <img
             src={googleLogo}
             width="40px"
             alt="Google Logo"
-            className=" border-primary"
+            className=" border-primary dark:invert"
           />
         </Button>
-        <p className="mx-auto w-fit md:text-xl">
+        <p className="mx-auto w-fit md:text-xl dark:text-white">
           Or use your email for registration:
         </p>
         <div className="my-16">
@@ -46,7 +46,7 @@ export function RegisterForm() {
             {({ register, formState }) => (
               <>
                 <InputField
-                  className=" border-tertiary w-full border p-2  bg-primary focus:bg-white mt-2 font-hind"
+                  className=" border-tertiary w-full border p-2  bg-primary focus:bg-white mt-2 font-hind text-black"
                   type="text"
                   label="First Name"
                   error={formState.errors.firstName}
@@ -56,7 +56,7 @@ export function RegisterForm() {
                 />
 
                 <InputField
-                  className=" border-tertiary w-full border p-2  bg-primary focus:bg-white mt-2 font-hind"
+                  className=" border-tertiary w-full border p-2  bg-primary focus:bg-white mt-2 font-hind text-black"
                   type="text"
                   label="Last Name"
                   error={formState.errors.lastName}
@@ -66,7 +66,7 @@ export function RegisterForm() {
                 />
 
                 <InputField
-                  className=" border-tertiary w-full border p-2  bg-primary focus:bg-white mt-2 font-hind"
+                  className=" border-tertiary w-full border p-2  bg-primary focus:bg-white mt-2 font-hind text-black"
                   type="email"
                   label="Email"
                   error={formState.errors.email}
@@ -81,7 +81,7 @@ export function RegisterForm() {
                 />
 
                 <InputField
-                  className=" border-tertiary w-full border p-2  bg-primary focus:bg-white mt-2 font-hind"
+                  className=" border-tertiary w-full border p-2  bg-primary focus:bg-white mt-2 font-hind text-black"
                   type="password"
                   label="Password"
                   error={formState.errors.password}
