@@ -6,9 +6,13 @@ import UserPosts from "../components/userownprofile/UserPosts";
 export default function UserOwnProfile() {
   return (
     <MainLayout>
-      <ProfileBanner />
-      <UserDrafts />
-      <UserPosts />
+      <div className="flex">
+        <ProfileBanner />
+        <div>
+          <UserDrafts />
+          <UserPosts />
+        </div>
+      </div>
     </MainLayout>
   );
 }

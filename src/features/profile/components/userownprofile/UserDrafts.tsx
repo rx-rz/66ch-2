@@ -16,9 +16,9 @@ export default function UserDrafts() {
     <div className="mx-auto w-11/12 md:my-20 ">
       <h1 className="md:text-3xl text-2xl mb-16 font-bold">DRAFTS</h1>
       {userPosts && userPosts.length > 0 ? (
-        <article className="grid gap-24 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <article className="flex flex-wrap">
           {userPosts!.map((doc, index) => (
-            <Link to={`/createpost/${doc.id}`} key={doc.id} className="w-fit">
+            <Link to={`/post/${doc.id}`} key={doc.id} className="w-fit md:w-6/12 xl:w-3/12 lg:w-4/12">
               <BlogCard
                 authorName={doc.author.name}
                 tag={doc.tag}

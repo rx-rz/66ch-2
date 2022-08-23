@@ -39,11 +39,12 @@ export function ReplyCard({
   };
   
   return (
-    <article className="ml-4 md:ml-8">
+    <article className=" border border-black p-2">
       <div className="flex text-md font-bold my-2 font-pilcrow">
         <h3 className="mr-2">{authorName}</h3>
-        <h2>{dateCreated}</h2>
+        <h2 className="opacity-60">{dateCreated}</h2>
       </div>
+      <hr className="border border-yellow-300"/>
       <div>
         <p className="font-hind">{reply}</p>
       </div>

@@ -36,11 +36,13 @@ export function CommentCard({
     }
   };
   return (
-    <article className=" rounded-md my-4">
+    <article className=" p-2 my-4 border border-black">
       <div className="flex font-bold font-pilcrow">
         <h3 className="mr-2">{authorName}</h3>
-        <h2>{dateCreated}</h2>
+        <h2 className="opacity-60">{dateCreated}</h2>
+    
       </div>
+      <hr className="border border-yellow-300"/>
       <div>
         <p className="text-xl my-2 font-hind">{comment}</p>
       </div>

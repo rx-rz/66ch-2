@@ -4,7 +4,7 @@ import { useUserContext } from "src/context";
 export default function ProfileBanner() {
   const { user } = useUserContext()!;
   return (
-    <div className="mx-2  md:flex block my-16">
+    <div className="mx-2 block my-16">
       {user && (
         <>
           <img

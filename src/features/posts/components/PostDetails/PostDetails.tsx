@@ -24,23 +24,36 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
 
       {post && (
         <main>
-          <div className="">
+          <div className="md:w-10/12 w-full mx-auto  ">
             <h1 className=" w-full md:w-10/12 mx-auto my-12 text-3xl md:text-7xl text-center font-pilcrow">
               {post.postTitle}
             </h1>
+            {/* <div className="block md:hidden">
+              <Link
+                className="text-2xl font-bold font-hind text-center "
+                to={
+                  user && user.uid !== post.author.id
+                    ? `/user/${post.author.id}`
+                    : "/profile"
+                }
+              >
+                {post.author.name}
+              </Link>
+              <p>{post.dateCreated}</p>
+            </div> */}
             <motion.img
               src={post.imageDownloadUrl}
               alt={post.postTitle}
-              className="mx-auto aspect-video border border-black object-cover"
+              className="mx-auto  border border-black object-cover"
               initial={{ width: "30%" }}
-              animate={{ width: "100%" }}
-              transition={{ duration: 1 }}
+              animate={{ width: "80%" }}
+              transition={{ duration: 0.7 }}
             />
-            <div className="flex flex-wrap relative">
-              <aside className="md:w-3/12 xl:w-2/12 w-full md:sticky top-16  md:border-r-black h-fit md:h-screen ">
-                <div className="md:my-20 md:ml-8 w-11/12 md:w-full mx-auto">
+            <div className="flex flex-wrap relative mx-auto md:w-9/12 w-full">
+              <aside className="md:w-3/12 xl:w-2/12 w-full md:sticky top-16  md:border-r-black md:border-r h-fit md:h-screen ">
+                <div className="md:my-20 w-11/12 md:w-full mx-auto mt-8">
                   <Link
-                    className="text-2xl font-bold font-hind text-center"
+                    className="text-2xl font-bold font-hind text-center text-blue-600"
                     to={
                       user && user.uid !== post.author.id
                         ? `/user/${post.author.id}`
