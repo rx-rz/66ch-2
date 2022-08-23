@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { usePostContext } from "src/context/postContext";
 export default function HomePage() {
   const { data } = usePostContext()!;
-  const blogPostOne = data && data[5];
-  const blogPostTwo = data && data[6];
+  const blogPostOne = data && data[9];
+  const blogPostTwo = data && data[8];
 
   return (
     <div className="w-full border-2 border-t-0 border-tertiary">

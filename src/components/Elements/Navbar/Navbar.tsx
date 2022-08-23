@@ -33,7 +33,7 @@ export function Navbar() {
     return null;
   } else {
     return (
-      <nav className=" font-pilcrow bg-white sticky top-0 z-50 w-full mx-auto border-2 border-black">
+      <nav className=" font-pilcrow bg-white sticky top-0 z-50 w-full mx-auto border-2 border-black ">
         <div className=" h-16 lg:h-16 uppercase flex  justify-between items-center mx-2">
           <NavLink
             to="/"
@@ -88,7 +88,7 @@ export function Navbar() {
                 >
                   <div className="mt-4">
                     {user &&
-                      user.notifications.map((notif) => (
+                      user.notifications?.map((notif) => (
                         <div className="py-4 ml-2" key={notif.docId}>
                           <Link
                             to={
@@ -132,7 +132,7 @@ export function Navbar() {
                 </button>
               </div>
               <div className="h-full lg:hidden relative flex">
-                <Button  className="flex items-center mr-3" handleClick={handleMobileNotifToggle}><img src={notifButton} alt="" width="20px" className="mr-1"/>{user && user.notifications.length}</Button>
+                <Button  className="flex items-center mr-3" handleClick={handleMobileNotifToggle}><img src={notifButton} alt="" width="20px" className="mr-1"/>{user && user.notifications?.length}</Button>
                 <button
                   className="text-tertiary h-full grid font-extrabold  content-center   font-Synonym"
                   onClick={handleMenuToggle}
@@ -147,7 +147,7 @@ export function Navbar() {
                 >
                   <div className="mt-4">
                     {user &&
-                      user.notifications.map((notif) => (
+                      user.notifications?.map((notif) => (
                         <div className="py-4 ml-2" key={notif.docId}>
                           <Link
                             to={

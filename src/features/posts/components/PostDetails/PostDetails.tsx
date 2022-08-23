@@ -34,11 +34,11 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
               className="mx-auto aspect-video border border-black object-cover"
               initial={{ width: "30%" }}
               animate={{ width: "100%" }}
-              transition={{ duration: 1.5 }}
+              transition={{ duration: 1 }}
             />
             <div className="flex flex-wrap relative">
               <aside className="md:w-3/12 xl:w-2/12 w-full md:sticky top-16  md:border-r-black h-fit md:h-screen ">
-                <div className="my-20">
+                <div className="md:my-20 md:ml-8 w-11/12 md:w-full mx-auto">
                   <Link
                     className="text-2xl font-bold font-hind text-center"
                     to={
@@ -53,12 +53,12 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
                 </div>
               </aside>
               <div className="md:w-8/12 xl:w-9/12 mx-auto">
-                <h3 className="text-lg font-bold font-hind md:text-xl my-8 md:w-6/12 w-11/12 mx-auto">
+                <h3 className="text-xl font-bold font-hind md:text-2xl my-8 md:w-6/12 w-11/12 md:mx-0 mx-auto">
                   "{post.description}"
                 </h3>
 
                 <div
-                  className="md:text-lg font-hind my-8 w-11/12 mx-auto md:w-full"
+                  className="md:text-lg font-hind my-8 w-11/12 mx-auto md:mx-0  max-w-[66ch] editorcontent"
                   dangerouslySetInnerHTML={{ __html: post.postContent }}
                 ></div>
                 <PostComments />

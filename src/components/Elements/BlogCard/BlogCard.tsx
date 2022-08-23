@@ -20,15 +20,15 @@ export function BlogCard({
 }: CardProps) {
   return (
     <article className="w-full border border-black md:h-[700px] text-clip overflow-clip h-fit">
-      <div className="p-8">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+      <div className="md:p-8 p-2">
+        <div
+          // initial={{ opacity: 0 }}
+          // whileInView={{ opacity: 1 }}
+          // transition={{ duration: 1 }}
         >
           <p className="text-lg md:text-2xl font-pilcrow mr-2">{dateCreated}</p>
           <p className="text-xl md:text-3xl font-pilcrow">{authorName}</p>
-        </motion.div>
+        </div>
 
         <img
           src={imageUrl}
@@ -36,20 +36,20 @@ export function BlogCard({
           className="aspect-video object-cover border border-black my-4"
           loading="lazy"
         />
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+        <div
+          // initial={{ opacity: 0 }}
+          // whileInView={{ opacity: 1 }}
+          // transition={{ duration: 1 }}
         >
           <div className="max-h-72 overflow-clip">
             <h1 className="text-3xl md:text-5xl font-pilcrow uppercase text-ellipsis">
               {postTitle}
             </h1>
-            <h2 className="text-xl md:text-2xl font-hind text-ellipsis">
+            <h2 className="text-lg md:text-2xl font-hind text-ellipsis">
               {description}
             </h2>
           </div>
-        </motion.div>
+        </div>
       </div>
     </article>
   );

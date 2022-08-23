@@ -32,7 +32,7 @@ export default function ReplyList({
   };
   return (
     <div className="w-11/12">
-      <button onClick={handleReplyDisplay}>
+      <button onClick={handleReplyDisplay} className="font-pilcrow font-extralight">
         {replies && replies.length > 0 ? (
           <>Show Replies ( {replies.length} )</>
         ) : (
@@ -67,7 +67,7 @@ export default function ReplyList({
               />
               <button
                 type="submit"
-                className=" border-black px-3 my-2 border-2"
+                className=" border-black bg-yellow-300 font-pilcrow px-3 my-2 border-2"
               >
                 Reply
               </button>

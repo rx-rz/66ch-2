@@ -20,7 +20,7 @@ export const useCreateComment = () => {
         postId: id,
         commentAuthor: user?.name,
         commentAuthorId: user?.uid,
-        dateCreated: date.toLocaleTimeString(),
+        dateCreated: date.toUTCString(),
         likes: 0,
         isLiked: false,
         commentLikers: [],
