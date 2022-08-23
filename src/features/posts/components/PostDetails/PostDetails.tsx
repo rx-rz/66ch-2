@@ -31,7 +31,7 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
             <motion.img
               src={post.imageDownloadUrl}
               alt={post.postTitle}
-              className="mx-auto"
+              className="mx-auto aspect-video border border-black object-cover"
               initial={{ width: "30%" }}
               animate={{ width: "100%" }}
               transition={{ duration: 1.5 }}
