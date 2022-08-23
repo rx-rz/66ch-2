@@ -37,7 +37,7 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
               transition={{ duration: 1.5 }}
             />
             <div className="flex flex-wrap relative">
-              <aside className="md:w-3/12 xl:w-2/12 w-full md:sticky top-16 border border-black h-fit md:h-screen bg-yellow-300">
+              <aside className="md:w-3/12 xl:w-2/12 w-full md:sticky top-16  md:border-r-black h-fit md:h-screen ">
                 <div className="my-20">
                   <Link
                     className="text-2xl font-bold font-hind text-center"

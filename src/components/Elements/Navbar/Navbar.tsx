@@ -1,17 +1,26 @@
 import { signOut } from "firebase/auth";
 import { useRef } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "src/config/firebaseConfig";
-
+import { useUserContext } from "src/context";
+import { Button } from "../Button";
+import notifButton from "src/assets/notification.svg";
 /**The Header Component accepts 3 link items as children and justifies them evenly */
 export function Navbar() {
-  const [user] = useAuthState(auth);
+  const { user } = useUserContext()!;
   const menu = useRef<HTMLDivElement>(null);
+  const notifications = useRef<HTMLDivElement>(null);
+  const mobileNotifications = useRef<HTMLDivElement>(null);
   const menubutton = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
   const handleMenuToggle = () => {
     menu.current!.classList.toggle("hidden");
+  };
+  const handleNotifToggle = () => {
+    notifications.current!.classList.toggle("hidden");
+  };
+  const handleMobileNotifToggle = () => {
+    mobileNotifications.current!.classList.toggle("hidden");
   };
 
   const location = useLocation();
@@ -24,7 +33,6 @@ export function Navbar() {
     return null;
   } else {
     return (
-
       <nav className=" font-pilcrow bg-white sticky top-0 z-50 w-full mx-auto border-2 border-black">
         <div className=" h-16 lg:h-16 uppercase flex  justify-between items-center mx-2">
           <NavLink
@@ -67,7 +75,34 @@ export function Navbar() {
             </div>
           ) : (
             <div className="h-full">
-              <div className="h-full hidden lg:flex">
+              <div className="h-full hidden lg:flex relative">
+                <Button
+                  handleClick={handleNotifToggle}
+                  className="sm: text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-2  transition-colors duration-300 "
+                >
+                  NOTIFICATIONS [{user && user.notifications?.length}]
+                </Button>
+                <div
+                  className="fixed top-16 h-fit border-2  min-h-[200px] bg-white hidden border-black  right-0 w-[640px]"
+                  ref={notifications}
+                >
+                  <div className="mt-4">
+                    {user &&
+                      user.notifications.map((notif) => (
+                        <div className="py-4 ml-2" key={notif.docId}>
+                          <Link
+                            to={
+                              notif.message !== "failure"
+                                ? `/post/${notif.docId}`
+                                : `/createpost/${notif.docId}`
+                            }
+                          >
+                            {notif.message}
+                          </Link>
+                        </div>
+                      ))}
+                  </div>
+                </div>
                 {location.pathname !== "/profile" ? (
                   <NavLink
                     to="/profile"
@@ -96,7 +131,8 @@ export function Navbar() {
                   Log Out
                 </button>
               </div>
-              <div className="h-full lg:hidden block">
+              <div className="h-full lg:hidden relative flex">
+                <Button  className="flex items-center mr-3" handleClick={handleMobileNotifToggle}><img src={notifButton} alt="" width="20px" className="mr-1"/>{user && user.notifications.length}</Button>
                 <button
                   className="text-tertiary h-full grid font-extrabold  content-center   font-Synonym"
                   onClick={handleMenuToggle}
@@ -104,6 +140,28 @@ export function Navbar() {
                 >
                   MENU
                 </button>
+
+                <div
+                  className="fixed top-16 h-fit border-2  min-h-[200px] bg-white hidden border-black  right-0 w-full"
+                  ref={mobileNotifications}
+                >
+                  <div className="mt-4">
+                    {user &&
+                      user.notifications.map((notif) => (
+                        <div className="py-4 ml-2" key={notif.docId}>
+                          <Link
+                            to={
+                              notif.message !== "failure"
+                                ? `/post/${notif.docId}`
+                                : `/createpost/${notif.docId}`
+                            }
+                          >
+                            {notif.message}
+                          </Link>
+                        </div>
+                      ))}
+                  </div>
+                </div>
               </div>
             </div>
           )}

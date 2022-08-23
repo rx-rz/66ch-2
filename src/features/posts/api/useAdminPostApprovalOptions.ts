@@ -36,7 +36,7 @@ export const useAdminPostApprovalOptions = () => {
         notifications: [
           ...docData.data().notifications,
           {
-            message: "Your post has been approved by the admin",
+            message: `Your post (${docData.data().postTitle}) has been approved by the admin`,
             type: "success",
             docId: id,
           },
@@ -66,14 +66,14 @@ export const useAdminPostApprovalOptions = () => {
       limit(1)
     );
 
-    const querySnapshot = await getDocs(authorQuery);
+    const querySnapshot = await getDocs(authorQuery)
     querySnapshot.forEach((docData) => {
       updateDoc(doc(database, "users", docData.id), {
         notifications: [
           ...docData.data().notifications,
           {
             message:
-              "Your post has not been approved. Review it and submit for approval once again",
+              `Your post (${docData.data().postTitle}) has not been approved. Review it and submit for approval once again`,
             type: "failure",
             docId: id,
           },
