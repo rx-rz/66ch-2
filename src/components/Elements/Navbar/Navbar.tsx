@@ -33,11 +33,11 @@ export function Navbar() {
     return null;
   } else {
     return (
-      <nav className=" font-pilcrow bg-white sticky top-0 z-50 w-full mx-auto border-2 border-black ">
+      <nav className=" font-pilcrow bg-white sticky top-0 z-50 w-full mx-auto border-2 border-black dark:bg-tertiary dark:border-b-primary">
         <div className=" h-16 lg:h-16 uppercase flex  justify-between items-center mx-2">
           <NavLink
             to="/"
-            className="lg:text-5xl text-3xl md:text-4xl text-tertiary  h-full grid f font-medium  content-center transition-colors duration-300 font-Synonym"
+            className="lg:text-5xl text-3xl md:text-4xl text-tertiary  h-full grid f font-medium  content-center transition-colors duration-300 font-Synonym dark:text-white"
           >
             6 6 C H
           </NavLink>
@@ -46,19 +46,19 @@ export function Navbar() {
               <div className="h-full hidden lg:flex">
                 <NavLink
                   to="/search"
-                  className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300  active:border-b-4"
+                  className="sm:text-xl text-md text-tertiary mx-3  h-full grid font-medium  content-center lg:px-4  transition-colors duration-300  active:border-b-4 dark:text-white"
                 >
                   Search
                 </NavLink>
                 <NavLink
                   to="/auth/login"
-                  className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 "
+                  className="sm:text-xl text-md text-tertiary mx-3  h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 dark:text-white"
                 >
                   Login
                 </NavLink>
                 <NavLink
                   to="/auth/register"
-                  className="sm:text-xl text-md text-tertiary  px-3 bg-primary h-full grid font-medium  content-center lg:px-4 "
+                  className="sm:text-xl text-md text-tertiary  px-3  h-full grid font-medium  content-center lg:px-4 dark:text-white"
                 >
                   Sign Up
                 </NavLink>
@@ -78,12 +78,12 @@ export function Navbar() {
               <div className="h-full hidden lg:flex relative">
                 <Button
                   handleClick={handleNotifToggle}
-                  className="sm: text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-2  transition-colors duration-300 "
+                  className="sm: text-xl text-md text-tertiary mx-3  h-full grid font-medium  content-center lg:px-2  transition-colors duration-300 dark:text-white"
                 >
                   NOTIFICATIONS [{user && user.notifications?.length}]
                 </Button>
                 <div
-                  className="fixed top-16 h-fit border-2  min-h-[200px] bg-white hidden border-black  right-0 w-[640px]"
+                  className="fixed top-16 h-fit border-2  min-h-[200px] bg-white hidden border-black  right-0 w-[640px] dark:text-white"
                   ref={notifications}
                 >
                   <div className="mt-4">
@@ -106,7 +106,7 @@ export function Navbar() {
                 {location.pathname !== "/profile" ? (
                   <NavLink
                     to="/profile"
-                    className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 "
+                    className="sm:text-xl text-md text-tertiary mx-3  h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 dark:text-white"
                   >
                     Profile
                   </NavLink>
@@ -114,19 +114,19 @@ export function Navbar() {
 
                 <NavLink
                   to="/createpost"
-                  className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-2  transition-colors duration-300 "
+                  className="sm:text-xl text-md text-tertiary mx-3  h-full grid font-medium  content-center lg:px-2  transition-colors duration-300 dark:text-white"
                 >
                   Create Post
                 </NavLink>
                 <NavLink
                   to="/search"
-                  className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300  active:border-b-4"
+                  className="sm:text-xl text-md text-tertiary mx-3  h-full grid font-medium  content-center lg:px-4  transition-colors duration-300  active:border-b-4 dark:text-white"
                 >
                   Search
                 </NavLink>
                 <button
                   onClick={handleLogOut}
-                  className="sm:text-xl text-md  px-3 uppercase text-tertiary border-tertiary h-full grid font-medium  content-center lg:px-4"
+                  className="sm:text-xl text-md  px-3 uppercase text-tertiary border-tertiary h-full grid font-medium  content-center lg:px-4 dark:text-white"
                 >
                   Log Out
                 </button>
@@ -186,7 +186,7 @@ export function Navbar() {
               </NavLink>
               <NavLink
                 to="/auth/register"
-                className="text-2xl font-Synonym text-primary font-medium my-8 ml-4"
+                className="text-2xl font-Synonym text-primary font-medium my-8 ml-4 "
               >
                 Sign Up
               </NavLink>

@@ -18,7 +18,7 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
   const [post, loading, error] = useDocumentData(postRef);
 
   return (
-    <div className="mx-auto border-2 border-t-0 border-black">
+    <div className="mx-auto border-2 border-t-0 border-black dark:border-white">
       {error && <strong>{error.message}</strong>}
       {loading && <span>Loading...</span>}
 
