@@ -9,7 +9,7 @@ export default function PostCommentForm() {
 const {handleCommentSubmit} = useCreateComment()
 
   return (
-    <Form onSubmit={(data: CommentProps) => handleCommentSubmit(data)} className="max-w-4xl w-11/12 mb-12">
+    <Form onSubmit={(data: CommentProps) => handleCommentSubmit(data)} className="max-w-4xl w-11/12 mb-12 mx-auto">
       {({ register, formState }) => (
         <>
           <TextAreaField

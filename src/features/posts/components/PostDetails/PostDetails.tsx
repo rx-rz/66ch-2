@@ -40,7 +40,7 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
               <aside className="md:w-3/12 xl:w-2/12 w-full md:sticky top-16 border border-black h-fit md:h-screen bg-yellow-300">
                 <div className="my-20">
                   <Link
-                    className="text-2xl font-bold font-hind"
+                    className="text-2xl font-bold font-hind text-center"
                     to={
                       user && user.uid !== post.author.id
                         ? `/user/${post.author.id}`
@@ -53,7 +53,7 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
                 </div>
               </aside>
               <div className="md:w-8/12 xl:w-9/12 mx-auto">
-                <h3 className="text-lg font-bold font-hind md:text-xl my-8 md:w-6/12 w-full">
+                <h3 className="text-lg font-bold font-hind md:text-xl my-8 md:w-6/12 w-11/12 mx-auto">
                   "{post.description}"
                 </h3>
 
