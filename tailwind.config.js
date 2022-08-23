@@ -6,8 +6,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        albertsans: ["Albert Sans, sans-serif"],
-        cormorant: ["EB Garamond, serif"]
+        pilcrow: ["Pilcrow Rounded, sans-serif"],
+        hind: ["Hind, sans-serif"]
       },
       colors: {
         primary: "#FFFFFF",
@@ -26,3 +26,4 @@ module.exports = {
   },
   plugins: [],
 }
+

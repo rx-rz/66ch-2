@@ -1,7 +1,10 @@
 import { useDocumentData } from "react-firebase-hooks/firestore";
-import { Link } from "react-router-dom";
 import { useUserContext } from "src/context";
 import { useAdminPostApprovalOptions } from "../../api";
+import { motion } from "framer-motion";
+import PostComments from "./PostComments";
+import PostCommentForm from "./PostCommentForm";
+import { Link } from "react-router-dom";
 
 type PostContentProps = {
   status: string;
@@ -15,50 +18,65 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
   const [post, loading, error] = useDocumentData(postRef);
 
   return (
-    <div className="mx-auto md:my-36 my-12">
+    <div className="mx-auto border-2 border-t-0 border-black">
       {error && <strong>{error.message}</strong>}
       {loading && <span>Loading...</span>}
 
       {post && (
-        <div className="mx-auto">
-          <div className="w-full md:mb-24  mb-16">
-            <header className="md:my-12 my-8 text-center">
-              <h1 className="font-bold text-4xl md:text-5xl lg:text-8xl md:mb-10 mb-4 text-tertiary ">
-                {post.postTitle}
-              </h1>
-              <p className="mx-auto max-w-7xl w-11/12 md:text-3xl text-xl">
-                {post.description}
-              </p>
-              <Link
-                to={
-                  user && user.uid !== post.author.id
-                    ? `/user/${post.author.id}`
-                    : "/profile"
-                }
-              >
-                <p className="mx-auto max-w-7xl w-11/12 md:text-3xl text-xl">
-                  {post.author.name}
-                </p>
-              </Link>
-            </header>
-            <img
+        <main>
+          <div className="">
+            <h1 className=" w-full md:w-10/12 mx-auto my-12 text-3xl md:text-7xl text-center font-pilcrow">
+              {post.postTitle}
+            </h1>
+            <motion.img
               src={post.imageDownloadUrl}
-              alt="Header"
-              className=" object-cover w-full max-h-details h-details"
-              loading="eager"
+              alt={post.postTitle}
+              className="mx-auto"
+              initial={{ width: "30%" }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 1.5 }}
             />
-          </div>
-          <div
-            className="leading-7 md:text-2xl max-w-4xl mx-auto w-11/12  [&>ol]:list-decimal [&>ol]:ml-10 [&>ul]:list-disc  [&>ul]:ml-10 [&>h1]:md:text-5xl [&>h1]:font-bold [&>h1]:text-4xl [&>h2]:md:text-4xl [&>h2]:text-3xl [&>h2]:font-bold  [&>h3]:md:text-3xl [&>h3]:text-2xl [&>h3]:font-bold [&>a]:text-blue-700 [&>p>a]:underline"
-            dangerouslySetInnerHTML={{ __html: post.postContent }}
-          ></div>
-          {status !== "null" && authorId !== "null" && (
-            <div>
-              <button onClick={() => acceptPost(authorId)}>Accept Post</button>
-              <button onClick={() => rejectPost(authorId)}>Reject Post</button>
+            <div className="flex flex-wrap relative">
+              <aside className="md:w-3/12 xl:w-2/12 w-full md:sticky top-16 border border-black h-fit md:h-screen bg-yellow-300">
+                <div className="my-20">
+                  <Link
+                    className="text-2xl font-bold font-hind"
+                    to={
+                      user && user.uid !== post.author.id
+                        ? `/user/${post.author.id}`
+                        : "/profile"
+                    }
+                  >
+                    {post.author.name}
+                  </Link>
+                  <p>{post.dateCreated}</p>
+                </div>
+              </aside>
+              <div className="md:w-8/12 xl:w-9/12 mx-auto">
+                <h3 className="text-lg font-bold font-hind md:text-xl my-8 md:w-6/12 w-full">
+                  "{post.description}"
+                </h3>
+
+                <div
+                  className="md:text-lg font-hind my-8 w-11/12 mx-auto md:w-full"
+                  dangerouslySetInnerHTML={{ __html: post.postContent }}
+                ></div>
+                <PostComments />
+                <PostCommentForm />
+              </div>
+              {status !== "null" && authorId !== "null" && (
+                <div>
+                  <button onClick={() => acceptPost(authorId)}>
+                    Accept Post
+                  </button>
+                  <button onClick={() => rejectPost(authorId)}>
+                    Reject Post
+                  </button>
+                </div>
+              )}
             </div>
-          )}
-        </div>
+          </div>
+        </main>
       )}
     </div>
   );

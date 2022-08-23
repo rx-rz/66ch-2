@@ -1,8 +1,6 @@
 import { useParams } from "react-router-dom";
 import { MainLayout } from "src/components";
-import {motion, useIsPresent} from 'framer-motion'
-import PostCommentForm from "../components/PostDetails/PostCommentForm";
-import PostComments from "../components/PostDetails/PostComments";
+import { motion, useIsPresent } from "framer-motion";
 import PostDetails from "../components/PostDetails/PostDetails";
 
 export default function PostContent() {
@@ -12,9 +10,10 @@ export default function PostContent() {
 
   return (
     <MainLayout>
-      <PostDetails status={status} authorId={authorId} />
-      <PostComments />
-      <PostCommentForm />
+      <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1}}>
+        <PostDetails status={status} authorId={authorId} />
+
+      </motion.div>
       <motion.div
         initial={{ scaleY: 1 }}
         animate={{ scaleY: 0, transition: { duration: .6, ease: "easeIn" } }}

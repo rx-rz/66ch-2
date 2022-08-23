@@ -25,8 +25,8 @@ export function Navbar() {
   } else {
     return (
 
-      <nav className=" bg-yellow-300 sticky top-0 z-50 w-full mx-auto ">
-        <div className=" h-16 lg:h-16  flex  justify-between items-center mx-2">
+      <nav className=" font-pilcrow bg-white sticky top-0 z-50 w-full mx-auto border-2 border-black">
+        <div className=" h-16 lg:h-16 uppercase flex  justify-between items-center mx-2">
           <NavLink
             to="/"
             className="lg:text-5xl text-3xl md:text-4xl text-tertiary  h-full grid f font-medium  content-center transition-colors duration-300 font-Synonym"
@@ -38,19 +38,19 @@ export function Navbar() {
               <div className="h-full hidden lg:flex">
                 <NavLink
                   to="/search"
-                  className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya active:border-b-4"
+                  className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300  active:border-b-4"
                 >
                   Search
                 </NavLink>
                 <NavLink
                   to="/auth/login"
-                  className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya"
+                  className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 "
                 >
                   Login
                 </NavLink>
                 <NavLink
                   to="/auth/register"
-                  className="sm:text-xl text-md text-tertiary border border-tertiary  px-3 bg-primary h-full grid font-medium  content-center lg:px-4 font-Amulya"
+                  className="sm:text-xl text-md text-tertiary  px-3 bg-primary h-full grid font-medium  content-center lg:px-4 "
                 >
                   Sign Up
                 </NavLink>
@@ -71,7 +71,7 @@ export function Navbar() {
                 {location.pathname !== "/profile" ? (
                   <NavLink
                     to="/profile"
-                    className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya"
+                    className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 "
                   >
                     Profile
                   </NavLink>
@@ -79,19 +79,19 @@ export function Navbar() {
 
                 <NavLink
                   to="/createpost"
-                  className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-2  transition-colors duration-300 font-Amulya"
+                  className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-2  transition-colors duration-300 "
                 >
                   Create Post
                 </NavLink>
                 <NavLink
                   to="/search"
-                  className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 font-Amulya active:border-b-4"
+                  className="sm:text-xl text-md text-tertiary mx-3 hover:bg-primary h-full grid font-medium  content-center lg:px-4  transition-colors duration-300  active:border-b-4"
                 >
                   Search
                 </NavLink>
                 <button
                   onClick={handleLogOut}
-                  className="sm:text-xl text-md  px-3 bg-yellow-300 text-tertiary border-tertiary h-full grid font-medium  content-center lg:px-4 font-Amulya"
+                  className="sm:text-xl text-md  px-3 uppercase text-tertiary border-tertiary h-full grid font-medium  content-center lg:px-4"
                 >
                   Log Out
                 </button>

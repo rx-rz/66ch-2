@@ -1,4 +1,4 @@
-import {motion} from 'framer-motion'
+import { motion } from "framer-motion";
 type CardProps = {
   authorName: string;
   postTitle: string;
@@ -6,7 +6,7 @@ type CardProps = {
   imageUrl: string;
   tag: string;
   description: string;
-  loading?: "eager" | "lazy"
+  loading?: "eager" | "lazy";
 };
 
 export function BlogCard({
@@ -15,34 +15,42 @@ export function BlogCard({
   imageUrl,
   dateCreated,
   tag,
-  loading,
+
   description,
 }: CardProps) {
   return (
-    <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{duration: 1}}>
-    <article className="mx-auto">
-      <img
-        src={imageUrl}
-        alt={postTitle}
-        loading="lazy"
-        className="w-full max-h-full h-80 block object-cover aspect-video"
-      />
-      <div className="md:h-96 h-80 overflow-hidden pb-2 w-full">
-        <div className="opacity-80 mb-4 text-lg mt-6">
-          <div className="flex ">
-            <p className="mr-3 font-bold ">{authorName}</p>
-            <p>{dateCreated}</p>
+    <article className="w-full border border-black md:h-[700px] text-clip overflow-clip h-fit">
+      <div className="p-8">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <p className="text-lg md:text-2xl font-pilcrow mr-2">{dateCreated}</p>
+          <p className="text-xl md:text-3xl font-pilcrow">{authorName}</p>
+        </motion.div>
+
+        <img
+          src={imageUrl}
+          alt={postTitle}
+          className="aspect-video object-cover border border-black my-4"
+          loading="lazy"
+        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <div className="max-h-72 overflow-clip">
+            <h1 className="text-3xl md:text-5xl font-pilcrow uppercase text-ellipsis">
+              {postTitle}
+            </h1>
+            <h2 className="text-xl md:text-2xl font-hind text-ellipsis">
+              {description}
+            </h2>
           </div>
-          <hr className="w-4/12 border border-black mt-4" />
-        </div>
-        <p className=" text-3xl xl:text-4xl font-medium font-Amulya w-11/12 text-tertiary">
-          {postTitle}
-        </p>
-        <p className=" my-3 text-lg opacity-90 md:text-xl  font-Synonym max-w-sm w-11/12">
-          {description.substring(0, 200)}...
-        </p>
+        </motion.div>
       </div>
     </article>
-    </motion.div>
   );
 }

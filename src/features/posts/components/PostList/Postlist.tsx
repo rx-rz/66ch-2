@@ -7,11 +7,11 @@ export default function Postlist() {
   const { data } = usePostContext()!;
   const posts = data && data.filter((doc) => doc.status === "approved");
   return (
-    <div className="mx-auto w-11/12 my-20">
+    <div className="mx-auto mb-20">
       {posts && (
-        <article className="grid md:grid-cols-2  lg:grid-cols-3  gap-20">
+        <article className="flex flex-wrap">
           {posts.map((doc) => (
-            <Link to={`/post/${doc.id}`} key={doc.id} className="w-fit">
+            <Link to={`/post/${doc.id}`} key={doc.id} className="w-fit md:w-6/12 xl:w-3/12 lg:w-4/12">
               <BlogCard
                 authorName={doc.author.name}
                 tag={doc.tag}
