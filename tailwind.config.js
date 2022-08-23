@@ -10,8 +10,8 @@ module.exports = {
         cormorant: ["EB Garamond, serif"]
       },
       colors: {
-        primary: "#DBEEF4",
-        secondary: "#DBEEF4",
+        primary: "#FFFFFF",
+        secondary: "#FFFFFF",
         tertiary: "#000000"
       },
       minHeight: {

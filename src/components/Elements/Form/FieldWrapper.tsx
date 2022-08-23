@@ -15,7 +15,7 @@ export type FieldWrapperPassThroughProps = Omit<
 export const FieldWrapper = (props: FieldWrapperProps) => {
   const { label,  error, children } = props;
   return (
-    <div className="mt-8">
+    <div className="mt-4">
       {window.location.pathname !== "/createpost" ? <label className="font-Synonym font-medium text-tertiary md:text-lg text-md pb-1">
         {label}
         <div>{children}</div>

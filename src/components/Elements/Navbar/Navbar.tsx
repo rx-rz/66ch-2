@@ -25,7 +25,7 @@ export function Navbar() {
   } else {
     return (
 
-      <nav className=" bg-primary sticky top-0 z-50 w-full mx-auto ">
+      <nav className=" bg-yellow-300 sticky top-0 z-50 w-full mx-auto ">
         <div className=" h-16 lg:h-16  flex  justify-between items-center mx-2">
           <NavLink
             to="/"
@@ -91,7 +91,7 @@ export function Navbar() {
                 </NavLink>
                 <button
                   onClick={handleLogOut}
-                  className="sm:text-xl text-md  px-3 bg-primary text-tertiary border-tertiary h-full grid font-medium  content-center lg:px-4 font-Amulya"
+                  className="sm:text-xl text-md  px-3 bg-yellow-300 text-tertiary border-tertiary h-full grid font-medium  content-center lg:px-4 font-Amulya"
                 >
                   Log Out
                 </button>

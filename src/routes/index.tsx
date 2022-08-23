@@ -3,6 +3,7 @@ import { useRoutes } from "react-router-dom";
 import PageNotFound from "src/features/404/PageNotFound";
 import { useUserContext } from "src/context/userContext";
 import { Register, Login } from "src/features";
+import { AnimatePresence } from "framer-motion";
 
 const Home = React.lazy(() => import("src/features/home"));
 const PendingPosts = React.lazy(
@@ -64,5 +65,10 @@ export const AppRoutes = () => {
       : [...commonRoutes, ...authenticatedRoutes]
   );
 
-  return <Suspense fallback={<p>Loading...</p>}>{element}</Suspense>;
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      {" "}
+      <Suspense fallback={<p>Loading...</p>}>{element}</Suspense>
+    </AnimatePresence>
+  );
 };

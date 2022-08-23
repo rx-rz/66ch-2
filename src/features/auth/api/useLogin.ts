@@ -7,16 +7,16 @@ import { auth, database } from "src/config/firebaseConfig";
 import { userConverter } from "src/utils";
 
 import { toast } from "react-hot-toast";
-// function replaceErrorDiscrepancies(x: string) {
-//   return x
-//     .replace("Firebase: Error", "")
-//     .replace("(auth/", "")
-//     .replace("-", " ")
-//     .replace(")", "");
-// }
+function replaceErrorDiscrepancies(x: string) {
+  return x
+    .replace("Firebase: Error", "")
+    .replace("(auth/", "")
+    .replace("-", " ")
+    .replace(")", "");
+}
 
 const errorToast = (err: any) =>
-  toast.error(err.message, {
+  toast.error(replaceErrorDiscrepancies(err.message), {
     style: {
       borderRadius: 0,
       color: "#2F3630",

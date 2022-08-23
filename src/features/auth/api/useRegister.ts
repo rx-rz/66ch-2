@@ -21,7 +21,7 @@ type RegisterFormValues = {
 };
 
 const errorToast = (err: any) =>
-  toast.error(err.message, {
+  toast.error(err, {
     style: {
       borderRadius: 0,
       color: "#2F3630",
@@ -56,7 +56,7 @@ export const useRegister = () => {
         updateProfile(user.user, {
           displayName: data.firstName + " " + data.lastName,
           photoURL: process.env.REACT_APP_DEFAULT_PFP,
-        });
+        }).catch((err) => errorToast(err))
         addDoc(usersRef, {
           name: data.firstName + " " + data.lastName,
           photoURL: process.env.REACT_APP_DEFAULT_PFP,
@@ -64,9 +64,9 @@ export const useRegister = () => {
           dateCreated: date.toUTCString(),
           role: "writer",
           notifications: []
-        });
-        navigate("/");
+        }).catch(err => errorToast(err))
       });
+      navigate("/");
       setPending(false);
     } catch (err: any) {
       setPending(false);
@@ -82,7 +82,7 @@ export const useRegister = () => {
           photoURL: process.env.REACT_APP_DEFAULT_PFP,
           uid: user.user.uid,
           dateCreated: date.toUTCString(),
-        });
+        }).catch(err => errorToast(err))
         const usersInDatabase =
           users &&
           users.filter(
@@ -96,7 +96,7 @@ export const useRegister = () => {
             dateCreated: date.toUTCString(),
             role: "writer",
             notifications: []
-          });
+          }).catch(err => errorToast(err))
         }
       });
       navigate("/");

@@ -47,7 +47,6 @@ export const useAdminPostApprovalOptions = () => {
     navigate("/pendingposts");
   };
 
-  console.log(post)
 
   const rejectPost = async (authorId: string) => {
     post &&

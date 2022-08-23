@@ -5,7 +5,7 @@ export default function HomePage() {
   const homePageBlogPost = data && data[data.length - 1];
 
   return (
-    <div className="w-full bg-primary border-b border-b-tertiary">
+    <div className="w-full bg-yellow-300 border-b border-b-tertiary">
       <main className="pt-24 md:pt-48 mx-auto relative">
         {homePageBlogPost && (
           <Link className="cursor-pointer" to={`/post/${homePageBlogPost.id}`}>

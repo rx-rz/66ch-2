@@ -20,22 +20,24 @@ export function RegisterForm() {
   };
 
   return (
-    <div className="border border-tertiary min-h-screen">
+    <div className=" min-h-screen">
       <div className="sm:w-8/12 w-10/12 mx-auto py-">
-        <h1 className="text-3xl text-center my-4 font-bold">Create Account</h1>
+      <h1 className="text-4xl text-center my-4 font-bold">Register </h1>
 
         <Button
           handleClick={signInWithGoogle}
-          className="flex text-2xl items-center  bg-tertiary text-white  transition-opacity duration-300  hover:opacity-80 mx-auto my-12"
+          className="flex text-2xl items-center  border-tertiary border-2 rounded-full text-white  transition-opacity duration-300  hover:opacity-80 mx-auto my-12"
         >
           <img
             src={googleLogo}
             width="40px"
             alt="Google Logo"
-            className=" border-primary invert"
+            className=" border-primary"
           />
         </Button>
-        <hr className="border border-black" />
+        <p className="mx-auto w-fit md:text-xl">
+          Or use your email for registration:
+        </p>
         <div className="my-16">
           <Form
             onSubmit={(data: RegisterFormValues) => handleRegistration(data)}
@@ -44,7 +46,7 @@ export function RegisterForm() {
             {({ register, formState }) => (
               <>
                 <InputField
-                  className=" border-tertiary w-full border p-1  bg-primary focus:outline-none focus:bg-white mt-2"
+                  className=" border-tertiary w-full border p-2 rounded-md bg-primary focus:bg-white mt-2"
                   type="text"
                   label="First Name"
                   error={formState.errors.firstName}
@@ -54,7 +56,7 @@ export function RegisterForm() {
                 />
 
                 <InputField
-                  className=" border-tertiary w-full border p-1  bg-primary focus:outline-none focus:bg-white mt-2"
+                  className=" border-tertiary w-full border p-2 rounded-md bg-primary focus:bg-white mt-2"
                   type="text"
                   label="Last Name"
                   error={formState.errors.lastName}
@@ -64,7 +66,7 @@ export function RegisterForm() {
                 />
 
                 <InputField
-                  className=" border-tertiary w-full border p-1  bg-primary focus:outline-none focus:bg-white mt-2"
+                  className=" border-tertiary w-full border p-2 rounded-md bg-primary focus:bg-white mt-2"
                   type="email"
                   label="Email"
                   error={formState.errors.email}
@@ -79,7 +81,7 @@ export function RegisterForm() {
                 />
 
                 <InputField
-                  className=" border-tertiary w-full border p-1  bg-primary focus:outline-none focus:bg-white mt-2"
+                  className=" border-tertiary w-full border p-2 rounded-md bg-primary focus:bg-white mt-2"
                   type="password"
                   label="Password"
                   error={formState.errors.password}
@@ -95,13 +97,13 @@ export function RegisterForm() {
                 <div className="lg:flex mt-12 justify-between">
                   <Button
                     type="submit"
-                    className="text-xl font-Synonym lg:w-5/12 w-full border border-black bg-tertiary text-primary p-1 py-2 text-center lg:mt-0 mt-6 transition-opacity duration-300  hover:opacity-80 mb-8 lg:mb-0"
+                    className="text-xl font-Synonym lg:w-5/12 w-full bg-tertiary text-white p-3 rounded-md transition-shadow duration-300 border-tertiary border hover:shadow-2xl shadow-black mb-8 md:mb-0"
                   >
                     {!pending ? <>Register</> : <>Loading...</>}
                   </Button>
                   <Button
                     handleClick={handleNavigateToLogin}
-                    className="text-xl font-Synonym border border-tertiary lg:w-5/12 w-full bg-white text-tertiary p-1 py-2 transition-opacity duration-300  hover:opacity-80"
+                    className="text-xl font-Synonym lg:w-5/12 w-full bg-primary text-tertiary p-3 rounded-md transition-shadow duration-300 border-tertiary border hover:shadow-2xl shadow-black"
                   >
                     Log In
                   </Button>

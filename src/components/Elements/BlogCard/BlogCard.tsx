@@ -1,3 +1,4 @@
+import {motion} from 'framer-motion'
 type CardProps = {
   authorName: string;
   postTitle: string;
@@ -18,6 +19,7 @@ export function BlogCard({
   description,
 }: CardProps) {
   return (
+    <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{duration: 1}}>
     <article className="mx-auto">
       <img
         src={imageUrl}
@@ -41,5 +43,6 @@ export function BlogCard({
         </p>
       </div>
     </article>
+    </motion.div>
   );
 }
