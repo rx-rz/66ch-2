@@ -6,9 +6,9 @@ export default function HomePage() {
   const blogPostTwo = data && data[3];
 
   return (
-    <div className="w-full border-2 border-t-0 border-tertiary">
+    <div className="w-full border-2 border-t-0 border-tertiary dark:text-white">
       <main className="flex flex-wrap min-h-[90vh]">
-        <div className="border border-black md:w-6/12 w-full px-2 bg-yellow-300 ">
+        <div className="border border-black md:w-6/12 w-full px-2 bg-secondary ">
           <Link to={`post/${blogPostOne?.id}`}>
           {blogPostOne && (
             <div className="md:my-4 my-12">
@@ -34,7 +34,7 @@ export default function HomePage() {
           </Link>
         </div>
       
-        <div className="border border-black md:w-6/12 w-full px-2 bg-yellow-300 ">
+        <div className="border border-black md:w-6/12 w-full px-2 bg-secondary ">
           <Link to={`post/${blogPostTwo?.id}`}>
           {blogPostTwo && (
             <div className="md:my-4 my-12">

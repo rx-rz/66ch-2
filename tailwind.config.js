@@ -11,7 +11,7 @@ module.exports = {
       },
       colors: {
         primary: "#FFFFFF",
-        secondary: "#FFFFFF",
+        secondary: "#3EB489",
         tertiary: "#121212"
       },
       minHeight: {

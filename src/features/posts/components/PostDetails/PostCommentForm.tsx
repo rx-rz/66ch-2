@@ -25,7 +25,7 @@ export default function PostCommentForm() {
           />
           <button
             type="submit"
-            className="border-2 px-3 border-black font-pilcrow bg-yellow-300"
+            className="border-2 px-3 border-black font-pilcrow bg-secondary dark:text-white"
           >
             Comment
           </button>

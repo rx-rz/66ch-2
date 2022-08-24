@@ -16,7 +16,7 @@ export const Home = () => {
         animate={{ scaleY: 0, transition: { duration: .6, ease: "easeIn" } }}
         exit={{ scaleY: 1, transition: { duration: .6, ease: "easeOut" } }}
         style={{ originY: isPresent ? 0 : 1 }}
-        className="inset-0 fixed z-50 bg-yellow-300"
+        className="inset-0 fixed z-50 bg-secondary"
       />
     </>
   );

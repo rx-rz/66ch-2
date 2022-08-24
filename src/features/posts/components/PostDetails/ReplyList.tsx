@@ -67,7 +67,7 @@ export default function ReplyList({
               />
               <button
                 type="submit"
-                className=" border-black bg-yellow-300 font-pilcrow px-3 my-2 border-2"
+                className=" border-black bg-secondary dark:text-white font-pilcrow px-3 my-2 border-2"
               >
                 Reply
               </button>

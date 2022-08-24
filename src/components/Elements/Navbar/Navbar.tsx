@@ -80,11 +80,11 @@ export function Navbar() {
                   NOTIFICATIONS [{user && user.notifications?.length}]
                 </Button>
                 <div
-                  className="fixed top-16 h-fit border-2  min-h-[200px] bg-white hidden border-black  right-0 w-[640px] dark:text-white"
+                  className="fixed top-16 h-fit border-2  min-h-[200px] bg-white hidden border-black  right-0 w-[652px] dark:text-white"
                   ref={notifications}
                 >
                   <div className="mt-4">
-                    {user &&
+                    {user.notifications.length > 0 ?
                       user.notifications?.map((notif) => (
                         <div className="py-4 ml-2" key={notif.docId}>
                           <Link
@@ -97,7 +97,7 @@ export function Navbar() {
                             {notif.message}
                           </Link>
                         </div>
-                      ))}
+                      )) : <p className="text-center mt-20">You have no new notifications. 😶</p>}
                   </div>
                 </div>
 
