@@ -1,10 +1,11 @@
 import { updateProfile } from "firebase/auth";
 import { collection, doc, updateDoc } from "firebase/firestore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useNavigate } from "react-router-dom";
 import { auth, database } from "src/config/firebaseConfig";
+import { useUserContext } from "src/context";
 import { usePostImage } from "src/hooks/usePostImage";
 import {
   blogConverter,
@@ -33,6 +34,7 @@ const draftsRef = collection(database, "drafts").withConverter(draftConverter);
 export const useUpdateProfile = () => {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
+  const { user: currentUser } = useUserContext()!;
 
   const [posts] = useCollectionData(postsRef);
   const [comments] = useCollectionData(commentsRef);
@@ -47,7 +49,7 @@ export const useUpdateProfile = () => {
   );
   const userReplies = replies?.filter((doc) => doc.replyAuthorId === user?.uid);
   const userDrafts = drafts?.filter((doc) => doc.author.id === user?.uid);
-  const namesOfUser = user && user.displayName!.split(" ");
+  const namesOfUser = currentUser && currentUser.name!.split(" ");
 
   const [pending, setPending] = useState(false);
   const [file, setFile] = useState<File>({} as File);
@@ -55,6 +57,9 @@ export const useUpdateProfile = () => {
   const types = ["image/png", "image/jpeg", "image/jpg"];
   const { url } = usePostImage(file);
 
+  useEffect(() => {
+    console.log(currentUser);
+  }, [currentUser]);
   const handleChange = (e: any) => {
     let selectedFile = e;
     if (selectedFile) {
@@ -70,6 +75,14 @@ export const useUpdateProfile = () => {
     setPending(true);
     await updateProfile(user!, {
       displayName:
+        (data.firstName  ?? "First Name") +
+        " " +
+        (data.lastName  ?? "Last Name"),
+      photoURL: url ?? user!.photoURL,
+    });
+
+    await updateDoc(doc(database, "users", currentUser!.id), {
+      name:
         (data.firstName ?? namesOfUser![0]) +
         " " +
         (data.lastName ?? namesOfUser![1]),

@@ -10,9 +10,6 @@ const PendingPosts = React.lazy(
   () => import("src/features/posts/routes/PendingPosts")
 );
 
-const PostList = React.lazy(
-  () => import("src/features/posts/components/PostList/Postlist")
-);
 const CreatePost = React.lazy(
   () => import("src/features/posts/routes/CreatePost")
 );
@@ -35,11 +32,10 @@ const UserProfile = React.lazy(
 export const AppRoutes = () => {
   const { user } = useUserContext()!;
   const commonRoutes = [
-    { path: "/auth/register", element: <Register /> },
-    { path: "/auth/login", element: <Login /> },
-    { path: "/", element: <Home /> },
+    { path: "/auth/register", element: <Register /> }, /*done*/
+    { path: "/auth/login", element: <Login /> }, /*done*/
+    { path: "/", element: <Home /> }, /*done*/
     { path: "/user/:id", element: <UserProfile /> },
-    { path: "/postlist", element: <PostList /> },
     { path: "/post/:id", element: <PostContent /> },
     { path: "/post/:id/:status/:authorId", element: <PostContent /> },
     { path: "/search", element: <PostSearch /> },

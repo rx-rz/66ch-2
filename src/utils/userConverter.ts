@@ -9,6 +9,7 @@ import {
 
 export type User = {
   name: string;
+  id: string
   role: "admin" | "writer";
   photoURL: string;
   uid: string;
@@ -34,6 +35,7 @@ export const userConverter: FirestoreDataConverter<User> = {
       ref: snapshot.ref,
       dateCreated: data.dateCreated,
       notifications: data.notifications,
+      id: snapshot.ref.id
     };
   },
 };

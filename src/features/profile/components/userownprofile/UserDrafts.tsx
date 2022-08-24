@@ -12,15 +12,16 @@ export default function UserDrafts() {
   const userPosts = data?.filter((doc) => doc.author.id === user?.uid);
 
   return (
-    <div className="mx-auto w-11/12 md:my-20 ">
-      <h1 className="md:text-3xl text-2xl mb-16 font-bold">DRAFTS</h1>
+    <div className="mx-auto md:w-11/12 w-full md:my-20">
+      <h1 className="md:text-5xl text-3xl my-8 font-bold dark:text-white font-pilcrow">DRAFTS</h1>
       {userPosts && userPosts.length > 0 ? (
-        <article className="flex flex-wrap">
+        <article className="grid md:grid-cols-2 xl:grid-cols-3 grid-cols-1">
           {userPosts!.map((doc, index) => (
             <DraftCard
               authorName={doc.author.name}
               tag={doc.tag}
               description={doc.description}
+              postId={doc.id}
               dateCreated={doc.dateCreated}
               imageUrl={doc.imageDownloadUrl}
               postTitle={`Draft ${index + 1}`}

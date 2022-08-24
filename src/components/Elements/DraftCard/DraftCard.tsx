@@ -21,7 +21,7 @@ export function DraftCard({
   postId,
 }: CardProps) {
   return (
-    <div className=" border-2 border-black dark:border-white md:h-[700px] text-clip overflow-clip h-fit dark:text-white dark:bg-tertiary m-1">
+    <div className=" border-2 border-black dark:border-white md:h-[600px] text-clip overflow-clip h-fit dark:text-white dark:bg-tertiary m-1">
       <Link to={`/createpost/${postId}`}>
         <div className="md:p-8 p-2 my-8 md:my-0">
           <motion.div
@@ -32,18 +32,12 @@ export function DraftCard({
             <p className="text-lg md:text-2xl font-pilcrow mr-2 mb-2">
               {dateCreated}
             </p>
-            <Link
-              to={`/search/${tag}`}
-              className="border border-black font-pilcrow px-1 dark:border-white"
-            >
-              {tag}
-            </Link>
           </motion.div>
 
           <img
             src={imageUrl}
             alt={postTitle}
-            className="aspect-video object-cover border border-black my-4"
+            className="aspect-video object-cover border border-black my-4 dark:border-white"
             loading="lazy"
           />
           <motion.div

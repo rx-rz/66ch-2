@@ -31,7 +31,7 @@ export default function ReplyList({
     replyTag.current?.classList.toggle("hidden");
   };
   return (
-    <div className="w-11/12">
+    <div className="md:w-8/12 w-10/12">
       <button onClick={handleReplyDisplay} className="font-pilcrow font-extralight">
         {replies && replies.length > 0 ? (
           <>Show Replies ( {replies.length} )</>
@@ -39,7 +39,7 @@ export default function ReplyList({
           <>Reply</>
         )}
       </button>
-      <div ref={replyTag} className="hidden">
+      <div ref={replyTag} className="hidden mt-2">
         {replies &&
           replies.map((doc) => (
             <React.Fragment key={doc.id}>

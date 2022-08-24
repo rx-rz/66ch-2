@@ -34,7 +34,7 @@ export default function UpdateProfile() {
             })}
             label="First Name"
             type="text"
-            defaultValue={namesOfUser![0]}
+            // defaultValue={namesOfUser![0]}
             error={formState.errors.firstName}
           />
           <InputField
@@ -44,7 +44,7 @@ export default function UpdateProfile() {
             })}
             label="Last Name"
             type="text"
-            defaultValue={namesOfUser![1]}
+            // defaultValue={namesOfUser![1]}
             error={formState.errors.lastName}
           />
           <Button

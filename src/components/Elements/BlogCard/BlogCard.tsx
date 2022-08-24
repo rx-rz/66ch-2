@@ -47,7 +47,7 @@ export function BlogCard({
               user && user.uid === authorId ? "/profile" : `/user/${authorId}`
             }
           >
-            <p className="text-xl md:text-3xl font-pilcrow mt-2">
+            <p className="text-xl md:text-3xl font-pilcrow mt-2 hover:text-secondary transition-colors duration-300">
               {authorName}
             </p>
           </Link>

@@ -11,7 +11,7 @@ export default function PostCommentForm() {
   return (
     <Form
       onSubmit={(data: CommentProps) => handleCommentSubmit(data)}
-      className="max-w-4xl  w-11/12 mb-12 md:mx-0 mx-auto "
+      className="max-w-4xl w-11/12 md:w-9/12 mb-12 md:mx-0  "
     >
       {({ register, formState }) => (
         <>

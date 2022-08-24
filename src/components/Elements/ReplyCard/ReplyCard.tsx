@@ -40,13 +40,13 @@ export function ReplyCard({
   
   return (
     <article className=" border border-black p-2 dark:border-white">
-      <div className="flex text-md font-bold my-2 font-pilcrow">
+      <div className="flex text-md font-bold  font-pilcrow">
         <h3 className="mr-2">{authorName}</h3>
         <h2 className="opacity-60">{dateCreated}</h2>
       </div>
-      <hr className="border border-yellow-300"/>
+      <hr className="border border-secondary"/>
       <div>
-        <p className="font-hind">{reply}</p>
+        <p className="text-sm font-hind">{reply}</p>
       </div>
       <div>
         <button onClick={handleLikeClick}>{replyLikers.includes(userId) ? <>💗 {likes}</> : <>🤍 {likes}</>}</button>

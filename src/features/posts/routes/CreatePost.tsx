@@ -38,7 +38,7 @@ export default function CreatePost() {
             className="fixed  md:sticky md:flex z-40 md:top-0  hidden md:w-4/12 w-full  bg-secondary "
             ref={settings}
           >
-            <div className="z-40 h-screen mx-auto">
+            <div className="z-40 min-h-screen mx-auto">
               <PostSettings
                 editPostSettings={editPostSettings}
                 draft={draft?.data()}

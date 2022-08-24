@@ -52,7 +52,7 @@ export const PostContent = ({
             Save As Draft
           </Button>
           <Button
-            className="border bg-secondary font-pilcrow border-tertiary text-primary px-1 md:text-xl text-md md:hidden ml-3"
+            className="border-2 bg-secondary font-pilcrow border-tertiary text-primary px-1 md:text-xl text-md md:hidden ml-3"
             handleClick={handleMenuToggle}
           >
             Settings

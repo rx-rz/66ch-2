@@ -10,6 +10,7 @@ type User = {
   uid: string;
   role: "admin" | "writer";
   dateCreated: string;
+  id: string
   photoURL: string;
   notifications: {
     message: string;

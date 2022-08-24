@@ -34,14 +34,14 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
               alt={post.postTitle}
               className="mx-auto  border border-black dark:border-white object-cover"
               initial={{ width: "30%" }}
-              animate={{ width: "80%" }}
+              animate={{ width: "95%" }}
               transition={{ duration: 0.7 }}
             />
             <div className="flex flex-wrap relative mx-auto md:w-9/12 w-full">
               <aside className="md:w-3/12 xl:w-2/12 w-full md:sticky top-16  md:border-r-black md:border-r h-fit md:h-screen md:dark:border-r-white">
                 <div className="md:my-20 w-11/12 md:w-full mx-auto mt-8">
                   <Link
-                    className="text-2xl font-bold font-hind text-center text-blue-600"
+                    className="text-2xl font-bold font-pilcrow text-center text-blue-600"
                     to={
                       user && user.uid !== post.author.id
                         ? `/user/${post.author.id}`
@@ -50,7 +50,7 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
                   >
                     {post.author.name}
                   </Link>
-                  <p>{post.dateCreated}</p>
+                  <p className="font-pilcrow">{post.dateCreated}</p>
                 </div>
               </aside>
               <div className="md:w-8/12 xl:w-9/12 mx-auto">
@@ -62,8 +62,10 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
                   className="md:text-lg font-hind my-8 w-11/12 mx-auto md:mx-0  max-w-[66ch] editorcontent"
                   dangerouslySetInnerHTML={{ __html: post.postContent }}
                 ></div>
+                <div className="w-11/12 mx-auto">
                 <PostComments />
                 <PostCommentForm />
+                </div>
                 {status !== "null" && authorId !== "null" && (
                 <div>
                   <Button handleClick={() => acceptPost(authorId)} variant="authPrimary">
