@@ -22,12 +22,9 @@ export function RegisterForm() {
   return (
     <div className=" min-h-screen">
       <div className="w-10/12 mx-auto font-pilcrow">
-      <h1 className="text-4xl text-center my-4 font-bold">Register </h1>
+        <h1 className="text-4xl text-center my-4 font-bold">Register </h1>
 
-        <Button
-          handleClick={signInWithGoogle}
-          className="flex text-2xl items-center dark:border-white border-tertiary border-2 rounded-full text-white  transition-opacity duration-300  hover:opacity-80 mx-auto my-12"
-        >
+        <Button handleClick={signInWithGoogle} variant="authTertiary">
           <img
             src={googleLogo}
             width="40px"
@@ -46,7 +43,7 @@ export function RegisterForm() {
             {({ register, formState }) => (
               <>
                 <InputField
-                  className=" border-tertiary w-full border p-2  bg-primary focus:bg-white mt-2 font-hind text-black"
+                  variant="authField"
                   type="text"
                   label="First Name"
                   error={formState.errors.firstName}
@@ -56,7 +53,7 @@ export function RegisterForm() {
                 />
 
                 <InputField
-                  className=" border-tertiary w-full border p-2  bg-primary focus:bg-white mt-2 font-hind text-black"
+                  variant="authField"
                   type="text"
                   label="Last Name"
                   error={formState.errors.lastName}
@@ -66,7 +63,7 @@ export function RegisterForm() {
                 />
 
                 <InputField
-                  className=" border-tertiary w-full border p-2  bg-primary focus:bg-white mt-2 font-hind text-black"
+                  variant="authField"
                   type="email"
                   label="Email"
                   error={formState.errors.email}
@@ -81,7 +78,7 @@ export function RegisterForm() {
                 />
 
                 <InputField
-                  className=" border-tertiary w-full border p-2  bg-primary focus:bg-white mt-2 font-hind text-black"
+                  variant="authField"
                   type="password"
                   label="Password"
                   error={formState.errors.password}
@@ -95,15 +92,12 @@ export function RegisterForm() {
                 />
 
                 <div className="lg:flex mt-12 justify-between">
-                  <Button
-                    type="submit"
-                    className="text-xl font-Synonym lg:w-5/12 w-full bg-yellow-300 text-black p-3  transition-shadow duration-300 border-tertiary border hover:shadow-2xl shadow-black mb-8 md:mb-0"
-                  >
+                  <Button type="submit" variant="authPrimary">
                     {!pending ? <>Register</> : <>Loading...</>}
                   </Button>
                   <Button
                     handleClick={handleNavigateToLogin}
-                    className="text-xl font-Synonym lg:w-5/12 w-full bg-primary text-tertiary p-3  transition-shadow duration-300 border-tertiary border hover:shadow-2xl shadow-black mb-12 md:mb-0"
+                    variant="authSecondary"
                   >
                     Log In
                   </Button>

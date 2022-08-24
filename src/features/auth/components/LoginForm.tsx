@@ -21,11 +21,14 @@ export function LoginForm() {
       <div className=" w-10/12 mx-auto md:py-16 font-pilcrow">
         <h1 className="text-4xl text-center my-4 font-bold">Log In </h1>
 
-        <Button
-          handleClick={signInWithGoogle}
-          className="flex text-2xl items-center dark:border-white border-tertiary border-2 rounded-full text-white  transition-opacity duration-300  hover:opacity-80 mx-auto my-12"
-        >
-          <img src={googleLogo} width="40px" height="40px" alt="Google Logo" className="dark:invert"/>
+        <Button handleClick={signInWithGoogle} variant="authTertiary">
+          <img
+            src={googleLogo}
+            width="40px"
+            height="40px"
+            alt="Google Logo"
+            className="dark:invert"
+          />
         </Button>
         <p className="mx-auto w-fit md:text-xl">
           Or use your email for authentication:
@@ -38,7 +41,7 @@ export function LoginForm() {
             {({ register, formState }) => (
               <>
                 <InputField
-                  className=" border-tertiary w-full border p-2  bg-primary focus:bg-white mt-2 font-hind text-black"
+                  variant="authField"
                   type="text"
                   label="Email"
                   error={formState.errors.email}
@@ -53,7 +56,7 @@ export function LoginForm() {
                 />
 
                 <InputField
-                  className=" border-tertiary w-full border p-2  bg-primary focus:bg-white mt-2 font-hind text-black"
+                  variant="authField"
                   type="password"
                   label="Password"
                   error={formState.errors.password}
@@ -66,16 +69,13 @@ export function LoginForm() {
                   })}
                 />
                 <div className="lg:flex mt-20 md:mt-12 justify-between">
-                  <Button
-                    type="submit"
-                    className="text-xl font-Synonym lg:w-5/12 w-full bg-yellow-300 text-black p-3  transition-shadow duration-300 border-tertiary border hover:shadow-2xl shadow-black mb-8 md:mb-0"
-                  >
+                  <Button type="submit" variant="authPrimary">
                     {pending ? <>Loading....</> : <>Log In</>}
                   </Button>
                   <Button
                     type="submit"
                     handleClick={handleNavigateToRegister}
-                    className="text-xl font-Synonym lg:w-5/12 w-full bg-primary text-tertiary p-3  transition-shadow duration-300 border-tertiary border hover:shadow-2xl shadow-black"
+                    variant="authSecondary"
                   >
                     Register
                   </Button>
