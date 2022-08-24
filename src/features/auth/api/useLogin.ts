@@ -5,8 +5,9 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useNavigate } from "react-router-dom";
 import { auth, database } from "src/config/firebaseConfig";
 import { userConverter } from "src/utils";
-
 import { toast } from "react-hot-toast";
+import { FirebaseError } from "firebase/app";
+
 function replaceErrorDiscrepancies(x: string) {
   return x
     .replace("Firebase: Error", "")
@@ -15,7 +16,7 @@ function replaceErrorDiscrepancies(x: string) {
     .replace(")", "");
 }
 
-const errorToast = (err: any) =>
+const errorToast = (err: FirebaseError) =>
   toast.error(replaceErrorDiscrepancies(err.message), {
     style: {
       borderRadius: 0,
@@ -43,6 +44,7 @@ type LoginFormValues = {
     const [pending, setPending] = useState(false);
     const navigate = useNavigate()
   
+
     const signInWithGoogle = async () => {
       try {
         await signInWithPopup(auth, googleProvider)
@@ -70,6 +72,7 @@ type LoginFormValues = {
       }
     };
   
+    
     const handleSignIn = async (data: LoginFormValues) => {
       try {
         setPending(true);

@@ -1,3 +1,4 @@
+import { FirebaseError } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -13,6 +14,14 @@ import { useNavigate } from "react-router-dom";
 import { database } from "src/config/firebaseConfig";
 import { userConverter } from "src/utils";
 
+function replaceErrorDiscrepancies(x: string) {
+  return x
+    .replace("Firebase: Error", "")
+    .replace("(auth/", "")
+    .replace("-", " ")
+    .replace(")", "");
+}
+
 type RegisterFormValues = {
   firstName: string;
   lastName: string;
@@ -20,8 +29,8 @@ type RegisterFormValues = {
   password: string;
 };
 
-const errorToast = (err: any) =>
-  toast.error(err, {
+const errorToast = (err: FirebaseError) =>
+  toast.error(replaceErrorDiscrepancies(err.message), {
     style: {
       borderRadius: 0,
       color: "#2F3630",
@@ -45,6 +54,7 @@ export const useRegister = () => {
 
   const navigate = useNavigate();
 
+
   const handleRegistration = async (data: RegisterFormValues) => {
     try {
       setPending(true);
@@ -56,15 +66,15 @@ export const useRegister = () => {
         updateProfile(user.user, {
           displayName: data.firstName + " " + data.lastName,
           photoURL: process.env.REACT_APP_DEFAULT_PFP,
-        }).catch((err) => errorToast(err))
+        }).catch((err) => errorToast(err));
         addDoc(usersRef, {
           name: data.firstName + " " + data.lastName,
           photoURL: process.env.REACT_APP_DEFAULT_PFP,
           uid: user.user.uid,
           dateCreated: date.toUTCString(),
           role: "writer",
-          notifications: []
-        }).catch(err => errorToast(err))
+          notifications: [],
+        }).catch((err) => errorToast(err));
       });
       navigate("/");
       setPending(false);
@@ -74,6 +84,7 @@ export const useRegister = () => {
     }
   };
 
+
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider).then((user) => {
@@ -82,7 +93,7 @@ export const useRegister = () => {
           photoURL: process.env.REACT_APP_DEFAULT_PFP,
           uid: user.user.uid,
           dateCreated: date.toUTCString(),
-        }).catch(err => errorToast(err))
+        }).catch((err) => errorToast(err));
         const usersInDatabase =
           users &&
           users.filter(
@@ -95,8 +106,8 @@ export const useRegister = () => {
             uid: user.user.uid,
             dateCreated: date.toUTCString(),
             role: "writer",
-            notifications: []
-          }).catch(err => errorToast(err))
+            notifications: [],
+          }).catch((err) => errorToast(err));
         }
       });
       navigate("/");
@@ -105,5 +116,7 @@ export const useRegister = () => {
       errorToast(err);
     }
   };
-  return {signInWithGoogle, handleRegistration, pending}
+
+  return { signInWithGoogle, handleRegistration, pending };
+  
 };
