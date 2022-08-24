@@ -6,7 +6,7 @@ import UserPosts from "../components/userownprofile/UserPosts";
 export default function UserOwnProfile() {
   return (
     <MainLayout>
-      <div className="flex flex-wrap bg-secondary">
+      <div className="flex flex-wrap">
         <div className="md:w-4/12 lg:w-3/12 w-full md:sticky md:top-20 bg-secondary">
           <ProfileBanner />
         </div>

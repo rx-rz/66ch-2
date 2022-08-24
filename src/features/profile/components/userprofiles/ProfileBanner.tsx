@@ -3,7 +3,7 @@ import { useViewProfile } from "../../api/useViewProfile";
 export default function ProfileBanner() {
   const { user } = useViewProfile()!;
   return (
-    <div className="mx-auto w-11/12 block my-20 md:sticky top-36 font-pilcrow dark:text-white">
+    <div className="mx-auto w-full md:w-11/12 block my-20 md:sticky top-36 font-pilcrow dark:text-white">
       {user && (
         <>
           <img

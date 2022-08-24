@@ -55,7 +55,7 @@ export const useUpdateProfile = () => {
   const [file, setFile] = useState<File>({} as File);
 
   const types = ["image/png", "image/jpeg", "image/jpg"];
-  const { url } = usePostImage(file);
+  const { url , progress} = usePostImage(file);
 
   useEffect(() => {
     console.log(currentUser);
@@ -133,5 +133,5 @@ export const useUpdateProfile = () => {
     navigate("/profile");
   };
 
-  return { handleChange, handleProfileUpdate, namesOfUser, pending };
+  return { handleChange, handleProfileUpdate, namesOfUser, pending, progress };
 };
