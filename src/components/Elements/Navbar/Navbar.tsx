@@ -1,11 +1,13 @@
 import { signOut } from "firebase/auth";
 import { useRef } from "react";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Navlink } from "../NavLink/NavLink";
 import { auth } from "src/config/firebaseConfig";
 import { useUserContext } from "src/context";
 import { Button } from "../Button";
 import notifButton from "src/assets/notification.svg";
-/**The Header Component accepts 3 link items as children and justifies them evenly */
+import { useEffect } from "react";
+
 export function Navbar() {
   const { user } = useUserContext()!;
   const menu = useRef<HTMLDivElement>(null);
@@ -25,6 +27,13 @@ export function Navbar() {
 
   const location = useLocation();
 
+  // useEffect(() => {
+  //   // mobileNotifications.current!.classList.contains("hidden") === true &&
+  //   //   mobileNotifications.current?.classList.add("hidden");
+  //   // notifications.current!.classList.contains("hidden") === true &&
+  //   //   notifications.current?.classList.add("hidden");
+  // }, [location]);
+
   const handleLogOut = () => {
     signOut(auth);
     navigate("/auth/login");
@@ -35,37 +44,25 @@ export function Navbar() {
     return (
       <nav className=" font-pilcrow bg-white sticky top-0 z-50 w-full mx-auto border-2 border-black dark:bg-tertiary dark:border-b-primary">
         <div className=" h-16 lg:h-16 uppercase flex  justify-between items-center mx-2">
-          <NavLink
-            to="/"
-            className="lg:text-5xl text-3xl md:text-4xl text-tertiary  h-full grid f font-medium  content-center transition-colors duration-300 font-Synonym dark:text-white"
-          >
+          <Navlink to="/" variant="main">
             6 6 C H
-          </NavLink>
+          </Navlink>
           {!user ? (
             <div className="h-full">
               <div className="h-full hidden lg:flex">
-                <NavLink
-                  to="/search"
-                  className="sm:text-xl text-md text-tertiary mx-3  h-full grid font-medium  content-center lg:px-4  transition-colors duration-300  active:border-b-4 dark:text-white"
-                >
+                <Navlink to="/search" variant="primary">
                   Search
-                </NavLink>
-                <NavLink
-                  to="/auth/login"
-                  className="sm:text-xl text-md text-tertiary mx-3  h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 dark:text-white"
-                >
+                </Navlink>
+                <Navlink to="/auth/login" variant="primary">
                   Login
-                </NavLink>
-                <NavLink
-                  to="/auth/register"
-                  className="sm:text-xl text-md text-tertiary  px-3  h-full grid font-medium  content-center lg:px-4 dark:text-white"
-                >
+                </Navlink>
+                <Navlink to="/auth/register" variant="primary">
                   Sign Up
-                </NavLink>
+                </Navlink>
               </div>
               <div className="h-full lg:hidden block">
                 <button
-                  className="text-tertiary  h-full grid font-extrabold  content-center   font-Synonym dark:text-white"
+                  className="text-tertiary  h-full grid font-extrabold  content-center   font-pilcrow dark:text-white"
                   onClick={handleMenuToggle}
                   ref={menubutton}
                 >
@@ -103,27 +100,17 @@ export function Navbar() {
                       ))}
                   </div>
                 </div>
-                {location.pathname !== "/profile" ? (
-                  <NavLink
-                    to="/profile"
-                    className="sm:text-xl text-md text-tertiary mx-3  h-full grid font-medium  content-center lg:px-4  transition-colors duration-300 dark:text-white"
-                  >
-                    Profile
-                  </NavLink>
-                ) : null}
 
-                <NavLink
-                  to="/createpost"
-                  className="sm:text-xl text-md text-tertiary mx-3  h-full grid font-medium  content-center lg:px-2  transition-colors duration-300 dark:text-white"
-                >
+                <Navlink to="/profile" variant="primary">
+                  Profile
+                </Navlink>
+
+                <Navlink to="/createpost" variant="primary">
                   Create Post
-                </NavLink>
-                <NavLink
-                  to="/search"
-                  className="sm:text-xl text-md text-tertiary mx-3  h-full grid font-medium  content-center lg:px-4  transition-colors duration-300  active:border-b-4 dark:text-white"
-                >
+                </Navlink>
+                <Navlink to="/search" variant="primary">
                   Search
-                </NavLink>
+                </Navlink>
                 <button
                   onClick={handleLogOut}
                   className="sm:text-xl text-md  px-3 uppercase text-tertiary border-tertiary h-full grid font-medium  content-center lg:px-4 dark:text-white"
@@ -132,9 +119,15 @@ export function Navbar() {
                 </button>
               </div>
               <div className="h-full lg:hidden relative flex">
-                <Button  className="flex items-center mr-3" handleClick={handleMobileNotifToggle}><img src={notifButton} alt="" width="20px" className="mr-1"/>{user && user.notifications?.length}</Button>
+                <Button
+                  className="flex items-center mr-3 dark:invert"
+                  handleClick={handleMobileNotifToggle}
+                >
+                  <img src={notifButton} alt="" width="20px" className="mr-1 " />
+                  {user && user.notifications?.length}
+                </Button>
                 <button
-                  className="text-tertiary h-full grid font-extrabold  content-center   font-Synonym dark:text-white"
+                  className="text-tertiary h-full grid font-extrabold  content-center   font-pilcrow dark:text-white"
                   onClick={handleMenuToggle}
                   ref={menubutton}
                 >
@@ -172,50 +165,31 @@ export function Navbar() {
         >
           {!user ? (
             <div className="flex flex-col">
-              <NavLink
-                to="/search"
-                className="text-2xl font-Synonym text-primary font-medium my-8 ml-4 "
-              >
+              <Navlink to="/search" variant="mobile">
                 Search
-              </NavLink>
-              <NavLink
-                to="/auth/login"
-                className="text-2xl font-Synonym text-primary font-medium my-8 ml-4"
-              >
+              </Navlink>
+              <Navlink to="/auth/login" variant="mobile">
                 Login
-              </NavLink>
-              <NavLink
-                to="/auth/register"
-                className="text-2xl font-Synonym text-primary font-medium my-8 ml-4 "
-              >
+              </Navlink>
+              <Navlink to="/auth/register" variant="mobile">
                 Sign Up
-              </NavLink>
+              </Navlink>
             </div>
           ) : (
             <div className="flex flex-col">
-              {location.pathname !== "/profile" ? (
-                <NavLink
-                  to="/profile"
-                  className="text-2xl font-Synonym text-primary font-medium my-8 ml-4 mt-14"
-                >
-                  Profile
-                </NavLink>
-              ) : null}
-              <NavLink
-                to="/createpost"
-                className="text-2xl font-Synonym text-primary font-medium my-8 ml-4"
-              >
+              <Navlink to="/profile" variant="mobile">
+                Profile
+              </Navlink>
+
+              <Navlink to="/createpost" variant="mobile">
                 Create Post
-              </NavLink>
-              <NavLink
-                to="/search"
-                className="text-2xl font-Synonym text-primary font-medium my-8 ml-4"
-              >
+              </Navlink>
+              <Navlink to="/search" variant="mobile">
                 Search
-              </NavLink>
+              </Navlink>
               <button
                 onClick={handleLogOut}
-                className="text-2xl font-Synonym text-primary font-medium my-8 ml-4 w-fit"
+                className="text-2xl font-pilcrow text-primary font-medium my-8 ml-4 w-fit"
               >
                 Log Out
               </button>
