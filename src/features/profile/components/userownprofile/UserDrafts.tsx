@@ -18,7 +18,7 @@ export default function UserDrafts() {
       {userPosts && userPosts.length > 0 ? (
         <article className="flex flex-wrap">
           {userPosts!.map((doc, index) => (
-            <Link to={`/post/${doc.id}`} key={doc.id} className="w-fit md:w-6/12 xl:w-3/12 lg:w-4/12">
+            <Link to={`/createpost/${doc.id}`} key={doc.id} className="w-fit md:w-6/12 xl:w-3/12 lg:w-4/12">
               <BlogCard
                 authorName={doc.author.name}
                 tag={doc.tag}

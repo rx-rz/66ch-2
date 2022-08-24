@@ -74,7 +74,7 @@ export default function PostSettings({
   ];
   const [file, setFile] = useState<File | null | any>(null);
   const { imageFile } = useOptimizeImage(file);
-  const { url } = usePostImage(imageFile);
+  const { url, progress, error } = usePostImage(imageFile);
 
   const types = ["image/jpg", "image/jpeg", "image/png"];
   const handleChange = (e: any) => {
@@ -106,15 +106,16 @@ export default function PostSettings({
             {draft && setValue("tag", `${draft.tag}`)}
             <FileUploader handleChange={handleChange} name="File">
               <div className="cursor-pointer h-36  w-full border-dotted border-2 border-primary grid items-center">
-                <p className="mx-auto text-primary w-9/12 text-center">
+                {!progress ? <p className="mx-auto text-primary w-9/12 text-center">
                   Click to upload image or drag and drop image files here (PNG,
                   JPG or JPEG, preferably landscape images.)
-                </p>
+                </p> : <p className="mx-auto text-primary w-9/12 text-center">Image {progress}% uploaded</p>}
+                {error && <p className="text-red-600">{error.message}</p>}
               </div>
             </FileUploader>
             <SelectField
               options={tagNames.map((tagName) => ({ value: tagName }))}
-              className="border border-primary w-full focus:outline-none bg-tertiary py-2 text-primary mt-3"
+              className="border border-primary w-full focus:outline-none  py-2 text-tertiary mt-3"
               defaultValue="Nature"
               registration={register("tag")}
               label="Tag"
@@ -130,20 +131,20 @@ export default function PostSettings({
                 },
                 required: "Please enter a post description",
               })}
-              className="resize-none bg-primary text-black w-full border-dotted border border-primary focus:bg-white focus:outline-none mt-3"
+              className="resize-none bg-primary text-black w-full border-dotted border border-primary focus:bg-white focus:outline-none mt-3 p-1"
               label="Description"
               error={formState.errors.description}
             />
             <Button
               type="submit"
-              className="text-xl font-Synonym self-end w-full  hidden md:block md:mt-12 bottom-0 mx-auto bg-tertiary border border-primary text-primary p-1 py-2 transition-colors duration-300  hover:bg-secondary hover:text-tertiary"
+              className="text-xl font-pilcrow self-end w-full  hidden md:block md:mt-12 bottom-0 mx-auto bg-tertiary border border-primary text-primary p-1 py-2 transition-colors duration-300  hover:bg-secondary hover:text-tertiary"
             >
               Save Settings
             </Button>
             <Button
               handleClick={handleMenuToggle}
               type="submit"
-              className="text-xl font-Synonym self-end w-full md:hidden mt-8  md:mt-12 bottom-0 mx-auto bg-tertiary border border-primary text-primary p-1 py-2 transition-colors duration-300  hover:bg-secondary hover:text-tertiary"
+              className="text-xl font-pilcrow self-end w-full md:hidden mt-8  md:mt-12 bottom-0 mx-auto bg-tertiary border border-primary text-primary p-1 py-2 transition-colors duration-300  hover:bg-secondary hover:text-tertiary"
             >
               Save Settings
             </Button>

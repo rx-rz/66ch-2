@@ -49,20 +49,21 @@
       .ql-toolbar {
         position: sticky;
         z-index: 20;
-        border: 1px solid black !important;
+        border: 1px solid #3EB489 !important;
         font-size: large;
         padding: 0px !important;
         margin-block: 4rem 1rem !important;
         top: 0;
-        border: 1px solid #000 !important;
+
         background-color: white;
       }
 
       .ql-container {
         border: none !important;
+
       }
       .ql-editor {
-        font-family: "General Sans", sans-serif;
+        font-family: "Hind", sans-serif;
         border: none !important;
         padding: 4px 1px !important;
         margin-block-end: 5rem !important;
@@ -70,14 +71,31 @@
       }
       .ql-formats {
         font-family: "Satoshi", sans-serif;
-        /* position: absolute;
-        top: 0; */
+
+      }
+
+      .ql-editor h1{
+        font-size: clamp(2rem, 2.2vw, 2.4rem) !important;
+      }
+
+      .ql-editor h2{
+        font-size: clamp(1.6rem, 1.8vw, 2rem) !important;
       }
 
       @media (prefers-color-scheme: dark){
         body{
           background-color: #121212;
         }
+
+        .ql-editor{
+          color: white !important
+        }
+
+        .ql-editor:data-placeholder {
+          color: white  !important;
+        }
+
+ 
       }
     </style>
     <meta

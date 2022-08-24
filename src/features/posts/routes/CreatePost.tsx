@@ -35,7 +35,7 @@ export default function CreatePost() {
         <Toaster />
         <main className=" flex justify-between h-screen w-full">
           <div
-            className="fixed  md:sticky md:flex z-40 md:top-0  hidden md:w-4/12 w-full bg-tertiary"
+            className="fixed  md:sticky md:flex z-40 md:top-0  hidden md:w-4/12 w-full  bg-secondary "
             ref={settings}
           >
             <div className="z-40 h-screen mx-auto">

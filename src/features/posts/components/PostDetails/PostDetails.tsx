@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import PostComments from "./PostComments";
 import PostCommentForm from "./PostCommentForm";
 import { Link } from "react-router-dom";
+import { Button } from "src/components";
 
 type PostContentProps = {
   status: string;
@@ -63,17 +64,18 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
                 ></div>
                 <PostComments />
                 <PostCommentForm />
-              </div>
-              {status !== "null" && authorId !== "null" && (
+                {status !== "null" && authorId !== "null" && (
                 <div>
-                  <button onClick={() => acceptPost(authorId)}>
+                  <Button handleClick={() => acceptPost(authorId)} variant="authPrimary">
                     Accept Post
-                  </button>
-                  <button onClick={() => rejectPost(authorId)}>
+                  </Button>
+                  <Button handleClick={() => rejectPost(authorId)} variant="authPrimary">
                     Reject Post
-                  </button>
+                  </Button>
                 </div>
               )}
+              </div>
+
             </div>
           </div>
         </main>

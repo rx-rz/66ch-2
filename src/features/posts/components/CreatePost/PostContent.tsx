@@ -39,21 +39,20 @@ export const PostContent = ({
   const { changeEditorContent, handleDraft, handleSubmit } = useCreatePost();
 
   return (
-    <div className="w-11/12 mx-auto my-12 font-albertsans">
+    <div className="md:w-11/12 w-full  mx-auto my-8 font-hind">
       <nav className="flex justify-between mx-auto">
-        <Link to="/" className="md:text-xl text-md font-bold">
-          {" "}
+        <Link to="/" className="md:text-xl text-md font-bold font-pilcrow dark:text-white">
           &#8592; Home
         </Link>
         <div className="justify-between flex">
           <Button
-            className="border border-tertiary px-1 md:text-xl text-md"
+            className="border-2 border-tertiary dark:text-white bg-primary px-1 text-secondary md:text-xl text-md font-pilcrow dark:bg-tertiary dark:border-secondary"
             handleClick={() => handleDraft(imageUrl, tag, description, draft)}
           >
             Save As Draft
           </Button>
           <Button
-            className="border bg-tertiary  border-tertiary text-primary px-1 md:text-xl text-md md:hidden ml-3"
+            className="border bg-secondary font-pilcrow border-tertiary text-primary px-1 md:text-xl text-md md:hidden ml-3"
             handleClick={handleMenuToggle}
           >
             Settings
@@ -68,7 +67,7 @@ export const PostContent = ({
       >
         {({ register, formState, setValue }) => (
           <>
-          {draft && setValue("postTitle", draft.postTitle ?? "")}
+            {draft && setValue("postTitle", draft.postTitle ?? "")}
             <TextAreaField
               error={formState.errors.postTitle}
               placeholder="Enter your post title here...(200 characters max)"
@@ -80,12 +79,12 @@ export const PostContent = ({
                     "Your post title cannot be more than 200 characters long",
                 },
               })}
-              className="resize-none focus:outline-none w-full m-auto text-3xl md:text-4xl lg:text-5xl ml-1 bg-primary text-tertiary "
+              className="resize-none focus:outline-none w-full m-auto text-3xl md:text-4xl lg:text-5xl ml-1 bg-primary text-tertiary dark:bg-tertiary dark:text-white"
             />
             {!imageUrl && !description && !tag && (
-              <p className="md:text-xl md:mt-8 mt-4">
+              <p className="md:text-xl md:mt-4 mt-4 dark:text-white">
                 Please specify the needed settings for the blog post in the post
-                settings
+                settings.
               </p>
             )}
 
@@ -108,7 +107,7 @@ export const PostContent = ({
             />
             <Button
               type="submit"
-              className="text-xl font-Synonym lg:w-5/12 w-full border border-tertiary bg-tertiary text-primary p-1 py-2 text-center lg:mt-0 mt-6 transition-opacity duration-300  hover:opacity-80"
+              className="text-xl font-pilcrow lg:w-5/12 w-full border-2 border-tertiary bg-secondary text-primary p-1 py-2 text-center lg:mt-0 mt-4 transition-opacity duration-300  hover:opacity-80"
             >
               Create Post
             </Button>

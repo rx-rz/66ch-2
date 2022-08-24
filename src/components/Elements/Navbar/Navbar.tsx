@@ -84,7 +84,7 @@ export function Navbar() {
                   ref={notifications}
                 >
                   <div className="mt-4">
-                    {user.notifications.length > 0 ?
+                    {user.notifications?.length > 0 ?
                       user.notifications?.map((notif) => (
                         <div className="py-4 ml-2" key={notif.docId}>
                           <Link
