@@ -20,9 +20,9 @@ const errorToast = (err: FirebaseError) =>
   toast.error(replaceErrorDiscrepancies(err.message), {
     style: {
       borderRadius: 0,
-      color: "#2F3630",
-      backgroundColor: "#EEECE7",
-      border: "1px solid #2F3630",
+      color: 'white',
+      backgroundColor: "#121212",
+      border: "2px solid #0437F2",
       width: "300px",
     
     },

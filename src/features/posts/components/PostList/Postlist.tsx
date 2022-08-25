@@ -7,7 +7,7 @@ export default function Postlist() {
   return (
     <div className="mx-auto ">
       {posts && (
-        <article className="flex flex-wrap">
+        <article className="flex flex-wrap justify-center">
           {posts.map((doc) => (
             <article
               key={doc.id}

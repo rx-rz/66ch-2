@@ -3,12 +3,14 @@ import { useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navlink } from "../NavLink/NavLink";
 import { auth } from "src/config/firebaseConfig";
-import { useUserContext } from "src/context";
+import { usePostContext, useUserContext } from "src/context";
 import { Button } from "../Button";
 import notifButton from "src/assets/notification.svg";
 
 export function Navbar() {
   const { user } = useUserContext()!;
+  const { data } = usePostContext()!;
+  const pendingPosts = data && data.filter((doc) => doc.status === "pending");
   const menu = useRef<HTMLDivElement>(null);
   const notifications = useRef<HTMLDivElement>(null);
   const mobileNotifications = useRef<HTMLDivElement>(null);
@@ -65,18 +67,24 @@ export function Navbar() {
           ) : (
             <div className="h-full">
               <div className="h-full hidden lg:flex relative">
-                <Button
-                  handleClick={handleNotifToggle}
-                  className="sm: text-xl text-md text-tertiary mx-3  h-full grid font-medium  content-center lg:px-2  transition-colors duration-300 dark:text-white"
-                >
-                  NOTIFICATIONS [{user && user.notifications?.length}]
-                </Button>
+                {user.role === "writer" ? (
+                  <Button
+                    handleClick={handleNotifToggle}
+                    className="sm: text-xl text-md text-tertiary mx-3  h-full grid font-medium  content-center lg:px-2  dark:text-white transition-colors duration-300 hover:text-secondary"
+                  >
+                    NOTIFICATIONS [{user && user.notifications?.length}]
+                  </Button>
+                ) : (
+                  <Navlink variant="primary" to="/pendingposts">
+                    PENDING POSTS [{pendingPosts && pendingPosts.length}]
+                  </Navlink>
+                )}
                 <div
                   className="fixed top-16 h-fit border-2  min-h-[200px] bg-white dark:border-white dark:bg-tertiary hidden border-black  right-0 w-[652px] dark:text-white"
                   ref={notifications}
                 >
                   <div className="mt-4">
-                    {user.notifications?.length > 0 ?
+                    {user.notifications?.length > 0 ? (
                       user.notifications?.map((notif) => (
                         <div className="py-4 ml-2" key={notif.docId}>
                           <Link
@@ -89,7 +97,12 @@ export function Navbar() {
                             {notif.message}
                           </Link>
                         </div>
-                      )) : <p className="text-center mt-20 dark:text-white">You have no new notifications. 😶</p>}
+                      ))
+                    ) : (
+                      <p className="text-center mt-20 dark:text-white">
+                        You have no new notifications. 😶
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -105,17 +118,22 @@ export function Navbar() {
                 </Navlink>
                 <button
                   onClick={handleLogOut}
-                  className="sm:text-xl text-md  px-3 uppercase text-tertiary border-tertiary h-full grid font-medium  content-center lg:px-4 dark:text-white"
+                  className="sm:text-xl text-md transition-colors duration-300 hover:text-secondary px-3 uppercase text-tertiary border-tertiary h-full grid font-medium  content-center lg:px-4 dark:text-white"
                 >
                   Log Out
                 </button>
               </div>
               <div className="h-full lg:hidden relative flex">
                 <Button
-                  className="flex items-center mr-3 dark:invert"
+                  className="flex items-center mr-3 dark:invert transition-colors duration-300 hover:text-secondary"
                   handleClick={handleMobileNotifToggle}
                 >
-                  <img src={notifButton} alt="" width="20px" className="mr-1 " />
+                  <img
+                    src={notifButton}
+                    alt=""
+                    width="20px"
+                    className="mr-1 "
+                  />
                   {user && user.notifications?.length}
                 </Button>
                 <button
@@ -176,12 +194,17 @@ export function Navbar() {
               <Navlink to="/createpost" variant="mobile">
                 Create Post
               </Navlink>
+              {user.role === "admin" && (
+                <Navlink variant="mobile" to="/pendingposts">
+                  Pending Posts [{pendingPosts && pendingPosts.length}]
+                </Navlink>
+              )}
               <Navlink to="/search" variant="mobile">
                 Search
               </Navlink>
               <button
                 onClick={handleLogOut}
-                className="text-2xl font-pilcrow text-primary font-medium my-8 ml-4 w-fit"
+                className="text-2xl font-pilcrow text-primary font-medium my-8 ml-4 w-fit transition-colors duration-300 hover:text-secondary"
               >
                 Log Out
               </button>

@@ -19,12 +19,6 @@ export const usePaginatedPosts = () => {
   );
   const [empty, setEmpty] = useState(false);
 
-//   const paginatedPosts = query(
-//     collection(database, "posts"),
-//     orderBy("dateCreated"),
-//     where("status", "==", "approved"),
-//     limit(3)
-//   ).withConverter(blogConverter);
 
 
   useEffect(() => {

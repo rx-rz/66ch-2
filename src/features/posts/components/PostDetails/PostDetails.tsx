@@ -4,7 +4,7 @@ import { useAdminPostApprovalOptions } from "../../api";
 import { motion } from "framer-motion";
 import PostComments from "./PostComments";
 import PostCommentForm from "./PostCommentForm";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { Button } from "src/components";
 
 type PostContentProps = {
@@ -14,8 +14,9 @@ type PostContentProps = {
 
 export default function PostDetails({ status, authorId }: PostContentProps) {
   const { user } = useUserContext()!;
+  const { id } = useParams();
   const { postRef, acceptPost, rejectPost } = useAdminPostApprovalOptions();
-
+  const location = useLocation();
   const [post, loading, error] = useDocumentData(postRef);
 
   return (
@@ -62,22 +63,31 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
                   className="md:text-lg font-hind my-8 w-11/12 mx-auto md:mx-0  max-w-[66ch] editorcontent"
                   dangerouslySetInnerHTML={{ __html: post.postContent }}
                 ></div>
-                <div className="w-11/12 mx-auto">
-                <PostComments />
-                <PostCommentForm />
+                <div className="w-11/12 mx-auto md:mx-0">
+                  {location.pathname === (id && `/post/${id}`) && (
+                    <PostComments />
+                  )}
+                  {user && location.pathname === (id && `/post/${id}`) && (
+                    <PostCommentForm />
+                  )}
                 </div>
                 {status !== "null" && authorId !== "null" && (
-                <div>
-                  <Button handleClick={() => acceptPost(authorId)} variant="authPrimary">
-                    Accept Post
-                  </Button>
-                  <Button handleClick={() => rejectPost(authorId)} variant="authPrimary">
-                    Reject Post
-                  </Button>
-                </div>
-              )}
+                  <div className="my-4 md:my-8">
+                    <Button
+                      handleClick={() => acceptPost(authorId)}
+                      variant="pendingButton"
+                    >
+                      Accept Post
+                    </Button>
+                    <Button
+                      handleClick={() => rejectPost(authorId)}
+                      variant="pendingButton"
+                    >
+                      Reject Post
+                    </Button>
+                  </div>
+                )}
               </div>
-
             </div>
           </div>
         </main>

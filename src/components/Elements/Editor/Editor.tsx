@@ -1,13 +1,12 @@
-import { async } from "@firebase/util";
 import {
   getDownloadURL,
   ref,
   StorageError,
   uploadBytesResumable,
-  UploadTask,
+
 } from "firebase/storage";
 import { useEffect, useMemo, useRef, useState } from "react";
-import ReactQuill, { Quill } from "react-quill";
+import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { storage } from "src/config/firebaseConfig";
 

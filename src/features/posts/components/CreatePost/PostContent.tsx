@@ -61,7 +61,7 @@ export const PostContent = ({
       </nav>
       <Form
         onSubmit={(data: EditorProps) =>
-          handleSubmit(data, imageUrl, tag, description, draft)
+          handleSubmit(data, imageUrl, tag, description)
         }
         options={{ mode: "onBlur" }}
       >
@@ -81,7 +81,7 @@ export const PostContent = ({
               })}
               className="resize-none focus:outline-none w-full m-auto text-3xl md:text-4xl lg:text-5xl ml-1 bg-primary text-tertiary dark:bg-tertiary dark:text-white"
             />
-            {!imageUrl && !description && !tag && (
+            {(!imageUrl) && !description && !tag && (
               <p className="md:text-xl md:mt-4 mt-4 dark:text-white">
                 Please specify the needed settings for the blog post in the post
                 settings.
