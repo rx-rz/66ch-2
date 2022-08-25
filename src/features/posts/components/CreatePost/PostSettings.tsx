@@ -105,7 +105,7 @@ export default function PostSettings({
             {draft && setValue("description", `${draft.description}`)}
             {draft && setValue("tag", `${draft.tag}`)}
             <FileUploader handleChange={handleChange} name="File">
-              <div className="cursor-pointer h-36  w-full border-dotted border-2 border-primary grid items-center">
+              <div className="cursor-pointer h-36  w-full border-dotted border-2 border-primary grid items-center font-pilcrow">
                 {!progress ? <p className="mx-auto text-primary w-9/12 text-center">
                   Click to upload image or drag and drop image files here (PNG,
                   JPG or JPEG, preferably landscape images.)

@@ -70,6 +70,7 @@ export const useCreatePost = () => {
   const { user } = useUserContext()!;
 
   const { id } = useParams();
+  const [pending, setPending] = useState(false)
   const [draftId, setDraftId] = useState<string | null>(null);
   const [editorContent, setEditorContent] = useState("");
 
@@ -86,6 +87,7 @@ export const useCreatePost = () => {
   ) => {
     if (/[a-z]/i.test(data.postTitle) && /[a-z]/i.test(editorContent)) {
       if (imageUrl && tag && description) {
+        setPending(true)
         await addDoc(postsRef, {
           postTitle: data.postTitle,
           postContent: editorContent,
@@ -100,6 +102,7 @@ export const useCreatePost = () => {
         if (draft) {
           await deleteDoc(doc(database, "drafts", id!));
         }
+        setPending(false)
         window.location.pathname = "/";
       } else {
         errorToast();
@@ -150,5 +153,5 @@ export const useCreatePost = () => {
     }
   };
 
-  return {changeEditorContent, handleDraft, handleSubmit}
+  return {changeEditorContent, handleDraft, handleSubmit, pending}
 };

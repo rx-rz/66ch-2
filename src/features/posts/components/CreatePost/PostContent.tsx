@@ -36,7 +36,7 @@ export const PostContent = ({
   handleMenuToggle,
   draft,
 }: PostSettingProps) => {
-  const { changeEditorContent, handleDraft, handleSubmit } = useCreatePost();
+  const { changeEditorContent, handleDraft, handleSubmit , pending} = useCreatePost();
 
   return (
     <div className="md:w-11/12 w-full  mx-auto my-8 font-hind">
@@ -109,7 +109,7 @@ export const PostContent = ({
               type="submit"
               className="text-xl font-pilcrow lg:w-5/12 w-full border-2 border-tertiary bg-secondary text-primary p-1 py-2 text-center lg:mt-0 mt-4 transition-opacity duration-300  hover:opacity-80"
             >
-              Create Post
+              {!pending ? <>Create Post</> : <>Loading...</>}
             </Button>
           </>
         )}
