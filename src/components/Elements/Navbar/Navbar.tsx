@@ -67,18 +67,17 @@ export function Navbar() {
           ) : (
             <div className="h-full">
               <div className="h-full hidden lg:flex relative">
-                {user.role === "writer" ? (
-                  <Button
-                    handleClick={handleNotifToggle}
-                    className="sm: text-xl text-md text-tertiary mx-3  h-full grid font-medium  content-center lg:px-2  dark:text-white transition-colors duration-300 hover:text-secondary"
-                  >
-                    NOTIFICATIONS [{user && user.notifications?.length}]
-                  </Button>
-                ) : (
-                  <Navlink variant="primary" to="/pendingposts">
-                    PENDING POSTS [{pendingPosts && pendingPosts.length}]
-                  </Navlink>
-                )}
+              <Navlink variant="primary" to="/pendingposts">
+                  PENDING POSTS [{pendingPosts && pendingPosts.length}]
+                </Navlink>
+
+                <Button
+                  handleClick={handleNotifToggle}
+                  className="sm: text-xl text-md text-tertiary mx-3  h-full grid font-medium  content-center lg:px-2  dark:text-white transition-colors duration-300 hover:text-secondary"
+                >
+                  NOTIFICATIONS [{user && user.notifications?.length}]
+                </Button>
+
                 <div
                   className="fixed top-16 h-fit border-2  min-h-[200px] bg-white dark:border-white dark:bg-tertiary hidden border-black  right-0 w-[652px] dark:text-white"
                   ref={notifications}
@@ -194,11 +193,11 @@ export function Navbar() {
               <Navlink to="/createpost" variant="mobile">
                 Create Post
               </Navlink>
-              {user.role === "admin" && (
-                <Navlink variant="mobile" to="/pendingposts">
-                  Pending Posts [{pendingPosts && pendingPosts.length}]
-                </Navlink>
-              )}
+
+              <Navlink variant="mobile" to="/pendingposts">
+                Pending Posts [{pendingPosts && pendingPosts.length}]
+              </Navlink>
+
               <Navlink to="/search" variant="mobile">
                 Search
               </Navlink>

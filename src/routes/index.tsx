@@ -32,9 +32,9 @@ const UserProfile = React.lazy(
 export const AppRoutes = () => {
   const { user } = useUserContext()!;
   const commonRoutes = [
-    { path: "/auth/register", element: <Register /> }, /*done*/
-    { path: "/auth/login", element: <Login /> }, /*done*/
-    { path: "/", element: <Home /> }, /*done*/
+    { path: "/auth/register", element: <Register /> } /*done*/,
+    { path: "/auth/login", element: <Login /> } /*done*/,
+    { path: "/", element: <Home /> } /*done*/,
     { path: "/user/:id", element: <UserProfile /> },
     { path: "/post/:id", element: <PostContent /> },
     { path: "/post/:id/:status/:authorId", element: <PostContent /> },
@@ -43,21 +43,18 @@ export const AppRoutes = () => {
     { path: "*", element: <PageNotFound /> },
   ];
 
-  const adminRoutes = [{ path: "/pendingposts", element: <PendingPosts /> }];
-
   const authenticatedRoutes = [
     { path: "/createpost", element: <CreatePost /> },
     { path: "/createpost/:id", element: <CreatePost /> },
     { path: "/profile", element: <UserOwnProfile /> },
     { path: "/updateprofile", element: <UpdateProfile /> },
     { path: "*", element: <PageNotFound /> },
+    { path: "/pendingposts", element: <PendingPosts /> },
   ];
 
   const element = useRoutes(
     user === null
       ? [...commonRoutes]
-      : user?.role === "admin"
-      ? [...commonRoutes, ...authenticatedRoutes, ...adminRoutes]
       : [...commonRoutes, ...authenticatedRoutes]
   );
 

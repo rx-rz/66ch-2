@@ -4,12 +4,15 @@ import { BlogCard } from "src/components/Elements/BlogCard/BlogCard";
 import { usePostContext } from "src/context/postContext";
 import { Blog } from "src/utils";
 import search from "src/assets/search.svg";
+import larry from "src/assets/larry.svg";
+
 export const SearchPosts = () => {
   const { tag } = useParams();
   const postTag = tag && tag;
   const [searchTerm, setSearchTerm] = useState("");
   const { data } = usePostContext()!;
   const [blogs, setBlogs] = useState<Blog[] | null>(null);
+
   const handleSearch = () => {
     data &&
       setBlogs(
@@ -80,7 +83,16 @@ export const SearchPosts = () => {
           ))}
         </article>
       ) : (
-        <p>No post matches your search term. 😶</p>
+        <div className="flex flex-col text-center w-full justify-center">
+          <h1 className="text-2xl md:text-4xl dark:text-white font-pilcrow">
+            Uh oh. No posts match your search term
+          </h1>
+          <img
+            src={larry}
+            alt="You have no pending posts."
+            className="max-h-[80vh] dark:invert"
+          />
+        </div>
       )}
     </div>
   );
