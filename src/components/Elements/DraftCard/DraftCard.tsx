@@ -1,6 +1,9 @@
+import { deleteDoc, doc } from "firebase/firestore";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-
+import { Link, useLocation } from "react-router-dom";
+import { database } from "src/config/firebaseConfig";
+import { Button } from "../Button";
+import deleteButton from "src/assets/delete.svg";
 type CardProps = {
   authorName: string;
   postTitle: string;
@@ -20,10 +23,15 @@ export function DraftCard({
   tag,
   postId,
 }: CardProps) {
+  const location = useLocation();
+
+  const handleDelete = () => {
+    deleteDoc(doc(database, "drafts", postId!));
+  };
   return (
     <div className=" border-2 border-black dark:border-white md:h-[600px] text-clip overflow-clip h-fit dark:text-white dark:bg-tertiary m-1">
-      <Link to={`/createpost/${postId}`}>
-        <div className="md:p-8 p-2 my-8 md:my-0">
+      <div className="md:p-8 p-2 my-8 md:my-0">
+        <Link to={`/createpost/${postId}`}>
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -54,8 +62,18 @@ export function DraftCard({
               </h2>
             </div>
           </motion.div>
-        </div>
-      </Link>
+        </Link>
+        {location.pathname === "/profile" && (
+          <Button handleClick={handleDelete} className="mt-8">
+            <img
+              alt="Delete"
+              src={deleteButton}
+              width="30px"
+              className="dark:invert"
+            />
+          </Button>
+        )}
+      </div>
     </div>
   );
 }

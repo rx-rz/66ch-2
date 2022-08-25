@@ -111,7 +111,7 @@ export const useCreatePost = () => {
           imageDownloadUrl: imageUrl ?? draft?.imageDownloadUrl,
           author: { name: user?.name, id: user?.uid },
           dateCreated: date.toLocaleDateString(),
-          tag: tag ?? draft?.description,
+          tag: tag ?? draft?.tag,
           description: description ?? draft?.description,
           status: user && user.role === "admin" ? "approved" : "pending",
           isChecked: user && user.role === "admin" ? true : false,

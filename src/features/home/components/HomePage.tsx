@@ -6,7 +6,7 @@ export default function HomePage() {
   const blogPostTwo = data && data[3];
 
   return (
-    <div className="w-full border-2 border-t-0 border-tertiary dark:text-white">
+    <div className="w-full border-2 border-t-0 border-tertiary text-white">
       <main className="flex flex-wrap min-h-[90vh]">
         <div className="border border-black md:w-6/12 w-full px-2 bg-secondary ">
           <Link to={`post/${blogPostOne?.id}`}>

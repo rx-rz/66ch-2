@@ -23,7 +23,7 @@ export default function UserPosts() {
                 dateCreated={doc.dateCreated}
                 imageUrl={doc.imageDownloadUrl}
                 postTitle={doc.postTitle}
-                postId={doc.author.id}
+                postId={doc.id}
               />
             </React.Fragment>
           ))}

@@ -17,7 +17,6 @@ export default function ProfileBanner() {
               {user.name}
             </h1>
             <h2 className="text-xl md:text-3xl mb-2">
-              {" "}
               Joined {user.dateCreated}
             </h2>
             <Link
