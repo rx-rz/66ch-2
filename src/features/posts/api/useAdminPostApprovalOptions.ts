@@ -82,7 +82,7 @@ export const useAdminPostApprovalOptions = () => {
         isChecked: true,
       });
     });
-    // navigate("/pendingposts");
+    navigate("/pendingposts");
   };
 
   return { postRef, acceptPost, rejectPost };

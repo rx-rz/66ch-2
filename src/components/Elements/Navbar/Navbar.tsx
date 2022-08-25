@@ -2,10 +2,12 @@ import { signOut } from "firebase/auth";
 import { useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navlink } from "../NavLink/NavLink";
-import { auth } from "src/config/firebaseConfig";
+import { auth, database } from "src/config/firebaseConfig";
 import { usePostContext, useUserContext } from "src/context";
 import { Button } from "../Button";
+import deleteButton from "src/assets/delete.svg";
 import notifButton from "src/assets/notification.svg";
+import { doc, updateDoc } from "firebase/firestore";
 
 export function Navbar() {
   const { user } = useUserContext()!;
@@ -16,10 +18,19 @@ export function Navbar() {
   const menubutton = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
 
+  const handleNotifDelete = (id: string) => {
+    const newNotifcations =
+      user && user.notifications.filter((notif) => notif.docId !== id);
+    updateDoc(doc(database, "users", user?.id!), {
+      notifications: [...newNotifcations!],
+    });
+  };
+
   const pendingPosts =
     data && user && user.role === "admin"
       ? data.filter((doc) => doc.status === "pending")
-      : data!.filter(
+      : data &&
+        data.filter(
           (doc) => doc.status === "pending" && doc.author.id === user?.uid
         );
 
@@ -94,13 +105,27 @@ export function Navbar() {
                       user.notifications?.map((notif) => (
                         <div className="py-4 ml-2" key={notif.docId}>
                           <Link
+                            className="flex justify-evenly items-center"
                             to={
                               notif.message !== "failure"
                                 ? `/post/${notif.docId}`
                                 : `/createpost/${notif.docId}`
                             }
                           >
-                            <p>{notif.message}</p>
+                            <div className="w-10/12">
+                              <p>{notif.message}</p>
+                              <p>{notif.dateCreated}</p>
+                            </div>
+                            <Button
+                              handleClick={() => handleNotifDelete(notif.docId)}
+                            >
+                              <img
+                                src={deleteButton}
+                                alt="Delete Notification"
+                                className="dark:invert"
+                                width="30px"
+                              />
+                            </Button>
                           </Link>
                         </div>
                       ))
@@ -159,13 +184,27 @@ export function Navbar() {
                       user.notifications?.map((notif) => (
                         <div className="py-4 ml-2" key={notif.docId}>
                           <Link
+                            className="flex justify-evenly items-center"
                             to={
                               notif.message !== "failure"
                                 ? `/post/${notif.docId}`
                                 : `/createpost/${notif.docId}`
                             }
                           >
-                            <p>{notif.message}</p>
+                            <div className="w-10/12">
+                              <p>{notif.message}</p>
+                              <p>{notif.dateCreated}</p>
+                            </div>
+                            <Button
+                              handleClick={() => handleNotifDelete(notif.docId)}
+                            >
+                              <img
+                                src={deleteButton}
+                                className="dark:invert"
+                                alt="Delete Notification"
+                                width="30px"
+                              />
+                            </Button>
                           </Link>
                         </div>
                       ))
