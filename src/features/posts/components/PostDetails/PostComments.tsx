@@ -32,7 +32,7 @@ export default function PostComments() {
                 dateCreated={doc.dateCreated}
               />
 
-              <ReplyList
+              <ReplyList  
                 commentId={doc.id}
                 dateCreated={doc.dateCreated}
                 likes={0}

@@ -39,7 +39,7 @@ export function ReplyCard({
   };
   
   return (
-    <article className=" border border-black p-2 dark:border-white">
+    <article className=" border border-black p-2 dark:border-white my-2">
       <div className="flex text-md font-bold  font-pilcrow">
         <h3 className="mr-2">{authorName}</h3>
         <h2 className="opacity-60">{dateCreated}</h2>
@@ -49,7 +49,7 @@ export function ReplyCard({
         <p className="text-sm font-hind">{reply}</p>
       </div>
       <div>
-        <button onClick={handleLikeClick}>{replyLikers.includes(userId) ? <>💗 {likes}</> : <>🤍 {likes}</>}</button>
+        <button onClick={handleLikeClick}>{replyLikers.includes(userId) ? <>❤️ {likes}</> : <>🤍 {likes}</>}</button>
       </div>
     </article>
   );

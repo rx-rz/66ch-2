@@ -23,15 +23,15 @@ export const useCreateReply = () => {
   const ref = collection(database, "replies").withConverter(replyConverter);
   const [data] = useCollectionData(ref);
 
-  const replies = (commentId: string) => {
-    data &&
-      data
-        .filter((doc) => doc.commentId === commentId)
-        .sort(function (a, b) {
-          return Date.parse(a.dateCreated) - Date.parse(b.dateCreated);
-        });
-    return {data}
-  };
+  // const replies = (commentId: string) => {
+  //   data &&
+  //     data
+  //       .filter((doc) => doc.commentId === commentId)
+  //       .sort(function (a, b) {
+  //         return Date.parse(a.dateCreated) - Date.parse(b.dateCreated);
+  //       });
+  //   return {data}
+  // };
 
   const replyRef = collection(database, "replies");
   const handleReplySubmit = async (
@@ -51,5 +51,5 @@ export const useCreateReply = () => {
     });
   };
 
-  return { handleReplySubmit, replies };
+  return { handleReplySubmit, data };
 };

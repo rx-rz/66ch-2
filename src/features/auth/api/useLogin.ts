@@ -24,6 +24,7 @@ const errorToast = (err: FirebaseError) =>
       backgroundColor: "#EEECE7",
       border: "1px solid #2F3630",
       width: "300px",
+    
     },
     duration: 4000,
   });

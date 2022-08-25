@@ -22,8 +22,15 @@ export default function ReplyList({
   commentId,
   user,
 }: Partial<ReplyListProps>) {
-  const { handleReplySubmit, replies: replyData } = useCreateReply();
-  const { data: replies } = replyData(commentId!);
+  const { handleReplySubmit, data } = useCreateReply();
+
+  const replies =
+    data &&
+    data
+      .filter((doc) => doc.commentId === commentId)
+      .sort(function (a, b) {
+        return Date.parse(a.dateCreated) - Date.parse(b.dateCreated);
+      });
 
   const replyTag = useRef<HTMLDivElement | null>(null);
 
@@ -32,7 +39,10 @@ export default function ReplyList({
   };
   return (
     <div className="md:w-8/12 w-10/12">
-      <button onClick={handleReplyDisplay} className="font-pilcrow font-extralight">
+      <button
+        onClick={handleReplyDisplay}
+        className="font-pilcrow font-extralight"
+      >
         {replies && replies.length > 0 ? (
           <>Show Replies ( {replies.length} )</>
         ) : (
@@ -63,11 +73,11 @@ export default function ReplyList({
             <>
               <TextAreaField
                 registration={register("reply")}
-                className="border border-black resize-none w-11/12 text-black"
+                className="border-2 dark:border-white border-black resize-none w-11/12 text-black"
               />
               <button
                 type="submit"
-                className=" border-black bg-secondary dark:text-white font-pilcrow px-3 my-2 border-2"
+                className=" border-black bg-secondary dark:border-white font-pilcrow px-3 my-2 border-2"
               >
                 Reply
               </button>
