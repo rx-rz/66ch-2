@@ -24,7 +24,7 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
       {error && <strong>{error.message}</strong>}
       {loading && <span>Loading...</span>}
 
-      {post && (
+      {post && user && (
         <main>
           <div className="md:w-10/12 w-full mx-auto  ">
             <h1 className=" w-full md:w-10/12 mx-auto my-12 text-3xl md:text-7xl text-center font-pilcrow">
@@ -71,22 +71,24 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
                     <PostCommentForm />
                   )}
                 </div>
-                {status !== "null" && authorId !== "null" && (
-                  <div className="my-4 md:my-8">
-                    <Button
-                      handleClick={() => acceptPost(authorId)}
-                      variant="pendingButton"
-                    >
-                      Accept Post
-                    </Button>
-                    <Button
-                      handleClick={() => rejectPost(authorId)}
-                      variant="pendingButton"
-                    >
-                      Reject Post
-                    </Button>
-                  </div>
-                )}
+                {status !== "null" &&
+                  authorId !== "null" &&
+                  user.role === "admin" && (
+                    <div className="my-4 md:my-8">
+                      <Button
+                        handleClick={() => acceptPost(authorId)}
+                        variant="pendingButton"
+                      >
+                        Accept Post
+                      </Button>
+                      <Button
+                        handleClick={() => rejectPost(authorId)}
+                        variant="pendingButton"
+                      >
+                        Reject Post
+                      </Button>
+                    </div>
+                  )}
               </div>
             </div>
           </div>

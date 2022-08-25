@@ -10,12 +10,19 @@ import notifButton from "src/assets/notification.svg";
 export function Navbar() {
   const { user } = useUserContext()!;
   const { data } = usePostContext()!;
-  const pendingPosts = data && data.filter((doc) => doc.status === "pending");
   const menu = useRef<HTMLDivElement>(null);
   const notifications = useRef<HTMLDivElement>(null);
   const mobileNotifications = useRef<HTMLDivElement>(null);
   const menubutton = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
+
+  const pendingPosts =
+    data && user && user.role === "admin"
+      ? data.filter((doc) => doc.status === "pending")
+      : data!.filter(
+          (doc) => doc.status === "pending" && doc.author.id === user?.uid
+        );
+
   const handleMenuToggle = () => {
     menu.current!.classList.toggle("hidden");
   };
@@ -67,7 +74,7 @@ export function Navbar() {
           ) : (
             <div className="h-full">
               <div className="h-full hidden lg:flex relative">
-              <Navlink variant="primary" to="/pendingposts">
+                <Navlink variant="primary" to="/pendingposts">
                   PENDING POSTS [{pendingPosts && pendingPosts.length}]
                 </Navlink>
 
@@ -82,7 +89,7 @@ export function Navbar() {
                   className="fixed top-16 h-fit border-2  min-h-[200px] bg-white dark:border-white dark:bg-tertiary hidden border-black  right-0 w-[652px] dark:text-white"
                   ref={notifications}
                 >
-                  <div className="mt-4">
+                  <div className="my-4">
                     {user.notifications?.length > 0 ? (
                       user.notifications?.map((notif) => (
                         <div className="py-4 ml-2" key={notif.docId}>
@@ -93,7 +100,7 @@ export function Navbar() {
                                 : `/createpost/${notif.docId}`
                             }
                           >
-                            {notif.message}
+                            <p>{notif.message}</p>
                           </Link>
                         </div>
                       ))
@@ -144,11 +151,11 @@ export function Navbar() {
                 </button>
 
                 <div
-                  className="fixed top-16 h-fit border-2  min-h-[200px] bg-white hidden border-black  right-0 w-full"
+                  className="fixed top-16 h-fit border-2  min-h-[200px] bg-white dark:bg-tertiary dark:border-white  hidden border-black  right-0 w-full"
                   ref={mobileNotifications}
                 >
-                  <div className="mt-4">
-                    {user &&
+                  <div className="mt-4 ">
+                    {user.notifications?.length > 0 ? (
                       user.notifications?.map((notif) => (
                         <div className="py-4 ml-2" key={notif.docId}>
                           <Link
@@ -158,10 +165,15 @@ export function Navbar() {
                                 : `/createpost/${notif.docId}`
                             }
                           >
-                            {notif.message}
+                            <p>{notif.message}</p>
                           </Link>
                         </div>
-                      ))}
+                      ))
+                    ) : (
+                      <p className="text-center mt-20 dark:text-white">
+                        You have no new notifications. 😶
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>

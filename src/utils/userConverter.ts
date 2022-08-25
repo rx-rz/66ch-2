@@ -9,13 +9,18 @@ import {
 
 export type User = {
   name: string;
-  id: string
+  id: string;
   role: "admin" | "writer";
   photoURL: string;
   uid: string;
   ref: DocumentReference<DocumentData>;
   dateCreated: string;
-  notifications: { message: string, type: "success" | "failure", docId: string }[] 
+  notifications: {
+    message: string;
+    type: "success" | "failure";
+    docId: string;
+    dateCreated: string;
+  }[];
 };
 
 export const userConverter: FirestoreDataConverter<User> = {
@@ -35,7 +40,7 @@ export const userConverter: FirestoreDataConverter<User> = {
       ref: snapshot.ref,
       dateCreated: data.dateCreated,
       notifications: data.notifications,
-      id: snapshot.ref.id
+      id: snapshot.ref.id,
     };
   },
 };

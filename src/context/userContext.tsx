@@ -16,6 +16,7 @@ type User = {
     message: string;
     type: "failure" | "success";
     docId: string;
+    dateCreated: string
   }[];
 };
 type UserContextType = {

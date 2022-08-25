@@ -36,9 +36,10 @@ export const useAdminPostApprovalOptions = () => {
         notifications: [
           ...docData.data().notifications,
           {
-            message: `Your post (${docData.data().postTitle}) has been approved by the admin`,
+            message: `Your post (${post?.postTitle}) has been approved by the admin`,
             type: "success",
             docId: id,
+            dateCreated: date.toUTCString()
           },
         ],
         isChecked: true,
@@ -73,7 +74,7 @@ export const useAdminPostApprovalOptions = () => {
           ...docData.data().notifications,
           {
             message:
-              `Your post (${docData.data().postTitle}) has not been approved. Review it and submit for approval once again`,
+              `Your post (${post?.postTitle}) has not been approved. Review it and submit for approval once again`,
             type: "failure",
             docId: id,
           },

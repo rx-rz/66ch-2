@@ -8,12 +8,12 @@ export const PendingPosts = () => {
   const { data } = usePostContext()!;
   const { user } = useUserContext()!;
   const posts =
-    data && user!.role === "admin"
+    data && user && user.role === "admin"
       ? data?.filter((doc) => doc.status === "pending")
       : data?.filter(
           (doc) => doc.status === "pending" && doc.author.id === user?.uid
         );
-        
+
   return (
     <div>
       {posts && posts.length > 0 ? (
