@@ -2,10 +2,18 @@ import { PendingBlogCard } from "src/components";
 import { usePostContext } from "src/context/postContext";
 import larry from "src/assets/larry.svg";
 import React from "react";
+import { useUserContext } from "src/context";
 
 export const PendingPosts = () => {
   const { data } = usePostContext()!;
-  const posts = data && data?.filter((doc) => doc.status === "pending");
+  const { user } = useUserContext()!;
+  const posts =
+    data && user!.role === "admin"
+      ? data?.filter((doc) => doc.status === "pending")
+      : data?.filter(
+          (doc) => doc.status === "pending" && doc.author.id === user?.uid
+        );
+        
   return (
     <div>
       {posts && posts.length > 0 ? (
