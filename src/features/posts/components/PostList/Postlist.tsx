@@ -5,7 +5,7 @@ export default function Postlist() {
   const { posts, empty, fetchMore } = usePaginatedPosts();
 
   return (
-    <div className="mx-auto mb-20">
+    <div className="mx-auto ">
       {posts && (
         <article className="flex flex-wrap">
           {posts.map((doc) => (
@@ -27,15 +27,11 @@ export default function Postlist() {
           ))}
         </article>
       )}
-      <div className="mt-4 md:mt-8">
-        {!empty ? (
+      <div className="my-4 md:mt-8 m-2 mx-auto flex justify-center">
+        {!empty && (
           <Button handleClick={fetchMore} variant="authPrimary">
             Fetch More
           </Button>
-        ) : (
-          <button className="border border-black" disabled>
-            Fetch More
-          </button>
         )}
       </div>
     </div>

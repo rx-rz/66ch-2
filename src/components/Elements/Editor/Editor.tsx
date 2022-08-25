@@ -95,7 +95,7 @@ export const Editor = ({ handleContentChange, draftContent }: EditorProps) => {
         ref={quill}
         theme="snow"
         value={value}
-        defaultValue={"Enter your post content here"}
+        placeholder="Enter your post content here"
         onChange={setValue}
         className="w-full"
       />

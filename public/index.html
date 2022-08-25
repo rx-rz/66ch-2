@@ -19,8 +19,6 @@
         background: white;
       }
 
-
-
       .ql-syntax {
         background-color: #000;
         color: white;
@@ -37,19 +35,19 @@
         font-family: "Hind", sans-serif;
       }
 
-      .editorcontent img{
+      .editorcontent img {
         max-width: 100% !important;
         height: auto !important;
       }
 
       .editorcontent a {
-        color: rgb(37 99 235) !important
+        color: rgb(37 99 235) !important;
       }
 
       .ql-toolbar {
         position: sticky;
         z-index: 20;
-        border: 1px solid #3EB489 !important;
+        border: 1px solid #0437f2 !important;
         font-size: large;
         padding: 0px !important;
         margin-block: 4rem 1rem !important;
@@ -60,7 +58,6 @@
 
       .ql-container {
         border: none !important;
-
       }
       .ql-editor {
         font-family: "Hind", sans-serif;
@@ -71,31 +68,52 @@
       }
       .ql-formats {
         font-family: "Satoshi", sans-serif;
-
       }
 
-      .ql-editor h1{
-        font-size: clamp(2rem, 2.2vw, 2.4rem) !important;
+      .ql-editor h1 {
+        font-size: 2.2rem !important;
       }
 
-      .ql-editor h2{
-        font-size: clamp(1.6rem, 1.8vw, 2rem) !important;
+      .ql-editor h2 {
+        font-size: 2rem !important;
       }
 
-      @media (prefers-color-scheme: dark){
-        body{
+      .quill > .ql-container > .ql-editor.ql-blank::before {
+        font-family: 'Pilcrow', sans-serif !important;
+        margin-left: -10px  !important;
+        color: black;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
           background-color: #121212;
         }
 
-        .ql-editor{
-          color: white !important
+        .quill > .ql-container > .ql-editor.ql-blank::before {
+        color: white;
+      }
+
+        .ql-editor {
+          color: white !important;
         }
 
         .ql-editor:data-placeholder {
-          color: white  !important;
+          color: white !important;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .ql-editor h1 {
+          font-size: 1.4rem !important;
         }
 
- 
+        .ql-editor h2 {
+          font-size: 1.3rem !important;
+        }
+
+        .ql-editor p {
+          font-size: 1.1rem !important;
+        }
       }
     </style>
     <meta

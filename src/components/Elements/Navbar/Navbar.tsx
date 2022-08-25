@@ -6,7 +6,6 @@ import { auth } from "src/config/firebaseConfig";
 import { useUserContext } from "src/context";
 import { Button } from "../Button";
 import notifButton from "src/assets/notification.svg";
-import { useEffect } from "react";
 
 export function Navbar() {
   const { user } = useUserContext()!;
@@ -26,13 +25,6 @@ export function Navbar() {
   };
 
   const location = useLocation();
-
-  // useEffect(() => {
-  //   // mobileNotifications.current!.classList.contains("hidden") === true &&
-  //   //   mobileNotifications.current?.classList.add("hidden");
-  //   // notifications.current!.classList.contains("hidden") === true &&
-  //   //   notifications.current?.classList.add("hidden");
-  // }, [location]);
 
   const handleLogOut = () => {
     signOut(auth);
@@ -80,7 +72,7 @@ export function Navbar() {
                   NOTIFICATIONS [{user && user.notifications?.length}]
                 </Button>
                 <div
-                  className="fixed top-16 h-fit border-2  min-h-[200px] bg-white hidden border-black  right-0 w-[652px] dark:text-white"
+                  className="fixed top-16 h-fit border-2  min-h-[200px] bg-white dark:border-white dark:bg-tertiary hidden border-black  right-0 w-[652px] dark:text-white"
                   ref={notifications}
                 >
                   <div className="mt-4">
@@ -97,7 +89,7 @@ export function Navbar() {
                             {notif.message}
                           </Link>
                         </div>
-                      )) : <p className="text-center mt-20">You have no new notifications. 😶</p>}
+                      )) : <p className="text-center mt-20 dark:text-white">You have no new notifications. 😶</p>}
                   </div>
                 </div>
 

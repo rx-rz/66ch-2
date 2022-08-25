@@ -115,14 +115,14 @@ export default function PostSettings({
             </FileUploader>
             <SelectField
               options={tagNames.map((tagName) => ({ value: tagName }))}
-              className="border border-primary w-full focus:outline-none  py-2 text-tertiary mt-3"
+              className="border-2 border-tertiary w-full focus:outline-none  py-2 text-tertiary mt-3"
               defaultValue="Nature"
               registration={register("tag")}
               label="Tag"
               error={formState.errors.tag}
             />
             <TextAreaField
-              placeholder="enter the post description here (300 characters maximum)"
+              placeholder="Enter the post description here (300 characters maximum)"
               registration={register("description", {
                 maxLength: {
                   value: 300,
@@ -131,7 +131,7 @@ export default function PostSettings({
                 },
                 required: "Please enter a post description",
               })}
-              className="resize-none bg-primary text-black w-full border-dotted border border-primary focus:bg-white focus:outline-none mt-3 p-1"
+              className="resize-none bg-primary text-black w-full border-2 border-tertiary  focus:bg-white focus:outline-none mt-3 p-1"
               label="Description"
               error={formState.errors.description}
             />
