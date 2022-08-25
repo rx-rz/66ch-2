@@ -19,14 +19,12 @@ export const usePaginatedPosts = () => {
   );
   const [empty, setEmpty] = useState(false);
 
-
-
   useEffect(() => {
     const paginatedPosts = query(
         collection(database, "posts"),
         orderBy("dateCreated"),
         where("status", "==", "approved"),
-        limit(20)
+        limit(16)
       ).withConverter(blogConverter);
     const getPaginatedPosts = async () => {
       await getDocs(paginatedPosts).then((doc) => {
@@ -45,7 +43,7 @@ export const usePaginatedPosts = () => {
       orderBy("dateCreated"),
       where("status", "==", "approved"),
       startAfter(lastDoc),
-      limit(20)
+      limit(16)
     ).withConverter(blogConverter);
     await getDocs(newPosts).then((doc) => {
       const isEmpty = doc.size === 0;

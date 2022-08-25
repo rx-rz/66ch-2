@@ -15,11 +15,12 @@ export const SearchPosts = () => {
       setBlogs(
         data.filter(
           (doc) =>
-            (doc.postTitle !== undefined &&
+            (doc.status === "approved" &&
               doc.author.name
                 .toLowerCase()
                 .includes(searchTerm.toLowerCase())) ||
-            doc.description.toLowerCase().includes(searchTerm)
+            doc.description.toLowerCase().includes(searchTerm) ||
+            doc.tag.toLowerCase().includes(searchTerm)
         )
       );
   };
@@ -28,19 +29,21 @@ export const SearchPosts = () => {
     data &&
       postTag &&
       setBlogs(
-        data.filter((doc) =>
-          doc.tag.toLowerCase().includes(postTag!.toLowerCase())
+        data.filter(
+          (doc) =>
+            doc.status === "approved" &&
+            doc.tag.toLowerCase().includes(postTag!.toLowerCase())
         )
       );
   }, [postTag, data]);
 
   return (
     <div className="w-full min-h-screen">
-      <main className="w-full py-20 flex-column  justify-center">
-        <h1 className="font-pilcrow text-xl md:text-3xl dark:text-white max-w-xl">
+      <main className="w-fit py-20 flex-column mx-auto justify-center">
+        <h1 className="font-pilcrow text-xl md:text-3xl dark:text-white max-w-xl text-center my-4">
           Search for posts by the title, author's name or tag.
         </h1>
-        <div className="w-3xl max-w-3xl flex h-fit border border-white justify-center">
+        <div className="flex h-fit border border-white justify-center mx-2 md:mx-0">
           <>
             <input
               type="text"
@@ -48,7 +51,7 @@ export const SearchPosts = () => {
               className="border-2 border-black dark:border-white  mx-auto p-3 font-pilcrow text-2xl w-9/12"
             />
             <button
-              className="bg-secondary w-3/12 flex justify-center items-center"
+              className="bg-secondary w-3/12 flex justify-center items-center border-2 border-black dark:border-white"
               onClick={handleSearch}
             >
               <img src={search} alt="Search" width="50px" className="invert" />
@@ -57,18 +60,23 @@ export const SearchPosts = () => {
         </div>
       </main>
       {(tag ?? searchTerm) && blogs && blogs.length > 0 ? (
-        <article className="grid justify-center items-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-11/12 my-20 border-white border mx-auto">
+        <article className="flex flex-wrap justify-center mb-12">
           {blogs.map((doc) => (
-            <BlogCard
-              authorId={doc.author.id}
-              postId={doc.id}
-              authorName={doc.author.name}
-              tag={doc.tag}
-              description={doc.description}
-              dateCreated={doc.dateCreated}
-              imageUrl={doc.imageDownloadUrl}
-              postTitle={doc.postTitle}
-            />
+            <article
+              key={doc.id}
+              className="w-fit md:w-6/12 xl:w-3/12 lg:w-4/12"
+            >
+              <BlogCard
+                authorId={doc.author.id}
+                postId={doc.id}
+                authorName={doc.author.name}
+                tag={doc.tag}
+                description={doc.description}
+                dateCreated={doc.dateCreated}
+                imageUrl={doc.imageDownloadUrl}
+                postTitle={doc.postTitle}
+              />
+            </article>
           ))}
         </article>
       ) : (
