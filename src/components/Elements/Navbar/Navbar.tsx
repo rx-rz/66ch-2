@@ -112,21 +112,21 @@ export function Navbar() {
                                 : `/createpost/${notif.docId}`
                             }
                           >
-                            <div className="w-10/12">
+                            <div className="w-10/12 dark:text-white">
                               <p>{notif.message}</p>
                               <p>{notif.dateCreated}</p>
                             </div>
-                            <Button
-                              handleClick={() => handleNotifDelete(notif.docId)}
-                            >
-                              <img
-                                src={deleteButton}
-                                alt="Delete Notification"
-                                className="dark:invert"
-                                width="30px"
-                              />
-                            </Button>
                           </Link>
+                          <Button
+                            handleClick={() => handleNotifDelete(notif.docId)}
+                          >
+                            <img
+                              src={deleteButton}
+                              alt="Delete Notification"
+                              className="dark:invert"
+                              width="30px"
+                            />
+                          </Button>
                         </div>
                       ))
                     ) : (
@@ -191,21 +191,21 @@ export function Navbar() {
                                 : `/createpost/${notif.docId}`
                             }
                           >
-                            <div className="w-10/12">
+                            <div className="w-10/12 dark:text-white">
                               <p>{notif.message}</p>
                               <p>{notif.dateCreated}</p>
                             </div>
-                            <Button
-                              handleClick={() => handleNotifDelete(notif.docId)}
-                            >
-                              <img
-                                src={deleteButton}
-                                className="dark:invert"
-                                alt="Delete Notification"
-                                width="30px"
-                              />
-                            </Button>
                           </Link>
+                          <Button
+                            handleClick={() => handleNotifDelete(notif.docId)}
+                          >
+                            <img
+                              src={deleteButton}
+                              className="dark:invert"
+                              alt="Delete Notification"
+                              width="30px"
+                            />
+                          </Button>
                         </div>
                       ))
                     ) : (

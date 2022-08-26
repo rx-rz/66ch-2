@@ -33,7 +33,7 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
             <motion.img
               src={post.imageDownloadUrl}
               alt={post.postTitle}
-              className="mx-auto  border border-black dark:border-white object-cover"
+              className="mx-auto  border border-black dark:border-white object-cover aspect-video max-h-[40vh]  md:max-h-[70vh]"
               initial={{ width: "30%" }}
               animate={{ width: "95%" }}
               transition={{ duration: 0.7 }}
@@ -60,7 +60,7 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
                 </h3>
 
                 <div
-                  className="md:text-lg font-hind my-8 w-11/12 mx-auto md:mx-0  max-w-[66ch] editorcontent"
+                  className="md:text-lg font-hind [&>h1]:text-xl [&>h2]:text-lg [&>h2]md:text-xl [&>ul]:list-disc [&>li]:list-item  [&>h1]:md:text-2xl  my-8 w-11/12 mx-auto md:mx-0  max-w-[66ch] editorcontent"
                   dangerouslySetInnerHTML={{ __html: post.postContent }}
                 ></div>
                 <div className="w-11/12 mx-auto md:mx-0">

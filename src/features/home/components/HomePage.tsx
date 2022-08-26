@@ -4,7 +4,7 @@ export default function HomePage() {
   const { data } = usePostContext()!;
   const blogPostOne = data && data[2];
   const blogPostTwo = data && data[3];
-
+  
   return (
     <div className="w-full border-2 border-t-0 border-tertiary text-white">
       <main className="flex flex-wrap min-h-[90vh]">
@@ -21,7 +21,7 @@ export default function HomePage() {
                 </p>
               </div>
               <img
-                className="aspect-video my-8 border border-black object-cover"
+                className="aspect-video my-8 border border-black object-cover max-h-[30vh] md:max-h-[55vh]"
                 src={blogPostOne.imageDownloadUrl}
                 alt={blogPostOne.postTitle}
               />
@@ -47,7 +47,7 @@ export default function HomePage() {
                 </p>
               </div>
               <img
-                className="aspect-video my-8 border border-black object-cover"
+                className="aspect-video my-8 border border-black object-cover max-h-[40vh] md:max-h-[56vh]"
                 src={blogPostTwo.imageDownloadUrl}
                 alt={blogPostTwo.postTitle}
               />
