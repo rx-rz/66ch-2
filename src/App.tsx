@@ -1,18 +1,12 @@
 import "./App.css";
-import { BrowserRouter } from "react-router-dom";
-
 import { AppRoutes } from "./routes";
-import { UserContextProvider } from "./context/userContext";
-import { PostContextProvider } from "./context/postContext";
+import AppProvider from "./provider/app";
+
 function App() {
   return (
-    <UserContextProvider>
-      <PostContextProvider>
-        <BrowserRouter>
-          <AppRoutes />
-        </BrowserRouter>
-      </PostContextProvider>
-    </UserContextProvider>
+    <AppProvider>
+      <AppRoutes />
+    </AppProvider>
   );
 }
 
