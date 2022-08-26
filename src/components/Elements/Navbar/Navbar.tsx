@@ -8,6 +8,7 @@ import { Button } from "../Button";
 import deleteButton from "src/assets/delete.svg";
 import notifButton from "src/assets/notification.svg";
 import { doc, updateDoc } from "firebase/firestore";
+import { useThemeContext } from "src/context/themeContext";
 
 export function Navbar() {
   const { user } = useUserContext()!;
@@ -17,6 +18,7 @@ export function Navbar() {
   const mobileNotifications = useRef<HTMLDivElement>(null);
   const menubutton = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
+  const {currentTheme, handleThemeToggle} = useThemeContext()!
 
   const handleNotifDelete = (id: string) => {
     const newNotifcations =
@@ -85,6 +87,9 @@ export function Navbar() {
           ) : (
             <div className="h-full">
               <div className="h-full hidden lg:flex relative">
+                {/* <Button handleClick={handleThemeToggle}>
+                Light
+                </Button> */}
                 <Navlink variant="primary" to="/pendingposts">
                   PENDING POSTS [{pendingPosts && pendingPosts.length}]
                 </Navlink>
