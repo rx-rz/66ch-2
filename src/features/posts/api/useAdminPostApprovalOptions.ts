@@ -39,7 +39,7 @@ export const useAdminPostApprovalOptions = () => {
             message: `Your post (${post?.postTitle}) has been approved by the admin`,
             type: "success",
             docId: id,
-            dateCreated: date.toUTCString()
+            dateCreated: date.toUTCString(),
           },
         ],
         isChecked: true,
@@ -47,7 +47,6 @@ export const useAdminPostApprovalOptions = () => {
     });
     navigate("/pendingposts");
   };
-
 
   const rejectPost = async (authorId: string) => {
     post &&
@@ -67,14 +66,13 @@ export const useAdminPostApprovalOptions = () => {
       limit(1)
     );
 
-    const querySnapshot = await getDocs(authorQuery)
+    const querySnapshot = await getDocs(authorQuery);
     querySnapshot.forEach((docData) => {
       updateDoc(doc(database, "users", docData.id), {
         notifications: [
           ...docData.data().notifications,
           {
-            message:
-              `Your post (${post?.postTitle}) has not been approved. Review it and submit for approval once again`,
+            message: `Your post (${post?.postTitle}) has not been approved. Review it and submit for approval once again`,
             type: "failure",
             docId: id,
           },

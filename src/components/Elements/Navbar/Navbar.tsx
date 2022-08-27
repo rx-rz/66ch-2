@@ -18,7 +18,7 @@ export function Navbar() {
   const mobileNotifications = useRef<HTMLDivElement>(null);
   const menubutton = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
-  const {currentTheme, handleThemeToggle} = useThemeContext()!
+  const { currentTheme, handleThemeToggle } = useThemeContext()!;
 
   const handleNotifDelete = (id: string) => {
     const newNotifcations =
@@ -108,11 +108,13 @@ export function Navbar() {
                   <div className="my-4">
                     {user.notifications?.length > 0 ? (
                       user.notifications?.map((notif) => (
-                        <div className="py-4 ml-2" key={notif.docId}>
+                        <div
+                          className="py-4 ml-2 flex justify-around"
+                          key={notif.docId}
+                        >
                           <Link
-                            className="flex justify-evenly items-center"
                             to={
-                              notif.message !== "failure"
+                              notif.message === "success"
                                 ? `/post/${notif.docId}`
                                 : `/createpost/${notif.docId}`
                             }
@@ -123,6 +125,7 @@ export function Navbar() {
                             </div>
                           </Link>
                           <Button
+                            className="w-fit h-fit"
                             handleClick={() => handleNotifDelete(notif.docId)}
                           >
                             <img
@@ -187,11 +190,13 @@ export function Navbar() {
                   <div className="mt-4 ">
                     {user.notifications?.length > 0 ? (
                       user.notifications?.map((notif) => (
-                        <div className="py-4 ml-2" key={notif.docId}>
+                        <div
+                          className="py-4 ml-2 flex justify-around"
+                          key={notif.docId}
+                        >
                           <Link
-                            className="flex justify-evenly items-center"
                             to={
-                              notif.message !== "failure"
+                              notif.message === "success"
                                 ? `/post/${notif.docId}`
                                 : `/createpost/${notif.docId}`
                             }
@@ -202,6 +207,7 @@ export function Navbar() {
                             </div>
                           </Link>
                           <Button
+                            className="w-fit"
                             handleClick={() => handleNotifDelete(notif.docId)}
                           >
                             <img

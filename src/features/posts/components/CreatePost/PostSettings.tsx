@@ -92,12 +92,13 @@ export default function PostSettings({
   return (
     <>
       <div className="w-11/12 mx-auto mt-6 md:hidden cursor-pointer invert">
-        <img
-          src={closeButton}
-          alt="Close"
-          width="30px"
+        <button
+          className="border-4 border-white"
+          data-testid="closeButton"
           onClick={handleMenuToggle}
-        />
+        >
+          <img src={closeButton} alt="Close" width="30px" />
+        </button>
       </div>
       <Form onSubmit={handleSave} className="w-11/12 mx-auto my-24">
         {({ register, formState, setValue }) => (
@@ -106,10 +107,16 @@ export default function PostSettings({
             {draft && setValue("tag", `${draft.tag}`)}
             <FileUploader handleChange={handleChange} name="File">
               <div className="cursor-pointer h-36  w-full border-dotted border-2 border-primary grid items-center font-pilcrow">
-                {!progress ? <p className="mx-auto text-primary w-9/12 text-center">
-                  Click to upload image or drag and drop image files here (PNG,
-                  JPG or JPEG, preferably landscape images.)
-                </p> : <p className="mx-auto text-primary w-9/12 text-center">Image {progress}% uploaded</p>}
+                {!progress ? (
+                  <p className="mx-auto text-primary w-9/12 text-center">
+                    Click to upload image or drag and drop image files here
+                    (PNG, JPG or JPEG, preferably landscape images.)
+                  </p>
+                ) : (
+                  <p className="mx-auto text-primary w-9/12 text-center">
+                    Image {progress}% uploaded
+                  </p>
+                )}
                 {error && <p className="text-red-600">{error.message}</p>}
               </div>
             </FileUploader>
@@ -137,14 +144,18 @@ export default function PostSettings({
             />
             <Button
               type="submit"
-              className="text-xl font-pilcrow self-end w-full  hidden md:block md:mt-12 bottom-0 mx-auto bg-tertiary border border-primary text-primary p-1 py-2 transition-colors duration-300  hover:bg-secondary hover:text-tertiary"
+              data-testid="submitButton"
+              variant="settingsButton"
+              className="hidden md:block"
+              
             >
               Save Settings
             </Button>
             <Button
               handleClick={handleMenuToggle}
               type="submit"
-              className="text-xl font-pilcrow self-end w-full md:hidden mt-8  md:mt-12 bottom-0 mx-auto bg-tertiary border border-primary text-primary p-1 py-2 transition-colors duration-300  hover:bg-secondary hover:text-tertiary"
+              className="md:hidden"
+              variant="settingsButton"
             >
               Save Settings
             </Button>

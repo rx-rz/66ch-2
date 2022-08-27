@@ -11,13 +11,12 @@ const Login = (
 
 test("renders learn react link", async () => {
   render(Login);
-  userEvent.type(screen.getByLabelText(/email/i), "adeleye@gmail.com")
-  userEvent.type(screen.getByLabelText(/password/i), "adeleye")
+  userEvent.type(screen.getByLabelText(/email/i), "adeleye@gmail.com");
+  userEvent.type(screen.getByLabelText(/password/i), "adeleye");
   const loginButton = screen.getByRole("button", { name: /log in/i });
-  userEvent.click(loginButton)
-  expect(window.location.pathname).toEqual("/")
+  userEvent.click(loginButton);
+  expect(window.location.pathname).toEqual("/");
 });
-
 
 test("register button reroutes to register page", () => {
   render(Login);

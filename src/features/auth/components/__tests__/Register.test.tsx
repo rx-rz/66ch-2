@@ -9,7 +9,7 @@ const Register = (
   </AppProvider>
 );
 
-test("user should be registered",  () => {
+test("user should be registered", async () => {
   render(Register);
   userEvent.type(screen.getByLabelText(/first name/i), "Akinlolu");
   userEvent.type(screen.getByLabelText(/last name/i), "Akinlolu");
@@ -22,7 +22,6 @@ test("user should be registered",  () => {
 
 test("login button reroutes to login page",  () => {
   render(Register);
-
   const loginButton = screen.getByRole("button", { name: /log in/i });
   userEvent.click(loginButton);
   expect(window.location.pathname).toEqual("/auth/login");
