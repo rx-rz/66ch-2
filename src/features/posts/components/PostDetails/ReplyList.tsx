@@ -64,26 +64,28 @@ export default function ReplyList({
               />
             </React.Fragment>
           ))}
-        <Form
-          onSubmit={(data: ReplyListProps) =>
-            handleReplySubmit(data, commentId!, user!)
-          }
-        >
-          {({ register }) => (
-            <>
-              <TextAreaField
-                registration={register("reply")}
-                className="border-2 dark:border-white border-black resize-none w-11/12 "
-              />
-              <button
-                type="submit"
-                className=" border-black bg-secondary dark:border-white font-pilcrow px-3 my-2 border-2 text-white"
-              >
-                Reply
-              </button>
-            </>
-          )}
-        </Form>
+        {user && (
+          <Form
+            onSubmit={(data: ReplyListProps) =>
+              handleReplySubmit(data, commentId!, user!)
+            }
+          >
+            {({ register }) => (
+              <>
+                <TextAreaField
+                  registration={register("reply")}
+                  className="border-2 dark:border-white border-black resize-none w-11/12 "
+                />
+                <button
+                  type="submit"
+                  className=" border-black bg-secondary dark:border-white font-pilcrow px-3 my-2 border-2 text-white"
+                >
+                  Reply
+                </button>
+              </>
+            )}
+          </Form>
+        )}
       </div>
     </div>
   );
