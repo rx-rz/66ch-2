@@ -1,6 +1,5 @@
-// import delete from "src/assets/delete.svg"
+
 import { deleteDoc, doc } from "firebase/firestore";
-import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import { database } from "src/config/firebaseConfig";
 import { useUserContext } from "src/context";

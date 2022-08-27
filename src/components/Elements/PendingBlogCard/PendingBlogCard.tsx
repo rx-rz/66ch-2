@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+
 import { Link } from "react-router-dom";
 import { useUserContext } from "src/context";
 
@@ -28,8 +28,7 @@ export function PendingBlogCard({
   return (
     <div className=" border-2 border-black dark:border-white md:h-[700px] text-clip overflow-clip h-fit dark:text-white dark:bg-tertiary m-1">
       <div className="md:p-8 p-2 my-8 md:my-0">
-        <div
-        >
+        <div>
           <p className="text-lg md:text-2xl font-pilcrow mr-2 mb-2">
             {dateCreated}
           </p>
@@ -54,11 +53,7 @@ export function PendingBlogCard({
             className="aspect-video object-cover border border-black my-4"
             loading="lazy"
           />
-          <div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
+          <div>
             <div className="max-h-72 overflow-clip">
               <h1 className="text-3xl md:text-4xl font-pilcrow uppercase text-ellipsis">
                 {postTitle}
