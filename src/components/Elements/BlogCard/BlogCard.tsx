@@ -36,15 +36,11 @@ export function BlogCard({
   const handleDelete = () => {
     deleteDoc(doc(database, "posts", postId!));
   };
-  
+
   return (
     <div className=" border-2 border-black dark:border-white md:h-[700px] text-clip overflow-clip h-fit dark:text-white dark:bg-tertiary m-1">
       <div className="md:p-8 p-2 my-8 md:my-0">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
+        <div>
           <p className="text-lg md:text-2xl font-pilcrow mr-2 mb-2">
             {dateCreated}
           </p>
@@ -63,7 +59,7 @@ export function BlogCard({
               {authorName}
             </p>
           </Link>
-        </motion.div>
+        </div>
         <Link to={`/post/${postId}`}>
           <img
             src={imageUrl}
@@ -71,11 +67,7 @@ export function BlogCard({
             className="aspect-video object-cover border border-black my-4"
             loading="lazy"
           />
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
+          <div>
             <div className="max-h-60 overflow-clip">
               <h1 className="text-3xl md:text-4xl font-pilcrow uppercase text-ellipsis">
                 {postTitle}
@@ -84,7 +76,7 @@ export function BlogCard({
                 {description}
               </h2>
             </div>
-          </motion.div>
+          </div>
         </Link>
         {location.pathname === "/profile" && (
           <Button handleClick={handleDelete} className="mt-8">

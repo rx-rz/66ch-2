@@ -32,15 +32,12 @@ export function DraftCard({
     <div className=" border-2 border-black dark:border-white md:h-[600px] text-clip overflow-clip h-fit dark:text-white dark:bg-tertiary m-1">
       <div className="md:p-8 p-2 my-8 md:my-0">
         <Link to={`/createpost/${postId}`}>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
+          <div
           >
             <p className="text-lg md:text-2xl font-pilcrow mr-2 mb-2">
               {dateCreated}
             </p>
-          </motion.div>
+          </div>
 
           <img
             src={imageUrl}
@@ -48,10 +45,7 @@ export function DraftCard({
             className="aspect-video object-cover border border-black my-4 dark:border-white"
             loading="lazy"
           />
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
+          <div
           >
             <div className="max-h-72 overflow-clip">
               <h1 className="text-3xl md:text-4xl font-pilcrow uppercase text-ellipsis">
@@ -61,7 +55,7 @@ export function DraftCard({
                 {description}
               </h2>
             </div>
-          </motion.div>
+          </div>
         </Link>
         {location.pathname === "/profile" && (
           <Button handleClick={handleDelete} className="mt-8">

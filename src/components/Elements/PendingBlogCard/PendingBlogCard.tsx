@@ -28,10 +28,7 @@ export function PendingBlogCard({
   return (
     <div className=" border-2 border-black dark:border-white md:h-[700px] text-clip overflow-clip h-fit dark:text-white dark:bg-tertiary m-1">
       <div className="md:p-8 p-2 my-8 md:my-0">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+        <div
         >
           <p className="text-lg md:text-2xl font-pilcrow mr-2 mb-2">
             {dateCreated}
@@ -45,7 +42,7 @@ export function PendingBlogCard({
               {authorName}
             </p>
           </Link>
-        </motion.div>
+        </div>
         <Link
           to={`/post/${postId}/${status}/${authorId}`}
           key={postId}
@@ -57,7 +54,7 @@ export function PendingBlogCard({
             className="aspect-video object-cover border border-black my-4"
             loading="lazy"
           />
-          <motion.div
+          <div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1 }}
@@ -70,7 +67,7 @@ export function PendingBlogCard({
                 {description}
               </h2>
             </div>
-          </motion.div>
+          </div>
         </Link>
       </div>
     </div>
