@@ -36,17 +36,21 @@ export const PostContent = ({
   handleMenuToggle,
   draft,
 }: PostSettingProps) => {
-  const { changeEditorContent, handleDraft, handleSubmit , pending} = useCreatePost();
+  const { changeEditorContent, handleDraft, handleSubmit, pending } =
+    useCreatePost();
 
   return (
     <div className="md:w-11/12 w-full  mx-auto my-8 font-hind">
       <nav className="flex justify-between mx-auto">
-        <Link to="/" className="md:text-xl text-md font-bold font-pilcrow dark:text-white">
+        <Link
+          to="/"
+          className="md:text-xl text-md font-bold font-pilcrow dark:text-white"
+        >
           &#8592; Home
         </Link>
         <div className="justify-between flex">
           <Button
-            className="border-2 border-tertiary dark:text-white bg-primary px-1 text-secondary md:text-xl text-md font-pilcrow dark:bg-tertiary dark:border-secondary"
+            variant="draft"
             handleClick={() => handleDraft(imageUrl, tag, description, draft)}
           >
             Save As Draft
@@ -81,7 +85,7 @@ export const PostContent = ({
               })}
               className="resize-none focus:outline-none w-full m-auto text-3xl md:text-4xl lg:text-5xl ml-1 bg-primary text-tertiary dark:bg-tertiary dark:text-white"
             />
-            {(!imageUrl) && !description && !tag && (
+            {!imageUrl && !description && !tag && (
               <p className="md:text-xl md:mt-4 mt-4 dark:text-white">
                 Please specify the needed settings for the blog post in the post
                 settings.
@@ -105,10 +109,7 @@ export const PostContent = ({
               handleContentChange={changeEditorContent}
               draftContent={draft?.postContent}
             />
-            <Button
-              type="submit"
-              className="text-xl font-pilcrow lg:w-5/12 w-full border-2 border-tertiary bg-secondary text-primary p-1 py-2 text-center lg:mt-0 mt-4 transition-opacity duration-300  hover:opacity-80"
-            >
+            <Button type="submit" variant="authPrimary">
               {!pending ? <>Create Post</> : <>Loading...</>}
             </Button>
           </>

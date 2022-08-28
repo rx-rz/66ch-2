@@ -2,8 +2,8 @@ import { BlogCard, Button } from "src/components";
 import { usePaginatedPosts } from "../../api/usePaginatedPosts";
 
 export default function Postlist() {
-  const { posts, empty, fetchMore } = usePaginatedPosts();
-
+  const { posts: data, empty, fetchMore } = usePaginatedPosts();
+const posts = data && data.sort((a, b) => Date.parse(b.dateCreated) - Date.parse(a.dateCreated))
   return (
     <div className="mx-auto ">
       {posts && (
@@ -29,8 +29,8 @@ export default function Postlist() {
       )}
       <div className="my-4 md:mt-8 m-2 mx-auto flex justify-center">
         {!empty && (
-          <Button handleClick={fetchMore} variant="authPrimary">
-            Fetch More
+          <Button handleClick={fetchMore} variant="pendingButton">
+            Load More
           </Button>
         )}
       </div>

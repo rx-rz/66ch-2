@@ -71,6 +71,7 @@ export default function PostSettings({
     "Lifestyle",
     "Fashion",
     "Tourism",
+    "Entertainment",
   ];
   const [file, setFile] = useState<File | null | any>(null);
   const { imageFile } = useOptimizeImage(file);
