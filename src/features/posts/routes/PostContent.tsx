@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { MainLayout } from "src/components";
+import { Footer, MainLayout } from "src/components";
 import { motion, useIsPresent } from "framer-motion";
 import PostDetails from "../components/PostDetails/PostDetails";
 
@@ -12,7 +12,7 @@ export default function PostContent() {
     <MainLayout>
       <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1}}>
         <PostDetails status={status} authorId={authorId} />
-
+        <Footer/>
       </motion.div>
       <motion.div
         initial={{ scaleY: 1 }}
