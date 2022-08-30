@@ -21,7 +21,7 @@ export default function PostCommentForm() {
             })}
             placeholder="Enter a comment here"
             error={formState.errors.comment}
-            className="border-2 border-black dark:border-white w-full  resize-none p-2 t"
+            className="border-2 border-black text-black dark:border-white w-full  resize-none p-2 t"
           />
           <button
             type="submit"

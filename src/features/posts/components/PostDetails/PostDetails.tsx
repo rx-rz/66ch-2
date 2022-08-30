@@ -5,6 +5,7 @@ import PostComments from "./PostComments";
 import PostCommentForm from "./PostCommentForm";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { Button } from "src/components";
+import { ShareButtons } from "./ShareButtons";
 
 type PostContentProps = {
   authorId: string;
@@ -24,7 +25,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
 
       {post && (
         <main>
-          <div className="md:w-10/12 w-full mx-auto  ">
+          <div className="md:w-10/12 w-full mx-auto ">
             <h1 className=" w-full md:w-10/12 mx-auto my-12 text-3xl md:text-7xl text-center font-pilcrow">
               {post.postTitle}
             </h1>
@@ -59,6 +60,12 @@ export default function PostDetails({ authorId }: PostContentProps) {
                   className="md:text-lg font-hind [&>h1]:text-xl [&>h2]:text-lg [&>h2]md:text-xl [&>ul]:list-disc [&>li]:list-item  [&>h1]:md:text-2xl  my-8 w-11/12 mx-auto md:mx-0  max-w-[66ch] editorcontent"
                   dangerouslySetInnerHTML={{ __html: post.postContent }}
                 ></div>
+                <ShareButtons
+                  description={post.description}
+                  postAuthor={post.author.name}
+                  postId={post.id}
+                  postTitle={post.postTitle}
+                />
                 <div className="w-11/12 mx-auto md:mx-0">
                   {location.pathname === (id && `/post/${id}`) && (
                     <PostComments />
