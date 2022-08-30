@@ -7,7 +7,6 @@ import { PostExtras } from "../components/PostDetails/PostExtras";
 
 export default function PostContent() {
   const isPresent = useIsPresent();
-  const { status = "null" } = useParams();
   const { authorId = "null" } = useParams();
 
   useLayoutEffect(() => {
@@ -21,7 +20,7 @@ export default function PostContent() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <PostDetails status={status} authorId={authorId} />
+        <PostDetails authorId={authorId} />
         <div className="w-full md:w-10/12 mx-auto">
           <PostExtras />
         </div>

@@ -1,4 +1,3 @@
-import { useDocumentData } from "react-firebase-hooks/firestore";
 import { useUserContext } from "src/context";
 import { useAdminPostApprovalOptions } from "../../api";
 import { motion } from "framer-motion";
@@ -8,11 +7,10 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { Button } from "src/components";
 
 type PostContentProps = {
-  status: string;
   authorId: string;
 };
 
-export default function PostDetails({ status, authorId }: PostContentProps) {
+export default function PostDetails({ authorId }: PostContentProps) {
   const { user } = useUserContext()!;
   const { id } = useParams();
   const { post, loading, error, acceptPost, rejectPost } =
