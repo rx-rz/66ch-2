@@ -2,12 +2,17 @@ import { useParams } from "react-router-dom";
 import { Footer, MainLayout } from "src/components";
 import { motion, useIsPresent } from "framer-motion";
 import PostDetails from "../components/PostDetails/PostDetails";
+import { useLayoutEffect } from "react";
 
 export default function PostContent() {
   const isPresent = useIsPresent();
   const { status = "null" } = useParams();
   const { authorId = "null" } = useParams();
 
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  })
+  
   return (
     <MainLayout>
       <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1}}>

@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { database } from "src/config/firebaseConfig";
 import { Button } from "../Button";
 import deleteButton from "src/assets/delete.svg";
+
 type CardProps = {
   authorName: string;
   postTitle: string;
