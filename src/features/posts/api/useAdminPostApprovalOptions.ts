@@ -20,7 +20,7 @@ export const useAdminPostApprovalOptions = () => {
   const navigate = useNavigate();
 
   const postRef = doc(database, "posts", id!).withConverter(blogConverter);
-  const [post] = useDocumentData(postRef);
+  const [post, loading, error] = useDocumentData(postRef);
   const acceptPost = async (authorId: string) => {
     const authorQuery = query(
       collection(database, "users"),
@@ -83,5 +83,5 @@ export const useAdminPostApprovalOptions = () => {
     navigate("/pendingposts");
   };
 
-  return { postRef, acceptPost, rejectPost };
+  return { post, loading, error,  acceptPost, rejectPost };
 };

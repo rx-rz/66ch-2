@@ -20,7 +20,8 @@ export function CommentCard({
   userId,
   commentLikers,
 }: CardProps) {
-  const newCommentLikersArray = commentLikers && commentLikers.filter((item) => item !== userId);
+  const newCommentLikersArray =
+    commentLikers && commentLikers.filter((item) => item !== userId);
   const commentRef = doc(database, "comments", commentId);
   const handleLikeClick = async () => {
     if (!commentLikers.includes(userId)) {
@@ -40,14 +41,15 @@ export function CommentCard({
       <div className="flex font-bold font-pilcrow">
         <h3 className="mr-2">{authorName}</h3>
         <h2 className="opacity-60">{dateCreated}</h2>
-    
       </div>
-      <hr className="border border-secondary "/>
+      <hr className="border border-secondary " />
       <div>
         <p className="md:text-md  my-2 font-hind">{comment}</p>
       </div>
       <div>
-      <button onClick={handleLikeClick} className="font-pilcrow">{commentLikers.includes(userId) ? <>❤️ {likes}</> : <>🤍 {likes}</>}</button>
+        <button onClick={handleLikeClick} className="font-pilcrow">
+          {commentLikers.includes(userId) ? <>❤️ {likes}</> : <>🤍 {likes}</>}
+        </button>
       </div>
     </article>
   );

@@ -23,8 +23,6 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-share-on-social": "^1.0.8",
-    "slate": "^0.82.0",
-    "slate-react": "^0.82.0",
     "typescript": "^4.7.4",
     "web-vitals": "^2.1.4"
   },

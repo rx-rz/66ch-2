@@ -15,17 +15,16 @@ type PostContentProps = {
 export default function PostDetails({ status, authorId }: PostContentProps) {
   const { user } = useUserContext()!;
   const { id } = useParams();
-  const { postRef, acceptPost, rejectPost } = useAdminPostApprovalOptions();
+  const { post, loading, error, acceptPost, rejectPost } =
+    useAdminPostApprovalOptions();
   const location = useLocation();
-  const [post, loading, error] = useDocumentData(postRef);
-  
 
   return (
-    <div className="mx-auto border-2 border-t-0 border-black  dark:text-white">
+    <div className="mx-auto   dark:text-white">
       {error && <strong>{error.message}</strong>}
       {loading && <span>Loading...</span>}
 
-      {post  && (
+      {post && (
         <main>
           <div className="md:w-10/12 w-full mx-auto  ">
             <h1 className=" w-full md:w-10/12 mx-auto my-12 text-3xl md:text-7xl text-center font-pilcrow">
@@ -45,9 +44,11 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
                   <Link
                     className="text-2xl font-bold font-pilcrow text-center text-blue-600"
                     to={
-                      user && user.uid !== post.author.id
-                        ? `/user/${post.author.id}`
-                        : "/profile"
+                      user
+                        ? user.uid !== post.author.id
+                          ? `/user/${post.author.id}`
+                          : "/profile"
+                        : `/user/${post.author.id}`
                     }
                   >
                     {post.author.name}
@@ -56,10 +57,6 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
                 </div>
               </aside>
               <div className="md:w-8/12 xl:w-9/12 mx-auto">
-                <h3 className="text-xl font-bold font-hind md:text-2xl my-8 md:w-6/12 w-11/12 md:mx-0 mx-auto">
-                  "{post.description}"
-                </h3>
-
                 <div
                   className="md:text-lg font-hind [&>h1]:text-xl [&>h2]:text-lg [&>h2]md:text-xl [&>ul]:list-disc [&>li]:list-item  [&>h1]:md:text-2xl  my-8 w-11/12 mx-auto md:mx-0  max-w-[66ch] editorcontent"
                   dangerouslySetInnerHTML={{ __html: post.postContent }}
@@ -72,24 +69,22 @@ export default function PostDetails({ status, authorId }: PostContentProps) {
                     <PostCommentForm />
                   )}
                 </div>
-                {user && status !== "null" &&
-                  authorId !== "null" &&
-                  user.role === "admin" && (
-                    <div className="my-4 md:my-8">
-                      <Button
-                        handleClick={() => acceptPost(authorId)}
-                        variant="pendingButton"
-                      >
-                        Accept Post
-                      </Button>
-                      <Button
-                        handleClick={() => rejectPost(authorId)}
-                        variant="pendingButton"
-                      >
-                        Reject Post
-                      </Button>
-                    </div>
-                  )}
+                {user && user.role === "admin" && (
+                  <div className="my-4 md:my-8">
+                    <Button
+                      handleClick={() => acceptPost(authorId)}
+                      variant="pendingButton"
+                    >
+                      Accept Post
+                    </Button>
+                    <Button
+                      handleClick={() => rejectPost(authorId)}
+                      variant="pendingButton"
+                    >
+                      Reject Post
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
