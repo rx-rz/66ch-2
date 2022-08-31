@@ -5,6 +5,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   updateProfile,
+  User,
 } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 import { useState } from "react";
@@ -12,7 +13,7 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { database } from "src/config/firebaseConfig";
-import { userConverter } from "src/utils";
+import { User as DatabaseUser, userConverter } from "src/utils";
 
 function replaceErrorDiscrepancies(x: string) {
   return x
@@ -54,6 +55,25 @@ export const useRegister = () => {
 
   const navigate = useNavigate();
 
+  function binarySearch(
+    userList: DatabaseUser[] | undefined,
+    correctUser: User
+  ) {
+    let largest = userList && userList.length - 1;
+    let smallest = 0;
+    while (smallest <= largest!) {
+      let middle = Math.floor(largest! + smallest);
+      const guess = userList![middle];
+      if (guess.uid === correctUser.uid) {
+        return true;
+      }
+      if (guess.uid > correctUser.uid) {
+        largest = middle - 1;
+      } else {
+        smallest = middle - 1;
+      }
+    }
+  }
 
   const handleRegistration = async (data: RegisterFormValues) => {
     try {
@@ -84,7 +104,6 @@ export const useRegister = () => {
     }
   };
 
-
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider).then((user) => {
@@ -94,12 +113,8 @@ export const useRegister = () => {
           uid: user.user.uid,
           dateCreated: date.toUTCString(),
         }).catch((err) => errorToast(err));
-        const usersInDatabase =
-          users &&
-          users.filter(
-            (usersInDatabase) => usersInDatabase.uid === user.user.uid
-          );
-        if (usersInDatabase!.length === 0) {
+        const userInDatabase = binarySearch(users, user.user);
+        if (userInDatabase === true) {
           addDoc(collection(database, "users"), {
             name: user.user.displayName,
             photoURL: process.env.REACT_APP_DEFAULT_PFP,
@@ -118,5 +133,4 @@ export const useRegister = () => {
   };
 
   return { signInWithGoogle, handleRegistration, pending };
-  
 };
