@@ -1,0 +1,17 @@
+{
+  "name": "tests",
+  "version": "1.0.0",
+  "description": "Firebase testing for 66ch",
+  "main": "test.js",
+  "scripts": {
+    "test": "npm run firebase-test"
+  },
+  "author": "Adeleye Temiloluwa",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^10.0.0"
+  },
+  "dependencies": {
+    "@firebase/testing": "^0.20.11"
+  }
+}

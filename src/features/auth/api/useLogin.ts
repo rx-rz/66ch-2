@@ -63,7 +63,7 @@ export const useLogin = () => {
       if (guess.uid > correctUser.uid) {
         largest = middle - 1;
       } else {
-        smallest = middle - 1;
+        smallest = middle + 1;
       }
     }
   }
