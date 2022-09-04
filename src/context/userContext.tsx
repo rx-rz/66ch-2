@@ -1,4 +1,8 @@
-import { collection } from "firebase/firestore";
+import {
+  collection,
+  DocumentData,
+  DocumentReference,
+} from "firebase/firestore";
 import React, { createContext, useContext } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
@@ -10,13 +14,14 @@ type User = {
   uid: string;
   role: "admin" | "writer";
   dateCreated: string;
-  id: string
+  id: string;
   photoURL: string;
+  ref: DocumentReference<DocumentData>;
   notifications: {
     message: string;
     type: "failure" | "success";
     docId: string;
-    dateCreated: string
+    dateCreated: string;
   }[];
 };
 type UserContextType = {

@@ -1,14 +1,14 @@
 import { signOut } from "firebase/auth";
 import { useRef } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Navlink } from "../NavLink/NavLink";
-import { auth, database } from "src/config/firebaseConfig";
+import { auth } from "src/config/firebaseConfig";
 import { usePostContext, useUserContext } from "src/context";
 import { Button } from "../Button";
-import deleteButton from "src/assets/delete.svg";
 import notifButton from "src/assets/notification.svg";
-import { doc, updateDoc } from "firebase/firestore";
 import { Switcher } from "./Switcher";
+import { mobileLinks, mobileLinksAuth, pcLinks, pcLinksAuth } from "./utils";
+import { Notifications } from "./Notifications";
 
 export function Navbar() {
   const { user } = useUserContext()!;
@@ -18,18 +18,6 @@ export function Navbar() {
   const mobileNotifications = useRef<HTMLDivElement>(null);
   const menubutton = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
-
-  const pclinks = {
-    
-  };
-
-  const handleNotifDelete = (id: string) => {
-    const newNotifcations =
-      user && user.notifications.filter((notif) => notif.docId !== id);
-    updateDoc(doc(database, "users", user?.id!), {
-      notifications: [...newNotifcations!],
-    });
-  };
 
   const pendingPosts =
     data && user && user.role === "admin"
@@ -67,15 +55,12 @@ export function Navbar() {
           {!user ? (
             <div className="h-full">
               <div className="h-full hidden lg:flex">
-                <Navlink to="/search" variant="primary">
-                  Search
-                </Navlink>
-                <Navlink to="/auth/login" variant="primary">
-                  Login
-                </Navlink>
-                <Navlink to="/auth/register" variant="primary">
-                  Sign Up
-                </Navlink>
+                <Switcher />
+                {pcLinks.map((pcLink) => (
+                  <Navlink to={pcLink.linkTo} variant="primary">
+                    {pcLink.name}
+                  </Navlink>
+                ))}
               </div>
               <div className="h-full lg:hidden block">
                 <button
@@ -105,63 +90,25 @@ export function Navbar() {
                   className="fixed top-16 h-fit border-2  min-h-[200px] bg-white dark:border-white dark:bg-tertiary hidden border-black  right-0 w-[652px] dark:text-white"
                   ref={notifications}
                 >
-                  <div className="my-4">
-                    {user.notifications?.length > 0 ? (
-                      user.notifications?.map((notif) => (
-                        <div
-                          className="py-4 ml-2 flex justify-around"
-                          key={notif.docId}
-                        >
-                          <Link
-                            to={
-                              notif.message === "success"
-                                ? `/post/${notif.docId}`
-                                : `/createpost/${notif.docId}`
-                            }
-                          >
-                            <div className="w-10/12 dark:text-white">
-                              <p>{notif.message}</p>
-                              <p>{notif.dateCreated}</p>
-                            </div>
-                          </Link>
-                          <Button
-                            className="w-fit h-fit"
-                            handleClick={() => handleNotifDelete(notif.docId)}
-                          >
-                            <img
-                              src={deleteButton}
-                              alt="Delete Notification"
-                              className="dark:invert"
-                              width="30px"
-                            />
-                          </Button>
-                        </div>
-                      ))
-                    ) : (
-                      <p className="text-center mt-20 dark:text-white">
-                        You have no new notifications. 😶
-                      </p>
-                    )}
-                  </div>
+                  <Notifications user={user} />
                 </div>
 
-                <Navlink to="/profile" variant="primary">
-                  Profile
-                </Navlink>
+                {pcLinksAuth.map((pcLink) => (
+                  <Navlink to={pcLink.linkTo} variant="primary">
+                    {pcLink.name}
+                  </Navlink>
+                ))}
 
-                <Navlink to="/createpost" variant="primary">
-                  Create Post
-                </Navlink>
-                <Navlink to="/search" variant="primary">
-                  Search
-                </Navlink>
                 <Button handleClick={handleLogOut} variant="nav">
                   Log Out
                 </Button>
               </div>
               <div className="h-full lg:hidden relative flex">
+                <div className="mr-8 flex items-center">
+                  <Switcher />
+                </div>
                 <Button
-                  className="flex items-center mr-3 dark:invert transition-colors duration-300 hover:text-secondary"
+                  className="flex items-center mr-8 dark:invert transition-colors duration-300 hover:text-secondary"
                   handleClick={handleMobileNotifToggle}
                 >
                   <img
@@ -184,44 +131,7 @@ export function Navbar() {
                   className="fixed top-16 h-fit border-2  min-h-[200px] bg-white dark:bg-tertiary dark:border-white  hidden border-black  right-0 w-full"
                   ref={mobileNotifications}
                 >
-                  <div className="mt-4 ">
-                    {user.notifications?.length > 0 ? (
-                      user.notifications?.map((notif) => (
-                        <div
-                          className="py-4 ml-2 flex justify-around"
-                          key={notif.docId}
-                        >
-                          <Link
-                            to={
-                              notif.message === "success"
-                                ? `/post/${notif.docId}`
-                                : `/createpost/${notif.docId}`
-                            }
-                          >
-                            <div className="w-10/12 dark:text-white">
-                              <p>{notif.message}</p>
-                              <p>{notif.dateCreated}</p>
-                            </div>
-                          </Link>
-                          <Button
-                            className="w-fit"
-                            handleClick={() => handleNotifDelete(notif.docId)}
-                          >
-                            <img
-                              src={deleteButton}
-                              className="dark:invert"
-                              alt="Delete Notification"
-                              width="30px"
-                            />
-                          </Button>
-                        </div>
-                      ))
-                    ) : (
-                      <p className="text-center mt-20 dark:text-white">
-                        You have no new notifications. 😶
-                      </p>
-                    )}
-                  </div>
+                  <Notifications user={user} />
                 </div>
               </div>
             </div>
@@ -233,33 +143,22 @@ export function Navbar() {
         >
           {!user ? (
             <div className="flex flex-col">
-              <Navlink to="/search" variant="mobile">
-                Search
-              </Navlink>
-              <Navlink to="/auth/login" variant="mobile">
-                Login
-              </Navlink>
-              <Navlink to="/auth/register" variant="mobile">
-                Sign Up
-              </Navlink>
+              {mobileLinks.map((pcLink) => (
+                <Navlink to={pcLink.linkTo} variant="primary">
+                  {pcLink.name}
+                </Navlink>
+              ))}
             </div>
           ) : (
             <div className="flex flex-col">
-              <Navlink to="/profile" variant="mobile">
-                Profile
-              </Navlink>
-
-              <Navlink to="/createpost" variant="mobile">
-                Create Post
-              </Navlink>
-
               <Navlink variant="mobile" to="/pendingposts">
                 Pending Posts [{pendingPosts && pendingPosts.length}]
               </Navlink>
-
-              <Navlink to="/search" variant="mobile">
-                Search
-              </Navlink>
+              {mobileLinksAuth.map((pcLink) => (
+                <Navlink to={pcLink.linkTo} variant="primary">
+                  {pcLink.name}
+                </Navlink>
+              ))}
               <button
                 onClick={handleLogOut}
                 className="text-2xl font-pilcrow text-primary font-medium my-8 ml-4 w-fit transition-colors duration-300 hover:text-secondary"
