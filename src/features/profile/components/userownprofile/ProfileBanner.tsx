@@ -1,8 +1,13 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useUserContext } from "src/context";
 
 export default function ProfileBanner() {
   const { user } = useUserContext()!;
+
+  useEffect(() => {
+    document.title = `${user?.name} - Profile`
+  }, [user])
   return (
     <div className="mx-auto md:w-11/12 block my-20 md:sticky top-36 font-pilcrow dark:text-white p-2">
       {user && (

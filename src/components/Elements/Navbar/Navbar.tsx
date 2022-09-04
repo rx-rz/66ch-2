@@ -57,7 +57,7 @@ export function Navbar() {
               <div className="h-full hidden lg:flex">
                 <Switcher />
                 {pcLinks.map((pcLink) => (
-                  <Navlink to={pcLink.linkTo} variant="primary">
+                  <Navlink to={pcLink.linkTo} variant="primary" key={pcLink.name}>
                     {pcLink.name}
                   </Navlink>
                 ))}

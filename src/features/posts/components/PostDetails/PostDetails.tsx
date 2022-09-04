@@ -20,7 +20,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
   const location = useLocation();
   
   useEffect(() => {
-    document.title = `[66CH] ${post?.postTitle} by ${post?.author}`;
+    document.title = `${post?.postTitle} by ${post?.author.name}`;
   }, [post?.postTitle, post?.author]);
 
   return (

@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 import { useViewProfile } from "../../api/useViewProfile";
 
 export default function ProfileBanner() {
   const { user } = useViewProfile()!;
+  useEffect(() => {
+    document.title = `${user?.name} - Profile`;
+  }, [user]);
+
   return (
     <div className="mx-auto w-full md:w-11/12 block my-20 md:sticky top-36 font-pilcrow dark:text-white p-2">
       {user && (
