@@ -19,7 +19,9 @@ export function Navbar() {
   const menubutton = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
 
-  const pclinks = {};
+  const pclinks = {
+    
+  };
 
   const handleNotifDelete = (id: string) => {
     const newNotifcations =
