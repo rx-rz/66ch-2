@@ -1,46 +1,141 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 66CH
+66ch is a blog built with React, Tailwind CSS and Firebase.
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### User Features
 
-### `npm run build`
+- Read Blog
+- Authentication (Custom Registration and Google Sign In)
+- Create Blog (Rich text, code block and multiple images support)
+- Delete Blog (if authorized)
+- Create Comments and Replies
+- Update Profile
+- Search Posts
+- Light/Dark Mode Support
+- Notifications System
+- View pending posts
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Admin Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Read Blog
+- Authentication (Custom Registration and Google Sign In)
+- Create Blog (Rich text, code block and multiple images support)
+- Delete Blog (if authorized)
+- Create Comments and Replies
+- Update Profile
+- Search Posts
+- Light/Dark Mode Support
+- Posts Approval
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## 🛠 Technologies
+Typescript
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+React 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Tailwind CSS
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Firebase
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+React Hook Form
 
-## Learn More
+React-Quill
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Screenshots
+Home Page:
+
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/1662309249316.png?alt=media&token=6a25738d-9f09-4d2b-918d-8105401e83c3)
+
+Blog List:
+
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/1662309301091.png?alt=media&token=d410e139-4e5d-40e2-baf4-f5c85fe4fe76)
+
+Blog Details:
+
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/1662309323713.png?alt=media&token=e5645f3d-777d-4ca4-a52d-6113ac69b341)
+
+
+Blog List (Dark Mode):
+
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/1662309343728.png?alt=media&token=7f2b91ed-cd41-473b-80e3-decdc874a263)
+
+Profile View (Dark Mode):
+
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/1662309371205.png?alt=media&token=af407f12-9d6e-4a69-88d1-bf39a46298ec)
+
+Posts Search (Dark Mode):
+
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/1662309401113.png?alt=media&token=ea5789f8-6458-489a-aa50-2933fccefb5e)
+
+Login Page (Dark Mode):
+
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/1662309429040.png?alt=media&token=fdfc894d-157a-4c30-baee-b8a52fbd775a)
+
+Register Page:
+
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/thekawaiiblog-68df1.appspot.com/o/1662309450747.png?alt=media&token=bcbcdcc2-3337-4c2a-94be-133a9907081b)
+
+
+## Deployment
+
+To deploy this project run
+
+```bash
+  npm run deploy
+```
+
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`REACT_APP_FIREBASE_API_KEY`
+
+`REACT_APP_FIREBASE_AUTH_DOMAIN`
+
+`REACT_APP_FIREBASE_PROJECT_ID`
+
+`REACT_APP_FIREBASE_STORAGE_BUCKET`
+
+`REACT_APP_FIREBASE_MESSAGING_SENDER_ID`
+
+`REACT_APP_FIREBASE_APP_ID`
+
+`REACT_APP_FIREBASE_MEASUREMENT_ID`
+
+`REACT_APP_DEFAULT_PFP`
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/temiloluwa-js/66ch-2
+```
+
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
+
+
+## Authors
+
+- [@temiloluwa-js](https://www.github.com/temiloluwa-js)
+
