@@ -6,6 +6,7 @@ import PostCommentForm from "./PostCommentForm";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { Button } from "src/components";
 import { ShareButtons } from "./ShareButtons";
+import { useEffect } from "react";
 
 type PostContentProps = {
   authorId: string;
@@ -17,6 +18,10 @@ export default function PostDetails({ authorId }: PostContentProps) {
   const { post, loading, error, acceptPost, rejectPost } =
     useAdminPostApprovalOptions();
   const location = useLocation();
+  
+  useEffect(() => {
+    document.title = `[66CH] ${post?.postTitle} by ${post?.author}`;
+  }, [post?.postTitle, post?.author]);
 
   return (
     <div className="mx-auto   dark:text-white">

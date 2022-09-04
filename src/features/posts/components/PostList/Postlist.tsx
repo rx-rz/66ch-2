@@ -2,8 +2,8 @@ import { BlogCard, Button } from "src/components";
 import { usePaginatedPosts } from "../../api/usePaginatedPosts";
 
 export default function Postlist() {
-  const { posts: data, empty, fetchMore } = usePaginatedPosts();
-const posts = data && data.sort((a, b) => Date.parse(b.dateCreated) - Date.parse(a.dateCreated))
+  const { posts, empty, fetchMore } = usePaginatedPosts();
+  
   return (
     <div className="mx-auto ">
       {posts && (
