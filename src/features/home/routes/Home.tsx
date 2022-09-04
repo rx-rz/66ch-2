@@ -6,6 +6,7 @@ import HomePage from "../components/HomePage";
 
 export const Home = () => {
   const isPresent = useIsPresent();
+
   return (
     <>
       <MainLayout>
