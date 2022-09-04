@@ -4,7 +4,7 @@
   "description": "Firebase testing for 66ch",
   "main": "test.js",
   "scripts": {
-    "test": "npm run firebase-test"
+    "test": " mocha --exit"
   },
   "author": "Adeleye Temiloluwa",
   "license": "ISC",

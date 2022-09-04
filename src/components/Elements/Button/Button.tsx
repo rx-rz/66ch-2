@@ -8,7 +8,8 @@ const variants = {
   authTertiary:
     "flex text-2xl items-center dark:border-white border-tertiary border-2 rounded-full text-white  transition-opacity duration-300  hover:opacity-80 mx-auto my-12",
   settingsButton: "text-xl font-pilcrow self-end w-full mt-8  md:mt-12 bottom-0 mx-auto bg-tertiary border border-primary text-primary p-1 py-2 transition-opacity duration-300 hover:opacity-80",
-  draft: "border-2 border-tertiary dark:text-white bg-primary px-1 text-secondary md:text-xl text-md font-pilcrow dark:bg-tertiary dark:border-secondary"
+  draft: "border-2 border-tertiary dark:text-white bg-primary px-1 text-secondary md:text-xl text-md font-pilcrow dark:bg-tertiary dark:border-secondary",
+  nav: "sm:text-xl text-md transition-colors duration-300 hover:text-secondary px-3 uppercase text-tertiary border-tertiary h-full grid font-medium  content-center lg:px-4 dark:text-white"
 };
 
 

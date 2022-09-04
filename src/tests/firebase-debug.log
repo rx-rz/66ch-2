@@ -1,0 +1,37 @@
+[debug] [2022-09-01T16:32:32.862Z] ----------------------------------------------------------------------
+[debug] [2022-09-01T16:32:32.865Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Temiloluwa\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
+[debug] [2022-09-01T16:32:32.866Z] CLI Version:   11.2.2
+[debug] [2022-09-01T16:32:32.866Z] Platform:      win32
+[debug] [2022-09-01T16:32:32.866Z] Node Version:  v18.4.0
+[debug] [2022-09-01T16:32:32.867Z] Time:          Thu Sep 01 2022 17:32:32 GMT+0100 (West Africa Standard Time)
+[debug] [2022-09-01T16:32:32.867Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-09-01T16:32:33.018Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-09-01T16:32:33.019Z] > authorizing via signed-in user (adeleyetemiloluwa674@gmail.com)
+[debug] [2022-09-01T16:32:33.121Z] java version "18.0.2.1" 2022-08-18
+Java(TM) SE Runtime Environment (build 18.0.2.1+1-1)
+
+[debug] [2022-09-01T16:32:33.121Z] Java HotSpot(TM) 64-Bit Server VM (build 18.0.2.1+1-1, mixed mode, sharing)
+
+[debug] [2022-09-01T16:32:33.146Z] Parsed Java major version: 18
+[info] i  emulators: Starting emulators: firestore {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: firestore"}}
+[debug] [2022-09-01T16:32:33.230Z] Ignoring unsupported arg: projectId {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: projectId"}}
+[debug] [2022-09-01T16:32:33.230Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2022-09-01T16:32:33.230Z] Starting Firestore Emulator with command {"binary":"java","args":["-Dgoogle.cloud_firestore.debug_log_level=FINE","-Duser.language=en","-jar","C:\\Users\\Temiloluwa\\.cache\\firebase\\emulators\\cloud-firestore-emulator-v1.14.4.jar","--host","localhost","--port",6540,"--rules","C:\\Users\\Temiloluwa\\Documents\\ReactProjects\\sixty-six-ch\\src\\tests\\firestore.rules"],"optionalArgs":["port","webchannel_port","host","rules","functions_emulator","seed_from_export"],"joinArgs":false} {"metadata":{"emulator":{"name":"firestore"},"message":"Starting Firestore Emulator with command {\"binary\":\"java\",\"args\":[\"-Dgoogle.cloud_firestore.debug_log_level=FINE\",\"-Duser.language=en\",\"-jar\",\"C:\\\\Users\\\\Temiloluwa\\\\.cache\\\\firebase\\\\emulators\\\\cloud-firestore-emulator-v1.14.4.jar\",\"--host\",\"localhost\",\"--port\",6540,\"--rules\",\"C:\\\\Users\\\\Temiloluwa\\\\Documents\\\\ReactProjects\\\\sixty-six-ch\\\\src\\\\tests\\\\firestore.rules\"],\"optionalArgs\":[\"port\",\"webchannel_port\",\"host\",\"rules\",\"functions_emulator\",\"seed_from_export\"],\"joinArgs\":false}"}}
+[info] i  firestore: Firestore Emulator logging to firestore-debug.log {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator logging to \u001b[1mfirestore-debug.log\u001b[22m"}}
+[warn] !  emulators: The Emulator UI is not starting, either because none of the emulated products have an interaction layer in Emulator UI or it cannot determine the Project ID. Pass the --project flag to specify a project. {"metadata":{"emulator":{"name":"hub"},"message":"The Emulator UI is not starting, either because none of the emulated products have an interaction layer in Emulator UI or it cannot determine the Project ID. Pass the --project flag to specify a project."}}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+└─────────────────────────────────────────────────────────────┘
+
+┌───────────┬────────────────┐
+│ Emulator  │ Host:Port      │
+├───────────┼────────────────┤
+│ Firestore │ localhost:6540 │
+└───────────┴────────────────┘
+  Emulator Hub not running.
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 

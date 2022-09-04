@@ -12,6 +12,7 @@
     <style>
       body {
         background-color: white;
+        transition: background-color 500ms;
       }
       ::-webkit-scrollbar {
         height: 12px;
@@ -79,19 +80,22 @@
       }
 
       .quill > .ql-container > .ql-editor.ql-blank::before {
-        font-family: 'Pilcrow', sans-serif !important;
-        margin-left: -10px  !important;
+        font-family: "Pilcrow", sans-serif !important;
+        margin-left: -10px !important;
         color: black;
       }
 
+      .light {
+        background-color: white;
+      }
       @media (prefers-color-scheme: dark) {
         body {
           background-color: #121212;
         }
 
         .quill > .ql-container > .ql-editor.ql-blank::before {
-        color: white;
-      }
+          color: white;
+        }
 
         .ql-editor {
           color: white !important;

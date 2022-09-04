@@ -60,12 +60,14 @@ export default function PostDetails({ authorId }: PostContentProps) {
                   className="md:text-lg font-hind [&>h1]:text-xl [&>h2]:text-lg [&>h2]md:text-xl [&>ul]:list-disc [&>li]:list-item  [&>h1]:md:text-2xl  my-8 w-11/12 mx-auto md:mx-0  max-w-[66ch] editorcontent"
                   dangerouslySetInnerHTML={{ __html: post.postContent }}
                 ></div>
-                <ShareButtons
-                  description={post.description}
-                  postAuthor={post.author.name}
-                  postId={post.id}
-                  postTitle={post.postTitle}
-                />
+                <div className="w-11/12 mx-auto md:mx-0">
+                  <ShareButtons
+                    description={post.description}
+                    postAuthor={post.author.name}
+                    postId={post.id}
+                    postTitle={post.postTitle}
+                  />
+                </div>
                 <div className="w-11/12 mx-auto md:mx-0">
                   {location.pathname === (id && `/post/${id}`) && (
                     <PostComments />

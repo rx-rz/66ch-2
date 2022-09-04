@@ -8,7 +8,7 @@ import { Button } from "../Button";
 import deleteButton from "src/assets/delete.svg";
 import notifButton from "src/assets/notification.svg";
 import { doc, updateDoc } from "firebase/firestore";
-import { useThemeContext } from "src/context/themeContext";
+import { Switcher } from "./Switcher";
 
 export function Navbar() {
   const { user } = useUserContext()!;
@@ -18,7 +18,8 @@ export function Navbar() {
   const mobileNotifications = useRef<HTMLDivElement>(null);
   const menubutton = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
-  const { currentTheme, handleThemeToggle } = useThemeContext()!;
+
+  const pclinks = {};
 
   const handleNotifDelete = (id: string) => {
     const newNotifcations =
@@ -87,9 +88,7 @@ export function Navbar() {
           ) : (
             <div className="h-full">
               <div className="h-full hidden lg:flex relative">
-                {/* <Button handleClick={handleThemeToggle}>
-                Light
-                </Button> */}
+                <Switcher />
                 <Navlink variant="primary" to="/pendingposts">
                   PENDING POSTS [{pendingPosts && pendingPosts.length}]
                 </Navlink>
@@ -100,7 +99,6 @@ export function Navbar() {
                 >
                   NOTIFICATIONS [{user && user.notifications?.length}]
                 </Button>
-
                 <div
                   className="fixed top-16 h-fit border-2  min-h-[200px] bg-white dark:border-white dark:bg-tertiary hidden border-black  right-0 w-[652px] dark:text-white"
                   ref={notifications}
@@ -155,12 +153,9 @@ export function Navbar() {
                 <Navlink to="/search" variant="primary">
                   Search
                 </Navlink>
-                <button
-                  onClick={handleLogOut}
-                  className="sm:text-xl text-md transition-colors duration-300 hover:text-secondary px-3 uppercase text-tertiary border-tertiary h-full grid font-medium  content-center lg:px-4 dark:text-white"
-                >
+                <Button handleClick={handleLogOut} variant="nav">
                   Log Out
-                </button>
+                </Button>
               </div>
               <div className="h-full lg:hidden relative flex">
                 <Button
