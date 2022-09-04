@@ -144,7 +144,7 @@ export function Navbar() {
           {!user ? (
             <div className="flex flex-col">
               {mobileLinks.map((pcLink) => (
-                <Navlink to={pcLink.linkTo} variant="primary">
+                <Navlink to={pcLink.linkTo} variant="mobile">
                   {pcLink.name}
                 </Navlink>
               ))}
@@ -155,7 +155,7 @@ export function Navbar() {
                 Pending Posts [{pendingPosts && pendingPosts.length}]
               </Navlink>
               {mobileLinksAuth.map((pcLink) => (
-                <Navlink to={pcLink.linkTo} variant="primary">
+                <Navlink to={pcLink.linkTo} variant="mobile">
                   {pcLink.name}
                 </Navlink>
               ))}
