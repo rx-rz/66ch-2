@@ -1,4 +1,3 @@
-
 import { deleteDoc, doc } from "firebase/firestore";
 import { Link, useLocation } from "react-router-dom";
 import { database } from "src/config/firebaseConfig";
@@ -37,7 +36,11 @@ export function BlogCard({
   };
 
   return (
-    <div className=" border-2 border-black dark:border-white md:h-[700px] text-clip overflow-clip h-fit dark:text-white dark:bg-tertiary m-1">
+    <div
+      className=" border-2 border-black dark:border-white
+     md:h-[700px] text-clip overflow-clip h-fit dark:text-white
+      dark:bg-tertiary m-1"
+    >
       <div className="md:p-8 p-2 my-8 md:my-0">
         <div>
           <p className="text-lg md:text-2xl font-pilcrow mr-2 mb-2">
@@ -54,7 +57,10 @@ export function BlogCard({
               user && user.uid === authorId ? "/profile" : `/user/${authorId}`
             }
           >
-            <p className="text-xl md:text-3xl font-pilcrow mt-2 hover:text-secondary transition-colors duration-300">
+            <p
+              className="text-xl md:text-3xl font-pilcrow mt-2 
+            hover:text-secondary transition-colors duration-300"
+            >
               {authorName}
             </p>
           </Link>

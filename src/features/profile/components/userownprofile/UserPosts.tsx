@@ -8,7 +8,10 @@ export default function UserPosts() {
   const userPosts = data?.filter((doc) => doc.author.id === user?.uid);
   return (
     <div className="mx-auto md:w-11/12 w-full md:my-20 p-2">
-      <h1 className="md:text-5xl text-3xl font-pilcrow my-8 dark:text-white  font-bold">
+      <h1
+        className="md:text-5xl text-3xl font-pilcrow
+       my-8 dark:text-white  font-bold"
+      >
         ARTICLES
       </h1>
       {userPosts && userPosts.length > 0 ? (

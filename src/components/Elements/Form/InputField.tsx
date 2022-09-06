@@ -4,6 +4,8 @@ import { FieldWrapper, FieldWrapperPassThroughProps } from "./FieldWrapper";
 const variants = {
   authField:
     " border-tertiary w-full border p-2  bg-primary focus:bg-white mt-2 font-hind text-black",
+  updateField:
+    " border-tertiary w-full border p-1  bg-primary  focus:bg-white mt-2 text-black font-hind",
 };
 
 type InputFieldProps = FieldWrapperPassThroughProps & {

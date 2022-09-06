@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { useUserContext } from "src/context";
 
@@ -26,7 +25,10 @@ export function PendingBlogCard({
 }: CardProps) {
   const { user } = useUserContext()!;
   return (
-    <div className=" border-2 border-black dark:border-white md:h-[700px] text-clip overflow-clip h-fit dark:text-white dark:bg-tertiary m-1">
+    <div
+      className=" border-2 border-black dark:border-white md:h-[700px]
+     text-clip overflow-clip h-fit dark:text-white dark:bg-tertiary m-1"
+    >
       <div className="md:p-8 p-2 my-8 md:my-0">
         <div>
           <p className="text-lg md:text-2xl font-pilcrow mr-2 mb-2">
@@ -37,7 +39,10 @@ export function PendingBlogCard({
               user && user.uid === authorId ? "/profile" : `/user/${authorId}`
             }
           >
-            <p className="text-xl md:text-3xl font-pilcrow mt-2 hover:text-secondary transition-colors duration-300">
+            <p
+              className="text-xl md:text-3xl font-pilcrow mt-2
+             hover:text-secondary transition-colors duration-300"
+            >
               {authorName}
             </p>
           </Link>

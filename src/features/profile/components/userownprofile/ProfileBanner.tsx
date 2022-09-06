@@ -6,10 +6,13 @@ export default function ProfileBanner() {
   const { user } = useUserContext()!;
 
   useEffect(() => {
-    document.title = `${user?.name} - Profile`
-  }, [user])
+    document.title = `${user?.name} - Profile`;
+  }, [user]);
   return (
-    <div className="mx-auto md:w-11/12 block my-20 md:sticky top-36 font-pilcrow dark:text-white p-2">
+    <div
+   className="mx-auto md:w-11/12 block my-20 
+    md:sticky top-36 font-pilcrow dark:text-white p-2"
+    >
       {user && (
         <>
           <img
@@ -18,7 +21,10 @@ export default function ProfileBanner() {
             alt={user.name!}
           />
           <aside className=" md:my-12 ">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium font-pilcrow mb-8">
+            <h1
+              className="text-3xl md:text-4xl lg:text-5xl
+           font-medium font-pilcrow mb-8"
+            >
               {user.name}
             </h1>
             <h2 className="text-xl md:text-3xl mb-2">

@@ -1,7 +1,7 @@
 import { useIsPresent, motion } from "framer-motion";
 import { Footer } from "src/components";
 import { MainLayout } from "src/components/Layout/Layout";
-import Postlist from "src/features/posts/components/PostList/Postlist";
+import Postlist from "src/features/home/components/Postlist";
 import HomePage from "../components/HomePage";
 
 export const Home = () => {

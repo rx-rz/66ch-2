@@ -74,11 +74,13 @@ export default function ReplyList({
               <>
                 <TextAreaField
                   registration={register("reply")}
-                  className="border-2 dark:border-white text-black border-black resize-none w-11/12 "
+                  className="border-2 dark:border-white text-black
+                   border-black resize-none w-11/12 "
                 />
                 <button
                   type="submit"
-                  className=" border-black bg-secondary dark:border-white font-pilcrow px-3 my-2 border-2 text-white"
+                  className=" border-black bg-secondary dark:border-white
+                   font-pilcrow px-3 my-2 border-2 text-white"
                 >
                   Reply
                 </button>

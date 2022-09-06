@@ -29,7 +29,7 @@ type EditorProps = {
   postTitle: string;
 };
 
-export const PostContent = ({
+export const PostContentForm = ({
   tag,
   description,
   imageUrl,

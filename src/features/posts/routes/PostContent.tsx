@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { Footer, MainLayout } from "src/components";
 import { motion, useIsPresent } from "framer-motion";
-import PostDetails from "../components/PostDetails/PostDetails";
+import PostDetails from "../components/PostContent/PostDetails";
 import { useLayoutEffect } from "react";
-import { PostExtras } from "../components/PostDetails/PostExtras";
+import { PostExtras } from "../components/PostContent/PostExtras";
 
 export default function PostContent() {
   const isPresent = useIsPresent();

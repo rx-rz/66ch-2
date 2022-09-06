@@ -18,7 +18,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
   const { post, loading, error, acceptPost, rejectPost } =
     useAdminPostApprovalOptions();
   const location = useLocation();
-  
+
   useEffect(() => {
     document.title = `${post?.postTitle} by ${post?.author.name}`;
   }, [post?.postTitle, post?.author]);
@@ -31,19 +31,27 @@ export default function PostDetails({ authorId }: PostContentProps) {
       {post && (
         <main>
           <div className="md:w-10/12 w-full mx-auto ">
-            <h1 className=" w-full md:w-10/12 mx-auto my-12 text-3xl md:text-7xl text-center font-pilcrow">
+            <h1
+              className=" w-full md:w-10/12 mx-auto my-12 text-3xl
+             md:text-7xl text-center font-pilcrow"
+            >
               {post.postTitle}
             </h1>
             <motion.img
               src={post.imageDownloadUrl}
               alt={post.postTitle}
-              className="mx-auto  border border-black dark:border-white object-cover aspect-video max-h-[40vh]  md:max-h-[70vh]"
+              className="mx-auto  border border-black dark:border-white
+               object-cover aspect-video max-h-[40vh]  md:max-h-[70vh]"
               initial={{ width: "30%" }}
               animate={{ width: "95%" }}
               transition={{ duration: 0.7 }}
             />
             <div className="flex flex-wrap relative mx-auto md:w-9/12 w-full">
-              <aside className="md:w-3/12 xl:w-2/12 w-full md:sticky top-16  md:border-r-black md:border-r h-fit md:h-screen md:dark:border-r-white">
+              <aside
+                className="md:w-3/12 xl:w-2/12 w-full md:sticky top-16
+              md:border-r-black md:border-r h-fit md:h-screen
+              md:dark:border-r-white"
+              >
                 <div className="md:my-20 w-11/12 md:w-full mx-auto mt-8">
                   <Link
                     className="text-2xl font-bold font-pilcrow text-center text-blue-600"
@@ -62,7 +70,10 @@ export default function PostDetails({ authorId }: PostContentProps) {
               </aside>
               <div className="md:w-8/12 xl:w-9/12 mx-auto">
                 <div
-                  className="md:text-lg font-hind [&>h1]:text-xl [&>h2]:text-lg [&>h2]md:text-xl [&>ul]:list-disc [&>li]:list-item  [&>h1]:md:text-2xl  my-8 w-11/12 mx-auto md:mx-0  max-w-[66ch] editorcontent"
+                  className="editorcontent md:text-lg font-hind [&>h1]:text-xl
+                   [&>h2]:text-lg [&>h2]md:text-xl [&>ul]:list-disc [&>li]:list-item
+                   [&>h1]:md:text-2xl  my-8 w-11/12 mx-auto md:mx-0
+                   max-w-[66ch] "
                   dangerouslySetInnerHTML={{ __html: post.postContent }}
                 ></div>
                 <div className="w-11/12 mx-auto md:mx-0">

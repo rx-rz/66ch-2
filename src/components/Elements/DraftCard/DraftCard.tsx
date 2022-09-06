@@ -29,11 +29,14 @@ export function DraftCard({
     deleteDoc(doc(database, "drafts", postId!));
   };
   return (
-    <div className=" border-2 border-black dark:border-white md:h-[600px] text-clip overflow-clip h-fit dark:text-white dark:bg-tertiary m-1">
+    <div
+      className=" border-2 border-black dark:border-white
+     md:h-[600px] text-clip overflow-clip h-fit dark:text-white
+      dark:bg-tertiary m-1"
+    >
       <div className="md:p-8 p-2 my-8 md:my-0">
         <Link to={`/createpost/${postId}`}>
-          <div
-          >
+          <div>
             <p className="text-lg md:text-2xl font-pilcrow mr-2 mb-2">
               {dateCreated}
             </p>
@@ -42,13 +45,16 @@ export function DraftCard({
           <img
             src={imageUrl}
             alt={postTitle}
-            className="aspect-video object-cover border border-black my-4 dark:border-white"
+            className="aspect-video object-cover border
+             border-black my-4 dark:border-white"
             loading="lazy"
           />
-          <div
-          >
+          <div>
             <div className="max-h-72 overflow-clip">
-              <h1 className="text-3xl md:text-4xl font-pilcrow uppercase text-ellipsis">
+              <h1
+                className="text-3xl md:text-4xl font-pilcrow 
+              uppercase text-ellipsis"
+              >
                 {postTitle}
               </h1>
               <h2 className="text-lg md:text-xl font-hind text-ellipsis">

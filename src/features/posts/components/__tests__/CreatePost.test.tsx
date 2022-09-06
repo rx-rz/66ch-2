@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import AppProvider from "src/provider/app";
 import PostContent from "../../routes/PostContent";
-import PostSettings from "../CreatePost/PostSettings";
+import PostSettings from "../CreatePost/PostSettingsForm";
 
 const editPostSettings = jest.fn();
 const handleMenuToggle = jest.fn();

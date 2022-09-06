@@ -28,7 +28,9 @@ export const ShareButtons = ({
         linkFavicon={favicon}
         noReferer
       >
-        <button className="border-2 border-tertiary dark:text-white bg-primary px-1 text-secondary md:text-xl text-md font-pilcrow dark:bg-tertiary dark:border-secondary">
+        <button className="border-2 border-tertiary dark:text-white
+         bg-primary px-1 text-secondary md:text-xl text-md font-pilcrow
+          dark:bg-tertiary dark:border-secondary">
           Share This Post
         </button>
       </ShareOnSocial>

@@ -45,7 +45,7 @@ const errorToast = () =>
     duration: 4000,
   });
 
-export default function PostSettings({
+export default function PostSettingsForm({
   editPostSettings,
   handleMenuToggle,
   draft,
@@ -148,7 +148,6 @@ export default function PostSettings({
               data-testid="submitButton"
               variant="settingsButton"
               className="hidden md:block"
-              
             >
               Save Settings
             </Button>

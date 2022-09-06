@@ -5,8 +5,8 @@ import { Toaster } from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import { MainLayout } from "src/components";
 import { database } from "src/config/firebaseConfig";
-import { PostContent } from "../components/CreatePost/PostContent";
-import PostSettings from "../components/CreatePost/PostSettings";
+import { PostContentForm } from "../components/CreatePost/PostContentForm";
+import PostSettingsForm from "../components/CreatePost/PostSettingsForm";
 
 type PostSettingProps = {
   tag: string;
@@ -35,11 +35,12 @@ export default function CreatePost() {
         <Toaster />
         <main className=" flex justify-between h-screen w-full">
           <div
-            className="fixed  md:sticky md:flex z-40 md:top-0  hidden md:w-4/12 w-full  bg-secondary "
+            className="fixed  md:sticky md:flex z-40 md:top-0
+             hidden md:w-4/12 w-full  bg-secondary "
             ref={settings}
           >
             <div className="z-40 min-h-screen mx-auto">
-              <PostSettings
+              <PostSettingsForm
                 editPostSettings={editPostSettings}
                 draft={draft?.data()}
                 handleMenuToggle={handleMenuToggle}
@@ -48,7 +49,7 @@ export default function CreatePost() {
           </div>
           <div className=" h-screen overflow-y-scroll w-full ">
             <div className="w-11/12 mx-auto my-4">
-              <PostContent
+              <PostContentForm
                 handleMenuToggle={handleMenuToggle}
                 description={postSettings?.description}
                 draft={draft?.data()}

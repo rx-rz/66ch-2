@@ -1,4 +1,4 @@
-import { TextAreaField, Form } from "src/components";
+import { TextAreaField, Form, Button } from "src/components";
 import { useCreateComment } from "../../api/useCreateComment";
 
 type CommentProps = {
@@ -21,14 +21,16 @@ export default function PostCommentForm() {
             })}
             placeholder="Enter a comment here"
             error={formState.errors.comment}
-            className="border-2 border-black text-black dark:border-white w-full  resize-none p-2 t"
+            className="border-2 border-black text-black
+             dark:border-white w-full  resize-none p-2 t"
           />
-          <button
+          <Button
             type="submit"
-            className="border-2 px-3 border-black dark:border-white font-pilcrow bg-secondary text-white"
+            className="border-2 px-3 border-black dark:border-white
+             font-pilcrow bg-secondary text-white"
           >
             Comment
-          </button>
+          </Button>
         </>
       )}
     </Form>

@@ -43,7 +43,10 @@ export const SearchPosts = () => {
   return (
     <div className="w-full min-h-screen">
       <main className="w-fit py-20 flex-column mx-auto justify-center">
-        <h1 className="font-pilcrow text-xl md:text-3xl dark:text-white max-w-xl text-center my-4">
+        <h1
+          className="font-pilcrow text-xl md:text-3xl 
+        dark:text-white max-w-xl text-center my-4"
+        >
           Search for posts by the title, author's name or tag.
         </h1>
         <div className="flex h-fit border border-white justify-center mx-2 md:mx-0">
@@ -51,10 +54,12 @@ export const SearchPosts = () => {
             <input
               type="text"
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="border-2 border-black dark:border-white  mx-auto p-3 font-pilcrow text-2xl w-9/12"
+              className="border-2 border-black dark:border-white
+                mx-auto p-3 font-pilcrow text-2xl w-9/12"
             />
             <button
-              className="bg-secondary w-3/12 flex justify-center items-center border-2 border-black dark:border-white"
+              className="bg-secondary w-3/12 flex justify-center 
+              items-center border-2 border-black dark:border-white"
               onClick={handleSearch}
             >
               <img src={search} alt="Search" width="50px" className="invert" />

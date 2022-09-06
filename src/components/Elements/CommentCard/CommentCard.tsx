@@ -37,7 +37,10 @@ export function CommentCard({
     }
   };
   return (
-    <article className=" p-2 my-4 border border-black dark:border-white md:w-10/12 w-full">
+    <article
+      className=" p-2 my-4 border border-black
+     dark:border-white md:w-10/12 w-full"
+    >
       <div className="flex font-bold font-pilcrow">
         <h3 className="mr-2">{authorName}</h3>
         <h2 className="opacity-60">{dateCreated}</h2>
