@@ -20,7 +20,7 @@ export const Editor = ({ handleContentChange, draftContent }: EditorProps) => {
   const quill = useRef<any>();
   const [value, setValue] = useState(draftValue);
   const [draftValueAdded, setDraftValueAdded] = useState(false);
-  const [imageUrl, setImageUrl] = useState("");
+  // const [imageUrl, setImageUrl] = useState("");
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<StorageError | null>(null);
 
@@ -42,7 +42,6 @@ export const Editor = ({ handleContentChange, draftContent }: EditorProps) => {
       },
       async () => {
         await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log(downloadURL);
           editor.insertEmbed(editor.getSelection(), "image", downloadURL);
         });
       }
@@ -51,7 +50,6 @@ export const Editor = ({ handleContentChange, draftContent }: EditorProps) => {
 
   const imageHandler = async () => {
     const input = document.createElement("input");
-
     input.setAttribute("type", "file");
     input.click();
     input.onchange = () => {
