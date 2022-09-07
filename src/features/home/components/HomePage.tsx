@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { usePostContext } from "src/context/postContext";
 export default function HomePage() {
   const { data } = usePostContext()!;
-  const blogs = data && [data[0], data[1]];
+  const blogs = data && data.splice(0, 2);
 
   return (
     <div className="w-full border-2 border-t-0 border-tertiary text-white">

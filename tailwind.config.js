@@ -5,8 +5,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        pilcrow: ["Satoshi, sans-serif"],
-        hind: ["Erode, sans-serif"],
+        pilcrow: ["Pilcrow Rounded, sans-serif"],
+        hind: ["Hind, sans-serif"],
       },
       colors: {
         primary: "#FFFFFF",

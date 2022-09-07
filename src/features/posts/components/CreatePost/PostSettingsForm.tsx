@@ -107,7 +107,10 @@ export default function PostSettingsForm({
             {draft && setValue("description", `${draft.description}`)}
             {draft && setValue("tag", `${draft.tag}`)}
             <FileUploader handleChange={handleChange} name="File">
-              <div className="cursor-pointer h-36  w-full border-dotted border-2 border-primary grid items-center font-pilcrow">
+              <div
+                className="cursor-pointer h-36  w-full border-dotted border-2
+               border-primary grid items-center font-pilcrow"
+              >
                 {!progress ? (
                   <p className="mx-auto text-primary w-9/12 text-center">
                     Click to upload image or drag and drop image files here
@@ -123,7 +126,8 @@ export default function PostSettingsForm({
             </FileUploader>
             <SelectField
               options={tagNames.map((tagName) => ({ value: tagName }))}
-              className="border-2 border-tertiary w-full focus:outline-none  py-2 text-tertiary mt-3"
+              className="border-2 border-tertiary w-full
+              focus:outline-none  py-2 text-tertiary mt-3"
               defaultValue="Nature"
               registration={register("tag")}
               label="Tag"
@@ -139,7 +143,8 @@ export default function PostSettingsForm({
                 },
                 required: "Please enter a post description",
               })}
-              className="resize-none bg-primary text-black w-full border-2 border-tertiary  focus:bg-white focus:outline-none mt-3 p-1"
+              className="resize-none bg-primary text-black w-full border-2
+               border-tertiary  focus:bg-white focus:outline-none mt-3 p-1"
               label="Description"
               error={formState.errors.description}
             />
