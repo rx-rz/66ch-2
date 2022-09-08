@@ -64,6 +64,7 @@
       .ql-editor {
         font-family: "Hind", sans-serif;
         border: none !important;
+        color: black !important;
         padding: 4px 1px !important;
         margin-block-end: 5rem !important;
         font-size: clamp(0.8rem, 1.3vw, 1.3rem);
@@ -98,13 +99,13 @@
           color: white;
         }
 
-        .ql-editor {
+        /* .ql-editor {
           color: white !important;
         }
 
         .ql-editor:data-placeholder {
           color: white !important;
-        }
+        } */
       }
 
       @media screen and (max-width: 768px) {
@@ -121,10 +122,7 @@
         }
       }
     </style>
-    <meta
-      name="66CH"
-      content="Web site created using create-react-app"
-    />
+    <meta name="66CH" content="Web site created using create-react-app" />
     <link rel="apple-touch-icon" href="./66ch.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -155,5 +153,9 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      const body = document.getElementsByTagName("body")[0]
+      console.log(body.classList.contains('light' || 'dark'))
+    </script>
   </body>
 </html>

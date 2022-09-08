@@ -32,8 +32,8 @@ export function Navbar() {
             6 6 C H
           </Navlink>
           <PCNav user={user} handleMenuToggle={handleMenuToggle} />
+          <MobileNav user={user} menu={menu} />
         </div>
-        <MobileNav user={user} menu={menu} />
       </nav>
     );
   }
