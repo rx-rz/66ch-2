@@ -90,6 +90,11 @@
       .light {
         background-color: white;
       }
+
+      .dark .ql-editor {
+        color: white !important;
+      }
+
       @media (prefers-color-scheme: dark) {
         body {
           background-color: #121212;
@@ -154,8 +159,8 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <script>
-      const body = document.getElementsByTagName("body")[0]
-      console.log(body.classList.contains('light' || 'dark'))
+      const body = document.getElementsByTagName("body")[0];
+      console.log(body.classList.contains("light" || "dark"));
     </script>
   </body>
 </html>

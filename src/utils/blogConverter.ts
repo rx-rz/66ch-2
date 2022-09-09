@@ -17,9 +17,8 @@ export type Blog = {
   ref: DocumentReference<DocumentData>;
   dateCreated: string;
   description: string;
-  status: string,
-  isChecked: boolean
-
+  status: string;
+  isChecked: boolean;
 };
 
 export const blogConverter: FirestoreDataConverter<Blog> = {
@@ -42,7 +41,7 @@ export const blogConverter: FirestoreDataConverter<Blog> = {
       ref: snapshot.ref,
       description: data.description,
       status: data.status,
-      isChecked: data.isChecked
+      isChecked: data.isChecked,
     };
   },
 };
