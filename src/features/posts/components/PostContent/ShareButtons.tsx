@@ -20,7 +20,7 @@ export const ShareButtons = ({
         textToShare={
           postTitle &&
           postAuthor &&
-          `Check out "${postTitle}" by ${postAuthor} on 66ch!`
+          `"${postTitle}" by ${postAuthor} - 66CH`
         }
         link={postId && `/post/${postId}`}
         linkTitle={postTitle && postTitle}
