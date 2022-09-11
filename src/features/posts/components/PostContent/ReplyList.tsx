@@ -74,7 +74,8 @@ export default function ReplyList({
               <>
                 <TextAreaField
                   registration={register("reply")}
-                  className="border-2 dark:border-white text-black
+                  placeholder="Enter your reply here"
+                  className="border-2 dark:border-white text-black p-2
                    border-black resize-none w-11/12 "
                 />
                 <button

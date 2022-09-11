@@ -36,7 +36,6 @@ export function CommentCard({
       });
     }
   };
-
   const dateCreated = new Date(date)
   return (
     <article

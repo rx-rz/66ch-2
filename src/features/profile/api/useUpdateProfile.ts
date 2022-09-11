@@ -35,6 +35,8 @@ export const useUpdateProfile = () => {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
   const { user: currentUser } = useUserContext()!;
+  // console.log(user && user.uid )
+  // console.log(currentUser && currentUser.id)
 
   const [posts] = useCollectionData(postsRef);
   const [comments] = useCollectionData(commentsRef);
