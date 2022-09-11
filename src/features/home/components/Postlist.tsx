@@ -1,5 +1,5 @@
 import { BlogCard, Button } from "src/components";
-import { usePaginatedPosts } from "../../posts/api/usePaginatedPosts";
+import { usePaginatedPosts } from "../api/usePaginatedPosts";
 
 export default function Postlist() {
   const { posts, empty, fetchMore } = usePaginatedPosts();

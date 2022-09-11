@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { usePostContext } from "src/context/postContext";
 export default function HomePage() {
   const { data } = usePostContext()!;
-  const blogs = data && [data[10], data[7]]
+  const blogs = data && [data[10], data[7]];
 
   return (
     <div className="w-full border-2 border-t-0 border-tertiary text-white">
@@ -31,11 +31,11 @@ export default function HomePage() {
                       alt={blog.postTitle}
                     />
                     <div>
-                      <h1 className="text-3xl md:text-5xl font-pilcrow uppercase">
+                      <h1 className="text-3xl md:text-5xl font-pilcrow  uppercase">
                         {blog.postTitle}
                       </h1>
-                      <h2 className="text-lg md:text-2xl font-hind ">
-                        {blog.postTitle}
+                      <h2 className="text-lg md:text-2xl font-hind opacity-90">
+                        {blog.description}
                       </h2>
                     </div>
                   </div>
