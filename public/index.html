@@ -48,7 +48,7 @@
       }
 
       .editorcontent ul li,
-      .editorcontent ol li{
+      .editorcontent ol li {
         margin-left: 2rem;
         font-size: 95%;
       }
@@ -79,12 +79,18 @@
         font-family: "Pilcrow", sans-serif;
       }
 
-      .ql-editor h1 {
+      .ql-editor h1,
+      .editorcontent h1 {
         font-size: 2.2rem !important;
       }
 
-      .ql-editor h2 {
+      .ql-editor h2,
+      .editorcontent h2 {
         font-size: 2rem !important;
+      }
+
+      .dark .editorcontent {
+        color: white !important;
       }
 
       .quill > .ql-container > .ql-editor.ql-blank::before {
@@ -109,26 +115,18 @@
         .quill > .ql-container > .ql-editor.ql-blank::before {
           color: white;
         }
-
-        /* .ql-editor {
-          color: white !important;
-        }
-
-        .ql-editor:data-placeholder {
-          color: white !important;
-        } */
       }
 
       @media screen and (max-width: 768px) {
-        .ql-editor h1 {
+        .ql-editor h1, .editorcontent h1 {
           font-size: 1.4rem !important;
         }
 
-        .ql-editor h2 {
+        .ql-editor h2, .editorcontent h2 {
           font-size: 1.3rem !important;
         }
 
-        .ql-editor p {
+        .ql-editor p, .editorcontent p {
           font-size: 1.1rem !important;
         }
       }
