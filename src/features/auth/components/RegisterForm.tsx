@@ -19,7 +19,7 @@ export function RegisterForm() {
   };
 
   return (
-    <div className=" min-h-screen">
+    <div className=" min-h-screen authform">
       <div className="w-10/12 mx-auto font-pilcrow">
         <h1 className="text-4xl text-center my-4 font-bold">Register </h1>
 
