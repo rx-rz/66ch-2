@@ -52,7 +52,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
               md:border-r-black md:border-r h-fit md:h-screen
               md:dark:border-r-white"
               >
-                <div className="md:my-20 w-11/12 md:w-full mx-auto mt-8">
+                <div className="md:my-20  md:w-full mx-auto mt-8 hidden md:block">
                   <Link
                     className="text-2xl font-bold font-pilcrow text-center text-blue-600"
                     to={
@@ -69,6 +69,21 @@ export default function PostDetails({ authorId }: PostContentProps) {
                 </div>
               </aside>
               <div className="md:w-8/12 xl:w-9/12 mx-auto">
+                <div className="w-11/12 mx-auto mt-8  md:hidden">
+                  <Link
+                    className="text-2xl font-bold font-pilcrow text-center text-blue-600"
+                    to={
+                      user
+                        ? user.uid !== post.author.id
+                          ? `/user/${post.author.id}`
+                          : "/profile"
+                        : `/user/${post.author.id}`
+                    }
+                  >
+                    {post.author.name}
+                  </Link>
+                  <p className="font-pilcrow">{post.dateCreated}</p>
+                </div>
                 <div
                   className="editorcontent font-hind my-8 w-11/12 mx-auto md:mx-0
                   max-w-[66ch]"

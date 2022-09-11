@@ -4,14 +4,14 @@ import { useParams } from "react-router-dom";
 import { CommentCard } from "src/components";
 import { useUserContext } from "src/context/userContext";
 import ReplyList from "./ReplyList";
-import {  database } from "src/config/firebaseConfig";
+import { database } from "src/config/firebaseConfig";
 import { commentConverter } from "src/utils";
 
 const ref = collection(database, "comments").withConverter(commentConverter);
 
 export default function PostComments() {
   const { id } = useParams();
-  const {user} = useUserContext()!
+  const { user } = useUserContext()!;
   const [data, loading] = useCollectionData(ref);
   const comments = data && data.filter((doc) => doc.postId === id).reverse();
 
@@ -29,10 +29,10 @@ export default function PostComments() {
                 likes={doc.likes}
                 authorName={doc.commentAuthor}
                 userId={user?.uid!}
-                dateCreated={doc.dateCreated}
+                date={doc.dateCreated}
               />
 
-              <ReplyList  
+              <ReplyList
                 commentId={doc.id}
                 dateCreated={doc.dateCreated}
                 likes={0}

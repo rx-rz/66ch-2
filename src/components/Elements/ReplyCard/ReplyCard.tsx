@@ -5,7 +5,7 @@ type CardProps = {
   authorName: string;
   reply: string;
   likes: number;
-  dateCreated: string;
+  date: string;
   replyId: string;
   replyLikers: string[];
   userId: string;
@@ -13,13 +13,14 @@ type CardProps = {
 
 export function ReplyCard({
   authorName,
-  dateCreated,
+  date,
   reply,
   likes,
   replyId,
   replyLikers,
   userId,
 }: CardProps) {
+  const dateCreated = new Date(date);
   const replyRef = doc(database, "replies", replyId);
   const newreplyLikersArray =
     replyLikers && replyLikers.filter((item) => item !== userId);
@@ -37,19 +38,21 @@ export function ReplyCard({
       });
     }
   };
-  
+
   return (
     <article className=" border border-black p-2 dark:border-white my-2">
       <div className="flex text-md font-bold  font-pilcrow">
         <h3 className="mr-2">{authorName}</h3>
-        <h2 className="opacity-60">{dateCreated}</h2>
+        <h2 className="opacity-60">{dateCreated.toDateString()}</h2>
       </div>
-      <hr className="border border-secondary"/>
+      <hr className="border border-secondary" />
       <div>
         <p className="text-sm font-hind">{reply}</p>
       </div>
       <div>
-        <button onClick={handleLikeClick}>{replyLikers.includes(userId) ? <>❤️ {likes}</> : <>🤍 {likes}</>}</button>
+        <button onClick={handleLikeClick}>
+          {replyLikers.includes(userId) ? <>❤️ {likes}</> : <>🤍 {likes}</>}
+        </button>
       </div>
     </article>
   );

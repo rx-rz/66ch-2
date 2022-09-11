@@ -5,7 +5,7 @@ type CardProps = {
   authorName: string;
   comment: string;
   likes: number;
-  dateCreated: string;
+  date: string;
   userId: string;
   commentId: string;
   commentLikers: string[];
@@ -13,7 +13,7 @@ type CardProps = {
 
 export function CommentCard({
   authorName,
-  dateCreated,
+  date,
   comment,
   likes,
   commentId,
@@ -36,6 +36,8 @@ export function CommentCard({
       });
     }
   };
+
+  const dateCreated = new Date(date)
   return (
     <article
       className=" p-2 my-4 border border-black
@@ -43,7 +45,7 @@ export function CommentCard({
     >
       <div className="flex font-bold font-pilcrow">
         <h3 className="mr-2">{authorName}</h3>
-        <h2 className="opacity-60">{dateCreated}</h2>
+        <h2 className="opacity-60">{dateCreated.toDateString()}</h2>
       </div>
       <hr className="border border-secondary " />
       <div>

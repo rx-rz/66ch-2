@@ -29,7 +29,7 @@ export default function ReplyList({
     data
       .filter((doc) => doc.commentId === commentId)
       .sort(function (a, b) {
-        return Date.parse(a.dateCreated) - Date.parse(b.dateCreated);
+        return Date.parse(b.dateCreated) - Date.parse(a.dateCreated);
       });
 
   const replyTag = useRef<HTMLDivElement | null>(null);
@@ -56,7 +56,7 @@ export default function ReplyList({
               <ReplyCard
                 replyLikers={doc.replyLikers}
                 authorName={doc.replyAuthor!}
-                dateCreated={doc.dateCreated}
+                date={doc.dateCreated}
                 likes={doc.likes}
                 reply={doc.reply!}
                 replyId={doc.id}
