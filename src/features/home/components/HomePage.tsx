@@ -26,7 +26,7 @@ export default function HomePage() {
                     </div>
                     <img
                       className="aspect-video my-8 border border-black
-                      object-cover max-h-[30vh] md:max-h-[55vh]"
+                      object-cover max-h-[30vh] md:max-h-[55vh] w-full"
                       src={blog.imageDownloadUrl}
                       alt={blog.postTitle}
                     />

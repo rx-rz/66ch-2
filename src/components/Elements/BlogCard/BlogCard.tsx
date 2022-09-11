@@ -69,7 +69,8 @@ export function BlogCard({
           <img
             src={imageUrl}
             alt={postTitle}
-            className="aspect-video object-cover border border-black my-4"
+            className="aspect-video my-8 border border-black
+                      object-cover max-h-[30vh] md:max-h-[55vh] w-full"
             loading="lazy"
           />
           <div>

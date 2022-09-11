@@ -50,9 +50,9 @@ export const MobileNav = ({ user, menu }: MobileNavProps) => {
           <button
             onClick={handleLogOut}
             className="text-2xl font-pilcrow text-primary font-medium my-8
-             ml-4 w-fit transition-colors duration-300 hover:text-secondary"
+             ml-4 w-fit"
           >
-            Log Out
+            LOG OUT
           </button>
         </div>
       )}
