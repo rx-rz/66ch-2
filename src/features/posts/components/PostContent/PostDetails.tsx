@@ -70,9 +70,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
               </aside>
               <div className="md:w-8/12 xl:w-9/12 mx-auto">
                 <div
-                  className="editorcontent md:text-lg font-hind [&>h1]:text-xl
-                  [&>h2]:text-lg [&>h2]md:text-xl [&>ul]:list-disc [&>li]:list-item
-                  [&>h1]:md:text-2xl  my-8 w-11/12 mx-auto md:mx-0
+                  className="editorcontent font-hind my-8 w-11/12 mx-auto md:mx-0
                   max-w-[66ch]"
                   dangerouslySetInnerHTML={{ __html: post.postContent }}
                 ></div>

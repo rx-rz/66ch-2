@@ -65,7 +65,15 @@
       }
 
       .light .authform {
-        color: #000
+        color: #000;
+      }
+
+      .editorcontent ol li {
+        list-style-type: lower-greek;
+      }
+
+      .editorcontent ul li {
+        list-style-type: square;
       }
 
       .dark .authform {
@@ -81,6 +89,10 @@
         color: black !important;
         padding: 4px 1px !important;
         margin-block-end: 5rem !important;
+        font-size: clamp(0.8rem, 1.3vw, 1.3rem);
+      }
+
+      .editorcontent p {
         font-size: clamp(0.8rem, 1.3vw, 1.3rem);
       }
       .ql-formats {
