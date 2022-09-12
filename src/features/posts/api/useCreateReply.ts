@@ -1,5 +1,6 @@
 import { addDoc, collection } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+import { useForm } from "react-hook-form";
 import { database } from "src/config/firebaseConfig";
 import { replyConverter } from "src/utils";
 
@@ -23,16 +24,6 @@ export const useCreateReply = () => {
   const ref = collection(database, "replies").withConverter(replyConverter);
   const [data] = useCollectionData(ref);
 
-  // const replies = (commentId: string) => {
-  //   data &&
-  //     data
-  //       .filter((doc) => doc.commentId === commentId)
-  //       .sort(function (a, b) {
-  //         return Date.parse(a.dateCreated) - Date.parse(b.dateCreated);
-  //       });
-  //   return {data}
-  // };
-
   const replyRef = collection(database, "replies");
   const handleReplySubmit = async (
     replyData: ReplyListProps,
@@ -49,6 +40,8 @@ export const useCreateReply = () => {
       isLiked: false,
       replyLikers: [],
     });
+    
+
   };
 
   return { handleReplySubmit, data };

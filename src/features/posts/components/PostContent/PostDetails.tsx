@@ -105,7 +105,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
                     <PostCommentForm />
                   )}
                 </div>
-                {user && user.role === "admin" && (
+                {user && user.role === "admin" && post.status === "pending" && (
                   <div className="my-4 md:my-8">
                     <Button
                       handleClick={() => acceptPost(authorId)}

@@ -3,10 +3,9 @@ import {
   ref,
   StorageError,
   uploadBytesResumable,
-
 } from "firebase/storage";
 import { useEffect, useMemo, useRef, useState } from "react";
-import ReactQuill from "react-quill";
+import ReactQuill, { ReactQuillProps } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { storage } from "src/config/firebaseConfig";
 
@@ -17,16 +16,14 @@ type EditorProps = {
 
 export const Editor = ({ handleContentChange, draftContent }: EditorProps) => {
   const draftValue = draftContent ?? "";
-  const quill = useRef<any>();
+  const quill = useRef<ReactQuill | any>();
   const [value, setValue] = useState(draftValue);
   const [draftValueAdded, setDraftValueAdded] = useState(false);
-  // const [imageUrl, setImageUrl] = useState("");
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<StorageError | null>(null);
 
-
   const uploadImageToServer = (file: File) => {
-    const editor = quill.current.getEditor();
+    const editor = quill.current?.getEditor();
     const storageRef = ref(storage, `images/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
     uploadTask.on(
@@ -42,7 +39,7 @@ export const Editor = ({ handleContentChange, draftContent }: EditorProps) => {
       },
       async () => {
         await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          editor.insertEmbed(editor.getSelection(), "image", downloadURL);
+          editor?.insertEmbed(editor.getSelection(), "image", downloadURL);
         });
       }
     );
@@ -66,8 +63,10 @@ export const Editor = ({ handleContentChange, draftContent }: EditorProps) => {
         container: [
           [{ header: [1, 2, false] }],
           ["bold", "italic", "underline"],
+          [{ script: "sub" }, { script: "super" }],
+
           [{ list: "ordered" }, { list: "bullet" }],
-          ["image", "code-block"],
+          ["link", "image", "blockquote"],
         ],
         handlers: {
           image: imageHandler,

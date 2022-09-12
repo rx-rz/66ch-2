@@ -24,6 +24,7 @@ export const useCreateComment = () => {
       isLiked: false,
       commentLikers: [],
     });
+    
   };
 
   return { handleCommentSubmit };

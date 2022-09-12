@@ -10,7 +10,6 @@ const variants = {
 
 type InputFieldProps = FieldWrapperPassThroughProps & {
   type?: "text" | "email" | "password";
-  inputStyle?: string;
   className?: string;
   placeHolder?: string;
   registration: Partial<UseFormRegisterReturn>;
