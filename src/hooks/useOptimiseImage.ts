@@ -2,8 +2,8 @@ import { useState } from "react";
 import imageCompression from "browser-image-compression";
 import { useEffect } from "react";
 
-const useOptimizeImage = (image: any) => {
-  const [imageFile, setImageFile] = <any | null>useState("");
+const useOptimizeImage = (image: File) => {
+  const [imageFile, setImageFile] = <File | any>useState({} as File);
   const [error, setError] = useState<Error | null>();
   try {
     useEffect(() => {
