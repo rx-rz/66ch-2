@@ -98,9 +98,11 @@ export const useRegister = () => {
       });
       navigate("/");
       setPending(false);
-    } catch (err: any) {
-      setPending(false);
-      errorToast(err);
+    } catch (err: unknown) {
+      if (err instanceof FirebaseError) {
+        setPending(false);
+        errorToast(err);
+      }
     }
   };
 
@@ -126,9 +128,11 @@ export const useRegister = () => {
         }
       });
       navigate("/");
-    } catch (err: any) {
-      setPending(false);
-      errorToast(err);
+    } catch (err: unknown) {
+      if (err instanceof FirebaseError) {
+        setPending(false);
+        errorToast(err);
+      }
     }
   };
 

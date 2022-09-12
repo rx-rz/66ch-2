@@ -86,8 +86,10 @@ export const useLogin = () => {
         })
         .catch((err) => console.log(err));
       navigate("/");
-    } catch (err: any) {
-      errorToast(err);
+    } catch (err: unknown) {
+      if (err instanceof FirebaseError) {
+        errorToast(err);
+      }
     }
   };
 
@@ -97,9 +99,11 @@ export const useLogin = () => {
       await signInWithEmailAndPassword(auth, data.email, data.password);
       setPending(false);
       navigate("/");
-    } catch (err: any) {
-      setPending(false);
-      errorToast(err);
+    } catch (err: unknown) {
+      if (err instanceof FirebaseError) {
+        setPending(false);
+        errorToast(err);
+      }
     }
   };
 

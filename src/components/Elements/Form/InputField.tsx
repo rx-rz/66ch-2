@@ -15,7 +15,6 @@ type InputFieldProps = FieldWrapperPassThroughProps & {
   registration: Partial<UseFormRegisterReturn>;
   defaultValue?: string;
   variant?: keyof typeof variants;
-  reset?: any;
 };
 
 export const InputField = (props: InputFieldProps) => {
