@@ -9,7 +9,7 @@ type UpdateFormValues = {
 };
 
 export default function UpdateProfile() {
-  const { handleChange, handleProfileUpdate, namesOfUser, pending, progress } =
+  const { handleImageChange, handleProfileUpdate, pending, progress } =
     useUpdateProfile();
 
   return (
@@ -22,7 +22,7 @@ export default function UpdateProfile() {
           <p className="text-medium md:text-lg dark:text-white font-pilcrow mb-4">
             Profile Picture
           </p>
-          <FileUploader handleChange={(e: any) => handleChange(e)} name="File">
+          <FileUploader handleChange={(e: File) => handleImageChange(e)} name="File">
             <div
               className="cursor-pointer h-36  w-full border-dotted border-2
              border-black dark:border-white dark:text-white grid items-center"

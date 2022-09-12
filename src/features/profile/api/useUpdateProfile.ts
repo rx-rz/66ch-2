@@ -55,14 +55,13 @@ export const useUpdateProfile = () => {
 
   const [pending, setPending] = useState(false);
   const [file, setFile] = useState<File>({} as File);
-
   const types = ["image/png", "image/jpeg", "image/jpg"];
-  const { url , progress} = usePostImage(file);
+  const { url, progress } = usePostImage(file);
 
   useEffect(() => {
     console.log(currentUser);
   }, [currentUser]);
-  const handleChange = (e: any) => {
+  const handleImageChange = (e: File) => {
     let selectedFile = e;
     if (selectedFile) {
       if (types.includes(selectedFile.type)) {
@@ -77,9 +76,7 @@ export const useUpdateProfile = () => {
     setPending(true);
     await updateProfile(user!, {
       displayName:
-        (data.firstName  ?? "First Name") +
-        " " +
-        (data.lastName  ?? "Last Name"),
+        (data.firstName ?? "First Name") + " " + (data.lastName ?? "Last Name"),
       photoURL: url ?? user!.photoURL,
     });
 
@@ -135,5 +132,5 @@ export const useUpdateProfile = () => {
     navigate("/profile");
   };
 
-  return { handleChange, handleProfileUpdate, namesOfUser, pending, progress };
+  return { handleImageChange, handleProfileUpdate, namesOfUser, pending, progress };
 };
