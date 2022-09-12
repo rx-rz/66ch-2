@@ -40,7 +40,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
               </Navlink>
             ))}
           </div>
-          <div className="h-full lg:hidden block">
+          <div className="h-full xl:hidden block">
             <button
               className="text-tertiary  h-full grid font-extrabold
                 content-center   font-pilcrow dark:text-white"
