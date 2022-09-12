@@ -52,7 +52,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
               md:border-r-black md:border-r h-fit md:h-screen
               md:dark:border-r-white"
               >
-                <div className="md:my-20  md:w-full mx-auto mt-8 hidden md:block">
+                <div className="md:my-20  md:w-11/12 mx-auto mt-8 hidden md:block">
                   <Link
                     className="text-2xl font-bold font-pilcrow text-center text-blue-600"
                     to={
