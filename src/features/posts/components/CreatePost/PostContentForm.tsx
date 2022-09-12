@@ -2,6 +2,8 @@ import { DocumentData, DocumentReference } from "firebase/firestore";
 import { useCreatePost } from "../../api/useCreatePost";
 import { Link } from "react-router-dom";
 import { Button, Editor, Form, TextAreaField } from "src/components";
+import { Controller } from "react-hook-form";
+import { useEffect, useState } from "react";
 
 export type Blog = {
   author: { name: string; id: string };
@@ -39,6 +41,11 @@ export const PostContentForm = ({
   const { changeEditorContent, handleDraft, handleSubmit, pending } =
     useCreatePost();
 
+  const [title, setTitle] = useState("");
+  useEffect(() => {
+    console.log(title);
+  }, [title]);
+
   return (
     <div className="md:w-11/12 w-full  mx-auto my-8 font-hind">
       <nav className="flex justify-between mx-auto">
@@ -51,7 +58,7 @@ export const PostContentForm = ({
         <div className="justify-between flex">
           <Button
             variant="draft"
-            handleClick={() => handleDraft(imageUrl, tag, description, draft)}
+            handleClick={() => handleDraft(imageUrl, tag, description, draft, title)}
           >
             Save As Draft
           </Button>
@@ -69,22 +76,30 @@ export const PostContentForm = ({
         }
         options={{ mode: "onBlur" }}
       >
-        {({ register, formState, setValue }) => (
+        {({ register, formState, setValue, control }) => (
           <>
             {draft && setValue("postTitle", draft.postTitle ?? "")}
-            <TextAreaField
-              error={formState.errors.postTitle}
-              placeholder="Enter your post title here...(200 characters max)"
-              registration={register("postTitle", {
-                required: "Please enter a post title",
-                maxLength: {
-                  value: 200,
-                  message:
-                    "Your post title cannot be more than 200 characters long",
-                },
-              })}
-              className="resize-none focus:outline-none w-full m-auto text-3xl md:text-4xl lg:text-5xl ml-1 bg-primary text-tertiary dark:bg-tertiary dark:text-white"
+            <Controller
+              control={control}
+              name="postTitle"
+              render={() => (
+                <TextAreaField
+                  error={formState.errors.postTitle}
+                  onChange={(e: any) => setTitle(e.target.value)}
+                  placeholder="Enter your post title here...(200 characters max)"
+                  registration={register("postTitle", {
+                    required: "Please enter a post title",
+                    maxLength: {
+                      value: 200,
+                      message:
+                        "Your post title cannot be more than 200 characters long",
+                    },
+                  })}
+                  className="resize-none focus:outline-none w-full m-auto text-3xl md:text-4xl lg:text-5xl ml-1 bg-primary text-tertiary dark:bg-tertiary dark:text-white"
+                />
+              )}
             />
+
             {!imageUrl && !description && !tag && (
               <p className="md:text-xl md:mt-4 mt-4 dark:text-white">
                 Please specify the needed settings for the blog post in the post

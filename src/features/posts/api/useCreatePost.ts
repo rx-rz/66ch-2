@@ -1,4 +1,12 @@
-import { addDoc, collection, deleteDoc, doc, DocumentData, DocumentReference, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  DocumentData,
+  DocumentReference,
+  updateDoc,
+} from "firebase/firestore";
 import { useState } from "react";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import toast from "react-hot-toast";
@@ -55,20 +63,19 @@ export const draftToast = () =>
   toast.success("Draft saved. Check your profile to view drafts.", {
     style: {
       borderRadius: 0,
-      color: 'white',
+      color: "white",
       backgroundColor: "#121212",
       border: "2px solid #0437F2",
       width: "300px",
-
     },
     duration: 3000,
   });
 
-  export const submitToast = () =>
+export const submitToast = () =>
   toast.success("Post submitted. Approval status will be notified soon.", {
     style: {
       borderRadius: 0,
-      color: 'white',
+      color: "white",
       backgroundColor: "#121212",
       border: "2px solid #0437F2",
       width: "300px",
@@ -83,14 +90,13 @@ const draftsRef = collection(database, "drafts");
 export const useCreatePost = () => {
   const { user } = useUserContext()!;
 
-  
-  const { id  = "3279ghdga!&@E&*^#&%$^!"} = useParams();
-  const [pending, setPending] = useState(false)
+  const { id = "3279ghdga!&@E&*^#&%$^!" } = useParams();
+  const [pending, setPending] = useState(false);
   const [draftId, setDraftId] = useState<string | null>(null);
   const [editorContent, setEditorContent] = useState("");
 
-  const draftRef =doc(database, "drafts", id!)
-  const [draft] = useDocumentData(draftRef)
+  const draftRef = doc(database, "drafts", id!);
+  const [draft] = useDocumentData(draftRef);
 
   const changeEditorContent = (editorContent: string) => {
     setEditorContent(editorContent);
@@ -100,11 +106,15 @@ export const useCreatePost = () => {
     data: EditorProps,
     imageUrl: string | undefined,
     tag: string | undefined,
-    description: string | undefined,
+    description: string | undefined
   ) => {
     if (/[a-z]/i.test(data.postTitle) && /[a-z]/i.test(editorContent)) {
-      if ((imageUrl  ?? draft?.imageDownloadUrl) && (tag ?? draft?.tag) && (description ?? draft?.description)) {
-        setPending(true)
+      if (
+        (imageUrl ?? draft?.imageDownloadUrl) &&
+        (tag ?? draft?.tag) &&
+        (description ?? draft?.description)
+      ) {
+        setPending(true);
         await addDoc(postsRef, {
           postTitle: data.postTitle,
           postContent: editorContent,
@@ -121,10 +131,9 @@ export const useCreatePost = () => {
           await deleteDoc(doc(database, "drafts", id!));
         }
 
-        setPending(false)
-        postContentToast()
+        setPending(false);
+        postContentToast();
         window.location.pathname = "/";
-
       } else {
         errorToast();
       }
@@ -137,12 +146,14 @@ export const useCreatePost = () => {
     imageUrl: string | undefined,
     tag: string | undefined,
     description: string | undefined,
-    draft: Partial<Blog> | undefined
+    draft: Partial<Blog> | undefined,
+    postTitle?: string
   ) => {
     if (!draft) {
       if (!draftId) {
         await addDoc(draftsRef, {
           postContent: editorContent ?? "",
+          postTitle: postTitle,
           imageDownloadUrl: imageUrl ?? "",
           author: { name: user?.name, id: user?.uid },
           dateCreated: date.toLocaleDateString(),
@@ -154,6 +165,7 @@ export const useCreatePost = () => {
         await updateDoc(doc(database, "drafts", draftId!), {
           postContent: editorContent ?? "",
           imageDownloadUrl: imageUrl ?? "",
+          postTitle: postTitle,
           author: { name: user?.name, id: user?.uid },
           dateCreated: date.toLocaleDateString(),
           tag: tag ?? "",
@@ -164,6 +176,7 @@ export const useCreatePost = () => {
     } else {
       await updateDoc(doc(database, "drafts", id!), {
         postContent: editorContent ?? "",
+        postTitle: postTitle,
         imageDownloadUrl: imageUrl ?? draft.imageDownloadUrl ?? "",
         author: { name: user?.name, id: user?.uid },
         dateCreated: date.toLocaleDateString(),
@@ -174,7 +187,5 @@ export const useCreatePost = () => {
     }
   };
 
-
-
-  return {changeEditorContent, handleDraft, handleSubmit, pending}
+  return { changeEditorContent, handleDraft, handleSubmit, pending };
 };

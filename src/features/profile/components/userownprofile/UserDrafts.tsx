@@ -22,7 +22,7 @@ export default function UserDrafts() {
       </h1>
       {userPosts && userPosts.length > 0 ? (
         <article className="grid md:grid-cols-2 xl:grid-cols-3 grid-cols-1">
-          {userPosts!.map((doc, index) => (
+          {userPosts!.map((doc) => (
             <React.Fragment key={doc.id}>
               <DraftCard
                 authorName={doc.author.name}
@@ -31,7 +31,7 @@ export default function UserDrafts() {
                 postId={doc.id}
                 dateCreated={doc.dateCreated}
                 imageUrl={doc.imageDownloadUrl}
-                postTitle={`Draft ${index + 1}`}
+                postTitle={doc.postTitle}
               />
             </React.Fragment>
           ))}

@@ -1,6 +1,7 @@
 import {
   FieldValues,
   SubmitHandler,
+  UseControllerProps,
   useForm,
   UseFormProps,
   UseFormReset,
@@ -12,7 +13,7 @@ type FormProps<TFormValues extends FieldValues> = {
   onSubmit: SubmitHandler<TFormValues>;
   reset?: UseFormReset<TFormValues>;
   children: (methods: UseFormReturn<TFormValues>) => React.ReactNode;
-  options?: UseFormProps<TFormValues>;
+  options?: UseFormProps<TFormValues> | UseControllerProps<TFormValues> ;
 };
 
 export const Form = <TFormValues extends Record<string, any>>({
