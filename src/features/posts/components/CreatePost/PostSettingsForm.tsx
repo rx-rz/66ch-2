@@ -73,7 +73,7 @@ export default function PostSettingsForm({
     "Tourism",
     "Entertainment",
   ];
-  const [file, setFile] = useState<File | null>(null);
+  const [file, setFile] = useState<File | any>(null);
   const { imageFile } = useOptimizeImage(file);
   const { url, progress, error } = usePostImage(imageFile);
 
