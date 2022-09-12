@@ -1,6 +1,5 @@
 import { addDoc, collection } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { useForm } from "react-hook-form";
 import { database } from "src/config/firebaseConfig";
 import { replyConverter } from "src/utils";
 

@@ -73,12 +73,12 @@ export default function PostSettingsForm({
     "Tourism",
     "Entertainment",
   ];
-  const [file, setFile] = useState<File | null | any>(null);
+  const [file, setFile] = useState<File | null>(null);
   const { imageFile } = useOptimizeImage(file);
   const { url, progress, error } = usePostImage(imageFile);
 
   const types = ["image/jpg", "image/jpeg", "image/png"];
-  const handleChange = (e: any) => {
+  const handleChange = (e: File) => {
     let selectedFile = e;
     if (selectedFile) {
       if (types.includes(selectedFile.type)) {
