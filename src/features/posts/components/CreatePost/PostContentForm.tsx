@@ -58,12 +58,15 @@ export const PostContentForm = ({
         <div className="justify-between flex">
           <Button
             variant="draft"
-            handleClick={() => handleDraft(imageUrl, tag, description, draft, title)}
+            handleClick={() =>
+              handleDraft(imageUrl, tag, description, draft, title)
+            }
           >
             Save As Draft
           </Button>
           <Button
-            className="border-2 bg-secondary font-pilcrow border-tertiary text-primary px-1 md:text-xl text-md md:hidden ml-3"
+            className="border-2 bg-secondary font-pilcrow border-tertiary
+             text-primary px-1 md:text-xl text-md md:hidden ml-3"
             handleClick={handleMenuToggle}
           >
             Settings
@@ -95,7 +98,8 @@ export const PostContentForm = ({
                         "Your post title cannot be more than 200 characters long",
                     },
                   })}
-                  className="resize-none focus:outline-none w-full m-auto text-3xl md:text-4xl lg:text-5xl ml-1 bg-primary text-tertiary dark:bg-tertiary dark:text-white"
+                  className="resize-none focus:outline-none w-full m-auto text-3xl md:text-4xl
+                   lg:text-5xl ml-1 bg-primary text-tertiary dark:bg-tertiary dark:text-white"
                 />
               )}
             />

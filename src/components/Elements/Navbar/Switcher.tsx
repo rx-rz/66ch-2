@@ -4,8 +4,8 @@ import { DarkModeSwitch } from "react-toggle-dark-mode";
 export const Switcher = () => {
   
   const [theme, setTheme] = useState(localStorage.getItem("theme"));
-  const [isDark, setIsDark] = useState(theme === "dark" || null ? true : false);
-  const colorTheme = theme === "dark" ? "light" : "dark";
+  const [isDark, setIsDark] = useState(theme === "light" || null ? true : false);
+  const colorTheme = theme === "dark" || null ? "light" : "dark";
 
   const toggleDarkMode = (checked: boolean) => {
     setTheme(colorTheme);
@@ -14,8 +14,8 @@ export const Switcher = () => {
 
   useEffect(() => {
     const root = document.body;
-    root.classList.toggle(colorTheme);
-    root.classList.toggle(theme!);
+    root.classList.add(colorTheme);
+    root.classList.remove(theme!);
     localStorage.setItem("theme", theme!);
   }, [theme, colorTheme]);
 

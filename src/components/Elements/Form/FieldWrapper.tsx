@@ -5,7 +5,6 @@ type FieldWrapperProps = {
   className?: string;
   children: React.ReactNode;
   error?: FieldError | undefined;
-  description?: string;
 };
 
 export type FieldWrapperPassThroughProps = Omit<
