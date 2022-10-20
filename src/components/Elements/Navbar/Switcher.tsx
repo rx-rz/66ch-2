@@ -24,7 +24,7 @@ export const Switcher = () => {
       <DarkModeSwitch
         checked={isDark}
         onChange={toggleDarkMode}
-        size={30}
+        size={24}
         moonColor="white"
         sunColor="#121212"
       />

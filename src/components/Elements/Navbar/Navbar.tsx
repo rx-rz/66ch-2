@@ -21,16 +21,12 @@ export function Navbar() {
     return (
       <nav
         className=" font-pilcrow bg-white sticky top-0 z-50 w-full
-       mx-auto  dark:bg-tertiary border border-b-black
-  dark:border-b-white border-t-0 border-r-0 border-l-0"
+       mx-auto  "
       >
         <div
-          className=" h-16 lg:h-16 uppercase flex  justify-between
-         items-center mx-2"
+          className=" h-16 lg:h-16 uppercase 
+         items-center mx-8"
         >
-          <Navlink to="/" variant="main">
-            6 6 C H
-          </Navlink>
           <PCNav user={user} handleMenuToggle={handleMenuToggle} />
           <MobileNav user={user} menu={menu} />
         </div>

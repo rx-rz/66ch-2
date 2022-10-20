@@ -11,7 +11,7 @@ import { User } from "src/utils";
 
 type PCNavProps = {
   user: User | null | undefined;
-  handleMenuToggle: () => void
+  handleMenuToggle: () => void;
 };
 export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
   const {
@@ -31,14 +31,19 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
   return (
     <>
       {!user ? (
-        <div className="h-full">
-          <div className="h-full hidden xl:flex">
+        <div className="h-full justify-between">
+          <div className="h-full hidden xl:flex justify-between">
+            <Navlink to="/" variant="main">
+              6 6 C H
+            </Navlink>
             <Switcher />
-            {pcLinks.map((pcLink) => (
-              <Navlink to={pcLink.linkTo} variant="primary" key={pcLink.name}>
-                {pcLink.name}
-              </Navlink>
-            ))}
+            <div className="flex">
+              {pcLinks.map((pcLink) => (
+                <Navlink to={pcLink.linkTo} variant="primary" key={pcLink.name}>
+                  {pcLink.name}
+                </Navlink>
+              ))}
+            </div>
           </div>
           <div className="h-full xl:hidden block">
             <button
@@ -54,6 +59,9 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
       ) : (
         <div className="h-full">
           <div className="h-full hidden xl:flex relative">
+            <Navlink to="/" variant="main">
+              6 6 C H
+            </Navlink>
             <Switcher />
             <Navlink variant="primary" to="/pendingposts">
               PENDING POSTS [{pendingPosts && pendingPosts.length}]
