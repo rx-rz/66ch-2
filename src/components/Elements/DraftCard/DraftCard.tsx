@@ -2,8 +2,6 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { Link, useLocation } from "react-router-dom";
 import { database } from "src/config/firebaseConfig";
 import { Button } from "../Button";
-import deleteButton from "src/assets/delete.svg";
-
 type CardProps = {
   authorName: string;
   postTitle: string;
@@ -67,7 +65,7 @@ export function DraftCard({
           <Button handleClick={handleDelete} className="mt-8">
             <img
               alt="Delete"
-              src={deleteButton}
+              src="/images/delete.svg"
               width="30px"
               className="dark:invert"
             />

@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { database } from "src/config/firebaseConfig";
 import { useUserContext } from "src/context";
 import { Button } from "../Button";
-import deleteButton from "src/assets/delete.svg";
 
 type CardProps = {
   authorName: string;
@@ -90,7 +89,7 @@ export function BlogCard({
           <Button handleClick={handleDelete} className="mt-8">
             <img
               alt="Delete"
-              src={deleteButton}
+              src="/assets/delete.svg"
               width="30px"
               className="dark:invert"
             />

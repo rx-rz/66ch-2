@@ -1,5 +1,6 @@
 import { doc, updateDoc } from "firebase/firestore";
 import { database } from "src/config/firebaseConfig";
+import { useDeleteReply } from "src/features/posts/api/useDeleteReply";
 
 type CardProps = {
   authorName: string;
@@ -20,6 +21,7 @@ export function ReplyCard({
   replyLikers,
   userId,
 }: CardProps) {
+  const { handleReplyDelete } = useDeleteReply();
   const dateCreated = new Date(date);
   const replyRef = doc(database, "replies", replyId);
   const newreplyLikersArray =
@@ -49,9 +51,17 @@ export function ReplyCard({
       <div>
         <p className="text-sm font-hind">{reply}</p>
       </div>
-      <div>
+      <div className="flex justify-between">
         <button onClick={handleLikeClick}>
           {replyLikers.includes(userId) ? <>❤️ {likes}</> : <>🤍 {likes}</>}
+        </button>
+        <button onClick={() => handleReplyDelete(replyId)}>
+          <img
+            className="dark:invert"
+            src="/assets/delete.svg"
+            alt="Delete"
+            width="20px"
+          />
         </button>
       </div>
     </article>

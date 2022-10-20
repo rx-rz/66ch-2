@@ -40,7 +40,7 @@ export const Notifications = ({ user }: NotificationProps) => {
               handleClick={() => handleNotifDelete(notif.docId)}
             >
               <img
-                src={deleteButton}
+                src="/images/delete.svg"
                 alt="Delete Notification"
                 className="dark:invert"
                 width="30px"
