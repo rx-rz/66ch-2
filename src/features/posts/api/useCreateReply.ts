@@ -18,7 +18,9 @@ type ReplyListProps = {
   dateCreated: string;
   user: User;
 };
+
 const date = new Date();
+
 export const useCreateReply = () => {
   const ref = collection(database, "replies").withConverter(replyConverter);
   const [data] = useCollectionData(ref);
@@ -39,8 +41,6 @@ export const useCreateReply = () => {
       isLiked: false,
       replyLikers: [],
     });
-    
-
   };
 
   return { handleReplySubmit, data };
