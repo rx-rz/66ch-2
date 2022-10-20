@@ -19,7 +19,7 @@ export function LoginForm() {
   return (
     <div className="min-h-screen dark:text-white dark:bg-tertiary authform">
       <div className=" w-10/12 mx-auto md:py-16 font-pilcrow">
-        <h1 className="text-4xl text-center my-4 font-bold">Log In </h1>
+        <h1 className="text-4xl text-center  font-bold">Log In </h1>
 
         <Button handleClick={signInWithGoogle} variant="authTertiary">
           <img
@@ -33,7 +33,7 @@ export function LoginForm() {
         <p className="mx-auto w-fit md:text-xl">
           Or use your email for authentication:
         </p>
-        <div className="my-16">
+        <div className="my-8">
           <Form
             onSubmit={(data: LoginFormValues) => handleSignIn(data)}
             options={{ mode: "onBlur" }}

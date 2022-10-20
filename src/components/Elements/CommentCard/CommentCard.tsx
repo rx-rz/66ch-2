@@ -1,5 +1,6 @@
 import { doc, updateDoc } from "firebase/firestore";
 import { database } from "src/config/firebaseConfig";
+import { useDeleteComment } from "src/features/posts/api/useDeleteComment";
 
 type CardProps = {
   authorName: string;
@@ -20,6 +21,8 @@ export function CommentCard({
   userId,
   commentLikers,
 }: CardProps) {
+  
+  const { handleCommentDelete } = useDeleteComment();
   const newCommentLikersArray =
     commentLikers && commentLikers.filter((item) => item !== userId);
   const commentRef = doc(database, "comments", commentId);
@@ -36,7 +39,7 @@ export function CommentCard({
       });
     }
   };
-  const dateCreated = new Date(date)
+  const dateCreated = new Date(date);
   return (
     <article
       className=" p-2 my-4 border border-black
@@ -50,9 +53,18 @@ export function CommentCard({
       <div>
         <p className="md:text-md  my-2 font-hind">{comment}</p>
       </div>
-      <div>
+      <div className="flex justify-between">
         <button onClick={handleLikeClick} className="font-pilcrow">
           {commentLikers.includes(userId) ? <>❤️ {likes}</> : <>🤍 {likes}</>}
+        </button>
+
+        <button onClick={() => handleCommentDelete(commentId)}>
+          <img
+            className="dark:invert"
+            src="/assets/delete.svg"
+            alt="Delete"
+            width="20px"
+          />
         </button>
       </div>
     </article>

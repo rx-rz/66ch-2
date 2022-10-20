@@ -34,7 +34,7 @@ export function RegisterForm() {
         <p className="mx-auto w-fit md:text-xl dark:text-white">
           Or use your email for registration:
         </p>
-        <div className="my-16">
+        <div className="my-8">
           <Form
             onSubmit={(data: RegisterFormValues) => handleRegistration(data)}
             options={{ mode: "onBlur" }}
