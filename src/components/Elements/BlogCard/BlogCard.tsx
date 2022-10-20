@@ -28,8 +28,8 @@ export function BlogCard({
   description,
 }: CardProps) {
   const { user } = useUserContext()!;
-
   const location = useLocation();
+
 
   const handleDelete = () => {
     deleteDoc(doc(database, "posts", postId!));
@@ -73,6 +73,7 @@ export function BlogCard({
                       object-cover max-h-[30vh] md:max-h-[55vh] w-full"
             loading="lazy"
           />
+
           <div>
             <div className="max-h-60 overflow-clip">
               <h1 className="text-3xl md:text-4xl font-pilcrow uppercase text-ellipsis">
@@ -83,6 +84,7 @@ export function BlogCard({
               </h2>
             </div>
           </div>
+
         </Link>
         {location.pathname === "/profile" && (
           <Button handleClick={handleDelete} className="mt-8">
