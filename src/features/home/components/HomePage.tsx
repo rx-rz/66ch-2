@@ -44,22 +44,21 @@ export default function HomePage() {
         <div className="md:w-6/12 w-full px-2">
           {blogs &&
             blogs.map((blog) => (
-              <Link to={`/post/${blog.id}`}>
-                <article
-                  key={blog.id}
-                  className="md:h-[271px] md:mb-2 mb-8  overflow-clip  md:flex"
-                >
+              <Link to={`/post/${blog.id}`} key={blog.id}>
+                <article className="md:h-[271px] md:mb-2 mb-8  overflow-clip  md:flex">
                   <img
                     src={blog.imageDownloadUrl}
                     alt=""
-                    className="md:w-4/12 w-full aspect-video max-h-[271px]  h-full object-cover border border-black md:mx-8 mr-2 min-w-[200px]"
+                    className="md:w-4/12 w-full aspect-video max-h-[271px]
+                      h-full object-cover border border-black
+                       md:mx-8 mr-2 min-w-[200px]"
                   />
                   <div className="text-black font-pilcrow  max-w-md mt-3 text-ellipsis">
                     <div className="flex opacity-80">
                       <p className="mr-2">{blog.author.name}</p>
                       <p>{blog.dateCreated}</p>
                     </div>
-                    <h1 className="md:text-3xl text-2xl my-2">
+                    <h1 className="md:text-3xl text-2xl my-2 uppercase">
                       {blog.postTitle}
                     </h1>
                     <p className="opacity-80 ">{blog.description}</p>

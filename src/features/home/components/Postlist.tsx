@@ -5,13 +5,13 @@ export default function Postlist() {
   const { posts, empty, fetchMore } = usePaginatedPosts();
 
   return (
-    <div className="mx-auto ">
+    <div className="md:mx-7 mx-2 mt-8">
       {posts && (
         <article className="flex flex-wrap justify-center">
           {posts.map((doc) => (
             <article
               key={doc.id}
-              className="w-fit md:w-6/12 xl:w-3/12 lg:w-4/12"
+              className="w-fit md:w-6/12 xl:w-4/12 lg:w-4/12"
             >
               <BlogCard
                 authorName={doc.author.name}
