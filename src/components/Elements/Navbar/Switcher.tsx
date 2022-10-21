@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useMemo, useState } from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 
 export const Switcher = () => {
@@ -12,7 +12,7 @@ export const Switcher = () => {
     setIsDark(checked);
   };
 
-  useEffect(() => {
+  useMemo(() => {
     const root = document.body;
     root.classList.add(colorTheme);
     root.classList.remove(theme!);

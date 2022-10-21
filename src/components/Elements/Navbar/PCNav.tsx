@@ -8,7 +8,6 @@ import { pcLinks, useNav } from "./utils";
 import { Notifications } from "./Notifications";
 import { User } from "src/utils";
 
-
 type PCNavProps = {
   user: User | null | undefined;
   handleMenuToggle: () => void;
@@ -25,7 +24,6 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
   } = useNav();
   const navigate = useNavigate();
 
-
   const handleLogOut = () => {
     signOut(auth);
     navigate("/auth/login");
@@ -34,7 +32,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
   return (
     <>
       {!user ? (
-        <div className="h-full justify-between">
+        <div className="h-full justify-between dark:bg-tertiary dark:text-white">
           <div className="h-full flex justify-between items-center">
             <Navlink to="/" variant="main">
               6 6 C H
@@ -75,21 +73,19 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
               to="/profile"
               className="flex items-center border hover:bg-secondary
                hover:text-white transition-colors duration-300
-                rounded-full hover:b  border-black p-2 hover:border-none mr-2"
+                rounded-full hover:b  border-black p-2 hover:border-none
+                mr-2 dark:border-primary"
             >
               <img
                 src={user.photoURL}
                 title="Profile"
                 alt=""
                 width="30px"
-                className="rounded-full border border-black mr-2"
+                className="rounded-full border border-black mr-2 dark:border-primary"
               />
               <p> {user.name.split(" ")[0]}</p>
             </Navlink>
 
-            {/* <Navlink variant="primary" to="/pendingposts">
-              PENDING POSTS [{pendingPosts && pendingPosts.length}]
-            </Navlink> */}
 
             <div className="flex items-center">
               <div className="mr-4">
@@ -114,6 +110,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
                 <img
                   src="/assets/alert.svg"
                   alt=""
+                  className=" dark:invert"
                   width="25px"
                   title="Notifications"
                 />
@@ -123,6 +120,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
                 <img
                   alt="Create"
                   src="/assets/create.svg"
+                  className="dark:invert"
                   width="24px"
                   title="Create Post"
                 />
@@ -133,11 +131,12 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
                   alt="Search"
                   src="/assets/search.svg"
                   width="20px"
+                  className="dark:invert"
                   title="Search"
                 />
               </Navlink>
               <button
-                className="border border-black rounded-full p-3 bg-secondary"
+                className="border border-black rounded-full p-3 bg-secondary dark:border-primary ml-4"
                 onClick={handleLogOut}
               >
                 <img
