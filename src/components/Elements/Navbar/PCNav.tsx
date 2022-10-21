@@ -146,7 +146,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
                 />
               </Navlink>
               <button
-                className="border border-black rounded-full p-3 bg-secondary ml-3"
+                className="border border-black rounded-full p-3 bg-secondary"
                 onClick={handleLogOut}
               >
                 <img
@@ -159,39 +159,44 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
               </button>
             </div>
           </div>
-          <div className="h-full xl:hidden relative flex">
-            <div className="mr-8 flex items-center">
-              <Switcher />
-            </div>
-            <Button
-              className="flex items-center mr-8 dark:invert 
+          <div className="h-full xl:hidden relative flex justify-between">
+            <Navlink to="/" variant="main">
+              6 6 C H
+            </Navlink>
+            <div className="flex">
+              <div className="mr-8 flex items-center">
+                <Switcher />
+              </div>
+              <Button
+                className="flex items-center mr-8 dark:invert 
               transition-colors duration-300 hover:text-secondary"
-              handleClick={handleMobileNotifToggle}
-            >
-              <img
-                src="/assets/notification.svg"
-                alt=""
-                width="20px"
-                className="mr-1 "
-              />
-              {user && user.notifications?.length}
-            </Button>
-            <button
-              className="text-tertiary h-full grid font-extrabold  
+                handleClick={handleMobileNotifToggle}
+              >
+                <img
+                  src="/assets/notification.svg"
+                  alt=""
+                  width="20px"
+                  className="mr-1 "
+                />
+                {user && user.notifications?.length}
+              </Button>
+              <button
+                className="text-tertiary h-full grid font-extrabold  
               content-center   font-pilcrow dark:text-white"
-              onClick={handleMenuToggle}
-              ref={menubutton}
-            >
-              MENU
-            </button>
+                onClick={handleMenuToggle}
+                ref={menubutton}
+              >
+                <img src="/assets/menu.svg" alt="Menu" width="20px" />
+              </button>
 
-            <div
-              className="fixed top-16 h-fit border-2  min-h-[200px] bg-white
+              <div
+                className="fixed top-16 h-fit border-2  min-h-[200px] bg-white
                dark:bg-tertiary dark:border-white  hidden border-black
                  right-0 w-full"
-              ref={mobileNotifications}
-            >
-              <Notifications user={user} />
+                ref={mobileNotifications}
+              >
+                <Notifications user={user} />
+              </div>
             </div>
           </div>
         </div>
