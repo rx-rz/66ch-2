@@ -2,9 +2,14 @@ import { useRef } from "react";
 import { usePostContext, useUserContext } from "src/context";
 
 export const pcLinks = [
-  { name: "Search", variant: "primary", linkTo: "/search" },
-  { name: "Login", variant: "primary", linkTo: "/auth/login" },
-  { name: "Register", variant: "primary", linkTo: "/auth/register" },
+  
+  {
+    name: "Login",
+    variant: "primary",
+    linkTo: "/auth/login",
+    url: "/assets/login.svg",
+  },
+  { name: "Register", variant: "primary", linkTo: "/auth/register", url: "" },
 ];
 
 export const mobileLinks = [
@@ -14,9 +19,18 @@ export const mobileLinks = [
 ];
 
 export const pcLinksAuth = [
-  { name: "Profile", variant: "primary", linkTo: "/profile" },
-  { name: "Create Post", variant: "primary", linkTo: "/createpost" },
-  { name: "Search", variant: "primary", linkTo: "/search" },
+  {
+    name: "Create Post",
+    variant: "primary",
+    linkTo: "/createpost",
+    url: "/assets/create.svg",
+  },
+  {
+    name: "Search",
+    variant: "primary",
+    linkTo: "/search",
+    url: "/assets/search.svg",
+  },
 ];
 
 export const mobileLinksAuth = [

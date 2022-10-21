@@ -1,5 +1,4 @@
 import { useLocation } from "react-router-dom";
-import { Navlink } from "../NavLink/NavLink";
 
 import { useUserContext } from "src/context";
 import { PCNav } from "./PCNav";
