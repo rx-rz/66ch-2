@@ -4,10 +4,10 @@ import { Navlink } from "../NavLink/NavLink";
 import { auth } from "src/config/firebaseConfig";
 import { Button } from "../Button";
 import { Switcher } from "./Switcher";
-import { pcLinks, pcLinksAuth, useNav } from "./utils";
+import { pcLinks, useNav } from "./utils";
 import { Notifications } from "./Notifications";
 import { User } from "src/utils";
-import { useRef } from "react";
+
 
 type PCNavProps = {
   user: User | null | undefined;
@@ -25,15 +25,6 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
   } = useNav();
   const navigate = useNavigate();
 
-  const dialogRef = useRef<HTMLDivElement>(null);
-
-  const handleModalOpen = () => {
-    dialogRef.current?.classList.toggle("hidden");
-  };
-
-  const handleModalClose = () => {
-    dialogRef.current?.classList.toggle("hidden");
-  };
 
   const handleLogOut = () => {
     signOut(auth);
