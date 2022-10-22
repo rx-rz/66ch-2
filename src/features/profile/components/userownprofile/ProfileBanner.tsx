@@ -10,34 +10,54 @@ export default function ProfileBanner() {
   }, [user]);
   return (
     <div
-   className="mx-auto md:w-11/12 block my-20 
-    md:sticky top-36 font-pilcrow dark:text-white p-2"
+      className="mx-auto md:w-11/12 block
+   font-pilcrow dark:text-white p-2 mt-4"
     >
       {user && (
-        <>
+        <div className="flex items-center">
           <img
-            className=" w-full border border-black max-h-profile object-cover mb-4"
+            className=" md:w-3/12 w-5/12 border border-white rounded-full  max-h-profile object-cover mb-4 aspect-square"
             src={user.photoURL!}
             alt={user.name!}
           />
-          <aside className=" md:my-12 ">
+          <aside className="md:w-9/12 w-7/12 ml-16 mt-8">
             <h1
-              className="text-3xl md:text-4xl lg:text-5xl
-           font-medium font-pilcrow mb-8"
+              className="text-3xl md:text-5xl lg:text-6xl
+           font-medium font-pilcrow mb-4"
             >
               {user.name}
             </h1>
-            <h2 className="text-xl md:text-3xl mb-2">
+            <h2 className="text-md md:text-xl lg:text-2xl mb-2">
               Joined {user.dateCreated}
             </h2>
-            <Link
-              to="/updateprofile"
-              className="text-md font-bold text-blue-900 md:text-2xl"
-            >
-              Update Profile
-            </Link>
+            <div className="flex flex-wrap">
+              <Link
+                to="/updateprofile"
+                className="text-md font-bold text-blue-900 md:text-2xl flex items-center mr-8 md:mb-0 mb-2"
+              >
+                <img
+                  src="/assets/update.svg"
+                  alt="Update Profile"
+                  className="mr-2 dark:invert"
+                  width="30px"
+                />
+                <p>Edit Profile </p>
+              </Link>
+              <Link
+                to="/updateprofile"
+                className="text-md font-bold text-blue-900 md:text-2xl flex items-center"
+              >
+                <img
+                  src="/assets/deleteprofile.svg"
+                  alt="Delete Profile"
+                  className="mr-2 dark:invert"
+                  width="30px"
+                />
+                <p>Delete Profile </p>
+              </Link>
+            </div>
           </aside>
-        </>
+        </div>
       )}
     </div>
   );
