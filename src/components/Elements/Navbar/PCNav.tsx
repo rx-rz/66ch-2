@@ -39,26 +39,43 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
             </Navlink>
 
             <Navlink to="/search" className="hidden xl:flex">
-              <img src="/assets/search.svg" alt="Search" width="20px" />
+              <img
+                src="/assets/search.svg"
+                alt="Search"
+                width="20px"
+                className="dark:invert"
+              />
             </Navlink>
 
             <div className="xl:flex items-center hidden">
               <div className="mr-4">
                 <Switcher />
               </div>
-              {pcLinks.map((pcLink) => (
-                <Navlink to={pcLink.linkTo} variant="primary" key={pcLink.name}>
-                  {pcLink.name}
-                </Navlink>
-              ))}
+              <Navlink
+                to="/auth/login"
+                className="border border-black rounded-full p-3 bg-secondary dark:border-primary ml-4"
+              >
+                <img
+                  src="/assets/login.svg"
+                  alt="Log In"
+                  className="invert"
+                  width="20px"
+                  title="Login"
+                />
+              </Navlink>
             </div>
             <button
-              className="text-tertiary  h-full grid font-extrabold
-                content-center   font-pilcrow dark:text-white xl:hidden"
+              className="text-tertiary h-full grid font-extrabold  
+              content-center   font-pilcrow dark:text-white"
               onClick={handleMenuToggle}
               ref={menubutton}
             >
-              MENU
+              <img
+                src="/assets/menu.svg"
+                alt="Menu"
+                width="20px"
+                className="dark:invert"
+              />
             </button>
           </div>
         </div>
@@ -85,7 +102,6 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
               />
               <p> {user.name.split(" ")[0]}</p>
             </Navlink>
-
 
             <div className="flex items-center">
               <div className="mr-4">
@@ -114,7 +130,6 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
                   width="25px"
                   title="Notifications"
                 />
-                {/* <p> {user && user.notifications?.length}</p> */}
               </Button>
               <Navlink to="/createpost" variant="primary">
                 <img
@@ -166,7 +181,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
                   src="/assets/notification.svg"
                   alt=""
                   width="20px"
-                  className="mr-1 "
+                  className="mr-1 dark:invert"
                 />
                 {user && user.notifications?.length}
               </Button>
@@ -176,7 +191,12 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
                 onClick={handleMenuToggle}
                 ref={menubutton}
               >
-                <img src="/assets/menu.svg" alt="Menu" width="20px" />
+                <img
+                  src="/assets/menu.svg"
+                  alt="Menu"
+                  width="20px"
+                  className="dark:invert"
+                />
               </button>
 
               <div
