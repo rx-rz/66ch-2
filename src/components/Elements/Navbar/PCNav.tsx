@@ -4,7 +4,7 @@ import { Navlink } from "../NavLink/NavLink";
 import { auth } from "src/config/firebaseConfig";
 import { Button } from "../Button";
 import { Switcher } from "./Switcher";
-import { pcLinks, useNav } from "./utils";
+import { useNav } from "./utils";
 import { Notifications } from "./Notifications";
 import { User } from "src/utils";
 
@@ -38,7 +38,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
               6 6 C H
             </Navlink>
 
-            <Navlink to="/search" className="hidden xl:flex">
+            <Navlink to="/search" className=" xl:flex">
               <img
                 src="/assets/search.svg"
                 alt="Search"
@@ -47,36 +47,23 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
               />
             </Navlink>
 
-            <div className="xl:flex items-center hidden">
+            <div className=" items-center flex">
               <div className="mr-4">
                 <Switcher />
               </div>
               <Navlink
                 to="/auth/login"
-                className="border border-black rounded-full p-3 bg-secondary dark:border-primary ml-4"
+                className="border border-black rounded-full md:p-3 p-2 bg-secondary dark:border-primary "
               >
                 <img
                   src="/assets/login.svg"
                   alt="Log In"
-                  className="invert"
+                  className="invert dark:invert-0"
                   width="20px"
                   title="Login"
                 />
               </Navlink>
             </div>
-            <button
-              className="text-tertiary h-full grid font-extrabold  
-              content-center   font-pilcrow dark:text-white"
-              onClick={handleMenuToggle}
-              ref={menubutton}
-            >
-              <img
-                src="/assets/menu.svg"
-                alt="Menu"
-                width="20px"
-                className="dark:invert"
-              />
-            </button>
           </div>
         </div>
       ) : (
