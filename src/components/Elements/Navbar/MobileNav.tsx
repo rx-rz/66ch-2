@@ -19,7 +19,7 @@ export const MobileNav = ({ user, menu }: MobileNavProps) => {
   return (
     <div
       className=" hidden xl:hidden bg-secondary top-16
-     right-0  fixed z-20  w-40 border "
+     right-0  fixed z-20  w-40 border text-white"
       ref={menu}
     >
       {!user ? (
