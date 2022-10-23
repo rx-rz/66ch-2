@@ -35,7 +35,7 @@ export default function ProfileBanner() {
             <div className="flex flex-wrap">
               <Link
                 to="/updateprofile"
-                className="text-md font-bold text-blue-900 md:text-2xl
+                className="text-md font-bold text-secondary md:text-2xl
                  flex items-center mr-8 md:mb-0 mb-2"
               >
                 <img
@@ -48,7 +48,7 @@ export default function ProfileBanner() {
               </Link>
               <Link
                 to="/updateprofile"
-                className="text-md font-bold text-blue-900
+                className="text-md font-bold text-secondary
                  md:text-2xl flex items-center"
               >
                 <img

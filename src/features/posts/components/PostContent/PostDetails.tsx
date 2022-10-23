@@ -42,7 +42,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
               alt={post.postTitle}
               className="mx-auto  border border-black dark:border-white
                object-cover aspect-video max-h-[40vh]  md:max-h-[70vh]"
-              initial={{ width: "30%" }}
+              initial={{ width: "50%" }}
               animate={{ width: "95%" }}
               transition={{ duration: 0.7 }}
             />
