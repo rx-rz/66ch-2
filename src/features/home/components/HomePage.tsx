@@ -33,7 +33,7 @@ export default function HomePage() {
                   <h1 className="text-2xl md:text-4xl font-pilcrow  uppercase">
                     {blogOne.postTitle}
                   </h1>
-                  <h2 className="text-md md:text-xl font-hind opacity-90">
+                  <h2 className="text-md md:text-xl  opacity-90 font-hind">
                     {blogOne.description}
                   </h2>
                 </div>
@@ -61,7 +61,7 @@ export default function HomePage() {
                     <h1 className="md:text-3xl text-2xl my-2 uppercase">
                       {blog.postTitle}
                     </h1>
-                    <p className="opacity-80 ">{blog.description}</p>
+                    <p className="opacity-80  font-hind">{blog.description}</p>
                   </div>
                 </article>
               </Link>

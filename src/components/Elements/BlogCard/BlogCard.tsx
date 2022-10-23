@@ -36,10 +36,10 @@ export function BlogCard({
   return (
     <div
       className="
-     md:h-[600px] text-clip overflow-clip h-fit dark:text-white
+     md:h-[600px] text-clip overflow-clip h-fit dark:text-white max-w-[580px]
       dark:bg-tertiary m-1"
     >
-      <div className=" md:p-4 p-2 my-2 md:my-0">
+      <div className=" my-2 md:my-0">
         <div>
           <div className="flex items-baseline opacity-80">
             <Link

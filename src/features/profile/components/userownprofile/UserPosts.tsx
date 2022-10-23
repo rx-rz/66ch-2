@@ -9,7 +9,7 @@ export default function UserPosts() {
   return (
     <div className="mx-auto md:w-11/12 w-full md:my-20 p-2">
       <h1
-        className="md:text-5xl text-3xl font-pilcrow
+        className="md:text-4xl text-2xl font-pilcrow
        my-8 dark:text-white  font-bold"
       >
         ARTICLES
