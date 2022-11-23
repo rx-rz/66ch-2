@@ -21,7 +21,9 @@
 
 npm-debug.log*
 yarn-debug.log*
+.env
 yarn-error.log*
 
 /src/tests/node_modules
 
+.gitignore
