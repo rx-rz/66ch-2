@@ -19,7 +19,7 @@ export function Navbar() {
   } else {
     return (
       <nav
-        className=" font-pilcrow bg-white sticky top-0 z-50 w-full
+        className=" font-pilcrow  sticky top-0 z-50 w-full
        mx-auto"
       >
         <div
