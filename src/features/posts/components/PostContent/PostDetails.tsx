@@ -33,7 +33,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
           <div className="md:w-10/12 w-full mx-auto ">
             <h1
               className=" w-full md:w-10/12 mx-auto my-12 text-3xl
-             md:text-7xl text-center font-pilcrow"
+             md:text-7xl text-center font-supreme"
             >
               {post.postTitle}
             </h1>
@@ -54,7 +54,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
               >
                 <div className="md:my-20  md:w-11/12 mx-auto mt-8 hidden md:block">
                   <Link
-                    className="text-2xl font-bold font-pilcrow text-center text-blue-600"
+                    className="text-2xl font-bold font-supreme text-center text-blue-600"
                     to={
                       user
                         ? user.uid !== post.author.id
@@ -65,13 +65,13 @@ export default function PostDetails({ authorId }: PostContentProps) {
                   >
                     {post.author.name}
                   </Link>
-                  <p className="font-pilcrow">{post.dateCreated}</p>
+                  <p className="font-supreme">{post.dateCreated}</p>
                 </div>
               </aside>
               <div className="md:w-8/12 xl:w-9/12 mx-auto">
                 <div className="w-11/12 mx-auto mt-8  md:hidden">
                   <Link
-                    className="text-2xl font-bold font-pilcrow text-center text-blue-600"
+                    className="text-2xl font-bold font-supreme text-center text-blue-600"
                     to={
                       user
                         ? user.uid !== post.author.id
@@ -82,7 +82,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
                   >
                     {post.author.name}
                   </Link>
-                  <p className="font-pilcrow">{post.dateCreated}</p>
+                  <p className="font-supreme">{post.dateCreated}</p>
                 </div>
                 <div
                   className="editorcontent font-hind my-8 w-11/12 mx-auto md:mx-0

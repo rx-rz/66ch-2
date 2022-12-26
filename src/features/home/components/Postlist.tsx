@@ -6,7 +6,7 @@ import { usePaginatedPosts } from "../api/usePaginatedPosts";
 export default function Postlist() {
   const { posts, empty, fetchMore } = usePaginatedPosts();
   const postsOne = posts?.slice(0, 6);
-  const middle = posts && posts[9];
+  const middle = posts && posts[Math.floor(posts.length * Math.random())];
   const postsTwo = posts && posts.slice(7);
 
   if (postsOne && postsTwo && middle) {
