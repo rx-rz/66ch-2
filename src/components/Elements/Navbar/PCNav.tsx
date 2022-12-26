@@ -92,7 +92,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
 
             <div className="flex items-center">
               <div className="mr-4">
-                <Switcher />
+                {/* <Switcher /> */}
               </div>
               <div
                 className="fixed top-16 h-fit border-2  min-h-[200px] bg-white
