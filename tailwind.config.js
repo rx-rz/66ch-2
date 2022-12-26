@@ -5,8 +5,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        pilcrow: ["Pilcrow Rounded, sans-serif"],
-        hind: ["Hind, sans-serif"],
+        supreme: ["Supreme, sans-serif"],
+        chubbo: ["Chubbo, sans-serif"],
       },
       colors: {
         primary: "#FFFFFF",

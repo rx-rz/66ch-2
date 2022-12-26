@@ -2,72 +2,91 @@ import { Link } from "react-router-dom";
 import { usePostContext } from "src/context/postContext";
 export default function HomePage() {
   const { data } = usePostContext()!;
-  const blogOne = data && data[9];
-  const blogs = data && data.slice(3, 6);
+  const blogOne = data && data[data.length - 2];
+  const blogTwo = data && data[data.length - 7];
+  const blogThree = data && data[data.length - 1];
 
-  return (
-    <div className="w-full  ">
-      <main className="flex flex-wrap min-h-[90vh] md:mx-8 mx-3 mt-4">
-        <div
-          className=" md:w-6/12 w-full px-2 bg-secondary max-h-[828px]
-         border border-black mb-8 md:mb-0 "
-        >
-          {blogOne && (
-            <Link to={`post/${blogOne?.id}`}>
-              <div className="md:my-4 my-12 md:mx-6 mx-3 text-white">
-                <div className="flex items-baseline opacity-90">
-                  <p className=" text-md md:text-2xl font-pilcrow mr-2">
-                    {blogOne.author.name}
-                  </p>
-                  <p className="text-sm md:text-xl font-pilcrow ">
-                    {blogOne.dateCreated}
-                  </p>
-                </div>
-                <img
-                  className="aspect-video mt-1 mb-4
-                      object-cover max-h-[30vh] md:max-h-[55vh] w-full"
-                  src={blogOne.imageDownloadUrl}
-                  alt={blogOne.postTitle}
-                />
-                <div>
-                  <h1 className="text-2xl md:text-4xl font-pilcrow  uppercase">
-                    {blogOne.postTitle}
-                  </h1>
-                  <h2 className="text-md md:text-xl  opacity-90 font-hind">
-                    {blogOne.description}
-                  </h2>
-                </div>
-              </div>
-            </Link>
-          )}
-        </div>
-        <div className="md:w-6/12 w-full px-2 ">
-          {blogs &&
-            blogs.map((blog) => (
-              <Link to={`/post/${blog.id}`} key={blog.id}>
-                <article className="md:h-[271px] md:mb-2 mb-8  overflow-clip  md:flex">
+  if (blogOne && blogTwo && blogThree) {
+    return (
+      <main className="w-full min-h-screen">
+        <div className="w-[95%] mx-auto mt-12 font-supreme font-bold ">
+          <div className="flex flex-wrap justify-between">
+            <div className="w-7/12 h-full rounded-xl">
+              <Link to={`/post/${blogOne.id}`} className="rounded-xl">
+                <p className="text-md font-bold opacity-90">{blogOne?.tag}</p>
+                <h2 className="text-5xl mb-3 font-bold">{blogOne.postTitle}</h2>
+                <div className="relative">
                   <img
-                    src={blog.imageDownloadUrl}
-                    alt=""
-                    className="md:w-4/12 w-full aspect-video max-h-[271px]
-                      h-full object-cover border border-black 
-                       md:mx-8 mr-2 min-w-[200px]"
+                    src={blogOne.imageDownloadUrl}
+                    alt={blogOne.postTitle}
+                    className="w-full aspect-square max-h-[80vh] object-cover rounded-xl"
                   />
-                  <div className="font-pilcrow  max-w-md mt-3 text-ellipsis">
-                    <div className="flex opacity-80">
-                      <p className="mr-2">{blog.author.name}</p>
-                      <p>{blog.dateCreated}</p>
-                    </div>
-                    <h1 className="md:text-3xl text-2xl my-2 uppercase">
-                      {blog.postTitle}
-                    </h1>
-                    <p className="opacity-80  font-hind">{blog.description}</p>
+                  <div className=" absolute bottom-4 left-4">
+                    <p className="opacity-90  bg-white rounded-full p-2">
+                      {blogOne.author.name}
+                    </p>
+                    <p className="opacity-90 mt-2  bg-white rounded-full p-2">
+                      {blogOne.dateCreated}
+                    </p>
                   </div>
-                </article>
+                </div>
+                <p className="text-xl font-bold opacity-90 mt-2">
+                  {blogOne.description}
+                </p>
               </Link>
-            ))}
+            </div>
+            <div className="w-[1px] border border-black"></div>
+            <div className="w-4/12 h-full  flex-col  flex">
+              <Link to={`/post/${blogTwo.id}`} className="rounded-xl pb-12">
+                <p className="text-md font-bold opacity-90">{blogTwo?.tag}</p>
+                <h2 className="text-3xl mb-3 font-bold">{blogTwo.postTitle}</h2>
+                <div className="relative">
+                  <img
+                    src={blogTwo.imageDownloadUrl}
+                    alt={blogTwo.postTitle}
+                    className="w-full aspect-video object-cover rounded-xl"
+                  />
+                  <div className=" absolute bottom-4 left-4 text-sm" >
+                    <p className="opacity-90  bg-white rounded-full p-2">
+                      {blogTwo.author.name}
+                    </p>
+                    <p className="opacity-90 mt-2  bg-white rounded-full p-2">
+                      {blogTwo.dateCreated}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-lg font-bold opacity-90 mt-2">
+                  {blogTwo.description}
+                </p>
+              </Link>
+              <Link to={`/post/${blogThree.id}`} className="rounded-xl pt-4">
+                <p className="text-md font-bold opacity-90">{blogThree?.tag}</p>
+                <h2 className="text-3xl mb-3 font-bold">{blogThree.postTitle}</h2>
+                <div className="relative">
+                  <img
+                    src={blogThree.imageDownloadUrl}
+                    alt={blogThree.postTitle}
+                    className="w-full aspect-video object-cover rounded-xl"
+                  />
+                  <div className=" absolute bottom-4 left-4 text-sm" >
+                    <p className="opacity-90  bg-white rounded-full p-2">
+                      {blogThree.author.name}
+                    </p>
+                    <p className="opacity-90 mt-2  bg-white rounded-full p-2">
+                      {blogThree.dateCreated}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-lg font-bold opacity-90 mt-2">
+                  {blogThree.description}
+                </p>
+              </Link>
+            </div>
+          </div>
         </div>
       </main>
-    </div>
-  );
+    );
+  }
+
+  return <p>Loading...</p>;
 }
