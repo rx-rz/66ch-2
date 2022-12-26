@@ -11,7 +11,7 @@
     />
     <link rel="alternate" href="https://example.com/" hreflang="x-default" />
     <style>
-         .quill {
+      .quill {
         font-family: "Hind", sans-serif;
       }
 
@@ -70,8 +70,67 @@
         font-weight: bold;
       }
 
+      .light .editorcontent p,
+      .light .editorcontent p span,
+      .light .editorcontent em,
+      .light .editorcontent h1,
+      .light .editorcontent h2,
+      .light .editorcontent strong {
+        color: black !important;
+      }
 
-      @media screen and (prefers-color-scheme: dark){
+      .quill > .ql-container > .ql-editor.ql-blank::before {
+        font-family: "Pilcrow", sans-serif !important;
+        margin-left: -10px !important;
+        color: black;
+      }
+
+      .light {
+        background-color: white;
+      }
+
+      .dark .ql-editor {
+        color: white !important;
+      }
+
+      .ql-editor {
+        font-family: "Hind", sans-serif;
+        border: none !important;
+        color: black !important;
+        padding: 4px 1px !important;
+        margin-block-end: 5rem !important;
+        font-size: 1.1rem !important;
+      }
+
+      .editorcontent p {
+        font-size: 1.1rem;
+      }
+      .ql-formats {
+        font-family: "Pilcrow", sans-serif;
+      }
+
+      .ql-editor h1,
+      .editorcontent h1 {
+        font-size: 2.2rem !important;
+        font-weight: bold;
+      }
+
+      .ql-editor h2,
+      .editorcontent h2 {
+        font-size: 2rem !important;
+        font-weight: bold;
+      }
+
+      /* .dark .editorcontent p,
+      .dark .editorcontent p span,
+      .dark .editorcontent em,
+      .dark .editorcontent h1,
+      .dark .editorcontent h2,
+      .dark .editorcontent strong {
+        color: white !important;
+      } */
+
+      @media screen and (prefers-color-scheme: dark) {
         /* body {
           background-color: #121212;
           color: white;
@@ -245,8 +304,7 @@
     </style> -->
     <meta name="66CH" content="Web site created using create-react-app" />
     <link rel="apple-touch-icon" href="./66ch.png" />
-    <script>
-    </script>
+    <script></script>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
