@@ -34,57 +34,32 @@ export function BlogCard({
   };
 
   return (
-    <div
-      className="
-     md:h-[600px] text-clip overflow-clip h-fit  max-w-[580px]
-       m-1"
-    >
-      <div className=" my-2 md:my-0">
-        <div>
-          <div className="flex items-baseline opacity-80">
-            <Link
-              to={
-                user && user.uid === authorId ? "/profile" : `/user/${authorId}`
-              }
-            >
-              <p
-                className="text-lg md:text-2xl font-pilcrow 
-            hover:text-secondary transition-colors duration-300 mr-2"
-              >
-                {authorName}
-              </p>
-            </Link>
-            <p className="text-md md:text-xl font-pilcrow mr-2">
+    <div className="py-4 font-supreme w-full">
+      <Link to={`/post/${postId}`} className="rounded-xl ">
+        <p className="text-md font-bold opacity-90">{tag}</p>
+        <h2 className="text-3xl mb-3 font-bold">{postTitle}</h2>
+        <div className="relative">
+          <img
+            src={imageUrl}
+            alt={postTitle}
+            className="w-full aspect-video object-cover rounded-xl"
+          />
+          <div className=" absolute  lg:bottom-4 lg:left-4 left-1 bottom-3  text-sm">
+            <p className="opacity-90  bg-white rounded-full p-2">
+              {authorName}
+            </p>
+            <p className="opacity-90 mt-2  bg-white rounded-full p-2">
               {dateCreated}
             </p>
           </div>
         </div>
-        <Link to={`/post/${postId}`}>
-          <img
-            src={imageUrl}
-            alt={postTitle}
-            className="aspect-video mt-2 mb-6 border border-black
-                      object-cover max-h-[30vh] md:max-h-[55vh] w-full"
-            loading="lazy"
-          />
-
-          <div>
-            <div className="max-h-60 overflow-clip">
-              <h1 className="text-2xl md:text-3xl font-pilcrow uppercase text-ellipsis">
-                {postTitle}
-              </h1>
-              <h2 className="text-md md:text-lg font-hind text-ellipsis max-w-md opacity-80">
-                {description}
-              </h2>
-            </div>
-          </div>
-        </Link>
-        {location.pathname === "/profile" && (
-          <Button handleClick={handleDelete} className="mt-8">
-            <img alt="Delete" src="/assets/delete.svg" width="30px" />
-          </Button>
-        )}
-      </div>
+        <p className="text-lg font-bold opacity-90 mt-2">{description}</p>
+      </Link>
+      {location.pathname === "/profile" && (
+        <Button handleClick={handleDelete} className="mt-8">
+          <img alt="Delete" src="/assets/delete.svg" width="30px" />
+        </Button>
+      )}
     </div>
   );
 }

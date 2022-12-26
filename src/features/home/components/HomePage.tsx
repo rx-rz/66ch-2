@@ -8,24 +8,26 @@ export default function HomePage() {
 
   if (blogOne && blogTwo && blogThree) {
     return (
-      <main className="w-full min-h-screen">
-        <div className="w-[95%] mx-auto mt-12 font-supreme font-bold ">
+      <main className="w-full min-h-screen mt-12 mb-24">
+        <div className="w-[95%] mx-auto  font-supreme font-bold ">
           <div className="flex flex-wrap justify-between">
-            <div className="w-7/12 h-full rounded-xl">
+            <div className="lg:w-7/12 w-full h-full rounded-xl">
               <Link to={`/post/${blogOne.id}`} className="rounded-xl">
                 <p className="text-md font-bold opacity-90">{blogOne?.tag}</p>
-                <h2 className="text-5xl mb-3 font-bold">{blogOne.postTitle}</h2>
+                <h2 className="lg:text-5xl text-3xl mb-3 font-bold">
+                  {blogOne.postTitle}
+                </h2>
                 <div className="relative">
                   <img
                     src={blogOne.imageDownloadUrl}
                     alt={blogOne.postTitle}
                     className="w-full aspect-square max-h-[80vh] object-cover rounded-xl"
                   />
-                  <div className=" absolute bottom-4 left-4">
-                    <p className="opacity-90  bg-white rounded-full p-2">
+                  <div className=" absolute lg:bottom-4 lg:left-4 bottom-3 left-1">
+                    <p className="opacity-90  bg-white rounded-full lg:p-2 p-1">
                       {blogOne.author.name}
                     </p>
-                    <p className="opacity-90 mt-2  bg-white rounded-full p-2">
+                    <p className="opacity-90 mt-2  bg-white rounded-full lg:p-2 p-1">
                       {blogOne.dateCreated}
                     </p>
                   </div>
@@ -35,9 +37,8 @@ export default function HomePage() {
                 </p>
               </Link>
             </div>
-            <div className="w-[1px] border border-black"></div>
-            <div className="w-4/12 h-full  flex-col  flex">
-              <Link to={`/post/${blogTwo.id}`} className="rounded-xl pb-12">
+            <div className="lg:w-4/12 w-full h-full  flex-col  flex">
+              <Link to={`/post/${blogTwo.id}`} className="rounded-xl py-6">
                 <p className="text-md font-bold opacity-90">{blogTwo?.tag}</p>
                 <h2 className="text-3xl mb-3 font-bold">{blogTwo.postTitle}</h2>
                 <div className="relative">
@@ -46,7 +47,7 @@ export default function HomePage() {
                     alt={blogTwo.postTitle}
                     className="w-full aspect-video object-cover rounded-xl"
                   />
-                  <div className=" absolute bottom-4 left-4 text-sm" >
+                  <div className=" absolute  lg:bottom-4 lg:left-4 left-1 bottom-3  text-sm">
                     <p className="opacity-90  bg-white rounded-full p-2">
                       {blogTwo.author.name}
                     </p>
@@ -61,14 +62,16 @@ export default function HomePage() {
               </Link>
               <Link to={`/post/${blogThree.id}`} className="rounded-xl pt-4">
                 <p className="text-md font-bold opacity-90">{blogThree?.tag}</p>
-                <h2 className="text-3xl mb-3 font-bold">{blogThree.postTitle}</h2>
+                <h2 className="text-3xl mb-3 font-bold">
+                  {blogThree.postTitle}
+                </h2>
                 <div className="relative">
                   <img
                     src={blogThree.imageDownloadUrl}
                     alt={blogThree.postTitle}
                     className="w-full aspect-video object-cover rounded-xl"
                   />
-                  <div className=" absolute bottom-4 left-4 text-sm" >
+                  <div className=" absolute lg:bottom-4 lg:left-4 left-1  bottom-3  text-sm">
                     <p className="opacity-90  bg-white rounded-full p-2">
                       {blogThree.author.name}
                     </p>
