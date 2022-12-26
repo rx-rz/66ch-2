@@ -20,15 +20,16 @@ export function RegisterForm() {
 
   return (
     <div className=" min-h-screen authform">
-      <div className="w-10/12 mx-auto font-pilcrow">
+      <div className="w-10/12 mx-auto font-supreme">
         <h1 className="text-4xl text-center my-4 font-bold">Register </h1>
-
         <Button handleClick={signInWithGoogle} variant="authTertiary">
+          <p className="mr-4">Sign In With Google</p>
           <img
             src={googleLogo}
             width="40px"
+            height="40px"
             alt="Google Logo"
-            className=" border-primary dark:invert"
+            className="dark:invert"
           />
         </Button>
         <p className="mx-auto w-fit md:text-xl ">
