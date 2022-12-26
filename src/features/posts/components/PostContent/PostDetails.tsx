@@ -7,6 +7,7 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { Button } from "src/components";
 import { ShareButtons } from "./ShareButtons";
 import { useEffect } from "react";
+import { ColorRing } from "react-loader-spinner";
 
 type PostContentProps = {
   authorId: string;
@@ -26,7 +27,19 @@ export default function PostDetails({ authorId }: PostContentProps) {
   return (
     <div className="mx-auto   ">
       {error && <strong>{error.message}</strong>}
-      {loading && <span>Loading...</span>}
+      {loading && (
+        <div className="h-screen flex items-center justify-center">
+          <ColorRing
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="blocks-loading"
+            wrapperStyle={{}}
+            wrapperClass="blocks-wrapper"
+            colors={["#000", "#000", "#000", "#000", "#000"]}
+          />
+        </div>
+      )}
 
       {post && (
         <main>
