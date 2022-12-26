@@ -48,13 +48,8 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
             </Navlink>
 
             <div className=" items-center flex">
-              <div className="mr-4">
-                {/* <Switcher /> */}
-              </div>
-              <Navlink
-                to="/auth/login"
-                className="md:p-3 p-2  "
-              >
+              <div className="mr-4">{/* <Switcher /> */}</div>
+              <Navlink to="/auth/login" className="md:p-3 p-2  ">
                 LOG IN
               </Navlink>
             </div>
@@ -86,7 +81,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
 
             <div className="flex items-center">
               <div className="mr-4">{/* <Switcher /> */}</div>
-              <div ref={notifications}>
+              <div ref={notifications} className="hidden">
                 <p className="text-black">{user.notifications.length}</p>
                 <Notifications user={user} />
               </div>
@@ -134,9 +129,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
               6 6 C H
             </Navlink>
             <div className="flex">
-              <div className="mr-8 flex items-center">
-                {/* <Switcher /> */}
-              </div>
+              <div className="mr-8 flex items-center">{/* <Switcher /> */}</div>
               <Button
                 className="flex items-center 
               transition-colors duration-300 hover:text-secondary"
@@ -164,7 +157,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
                 />
               </button>
 
-              <div ref={mobileNotifications}>
+              <div ref={mobileNotifications} className="hidden">
                 <Notifications user={user} />
               </div>
             </div>

@@ -18,10 +18,10 @@ export function LoginForm() {
 
   return (
     <div className="min-h-screen  authform">
-      <div className=" w-10/12 mx-auto md:py-16 font-pilcrow">
+      <div className=" w-10/12 mx-auto md:py-16 font-supreme">
         <h1 className="text-4xl text-center  font-bold">Log In </h1>
-
         <Button handleClick={signInWithGoogle} variant="authTertiary">
+          <p className="mr-4">Sign In With Google</p>
           <img
             src={googleLogo}
             width="40px"
@@ -30,8 +30,8 @@ export function LoginForm() {
             className="dark:invert"
           />
         </Button>
-        <p className="mx-auto w-fit md:text-xl">
-          Or use your email for authentication:
+        <p className="mx-auto w-fit md:text-xl mt-2">
+          Or sign in with your email:
         </p>
         <div className="my-8">
           <Form

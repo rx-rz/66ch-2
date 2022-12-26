@@ -24,7 +24,7 @@ export const usePaginatedPosts = () => {
       collection(database, "posts"),
       orderBy("dateCreated", "asc"),
       where("status", "==", "approved"),
-      limit(20)
+      limit(17)
     ).withConverter(blogConverter);
     const getPaginatedPosts = async () => {
       await getDocs(paginatedPosts).then((doc) => {
@@ -43,7 +43,7 @@ export const usePaginatedPosts = () => {
       orderBy("dateCreated", "asc"),
       where("status", "==", "approved"),
       startAfter(lastDoc),
-      limit(20)
+      limit(17)
     ).withConverter(blogConverter);
     await getDocs(newPosts).then((doc) => {
       const isEmpty = doc.size === 0;

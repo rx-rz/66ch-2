@@ -47,15 +47,6 @@ export const useNav = () => {
   const mobileNotifications = useRef<HTMLDivElement>(null);
   const menubutton = useRef<HTMLButtonElement>(null);
 
-  const location = useLocation();
-  useEffect(() => {
-    if (
-      notifications.current &&
-      !notifications.current?.classList.contains("hidden")
-    ) {
-      notifications.current!.classList.add("hidden");
-    }
-  }, [location.pathname]);
   const pendingPosts =
     posts && user && user.role === "admin"
       ? posts.filter((doc) => doc.status === "pending")
