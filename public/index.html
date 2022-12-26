@@ -11,6 +11,66 @@
     />
     <link rel="alternate" href="https://example.com/" hreflang="x-default" />
     <style>
+         .quill {
+        font-family: "Hind", sans-serif;
+      }
+
+      .editorcontent img {
+        max-width: 100% !important;
+        height: auto !important;
+      }
+
+      .editorcontent a {
+        color: rgb(37 99 235) !important;
+        border-bottom: 2px solid rgb(37 99 235) !important;
+      }
+
+      .editorcontent ul li,
+      .editorcontent ol li {
+        margin-left: 2rem;
+        font-size: 95%;
+      }
+      .ql-toolbar {
+        position: sticky;
+        z-index: 20;
+        border: 1px solid #0437f2 !important;
+        font-size: large;
+        padding: 0px !important;
+        margin-block: 4rem 1rem !important;
+        top: 0;
+
+        background-color: white;
+      }
+
+      .ql-editor {
+        font-family: "Hind", sans-serif;
+        border: none !important;
+        color: black !important;
+        padding: 4px 1px !important;
+        margin-block-end: 5rem !important;
+        font-size: 1.1rem !important;
+      }
+
+      .editorcontent p {
+        font-size: 1.1rem;
+      }
+      .ql-formats {
+        font-family: "Pilcrow", sans-serif;
+      }
+
+      .ql-editor h1,
+      .editorcontent h1 {
+        font-size: 2.2rem !important;
+        font-weight: bold;
+      }
+
+      .ql-editor h2,
+      .editorcontent h2 {
+        font-size: 2rem !important;
+        font-weight: bold;
+      }
+
+
       @media screen and (prefers-color-scheme: dark){
         /* body {
           background-color: #121212;

@@ -108,7 +108,8 @@ export const useCreatePost = () => {
     tag: string | undefined,
     description: string | undefined
   ) => {
-    if (/[a-z]/i.test(data.postTitle) && /[a-z]/i.test(editorContent)) {
+    console.log(data.postTitle, editorContent, user, tag);
+    if (data.postTitle && editorContent) {
       if (
         (imageUrl ?? draft?.imageDownloadUrl) &&
         (tag ?? draft?.tag) &&
