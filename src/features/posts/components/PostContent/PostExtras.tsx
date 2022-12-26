@@ -1,3 +1,4 @@
+import { ColorRing } from "react-loader-spinner";
 import { useParams } from "react-router-dom";
 import { BlogCard } from "src/components";
 import { usePostContext } from "src/context";
@@ -7,19 +8,18 @@ export const PostExtras = () => {
   const { data: posts } = usePostContext()!;
   const otherPosts =
     posts && posts.filter((post) => post.id !== id).slice(0, 3);
-  return (
-    <div className="mx-auto my-10 md:my-20">
-      <h1 className=" font-pilcrow md:text-3xl my-3 mx-1 text-2xl">
-        Related Posts
-      </h1>
-      {otherPosts && (
-        <article className="flex flex-wrap justify-evenly">
-          {otherPosts.map((post) => (
-            <article
-              className="w-fit md:w-6/12 xl:w-4/12"
-              key={post.id}
-            >
+
+  if (otherPosts) {
+    return (
+      <div className="mx-auto my-10 md:my-20 w-[95%] mx-auto">
+        <h1 className=" font-supreme  font-bold opacity-90 mb-8 md:text-3xl  text-2xl">
+          Related Posts
+        </h1>
+        <article className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {otherPosts &&
+            otherPosts.map((post) => (
               <BlogCard
+                key={post.id}
                 authorName={post.author.name}
                 dateCreated={post.dateCreated}
                 description={post.description}
@@ -29,10 +29,23 @@ export const PostExtras = () => {
                 authorId={post.author.id}
                 postId={post.id}
               />
-            </article>
-          ))}
+            ))}
         </article>
-      )}
-    </div>
-  );
+      </div>
+    );
+  } else {
+    return (
+      <div className="h-screen flex items-center justify-center">
+        <ColorRing
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{}}
+          wrapperClass="blocks-wrapper"
+          colors={["#000", "#000", "#000", "#000", "#000"]}
+        />
+      </div>
+    );
+  }
 };

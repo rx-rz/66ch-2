@@ -16,7 +16,7 @@ export default function PostComments() {
   const comments = data && data.filter((doc) => doc.postId === id).reverse();
 
   return (
-    <div className="my-20 max-w-4xl w-11/12 " >
+    <div className="mt-12  max-w-4xl w-11/12 " >
       {loading && <p>Loading...</p>}
       {comments && (
         <article id="comments">

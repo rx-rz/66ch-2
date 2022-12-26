@@ -43,7 +43,7 @@ export default function ReplyList({
     <div className="md:w-8/12 w-10/12">
       <button
         onClick={handleReplyDisplay}
-        className="font-pilcrow font-extralight"
+        className="font-supreme font-bold text-sm"
       >
         {replies && replies.length > 0 ? (
           <>Show Replies ( {replies.length} )</>
@@ -77,13 +77,13 @@ export default function ReplyList({
                 <TextAreaField
                   registration={register("reply")}
                   placeholder="Enter your reply here"
-                  className="border-2  text-black p-2
+                  className="border-2 rounded-none  font-supreme text-sm text-black p-1
                    border-black resize-none w-11/12 "
                 />
                 <button
                   type="submit"
                   className=" border-black bg-secondary 
-                   font-pilcrow px-3 my-2 border-2 text-white"
+                   font-supreme px-3 my-2 border-2 text-white font-bold"
                 >
                   Reply
                 </button>

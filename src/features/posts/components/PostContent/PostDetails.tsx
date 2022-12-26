@@ -33,15 +33,15 @@ export default function PostDetails({ authorId }: PostContentProps) {
           <div className="md:w-10/12 w-full mx-auto ">
             <h1
               className=" w-full md:w-10/12 mx-auto my-12 text-3xl
-             md:text-7xl text-center font-supreme"
+             md:text-7xl text-center font-supreme font-bold"
             >
               {post.postTitle}
             </h1>
             <motion.img
               src={post.imageDownloadUrl}
               alt={post.postTitle}
-              className="mx-auto  border border-black
-               object-cover aspect-video max-h-[40vh]  md:max-h-[70vh]"
+              className="mx-auto  rounded-xl
+               object-cover aspect-video max-h-[40vh]  md:max-h-[80vh]"
               initial={{ width: "50%" }}
               animate={{ width: "95%" }}
               transition={{ duration: 0.7 }}
@@ -49,7 +49,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
             <div className="flex flex-wrap relative mx-auto md:w-9/12 w-full">
               <aside
                 className="md:w-3/12 xl:w-2/12 w-full md:sticky top-16
-              md:border-r-black md:border-r h-fit md:h-screen
+              h-fit md:h-screen
             "
               >
                 <div className="md:my-20  md:w-11/12 mx-auto mt-8 hidden md:block">
@@ -65,13 +65,13 @@ export default function PostDetails({ authorId }: PostContentProps) {
                   >
                     {post.author.name}
                   </Link>
-                  <p className="font-supreme">{post.dateCreated}</p>
+                  <p className="font-chubbo">{post.dateCreated}</p>
                 </div>
               </aside>
               <div className="md:w-8/12 xl:w-9/12 mx-auto">
                 <div className="w-11/12 mx-auto mt-8  md:hidden">
                   <Link
-                    className="text-2xl font-bold font-supreme text-center text-blue-600"
+                    className="text-2xl font-bold font- text-center text-blue-600"
                     to={
                       user
                         ? user.uid !== post.author.id
@@ -85,7 +85,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
                   <p className="font-supreme">{post.dateCreated}</p>
                 </div>
                 <div
-                  className="editorcontent font-hind my-8 w-11/12 mx-auto md:mx-0
+                  className="editorcontent font-supreme my-8 w-11/12 mx-auto md:mx-0 font-bold opacity-90
                   max-w-[66ch]"
                   dangerouslySetInnerHTML={{ __html: post.postContent }}
                 ></div>

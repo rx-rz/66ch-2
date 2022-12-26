@@ -28,10 +28,10 @@ export const ShareButtons = ({
       >
         <button
           className="border-2 border-tertiary 
-         bg-primary px-1 text-secondary md:text-xl text-md font-pilcrow
+         bg-secondary py-1 px-2 rounded-xl text-primary md:text-xl text-md font-supreme font-bold
           "
         >
-          Share This Post
+          <span className="opacity-90"> Share This Post</span>
         </button>
       </ShareOnSocial>
     </div>

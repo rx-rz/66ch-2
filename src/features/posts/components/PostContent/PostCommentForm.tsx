@@ -11,7 +11,7 @@ export default function PostCommentForm() {
   return (
     <Form
       onSubmit={(data: CommentProps) => handleCommentSubmit(data)}
-      className="max-w-4xl w-11/12 md:w-9/12 mb-12 md:mx-0  "
+      className="max-w-4xl w-11/12 md:w-9/12 mt-6 mb-12 md:mx-0  font-supreme"
     >
       {({ register, formState }) => (
         <>
@@ -21,13 +21,13 @@ export default function PostCommentForm() {
             })}
             placeholder="Enter a comment here"
             error={formState.errors.comment}
-            className="border-2 border-black text-black
+            className="border-2 border-grey-300 border-black text-black
               w-full  resize-none p-2 t"
           />
           <Button
             type="submit"
-            className="border-2 px-3 border-black 
-             font-pilcrow bg-secondary text-white"
+            className="border-2 px-3 py-1 border-black 
+             font-pilcrow bg-secondary text-white  font-bold"
           >
             Comment
           </Button>

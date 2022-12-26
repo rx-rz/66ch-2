@@ -6,7 +6,7 @@ module.exports = {
     extend: {
       fontFamily: {
         supreme: ["Satoshi, sans-serif"],
-        chubbo: ["Chubbo, sans-serif"],
+        chubbo: ["General Sans, sans-serif"],
       },
       colors: {
         primary: "#FFFFFF",

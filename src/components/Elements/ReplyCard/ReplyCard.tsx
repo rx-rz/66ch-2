@@ -1,6 +1,7 @@
 import { doc, updateDoc } from "firebase/firestore";
 import { database } from "src/config/firebaseConfig";
 import { useDeleteReply } from "src/features/posts/api/useDeleteReply";
+import { useUserContext } from "src/context";
 
 type CardProps = {
   authorName: string;
@@ -27,6 +28,8 @@ export function ReplyCard({
   const newreplyLikersArray =
     replyLikers && replyLikers.filter((item) => item !== userId);
 
+  const { user } = useUserContext()!;
+
   const handleLikeClick = async () => {
     if (!replyLikers.includes(userId)) {
       updateDoc(replyRef, {
@@ -42,27 +45,29 @@ export function ReplyCard({
   };
 
   return (
-    <article className=" border border-black p-2  my-2">
-      <div className="flex text-md font-bold  font-pilcrow">
-        <h3 className="mr-2">{authorName}</h3>
-        <h2 className="opacity-60">{dateCreated.toDateString()}</h2>
+    <article className=" border-t border-b py-2 bg-[#eee] my-2">
+      <div className="flex text-md font-bold   font-supreme justify-between mb-2  items-baseline">
+        <h3 className="mr-2 text-sm">{authorName}</h3>
+        <h2 className="opacity-60 text-xs">{dateCreated.toDateString()}</h2>
       </div>
-      <hr className="border border-secondary" />
+
       <div>
-        <p className="text-sm font-hind">{reply}</p>
+        <p className="text-sm font-supreme">{reply}</p>
       </div>
       <div className="flex justify-between">
         <button onClick={handleLikeClick}>
           {replyLikers.includes(userId) ? <>❤️ {likes}</> : <>🤍 {likes}</>}
         </button>
-        <button onClick={() => handleReplyDelete(replyId)}>
-          <img
-            className="dark:invert"
-            src="/assets/delete.svg"
-            alt="Delete"
-            width="20px"
-          />
-        </button>
+        {userId === user?.id ? (
+          <button onClick={() => handleReplyDelete(replyId)}>
+            <img
+              className="dark:invert"
+              src="/assets/delete.svg"
+              alt="Delete"
+              width="20px"
+            />
+          </button>
+        ) : null}
       </div>
     </article>
   );

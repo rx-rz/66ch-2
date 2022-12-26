@@ -37,7 +37,7 @@ export function BlogCard({
     <div className="py-4 font-supreme w-full">
       <Link to={`/post/${postId}`} className="rounded-xl ">
         <p className="text-md font-bold opacity-90">{tag}</p>
-        <h2 className="text-3xl mb-3 font-bold">{postTitle}</h2>
+        <h2 className="lg:text-3xl text-2xl mb-1 lg:mb-3 font-bold">{postTitle}</h2>
       </Link>
       <div className="relative">
         <Link to={`/post/${postId}`}>
