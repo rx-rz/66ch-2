@@ -19,12 +19,12 @@ export function Navbar() {
   } else {
     return (
       <nav
-        className=" font-pilcrow  sticky top-0 z-50 w-full
+        className=" font-supreme  sticky top-0 z-50 w-full
        mx-auto"
       >
         <div
-          className=" h-16 lg:h-16 uppercase 
-         items-center md:mx-8 mx-3 "
+          className=" h-16 lg:h-16 uppercase w-[95%]
+         items-center mx-auto font-bold"
         >
           <PCNav user={user} handleMenuToggle={handleMenuToggle} />
           <MobileNav user={user} menu={menu} />

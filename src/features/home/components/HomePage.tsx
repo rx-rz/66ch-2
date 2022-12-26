@@ -1,3 +1,4 @@
+import { ColorRing } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import { usePostContext } from "src/context/postContext";
 export default function HomePage() {
@@ -91,5 +92,17 @@ export default function HomePage() {
     );
   }
 
-  return <p>Loading...</p>;
+  return (
+    <div className="h-screen flex items-center justify-center">
+      <ColorRing
+        visible={true}
+        height="80"
+        width="80"
+        ariaLabel="blocks-loading"
+        wrapperStyle={{}}
+        wrapperClass="blocks-wrapper"
+        colors={["#000", "#000", "#000", "#000", "#000"]}
+      />
+    </div>
+  );
 }

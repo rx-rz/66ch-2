@@ -19,7 +19,7 @@ export const Notifications = ({ user }: NotificationProps) => {
   };
 
   return (
-    <div className="my-4">
+    <div className="absolute right-0 lg:top-16 top-12 w-full  z-50 bg-black text-white  rounded-xl min-h-[200px] max-w-[652px]">
       {user.notifications?.length > 0 ? (
         user.notifications?.map((notif) => (
           <div className="py-4 ml-2 flex justify-around" key={notif.docId}>
@@ -49,9 +49,7 @@ export const Notifications = ({ user }: NotificationProps) => {
           </div>
         ))
       ) : (
-        <p className="text-center mt-20 ">
-          You have no new notifications. 😶
-        </p>
+        <p className="text-center mt-20 ">You have no new notifications. 😶</p>
       )}
     </div>
   );

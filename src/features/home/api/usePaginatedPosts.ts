@@ -22,9 +22,9 @@ export const usePaginatedPosts = () => {
   useEffect(() => {
     const paginatedPosts = query(
       collection(database, "posts"),
-      orderBy("dateCreated", "desc"),
+      orderBy("dateCreated", "asc"),
       where("status", "==", "approved"),
-      limit(9)
+      limit(20)
     ).withConverter(blogConverter);
     const getPaginatedPosts = async () => {
       await getDocs(paginatedPosts).then((doc) => {
@@ -40,10 +40,10 @@ export const usePaginatedPosts = () => {
   const fetchMore = async () => {
     const newPosts = query(
       collection(database, "posts"),
-      orderBy("dateCreated", "desc"),
+      orderBy("dateCreated", "asc"),
       where("status", "==", "approved"),
       startAfter(lastDoc),
-      limit(9)
+      limit(20)
     ).withConverter(blogConverter);
     await getDocs(newPosts).then((doc) => {
       const isEmpty = doc.size === 0;

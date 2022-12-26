@@ -32,7 +32,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
   return (
     <>
       {!user ? (
-        <div className="h-full justify-between">
+        <div className="h-full justify-between relative pt-8">
           <div className="h-full flex justify-between items-center">
             <Navlink to="/" variant="main">
               6 6 C H
@@ -49,25 +49,19 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
 
             <div className=" items-center flex">
               <div className="mr-4">
-                <Switcher />
+                {/* <Switcher /> */}
               </div>
               <Navlink
                 to="/auth/login"
-                className="border border-black rounded-full md:p-3 p-2 bg-secondary "
+                className="md:p-3 p-2  "
               >
-                <img
-                  src="/assets/login.svg"
-                  alt="Log In"
-                  className="invert dark:invert-0"
-                  width="20px"
-                  title="Login"
-                />
+                LOG IN
               </Navlink>
             </div>
           </div>
         </div>
       ) : (
-        <div className="h-full">
+        <div className="h-full relative pt-8">
           <div className="h-full hidden xl:flex relative justify-between items-center">
             <Navlink to="/" variant="main">
               6 6 C H
@@ -75,7 +69,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
 
             <Navlink
               to="/profile"
-              className="flex items-center border hover:bg-secondary
+              className="flex items-center border hover:bg-black
                hover:text-white transition-colors duration-300
                 rounded-full hover:b  border-black p-2 hover:border-none
                 mr-2 "
@@ -84,22 +78,15 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
                 src={user.photoURL}
                 title="Profile"
                 alt=""
-                width="30px"
-                className="rounded-full border border-black mr-2 "
+                width="20px"
+                className="rounded-full border h-[20px] border-black mr-2 "
               />
               <p> {user.name.split(" ")[0]}</p>
             </Navlink>
 
             <div className="flex items-center">
-              <div className="mr-4">
-                {/* <Switcher /> */}
-              </div>
-              <div
-                className="fixed top-16 h-fit border-2  min-h-[200px] bg-white
-                hidden border-black
-                 right-0 w-[652px] "
-                ref={notifications}
-              >
+              <div className="mr-4">{/* <Switcher /> */}</div>
+              <div ref={notifications}>
                 <p className="text-black">{user.notifications.length}</p>
                 <Notifications user={user} />
               </div>
@@ -137,17 +124,8 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
                   title="Search"
                 />
               </Navlink>
-              <button
-                className="border border-black rounded-full p-3 bg-secondary  ml-4"
-                onClick={handleLogOut}
-              >
-                <img
-                  src="/assets/logout.svg"
-                  alt="Log Out"
-                  width="15px"
-                  className="invert"
-                  title="Log Out"
-                />
+              <button className="ml-4" onClick={handleLogOut}>
+                LOG OUT
               </button>
             </div>
           </div>
@@ -157,10 +135,10 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
             </Navlink>
             <div className="flex">
               <div className="mr-8 flex items-center">
-                <Switcher />
+                {/* <Switcher /> */}
               </div>
               <Button
-                className="flex items-center mr-8 
+                className="flex items-center 
               transition-colors duration-300 hover:text-secondary"
                 handleClick={handleMobileNotifToggle}
               >
@@ -168,9 +146,9 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
                   src="/assets/notification.svg"
                   alt=""
                   width="20px"
-                  className="mr-1 dark:invert"
+                  height="20px"
+                  className="mr-4 "
                 />
-                {user && user.notifications?.length}
               </Button>
               <button
                 className="text-tertiary h-full grid font-extrabold  
@@ -186,12 +164,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
                 />
               </button>
 
-              <div
-                className="fixed top-16 h-fit border-2  min-h-[200px] bg-white
-                 hidden border-black
-                 right-0 w-full"
-                ref={mobileNotifications}
-              >
+              <div ref={mobileNotifications}>
                 <Notifications user={user} />
               </div>
             </div>
