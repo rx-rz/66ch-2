@@ -18,9 +18,7 @@ export const ShareButtons = ({
     <div className="my-4">
       <ShareOnSocial
         textToShare={
-          postTitle &&
-          postAuthor &&
-          `"${postTitle}" by ${postAuthor} - 66CH`
+          postTitle && postAuthor && `"${postTitle}" by ${postAuthor} - 66CH`
         }
         link={postId && `/post/${postId}`}
         linkTitle={postTitle && postTitle}
@@ -28,9 +26,11 @@ export const ShareButtons = ({
         linkFavicon={favicon}
         noReferer
       >
-        <button className="border-2 border-tertiary dark:text-white
+        <button
+          className="border-2 border-tertiary 
          bg-primary px-1 text-secondary md:text-xl text-md font-pilcrow
-          dark:bg-tertiary dark:border-secondary">
+          "
+        >
           Share This Post
         </button>
       </ShareOnSocial>

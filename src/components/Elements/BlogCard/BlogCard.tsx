@@ -36,8 +36,8 @@ export function BlogCard({
   return (
     <div
       className="
-     md:h-[600px] text-clip overflow-clip h-fit dark:text-white max-w-[580px]
-      dark:bg-tertiary m-1"
+     md:h-[600px] text-clip overflow-clip h-fit  max-w-[580px]
+       m-1"
     >
       <div className=" my-2 md:my-0">
         <div>
@@ -81,12 +81,7 @@ export function BlogCard({
         </Link>
         {location.pathname === "/profile" && (
           <Button handleClick={handleDelete} className="mt-8">
-            <img
-              alt="Delete"
-              src="/assets/delete.svg"
-              width="30px"
-              className="dark:invert"
-            />
+            <img alt="Delete" src="/assets/delete.svg" width="30px" />
           </Button>
         )}
       </div>

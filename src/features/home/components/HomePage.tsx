@@ -6,11 +6,11 @@ export default function HomePage() {
   const blogs = data && data.slice(3, 6);
 
   return (
-    <div className="w-full  dark:text-white">
+    <div className="w-full  ">
       <main className="flex flex-wrap min-h-[90vh] md:mx-8 mx-3 mt-4">
         <div
           className=" md:w-6/12 w-full px-2 bg-secondary max-h-[828px]
-         border border-black mb-8 md:mb-0 dark:border-white"
+         border border-black mb-8 md:mb-0 "
         >
           {blogOne && (
             <Link to={`post/${blogOne?.id}`}>
@@ -41,7 +41,7 @@ export default function HomePage() {
             </Link>
           )}
         </div>
-        <div className="md:w-6/12 w-full px-2 dark:text-white">
+        <div className="md:w-6/12 w-full px-2 ">
           {blogs &&
             blogs.map((blog) => (
               <Link to={`/post/${blog.id}`} key={blog.id}>
@@ -50,7 +50,7 @@ export default function HomePage() {
                     src={blog.imageDownloadUrl}
                     alt=""
                     className="md:w-4/12 w-full aspect-video max-h-[271px]
-                      h-full object-cover border border-black dark:border-white
+                      h-full object-cover border border-black 
                        md:mx-8 mr-2 min-w-[200px]"
                   />
                   <div className="font-pilcrow  max-w-md mt-3 text-ellipsis">

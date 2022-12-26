@@ -6,12 +6,12 @@ const variants = {
   pendingButton:
     "text-xl font-pilcrow lg:w-5/12 mx-3 md:mx-0 bg-secondary text-white p-3 md:mr-4 transition-shadow duration-300 border-tertiary border hover:shadow-2xl shadow-black mb-8 md:mb-0",
   authTertiary:
-    "flex text-2xl items-center dark:border-white border-secondary border-2 focus:border-4 focus:border-secondary rounded-full text-white  transition-opacity duration-300  hover:opacity-80 mx-auto my-8",
+    "flex text-2xl items-center border-secondary border-2 focus:border-4 focus:border-secondary rounded-full text-white  transition-opacity duration-300  hover:opacity-80 mx-auto my-8",
   settingsButton:
     "text-xl font-pilcrow self-end w-full mt-8  md:mt-12 bottom-0 mx-auto bg-tertiary border border-primary text-primary p-1 py-2 transition-opacity duration-300 hover:opacity-80",
   draft:
-    "border-2 border-tertiary dark:text-white bg-primary px-1 text-secondary md:text-xl text-md font-pilcrow dark:bg-tertiary dark:border-secondary",
-  nav: "text-md transition-colors duration-300 hover:text-secondary px-3 uppercase text-tertiary border-tertiary h-full grid font-medium  content-center lg:px-4 dark:text-white",
+    "border-2 border-tertiary  bg-primary px-1 text-secondary md:text-xl text-md font-pilcrow ",
+  nav: "text-md transition-colors duration-300 hover:text-secondary px-3 uppercase text-tertiary border-tertiary h-full grid font-medium  content-center lg:px-4",
 };
 
 type ButtonProps = {

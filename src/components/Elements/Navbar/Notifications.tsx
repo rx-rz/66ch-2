@@ -30,7 +30,7 @@ export const Notifications = ({ user }: NotificationProps) => {
                   : `/createpost/${notif.docId}`
               }
             >
-              <div className="w-10/12 dark:text-white">
+              <div className="w-10/12 ">
                 <p>{notif.message}</p>
                 <p>{notif.dateCreated}</p>
               </div>
@@ -49,7 +49,7 @@ export const Notifications = ({ user }: NotificationProps) => {
           </div>
         ))
       ) : (
-        <p className="text-center mt-20 dark:text-white">
+        <p className="text-center mt-20 ">
           You have no new notifications. 😶
         </p>
       )}

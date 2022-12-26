@@ -28,9 +28,9 @@ export function DraftCard({
   };
   return (
     <div
-      className=" border-2 border-black dark:border-white
-     md:h-[600px] text-clip overflow-clip h-fit dark:text-white
-      dark:bg-tertiary m-1"
+      className=" border-2 border-black 
+     md:h-[600px] text-clip overflow-clip h-fit 
+       m-1"
     >
       <div className="md:p-8 p-2 my-8 md:my-0">
         <Link to={`/createpost/${postId}`}>
@@ -44,7 +44,7 @@ export function DraftCard({
             src={imageUrl}
             alt={postTitle}
             className="aspect-video object-cover border
-             border-black my-4 dark:border-white"
+             border-black my-4 "
             loading="lazy"
           />
           <div>
@@ -67,7 +67,6 @@ export function DraftCard({
               alt="Delete"
               src="/images/delete.svg"
               width="30px"
-              className="dark:invert"
             />
           </Button>
         )}

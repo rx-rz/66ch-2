@@ -9,7 +9,7 @@ export const PostExtras = () => {
     posts && posts.filter((post) => post.id !== id).slice(0, 3);
   return (
     <div className="mx-auto my-10 md:my-20">
-      <h1 className="dark:text-white font-pilcrow md:text-3xl my-3 mx-1 text-2xl">
+      <h1 className=" font-pilcrow md:text-3xl my-3 mx-1 text-2xl">
         Related Posts
       </h1>
       {otherPosts && (

@@ -45,7 +45,7 @@ export const SearchPosts = () => {
       <main className="w-fit py-20 flex-column mx-auto justify-center">
         <h1
           className="font-pilcrow text-lg md:text-2xl 
-        dark:text-white max-w-xl text-center my-4"
+         max-w-xl text-center my-4"
         >
           Search for posts by the title, author's name or tag.
         </h1>
@@ -54,12 +54,12 @@ export const SearchPosts = () => {
             <input
               type="text"
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="border border-black dark:border-white
+              className="border border-black
                 mx-auto p-3 font-pilcrow text-2xl w-9/12"
             />
             <button
               className="bg-secondary w-3/12 flex justify-center 
-              items-center border border-black dark:border-white"
+              items-center border border-black"
               onClick={handleSearch}
             >
               <img src={search} alt="Search" width="50px" className="invert" />
@@ -89,7 +89,7 @@ export const SearchPosts = () => {
         </article>
       ) : (
         <div className="flex flex-col text-center w-full justify-center">
-          <h1 className="text-xl md:text-2xl dark:text-white font-pilcrow">
+          <h1 className="text-xl md:text-2xl  font-pilcrow">
             Uh oh. No posts match your search term
           </h1>
           <img

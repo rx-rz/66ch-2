@@ -77,12 +77,12 @@ export default function ReplyList({
                 <TextAreaField
                   registration={register("reply")}
                   placeholder="Enter your reply here"
-                  className="border-2 dark:border-white text-black p-2
+                  className="border-2  text-black p-2
                    border-black resize-none w-11/12 "
                 />
                 <button
                   type="submit"
-                  className=" border-black bg-secondary dark:border-white
+                  className=" border-black bg-secondary 
                    font-pilcrow px-3 my-2 border-2 text-white"
                 >
                   Reply

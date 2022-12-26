@@ -32,7 +32,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
   return (
     <>
       {!user ? (
-        <div className="h-full justify-between dark:bg-tertiary dark:text-white">
+        <div className="h-full justify-between">
           <div className="h-full flex justify-between items-center">
             <Navlink to="/" variant="main">
               6 6 C H
@@ -53,7 +53,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
               </div>
               <Navlink
                 to="/auth/login"
-                className="border border-black rounded-full md:p-3 p-2 bg-secondary dark:border-primary "
+                className="border border-black rounded-full md:p-3 p-2 bg-secondary "
               >
                 <img
                   src="/assets/login.svg"
@@ -78,14 +78,14 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
               className="flex items-center border hover:bg-secondary
                hover:text-white transition-colors duration-300
                 rounded-full hover:b  border-black p-2 hover:border-none
-                mr-2 dark:border-primary"
+                mr-2 "
             >
               <img
                 src={user.photoURL}
                 title="Profile"
                 alt=""
                 width="30px"
-                className="rounded-full border border-black mr-2 dark:border-primary"
+                className="rounded-full border border-black mr-2 "
               />
               <p> {user.name.split(" ")[0]}</p>
             </Navlink>
@@ -96,7 +96,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
               </div>
               <div
                 className="fixed top-16 h-fit border-2  min-h-[200px] bg-white
-               dark:border-white dark:bg-tertiary hidden border-black
+                hidden border-black
                  right-0 w-[652px] "
                 ref={notifications}
               >
@@ -107,7 +107,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
               <Button
                 handleClick={handleNotifToggle}
                 className="text-md text-tertiary mx-3  h-full flex items-center
-               font-medium  content-center lg:px-2  dark:text-white
+               font-medium  content-center lg:px-2  
                 transition-colors duration-300 hover:text-secondary"
               >
                 <img
@@ -138,7 +138,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
                 />
               </Navlink>
               <button
-                className="border border-black rounded-full p-3 bg-secondary dark:border-primary ml-4"
+                className="border border-black rounded-full p-3 bg-secondary  ml-4"
                 onClick={handleLogOut}
               >
                 <img
@@ -160,7 +160,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
                 <Switcher />
               </div>
               <Button
-                className="flex items-center mr-8 dark:invert 
+                className="flex items-center mr-8 
               transition-colors duration-300 hover:text-secondary"
                 handleClick={handleMobileNotifToggle}
               >
@@ -174,7 +174,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
               </Button>
               <button
                 className="text-tertiary h-full grid font-extrabold  
-              content-center   font-pilcrow dark:text-white"
+              content-center   font-pilcrow "
                 onClick={handleMenuToggle}
                 ref={menubutton}
               >
@@ -188,7 +188,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
 
               <div
                 className="fixed top-16 h-fit border-2  min-h-[200px] bg-white
-               dark:bg-tertiary dark:border-white  hidden border-black
+                 hidden border-black
                  right-0 w-full"
                 ref={mobileNotifications}
               >

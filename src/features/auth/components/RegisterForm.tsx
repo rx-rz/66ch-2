@@ -31,7 +31,7 @@ export function RegisterForm() {
             className=" border-primary dark:invert"
           />
         </Button>
-        <p className="mx-auto w-fit md:text-xl dark:text-white">
+        <p className="mx-auto w-fit md:text-xl ">
           Or use your email for registration:
         </p>
         <div className="my-8">

@@ -21,7 +21,6 @@ export function CommentCard({
   userId,
   commentLikers,
 }: CardProps) {
-  
   const { handleCommentDelete } = useDeleteComment();
   const newCommentLikersArray =
     commentLikers && commentLikers.filter((item) => item !== userId);
@@ -43,7 +42,7 @@ export function CommentCard({
   return (
     <article
       className=" p-2 my-4 border border-black
-     dark:border-white md:w-10/12 w-full"
+     md:w-10/12 w-full"
     >
       <div className="flex font-bold font-pilcrow">
         <h3 className="mr-2">{authorName}</h3>
@@ -59,12 +58,7 @@ export function CommentCard({
         </button>
 
         <button onClick={() => handleCommentDelete(commentId)}>
-          <img
-            className="dark:invert"
-            src="/assets/delete.svg"
-            alt="Delete"
-            width="20px"
-          />
+          <img src="/assets/delete.svg" alt="Delete" width="20px" />
         </button>
       </div>
     </article>

@@ -47,7 +47,7 @@ export const MobileNav = ({ user, menu }: MobileNavProps) => {
               title="Profile"
               alt=""
               width="30px"
-              className="rounded-full border-2 border-black mr-2 dark:border-primary p-4 ml-1"
+              className="rounded-full border-2 border-black mr-2  p-4 ml-1"
             />
             <p> {user.name.split(" ")[0]}</p>
           </Navlink>

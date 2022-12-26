@@ -24,7 +24,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
   }, [post?.postTitle, post?.author]);
 
   return (
-    <div className="mx-auto   dark:text-white">
+    <div className="mx-auto   ">
       {error && <strong>{error.message}</strong>}
       {loading && <span>Loading...</span>}
 
@@ -40,7 +40,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
             <motion.img
               src={post.imageDownloadUrl}
               alt={post.postTitle}
-              className="mx-auto  border border-black dark:border-white
+              className="mx-auto  border border-black
                object-cover aspect-video max-h-[40vh]  md:max-h-[70vh]"
               initial={{ width: "50%" }}
               animate={{ width: "95%" }}
@@ -50,7 +50,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
               <aside
                 className="md:w-3/12 xl:w-2/12 w-full md:sticky top-16
               md:border-r-black md:border-r h-fit md:h-screen
-              md:dark:border-r-white"
+            "
               >
                 <div className="md:my-20  md:w-11/12 mx-auto mt-8 hidden md:block">
                   <Link

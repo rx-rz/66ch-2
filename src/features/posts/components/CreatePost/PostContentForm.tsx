@@ -51,7 +51,7 @@ export const PostContentForm = ({
       <nav className="flex justify-between mx-auto">
         <Link
           to="/"
-          className="md:text-xl text-md font-bold font-pilcrow dark:text-white"
+          className="md:text-xl text-md font-bold font-pilcrow "
         >
           &#8592; Home
         </Link>
@@ -99,13 +99,13 @@ export const PostContentForm = ({
                     },
                   })}
                   className="resize-none focus:outline-none w-full m-auto text-3xl md:text-4xl
-                   lg:text-5xl ml-1 bg-primary text-tertiary dark:bg-tertiary dark:text-white"
+                   lg:text-5xl ml-1 bg-primary text-tertiary "
                 />
               )}
             />
 
             {!imageUrl && !description && !tag && (
-              <p className="md:text-xl md:mt-4 mt-4 dark:text-white">
+              <p className="md:text-xl md:mt-4 mt-4 ">
                 Please specify the needed settings for the blog post in the post
                 settings.
               </p>

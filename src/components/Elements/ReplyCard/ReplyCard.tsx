@@ -42,7 +42,7 @@ export function ReplyCard({
   };
 
   return (
-    <article className=" border border-black p-2 dark:border-white my-2">
+    <article className=" border border-black p-2  my-2">
       <div className="flex text-md font-bold  font-pilcrow">
         <h3 className="mr-2">{authorName}</h3>
         <h2 className="opacity-60">{dateCreated.toDateString()}</h2>

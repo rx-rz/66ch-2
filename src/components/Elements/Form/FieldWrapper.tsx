@@ -18,7 +18,7 @@ export const FieldWrapper = (props: FieldWrapperProps) => {
       {window.location.pathname !== "/createpost" ? (
         <label
           className="font-Synonym font-medium text-tertiary
-       md:text-lg text-md pb-1 font-pilcrow dark:text-primary"
+       md:text-lg text-md pb-1 font-pilcrow "
         >
           {label}
           <div>{children}</div>

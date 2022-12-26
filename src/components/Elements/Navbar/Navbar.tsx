@@ -20,11 +20,11 @@ export function Navbar() {
     return (
       <nav
         className=" font-pilcrow bg-white sticky top-0 z-50 w-full
-       mx-auto dark:bg-tertiary dark:text-white"
+       mx-auto"
       >
         <div
           className=" h-16 lg:h-16 uppercase 
-         items-center md:mx-8 mx-3 dark:bg-tertiary dark:text-white"
+         items-center md:mx-8 mx-3 "
         >
           <PCNav user={user} handleMenuToggle={handleMenuToggle} />
           <MobileNav user={user} menu={menu} />

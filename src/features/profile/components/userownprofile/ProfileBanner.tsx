@@ -12,7 +12,7 @@ export default function ProfileBanner() {
   return (
     <div
       className="mx-auto md:w-11/12 block
-   font-pilcrow dark:text-white p-2 mt-4"
+   font-pilcrow  p-2 mt-4"
     >
       {user && (
         <div className="flex items-center">

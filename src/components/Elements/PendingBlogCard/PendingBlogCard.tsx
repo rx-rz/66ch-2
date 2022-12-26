@@ -26,8 +26,8 @@ export function PendingBlogCard({
   const { user } = useUserContext()!;
   return (
     <div
-      className=" border-2 border-black dark:border-white md:h-[700px]
-     text-clip overflow-clip h-fit dark:text-white dark:bg-tertiary m-1"
+      className=" border-2 border-black  md:h-[700px]
+     text-clip overflow-clip h-fit m-1"
     >
       <div className="md:p-8 p-2 my-8 md:my-0">
         <div>
