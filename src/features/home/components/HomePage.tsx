@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { usePostContext } from "src/context/postContext";
 export default function HomePage() {
   const { data } = usePostContext()!;
-  const blogOne = data && data[11];
+  const blogOne = data && data[9];
   const blogs = data && data.slice(3, 6);
 
   return (
