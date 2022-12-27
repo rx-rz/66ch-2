@@ -31,7 +31,7 @@ type PostContextProps = {
 
 export const PostContextProvider = ({ children }: PostContextProviderProps) => {
   const postsRef = collection(database, "posts").withConverter(blogConverter);
-  const [data] = useCollectionData(postsRef);
+  const [data] = useCollectionData(postsRef)
 
   return (
     <PostContext.Provider value={{ data }}>{children}</PostContext.Provider>

@@ -92,7 +92,7 @@ export default function PostSettingsForm({
 
   return (
     <>
-      <div className="w-11/12 mx-auto mt-6 md:hidden cursor-pointer invert">
+      <div className="w-11/12 mx-auto mt-6 md:hidden cursor-pointer invert font-supreme">
         <button
           className="border-4 border-white"
           data-testid="closeButton"
@@ -109,7 +109,7 @@ export default function PostSettingsForm({
             <FileUploader handleChange={handleChange} name="File">
               <div
                 className="cursor-pointer h-36  w-full border-dotted border-2
-               border-primary grid items-center font-pilcrow"
+               border-primary grid items-center font-supreme"
               >
                 {!progress ? (
                   <p className="mx-auto text-primary w-9/12 text-center">
@@ -143,7 +143,7 @@ export default function PostSettingsForm({
                 },
                 required: "Please enter a post description",
               })}
-              className="resize-none bg-primary text-black w-full border-2
+              className="resize-none bg-primary text-black w-full border-2 font-supreme
                border-tertiary  focus:bg-white focus:outline-none mt-3 p-1"
               label="Description"
               error={formState.errors.description}
@@ -152,14 +152,14 @@ export default function PostSettingsForm({
               type="submit"
               data-testid="submitButton"
               variant="settingsButton"
-              className="hidden md:block"
+              className="hidden md:block font-supreme"
             >
               Save Settings
             </Button>
             <Button
               handleClick={handleMenuToggle}
               type="submit"
-              className="md:hidden"
+              className="md:hidden font-supreme"
               variant="settingsButton"
             >
               Save Settings

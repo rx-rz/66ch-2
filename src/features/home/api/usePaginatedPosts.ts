@@ -40,7 +40,7 @@ export const usePaginatedPosts = () => {
   const fetchMore = async () => {
     const newPosts = query(
       collection(database, "posts"),
-      orderBy("dateCreated", "asc"),
+      // orderBy("dateCreated", "asc"),
       where("status", "==", "approved"),
       startAfter(lastDoc),
       limit(17)

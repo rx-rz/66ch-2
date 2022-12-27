@@ -67,7 +67,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
               >
                 <div className="md:my-20  md:w-11/12 mx-auto mt-8 hidden md:block">
                   <Link
-                    className="text-2xl font-bold font-supreme text-center text-blue-600"
+                    className="text-2xl font-bold font-chubbo text-center text-blue-600"
                     to={
                       user
                         ? user.uid !== post.author.id
@@ -98,7 +98,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
                   <p className="font-supreme">{post.dateCreated}</p>
                 </div>
                 <div
-                  className="editorcontent font-supreme my-8 w-11/12 mx-auto md:mx-0 font-bold opacity-90
+                  className="editorcontent font-chubbo my-8 w-11/12 mx-auto md:mx-0 font-medium leading-snug  opacity-90
                   max-w-[66ch]"
                   dangerouslySetInnerHTML={{ __html: post.postContent }}
                 ></div>
@@ -128,7 +128,7 @@ export default function PostDetails({ authorId }: PostContentProps) {
                     </Button>
                     <Button
                       handleClick={() => rejectPost(authorId)}
-                      variant="pendingButton"
+                      variant="pendingButtonTwo"
                     >
                       Reject Post
                     </Button>

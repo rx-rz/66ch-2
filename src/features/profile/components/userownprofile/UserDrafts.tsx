@@ -16,7 +16,7 @@ export default function UserDrafts() {
     <div className="mx-auto md:w-11/12 w-full md:my-20 p-2">
       <h1
         className="md:text-4xl text-3xl my-8 font-bold
-        font-pilcrow"
+        font-supreme"
       >
         DRAFTS
       </h1>
@@ -37,7 +37,7 @@ export default function UserDrafts() {
           ))}
         </article>
       ) : (
-        <p className="">No available drafts</p>
+        <p className="font-supreme">No available drafts</p>
       )}
     </div>
   );

@@ -47,11 +47,11 @@ export const PostContentForm = ({
   }, [title]);
 
   return (
-    <div className="md:w-11/12 w-full  mx-auto my-8 font-hind">
+    <div className="md:w-11/12 w-full  mx-auto my-8 font-chubbo">
       <nav className="flex justify-between mx-auto">
         <Link
           to="/"
-          className="md:text-xl text-md font-bold font-pilcrow "
+          className="md:text-xl text-md font-bold font-supreme "
         >
           &#8592; Home
         </Link>
@@ -65,7 +65,7 @@ export const PostContentForm = ({
             Save As Draft
           </Button>
           <Button
-            className="border-2 bg-secondary font-pilcrow border-tertiary
+            className="border-2 bg-secondary font-supreme border-tertiary
              text-primary px-1 md:text-xl text-md md:hidden ml-3"
             handleClick={handleMenuToggle}
           >

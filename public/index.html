@@ -40,12 +40,12 @@
       .ql-toolbar {
         position: sticky;
         z-index: 20;
-        border: 1px solid #0437f2 !important;
+        border: 1px solid black !important;
         font-size: large;
         padding: 0px !important;
         margin-block: 4rem 1rem !important;
         top: 0;
-
+        
         background-color: white;
       }
 
@@ -86,8 +86,12 @@
         color: black !important;
       }
 
+      .ql-container{
+        border: none !important;
+      }
+
       .quill > .ql-container > .ql-editor.ql-blank::before {
-        font-family: "Pilcrow", sans-serif !important;
+        font-family: "General Sans", sans-serif !important;
         margin-left: -10px !important;
         color: black;
       }
@@ -101,14 +105,32 @@
       }
 
       .ql-editor {
-        font-family: "Hind", sans-serif;
+        font-family: "General Sans", sans-serif;
         border: none !important;
         color: black !important;
+        font-weight: 500;
         padding: 4px 1px !important;
         margin-block-end: 5rem !important;
         font-size: 1.1rem !important;
       }
 
+      @media screen and (max-width: 768px) {
+        .ql-editor h1,
+        .editorcontent h1 {
+          font-size: 1.3rem !important;
+          font-weight: bold;
+        }
+
+        .ql-editor h2,
+        .editorcontent h2 {
+          font-size: 1.1rem !important;
+          font-weight: bold;
+        }
+
+        .editorcontent p {
+          font-size: 0.9rem;
+        }
+      }
       .editorcontent p {
         font-size: 1.1rem;
       }
@@ -118,13 +140,13 @@
 
       .ql-editor h1,
       .editorcontent h1 {
-        font-size: 2.2rem !important;
+        font-size: 1.5rem !important;
         font-weight: bold;
       }
 
       .ql-editor h2,
       .editorcontent h2 {
-        font-size: 2rem !important;
+        font-size: 1.3rem !important;
         font-weight: bold;
       }
     </style>

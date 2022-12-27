@@ -2,6 +2,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { database } from "src/config/firebaseConfig";
 import { useDeleteComment } from "src/features/posts/api/useDeleteComment";
 import { useUserContext } from "src/context";
+import moment from "moment";
 
 type CardProps = {
   authorName: string;
@@ -50,7 +51,9 @@ export function CommentCard({
     >
       <div className="flex font-bold font-pilcrow justify-between items-baseline">
         <h3 className="mr-2 text-md opacity-60">{authorName}</h3>
-        <h2 className="opacity-60 text-xs">{dateCreated.toDateString()}</h2>
+        <h2 className="opacity-60 text-xs">
+          {moment(dateCreated).format("ddd,  m, y")}
+        </h2>
       </div>
 
       <div>

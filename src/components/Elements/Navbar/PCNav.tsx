@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Navlink } from "../NavLink/NavLink";
 import { auth } from "src/config/firebaseConfig";
 import { Button } from "../Button";
-import { Switcher } from "./Switcher";
 import { useNav } from "./utils";
 import { Notifications } from "./Notifications";
 import { User } from "src/utils";
@@ -80,9 +79,7 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
             </Navlink>
 
             <div className="flex items-center">
-              <div className="mr-4">{/* <Switcher /> */}</div>
               <div ref={notifications} className="hidden">
-                <p className="text-black">{user.notifications.length}</p>
                 <Notifications user={user} />
               </div>
 
@@ -92,13 +89,9 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
                font-medium  content-center lg:px-2  
                 transition-colors duration-300 hover:text-secondary"
               >
-                <img
-                  src="/assets/alert.svg"
-                  alt=""
-                  className=" dark:invert"
-                  width="25px"
-                  title="Notifications"
-                />
+                <p className="w-[30px] h-[30px] flex items-center justify-center font-bold rounded-full bg-secondary text-primary">
+                  {user.notifications.length}
+                </p>
               </Button>
               <Navlink to="/createpost" variant="primary">
                 <img
@@ -132,16 +125,12 @@ export const PCNav = ({ user, handleMenuToggle }: PCNavProps) => {
               <div className="mr-8 flex items-center">{/* <Switcher /> */}</div>
               <Button
                 className="flex items-center 
-              transition-colors duration-300 hover:text-secondary"
+              transition-colors duration-300 hover:text-secondary mr-2"
                 handleClick={handleMobileNotifToggle}
               >
-                <img
-                  src="/assets/notification.svg"
-                  alt=""
-                  width="20px"
-                  height="20px"
-                  className="mr-4 "
-                />
+                <p className="w-[30px] h-[30px] flex items-center justify-center font-bold rounded-full bg-secondary text-primary">
+                  {user.notifications.length}
+                </p>
               </Button>
               <button
                 className="text-tertiary h-full grid font-extrabold  

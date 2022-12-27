@@ -36,7 +36,7 @@ export default function CreatePost() {
         <main className=" flex justify-between h-screen w-full">
           <div
             className="fixed  md:sticky md:flex z-40 md:top-0
-             hidden md:w-4/12 w-full  bg-secondary "
+             hidden md:w-3/12 w-full  bg-[#222] rounded-tr-xl rounded-br-xl"
             ref={settings}
           >
             <div className="z-40 min-h-screen mx-auto">

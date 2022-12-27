@@ -2,7 +2,8 @@ import { ColorRing } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import { usePostContext } from "src/context/postContext";
 export default function HomePage() {
-  const { data } = usePostContext()!;
+  const { data: posts } = usePostContext()!;
+  const data = posts?.filter((post) => post.status === "approved")
   const blogOne = data && data[data.length - 2];
   const blogTwo = data && data[data.length - 7];
   const blogThree = data && data[data.length - 1];

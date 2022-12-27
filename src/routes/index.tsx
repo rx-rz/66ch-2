@@ -4,6 +4,7 @@ import PageNotFound from "src/features/404/PageNotFound";
 import { useUserContext } from "src/context/userContext";
 import { Register, Login } from "src/features";
 import { AnimatePresence } from "framer-motion";
+import { ColorRing } from "react-loader-spinner";
 
 const Home = React.lazy(() => import("src/features/home"));
 const PendingPosts = React.lazy(
@@ -61,7 +62,23 @@ export const AppRoutes = () => {
   return (
     <AnimatePresence mode="wait" initial={false}>
       {" "}
-      <Suspense fallback={<p>Loading...</p>}>{element}</Suspense>
+      <Suspense
+        fallback={
+          <div className="h-screen flex items-center justify-center">
+            <ColorRing
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="blocks-loading"
+              wrapperStyle={{}}
+              wrapperClass="blocks-wrapper"
+              colors={["#000", "#000", "#000", "#000", "#000"]}
+            />
+          </div>
+        }
+      >
+        {element}
+      </Suspense>
     </AnimatePresence>
   );
 };

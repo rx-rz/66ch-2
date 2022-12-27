@@ -25,51 +25,30 @@ export function PendingBlogCard({
 }: CardProps) {
   const { user } = useUserContext()!;
   return (
-    <div
-      className=" border-2 border-black  md:h-[700px]
-     text-clip overflow-clip h-fit m-1"
-    >
-      <div className="md:p-8 p-2 my-8 md:my-0">
-        <div>
-          <p className="text-lg md:text-2xl font-pilcrow mr-2 mb-2">
-            {dateCreated}
-          </p>
-          <Link
-            to={
-              user && user.uid === authorId ? "/profile" : `/user/${authorId}`
-            }
-          >
-            <p
-              className="text-xl md:text-3xl font-pilcrow mt-2
-             hover:text-secondary transition-colors duration-300"
-            >
-              {authorName}
-            </p>
-          </Link>
-        </div>
-        <Link
-          to={`/post/${postId}/${status}/${authorId}`}
-          key={postId}
-          className="w-fit"
-        >
+    <Link to={`/post/${postId}/${status}/${authorId}`} className="rounded-xl ">
+      <div className="py-4 font-supreme w-full">
+        <h2 className="lg:text-3xl text-2xl mb-1 lg:mb-3 font-bold">
+          {postTitle}
+        </h2>
+
+        <div className="relative">
           <img
             src={imageUrl}
             alt={postTitle}
-            className="aspect-video object-cover border border-black my-4"
-            loading="lazy"
+            className="w-full aspect-video object-cover rounded-xl"
           />
-          <div>
-            <div className="max-h-72 overflow-clip">
-              <h1 className="text-3xl md:text-4xl font-pilcrow uppercase text-ellipsis">
-                {postTitle}
-              </h1>
-              <h2 className="text-lg md:text-xl font-hind text-ellipsis">
-                {description}
-              </h2>
-            </div>
+          <div className=" absolute  lg:bottom-4 lg:left-4 left-1 bottom-3  text-sm">
+            <p className="opacity-90  bg-white rounded-full p-2">
+              {authorName}
+            </p>
+            <p className="opacity-90 mt-2  bg-white rounded-full p-2">
+              {dateCreated}
+            </p>
           </div>
-        </Link>
+        </div>
+
+        <p className="text-lg font-bold opacity-90 mt-2">{description}</p>
       </div>
-    </div>
+    </Link>
   );
 }

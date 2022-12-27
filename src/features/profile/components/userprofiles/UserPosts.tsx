@@ -7,13 +7,13 @@ export default function UserPosts() {
   return (
     <div className="mx-auto md:w-11/12 w-full md:my-20 p-2">
       <h1
-        className="md:text-5xl text-3xl font-pilcrow my-8
+        className="md:text-5xl text-3xl font-supreme my-8
          font-bold"
       >
         ARTICLES
       </h1>
       {posts && posts.length > 0 ? (
-        <article className="grid md:grid-cols-2 xl:grid-cols-3 grid-cols-1">
+        <article className="grid md:grid-cols-2 xl:grid-cols-3 grid-cols-1 gap-10">
           {posts!.map((doc) => (
             <React.Fragment key={doc.id}>
               <BlogCard
@@ -30,7 +30,7 @@ export default function UserPosts() {
           ))}
         </article>
       ) : (
-        <p>No available posts</p>
+        <p className="font-supreme">No available posts</p>
       )}
     </div>
   );

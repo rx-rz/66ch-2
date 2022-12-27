@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useUserContext } from "src/context";
+import moment from "moment"
+
 
 export default function ProfileBanner() {
   const { user } = useUserContext()!;
@@ -12,7 +14,7 @@ export default function ProfileBanner() {
   return (
     <div
       className="mx-auto md:w-11/12 block
-   font-pilcrow  p-2 mt-4"
+   font-supreme  p-2 mt-4"
     >
       {user && (
         <div className="flex items-center">
@@ -25,12 +27,12 @@ export default function ProfileBanner() {
           <aside className="md:w-9/12 w-8/12 ml-16 mt-8">
             <h1
               className="text-3xl md:text-5xl lg:text-6xl
-           font-medium font-pilcrow md:mb-4 mb-1"
+           font-bold font-supreme md:mb-4 mb-1"
             >
               {user.name}
             </h1>
-            <h2 className="text-md md:text-xl lg:text-2xl mb-2">
-              Joined {user.dateCreated}
+            <h2 className="text-md font-bold opacity-70 md:text-xl lg:text-2xl mb-2">
+              Joined {moment(user.dateCreated).format("ddd  hA  y")}
             </h2>
             <div className="flex flex-wrap">
               <Link
