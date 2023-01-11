@@ -4,6 +4,9 @@ import { FieldWrapper, FieldWrapperPassThroughProps } from "./FieldWrapper";
 
 type TextAreaFieldProps = FieldWrapperPassThroughProps & {
   className?: string;
+    /*the registration prop uses all of useFormRegisterReturn's type 
+   and makes all the props optional. You can read more on the Partial
+   utility type in the Typescript docs.*/
   registration: Partial<UseFormRegisterReturn>;
   placeholder?: string;
   defaultValue?: any;
