@@ -7,10 +7,11 @@ type FieldWrapperProps = {
   error?: FieldError | undefined;
 };
 
-export type FieldWrapperPassThroughProps = Omit<
-  FieldWrapperProps,
-  "className" | "children"
->;
+export type FieldWrapperPassThroughProps =
+  /*taking FieldWrapperProps and removing the classname an children
+props to create a new component. You can read more on the Omit Utility
+Type in the Typescript doc. */
+  Omit<FieldWrapperProps, "className" | "children">;
 
 export const FieldWrapper = (props: FieldWrapperProps) => {
   const { label, error, children } = props;
@@ -39,7 +40,7 @@ export const FieldWrapper = (props: FieldWrapperProps) => {
         )
       }
 
-{
+      {
         // Checking if error object exists and message property exist in it
         error?.message && (
           // If yes, then render an error message
