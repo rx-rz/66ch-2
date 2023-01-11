@@ -5,7 +5,7 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import { useEffect, useMemo, useRef, useState } from "react";
-import ReactQuill, { ReactQuillProps } from "react-quill";
+import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { storage } from "src/config/firebaseConfig";
 
