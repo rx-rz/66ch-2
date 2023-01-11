@@ -6,14 +6,19 @@ import { MobileNav } from "./MobileNav";
 import { useRef } from "react";
 
 export function Navbar() {
+  // destructuring the user from useUserContext hook
   const { user } = useUserContext()!;
+  // getting the location of current page
   const location = useLocation();
-
+  // creating a ref for the menu
   const menu = useRef<HTMLDivElement>(null);
+  // defining handleMenuToggle function
   const handleMenuToggle = () => {
+    // toggling the class 'hidden' on the menu
     menu.current!.classList.toggle("hidden");
   };
 
+  //  if the current location path is '/createpost, do not render the navbar'
   if (location.pathname === "/createpost") {
     return null;
   } else {

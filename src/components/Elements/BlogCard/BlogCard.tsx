@@ -27,17 +27,29 @@ export function BlogCard({
   description,
 }: CardProps) {
   const { user } = useUserContext()!;
+  /*This line gets the `user` object from the `useUserContext` hook.
+   The `!` after `useUserContext()` indicates that the `user` object
+    is non-nullable.*/
   const location = useLocation();
+  /* This line gets the `location` object using the
+   `useLocation` hook from `react-router-dom`*/
 
   const handleDelete = () => {
     deleteDoc(doc(database, "posts", postId!));
   };
+  /* This is a function that calls the `deleteDoc`
+   function and passes it the result of calling the
+    `doc` function with the `database` object, the string
+     "posts", and the `postId` as arguments. The `postId`
+      is non-nullable. */
 
   return (
     <div className="py-4 font-supreme w-full">
       <Link to={`/post/${postId}`} className="rounded-xl ">
         <p className="text-md font-bold opacity-90">{tag}</p>
-        <h2 className="lg:text-3xl text-2xl mb-1 lg:mb-3 font-bold">{postTitle}</h2>
+        <h2 className="lg:text-3xl text-2xl mb-1 lg:mb-3 font-bold">
+          {postTitle}
+        </h2>
       </Link>
       <div className="relative">
         <Link to={`/post/${postId}`}>
@@ -49,6 +61,10 @@ export function BlogCard({
         </Link>
         <div className=" absolute  lg:bottom-4 lg:left-4 left-1 bottom-3  text-sm">
           <Link
+            /*If the author of the post's ID matches that of the logged in
+          user, the following link carries the current user to his/her profile.
+          If the IDs do not match, it carries the user to the profile of the author
+          of the post. */
             to={
               user && user.uid === authorId ? "/profile" : `/user/${authorId}`
             }
@@ -66,6 +82,9 @@ export function BlogCard({
       </Link>
 
       {location.pathname === "/profile" && (
+        /*If the current location is the current user's profile,
+        A delete button is shown at the bottom of the blog card
+        component. */
         <Button handleClick={handleDelete} className="mt-8">
           <img alt="Delete" src="/assets/delete.svg" width="30px" />
         </Button>

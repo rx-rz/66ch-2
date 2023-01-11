@@ -9,10 +9,15 @@ type MobileNavProps = {
   menu: React.RefObject<HTMLDivElement>;
 };
 export const MobileNav = ({ user, menu }: MobileNavProps) => {
+  //  destructuring the pendingPosts state from the useNav hook
   const { pendingPosts } = useNav();
+  // getting the navigate function from useNavigate hook
   const navigate = useNavigate();
+  // defining handleLogOut function
   const handleLogOut = () => {
+    // calling signOut function with auth as an argument
     signOut(auth);
+    //navigating to '/auth/login'
     navigate("/auth/login");
   };
 
@@ -22,6 +27,7 @@ export const MobileNav = ({ user, menu }: MobileNavProps) => {
      right-0  fixed z-20  w-40 border text-white"
       ref={menu}
     >
+      {/*if the user is not logged in, display this part of the JSX */}
       {!user ? (
         <div className="flex flex-col mx-2">
           {mobileLinks.map((mobileLink) => (
@@ -36,6 +42,7 @@ export const MobileNav = ({ user, menu }: MobileNavProps) => {
         </div>
       ) : (
         <div className="flex flex-col mx-2">
+          {/*If the user is logged in, display this part instead. */}
           <Navlink
             to="/profile"
             className="flex items-center 

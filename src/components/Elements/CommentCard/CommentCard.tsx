@@ -24,25 +24,37 @@ export function CommentCard({
   commentLikers,
 }: CardProps) {
   const { handleCommentDelete } = useDeleteComment();
+  // This line destructures the `handleCommentDelete` function from the `useDeleteComment` hook.
 
   const { user } = useUserContext()!;
+  // This line gets the `user` object from the `useUserContext` hook. The `!` after `useUserContext()` indicates that the `user` object is non-nullable.
 
   const newCommentLikersArray =
     commentLikers && commentLikers.filter((item) => item !== userId);
+  // This line defines a new array called `newCommentLikersArray` that is the result of filtering the `commentLikers` array using the `filter` method. The `filter` method returns a new array with elements that pass the test implemented by the provided function. In this case, the test checks if the element is not equal to the `userId`. The `&&` operator is used to check if `commentLikers` is truthy before calling the `filter` method on it.
+
   const commentRef = doc(database, "comments", commentId);
+  // This line defines a constant called `commentRef` that is the result of calling the `doc` function with the `database` object, the string "comments", and the `commentId` as arguments.
+
   const handleLikeClick = async () => {
+    // This is a function that asynchronously updates the `likes` and `commentLikers` fields of the document with the `commentId` in the `comments` collection of the Firestore database.
     if (!commentLikers.includes(userId)) {
+      // If the `userId` is not included in the `commentLikers` array,
       updateDoc(commentRef, {
+        // the `updateDoc` function is called with `commentRef` and an object containing the `commentLikers` and `likes` fields as arguments. The `commentLikers` field is set to a new array that is the result of concatenating the `commentLikers` array with the `userId` using the spread operator (`...`). The `likes` field is set to the length of the `commentLikers` array plus 1.
         commentLikers: [...commentLikers, userId],
         likes: commentLikers.length + 1,
       });
     } else {
+      // If the `userId` is included in the `commentLikers` array,
       updateDoc(commentRef, {
+        // the `updateDoc` function is called with `commentRef` and an object containing the `commentLikers` and `likes` fields as arguments. The `commentLikers` field is set to the `newCommentLikersArray` and the `likes` field is set to the length of the `newCommentLikersArray`.
         commentLikers: newCommentLikersArray && newCommentLikersArray,
         likes: newCommentLikersArray.length,
       });
     }
   };
+
   const dateCreated = new Date(date);
   return (
     <article

@@ -36,10 +36,13 @@ export function Button({
   return (
     <button
       onClick={handleClick}
+      /*THe button style can either be any of the available variants
+      or a specified design style within the classname property. */
       className={variants[variant!] + " " + className}
       data-testid="button"
       type={type}
     >
+      {/*Display text/children properties if they are not empty */}
       {text && text} {children && children}
     </button>
   );

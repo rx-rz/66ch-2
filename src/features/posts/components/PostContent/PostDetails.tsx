@@ -14,12 +14,20 @@ type PostContentProps = {
 };
 
 export default function PostDetails({ authorId }: PostContentProps) {
+  // Importing destructured variables from the context hooks
   const { user } = useUserContext()!;
+
+  // Importing destructured variables from the useParams() hook
   const { id } = useParams();
+
+  // Importing destructured variables from the useAdminPostApprovalOptions() custom hook
   const { post, loading, error, acceptPost, rejectPost } =
     useAdminPostApprovalOptions();
+
+  // Importing the useLocation() hook
   const location = useLocation();
 
+  // using useEffect to update the document title when post details change
   useEffect(() => {
     document.title = `${post?.postTitle} by ${post?.author.name}`;
   }, [post?.postTitle, post?.author]);

@@ -33,7 +33,13 @@ export const InputField = (props: InputFieldProps) => {
       <input
         type={type}
         placeholder={placeHolder}
+        /*The classname can be a variant of the available input
+         field options or it can have a custom styling based on
+          the classname property*/
         className={variants[variant!] ?? className}
+        /*the options from the register property added to the
+         SelectField component when it is called in anotber
+          part of the codebase is destructured here. */
         {...registration}
         defaultValue={defaultValue}
       />

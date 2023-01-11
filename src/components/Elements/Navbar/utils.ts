@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useRef } from "react";
+
 import { usePostContext, useUserContext } from "src/context";
 
 export const pcLinks = [
@@ -40,25 +40,36 @@ export const mobileLinksAuth = [
 ];
 
 export const useNav = () => {
+  // Get current logged in user from context
   const { user } = useUserContext()!;
+  // Get current posts from context
   const { data: posts } = usePostContext()!;
+  // Create refs for DOM elements to be manipulated later
   const menu = useRef<HTMLDivElement>(null);
   const notifications = useRef<HTMLDivElement>(null);
   const mobileNotifications = useRef<HTMLDivElement>(null);
   const menubutton = useRef<HTMLButtonElement>(null);
 
+  // filter the pending posts based on user role
   const pendingPosts =
+    // check if posts and user exists and user is an admin
     posts && user && user.role === "admin"
-      ? posts.filter((doc) => doc.status === "pending")
-      : posts &&
+      ? // if true, filter all posts with status of "pending"
+        posts.filter((doc) => doc.status === "pending")
+      : // if false, filter all posts written by the current logged in user with status of "pending"
+        posts &&
         posts.filter(
           (doc) => doc.status === "pending" && doc.author.id === user?.uid
         );
 
+  // handleNotifToggle function toggles the visibility of the notifications menu
   const handleNotifToggle = () => {
+    // Toggles the class 'hidden' on the current value of the notifications ref
     notifications.current!.classList.toggle("hidden");
   };
+  // handleMobileNotifToggle function toggles the visibility of the mobile notifications menu
   const handleMobileNotifToggle = () => {
+    // Toggles the class 'hidden' on the current value of the mobileNotifications ref
     mobileNotifications.current!.classList.toggle("hidden");
   };
 

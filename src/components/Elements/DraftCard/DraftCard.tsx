@@ -22,9 +22,12 @@ export function DraftCard({
   postId,
 }: CardProps) {
   const location = useLocation();
+  // This line gets the `location` object using the `useLocation` hook from `react-router-dom`.
 
   const handleDelete = () => {
+    // This is a function that asynchronously deletes the document with the `postId` in the `drafts` collection of the Firestore database.
     deleteDoc(doc(database, "drafts", postId!));
+    // This line calls the `deleteDoc` function and passes it the result of calling the `doc` function with the `database` object, the string "drafts", and the `postId` as arguments. The `postId` is non-nullable.
   };
   return (
     <div
@@ -63,11 +66,7 @@ export function DraftCard({
         </Link>
         {location.pathname === "/profile" && (
           <Button handleClick={handleDelete} className="mt-8">
-            <img
-              alt="Delete"
-              src="/images/delete.svg"
-              width="30px"
-            />
+            <img alt="Delete" src="/images/delete.svg" width="30px" />
           </Button>
         )}
       </div>

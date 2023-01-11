@@ -3,7 +3,7 @@ import { UseFormRegisterReturn } from "react-hook-form";
 import { FieldWrapper, FieldWrapperPassThroughProps } from "./FieldWrapper";
 
 type Option = {
-  value: string
+  value: string;
 };
 
 type SelectFieldProps = FieldWrapperPassThroughProps & {
@@ -29,15 +29,26 @@ export const SelectField = (props: SelectFieldProps) => {
       <select
         placeholder={placeholder}
         name="location"
+        /*The classname can be a variant of the available input
+         field options or it can have a custom styling based on
+          the classname property*/
         className={className}
         defaultValue={defaultValue}
+        /*the options from the register property added to the
+         SelectField component when it is called in anotber
+          part of the codebase is destructured here. */
         {...registration}
       >
-        {options.map(({value}) => (
-          <option key={value} value={value}>
-            {value}
-          </option>
-        ))}
+        {
+          //mapping over the options array
+          options.map(({ value }) => (
+            // Creating an <option> element for each option
+            <option key={value} value={value}>
+              {/*displaying the value as text inside the option */}
+              {value}
+            </option>
+          ))
+        }
       </select>
     </FieldWrapper>
   );
