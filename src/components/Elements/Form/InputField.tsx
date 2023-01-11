@@ -12,6 +12,9 @@ type InputFieldProps = FieldWrapperPassThroughProps & {
   type?: "text" | "email" | "password";
   className?: string;
   placeHolder?: string;
+  /*the registration prop uses all of useFormRegisterReturn's type 
+   and makes all the props optional. You can read more on the Partial
+   utility type in the Typescript docs.*/
   registration: Partial<UseFormRegisterReturn>;
   defaultValue?: string;
   variant?: keyof typeof variants;
