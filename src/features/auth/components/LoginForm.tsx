@@ -9,13 +9,17 @@ type LoginFormValues = {
 };
 
 export function LoginForm() {
-  //This line uses the "useNavigate" hook which is used to programmatically navigate to different routes
+  /*This line uses the "useNavigate" hook which is used to 
+  programmatically navigate to different routes */
   const navigate = useNavigate();
 
-  //This line uses the custom hook "useLogin" and destructuring the returned object to get the following properties: handleSignIn, signInWithGoogle, and pending
+  /* This line uses the custom hook "useLogin" and destructuring 
+  the returned object to get the following properties: handleSignIn, 
+  signInWithGoogle, and pending */
   const { handleSignIn, signInWithGoogle, pending } = useLogin();
 
-  //This line creates a function "handleNavigateToRegister" to navigate to the "/auth/register" route when called
+  /*This line creates a function "handleNavigateToRegister" to 
+  navigate to the "/auth/register" route when called */
   const handleNavigateToRegister = () => {
     navigate("/auth/register");
   };

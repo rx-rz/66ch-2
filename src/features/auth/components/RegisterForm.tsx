@@ -11,13 +11,17 @@ export type RegisterFormValues = {
 };
 
 export function RegisterForm() {
-  //This line uses the "useNavigate" hook which is used to programmatically navigate to different routes
+  /*This line uses the "useNavigate" hook which is used to 
+  programmatically navigate to different routes */
   const navigate = useNavigate();
 
-  //This line uses the custom hook "useRegister" and destructuring the returned object to get the following properties: handleRegistration, signInWithGoogle, and pending
+  /*This line uses the custom hook "useRegister" and destructuring the 
+  returned object to get the following properties: handleRegistration, 
+  signInWithGoogle, and pending */
   const { handleRegistration, signInWithGoogle, pending } = useRegister();
 
-  //This line creates a function "handleNavigateToLogin" to navigate to the "/auth/login" route when called
+  /*This line creates a function "handleNavigateToLogin" to navigate 
+  to the "/auth/login" route when called */
   const handleNavigateToLogin = () => {
     navigate("/auth/login");
   };
