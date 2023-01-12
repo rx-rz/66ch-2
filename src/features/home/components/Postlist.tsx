@@ -5,9 +5,16 @@ import { usePaginatedPosts } from "../api/usePaginatedPosts";
 
 export default function Postlist() {
   const { posts, empty, fetchMore } = usePaginatedPosts();
+  // Destructure the returned object from the usePaginatedPosts hook, and assign the posts, empty, and fetchMore variables
+
   const postsOne = posts?.slice(0, 6);
+  // Create a variable 'postsOne' by slicing the first 6 elements of the 'posts' array using the optional chaining operator `?`
+
   const middle = posts && posts[Math.floor(posts.length * Math.random())];
+  // Create a variable 'middle' that selects a random element from the 'posts' array using the Math.floor and Math.random functions, if posts is not null or undefined
+
   const postsTwo = posts && posts.slice(7);
+  // Create a variable 'postsTwo' by slicing the elements starting from index 7 of the 'posts' array, if posts is not null or undefined
 
   if (postsOne && postsTwo && middle) {
     return (
