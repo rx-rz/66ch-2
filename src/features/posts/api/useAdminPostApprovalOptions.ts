@@ -20,14 +20,16 @@ export const useAdminPostApprovalOptions = () => {
   const navigate = useNavigate();
 
   const postRef = doc(database, "posts", id!).withConverter(blogConverter);
-  // Create a variable 'postRef' by calling the doc function and passing in the database, the collection name and the document ID, and using the withConverter function to apply the blogConverter.
+  /*Create a variable 'postRef' by calling the doc function and passing in the 
+  database, the collection name and the document ID, and using the 
+  withConverter function to apply the blogConverter. */
 
   const [post, loading, error] = useDocumentData(postRef);
-  // Use the useDocumentData hook and passing in the postRef variable to retrieve the post data, and destructuring the returned values into 'post', 'loading', and 'error' variables.
+  /* Use the useDocumentData hook and passing in the postRef 
+  variable to retrieve the post data, and destructuring the returned 
+  values into 'post', 'loading', and 'error' variables. */
 
   const acceptPost = async (authorId: string) => {
-    // Define a function 'acceptPost' that accepts a parameter 'authorId' of type string
-
     // Use the query, collection and where functions to create an 'authorQuery' variable
     const authorQuery = query(
       collection(database, "users"),
@@ -56,15 +58,16 @@ export const useAdminPostApprovalOptions = () => {
           },
         ],
         isChecked: true,
-      }); 
+      });
     });
     // Use the navigate function to navigate to the pendingposts page
     navigate("/pendingposts");
   };
 
   const rejectPost = async (authorId: string) => {
-    post &&
-      (await setDoc(doc(database, "drafts", id!), {
+    // Update post in "drafts" collection with latest data
+    if (post) {
+      await setDoc(doc(database, "drafts", id!), {
         postTitle: post.postTitle,
         postContent: post.postContent,
         author: { name: post.author.name, id: post.author.id },
@@ -72,14 +75,17 @@ export const useAdminPostApprovalOptions = () => {
         description: post.description,
         imageDownloadUrl: post.imageDownloadUrl,
         tag: post.tag,
-      }));
+      });
+    }
+    // Delete post from "drafts" collection
     await deleteDoc(postRef);
+    // Get author data
     const authorQuery = query(
       collection(database, "users"),
       where("uid", "==", authorId),
       limit(1)
     );
-
+    // Fetch author data and update notifications
     const querySnapshot = await getDocs(authorQuery);
     querySnapshot.forEach((docData) => {
       updateDoc(doc(database, "users", docData.id), {
@@ -94,6 +100,7 @@ export const useAdminPostApprovalOptions = () => {
         isChecked: true,
       });
     });
+    // Navigate to pending posts page
     navigate("/pendingposts");
   };
 
