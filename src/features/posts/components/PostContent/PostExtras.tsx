@@ -5,7 +5,9 @@ import { usePostContext } from "src/context";
 
 export const PostExtras = () => {
   const { id = "!!!!!!" } = useParams();
+  // fetch post data
   const { data: posts } = usePostContext()!;
+  // filter other posts by comparing their id with the current post id and get 3 of them
   const otherPosts =
     posts && posts.filter((post) => post.id !== id).slice(0, 3);
 

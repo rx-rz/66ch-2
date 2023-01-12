@@ -76,6 +76,10 @@ export default function PostDetails({ authorId }: PostContentProps) {
                 <div className="md:my-20  md:w-11/12 mx-auto mt-8 hidden md:block">
                   <Link
                     className="text-2xl font-bold font-chubbo text-center text-blue-600"
+                    /*If the author of the post's ID matches that of the logged in
+          user, the following link carries the current user to his/her profile.
+          If the IDs do not match, it carries the user to the profile of the author
+          of the post. */
                     to={
                       user
                         ? user.uid !== post.author.id
@@ -94,6 +98,10 @@ export default function PostDetails({ authorId }: PostContentProps) {
                   <Link
                     className="text-2xl font-bold font- text-center text-blue-600"
                     to={
+                      /*If the author of the post's ID matches that of the logged in
+          user, the following link carries the current user to his/her profile.
+          If the IDs do not match, it carries the user to the profile of the author
+          of the post. */
                       user
                         ? user.uid !== post.author.id
                           ? `/user/${post.author.id}`
@@ -119,13 +127,16 @@ export default function PostDetails({ authorId }: PostContentProps) {
                   />
                 </div>
                 <div className="w-11/12 mx-auto md:mx-0">
+                  {/*If the current location is not the post approval page, display comments on the page */}
                   {location.pathname === (id && `/post/${id}`) && (
                     <PostComments />
                   )}
+                  {/*If the current location is not the post approval page, display the comment form on the page */}
                   {user && location.pathname === (id && `/post/${id}`) && (
                     <PostCommentForm />
                   )}
                 </div>
+                {/*If the current user is an admin and the post status is pending, show the admin approval buttons. */}
                 {user && user.role === "admin" && post.status === "pending" && (
                   <div className="my-4 md:my-8">
                     <Button

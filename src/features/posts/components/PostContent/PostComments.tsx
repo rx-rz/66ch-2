@@ -7,16 +7,19 @@ import ReplyList from "./ReplyList";
 import { database } from "src/config/firebaseConfig";
 import { commentConverter } from "src/utils";
 
+// Reference to "comments" collection with custom converter
 const ref = collection(database, "comments").withConverter(commentConverter);
 
 export default function PostComments() {
   const { id } = useParams();
   const { user } = useUserContext()!;
+  // fetch data from collection and the status of the data
   const [data, loading] = useCollectionData(ref);
+  // filter comments by postId and reverse the order
   const comments = data && data.filter((doc) => doc.postId === id).reverse();
 
   return (
-    <div className="mt-12  max-w-4xl w-11/12 " >
+    <div className="mt-12  max-w-4xl w-11/12 ">
       {loading && <p>Loading...</p>}
       {comments && (
         <article id="comments">

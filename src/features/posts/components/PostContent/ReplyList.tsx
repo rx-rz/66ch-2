@@ -23,9 +23,9 @@ export default function ReplyList({
   commentId,
   user,
 }: Partial<ReplyListProps>) {
+  // import handleReplySubmit function and data from useCreateReply hook
   const { handleReplySubmit, data } = useCreateReply();
-
-
+  // filter replies by commentId and sort them by dateCreated in descending order
   const replies =
     data &&
     data
@@ -33,12 +33,13 @@ export default function ReplyList({
       .sort(function (a, b) {
         return Date.parse(b.dateCreated) - Date.parse(a.dateCreated);
       });
-
+  // create a ref to access the DOM
   const replyTag = useRef<HTMLDivElement | null>(null);
-
+  // toggle the visibility of the reply section
   const handleReplyDisplay = () => {
     replyTag.current?.classList.toggle("hidden");
   };
+
   return (
     <div className="md:w-8/12 w-10/12">
       <button
