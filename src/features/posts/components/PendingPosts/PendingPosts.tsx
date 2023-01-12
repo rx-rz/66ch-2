@@ -5,8 +5,11 @@ import React from "react";
 import { useUserContext } from "src/context";
 
 export const PendingPosts = () => {
+  // fetch data from post context
   const { data } = usePostContext()!;
+  // fetch user data from user context
   const { user } = useUserContext()!;
+  // filter pending posts
   const posts =
     data && user && user.role === "admin"
       ? data?.filter((doc) => doc.status === "pending")
