@@ -70,7 +70,8 @@ export const usePaginatedPosts = () => {
         const posts = doc.docs.map((doc) => doc.data());
         // Set the lastDoc as the last element of the docs array
         const lastDoc = doc.docs[doc.docs.length - 1];
-        /* Update the posts state variable using the setPosts function, by concatenating the previous state with the new posts */
+        /* Update the posts state variable using the setPosts function, 
+        by concatenating the previous state with the new posts */
         setPosts((listOfposts) => [...listOfposts!, ...posts]);
         setLastDoc(lastDoc);
       }
