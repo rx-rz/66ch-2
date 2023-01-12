@@ -49,15 +49,13 @@ export const PostContentForm = ({
   return (
     <div className="md:w-11/12 w-full  mx-auto my-8 font-chubbo">
       <nav className="flex justify-between mx-auto">
-        <Link
-          to="/"
-          className="md:text-xl text-md font-bold font-supreme "
-        >
+        <Link to="/" className="md:text-xl text-md font-bold font-supreme ">
           &#8592; Home
         </Link>
         <div className="justify-between flex">
           <Button
             variant="draft"
+            /*on click, save the current data as draft */
             handleClick={() =>
               handleDraft(imageUrl, tag, description, draft, title)
             }
@@ -75,6 +73,7 @@ export const PostContentForm = ({
       </nav>
       <Form
         onSubmit={(data: EditorProps) =>
+          /*on click, submit blog post for approval. */
           handleSubmit(data, imageUrl, tag, description)
         }
         options={{ mode: "onBlur" }}

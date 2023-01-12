@@ -145,7 +145,7 @@ export const useCreatePost = () => {
         // Update pending state
         setPending(false);
         // Toast message
-        postContentToast();
+        submitToast();
         //Redirect to homepage
         window.location.pathname = "/";
       } else {
