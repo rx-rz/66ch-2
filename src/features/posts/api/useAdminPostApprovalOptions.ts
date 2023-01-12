@@ -20,18 +20,31 @@ export const useAdminPostApprovalOptions = () => {
   const navigate = useNavigate();
 
   const postRef = doc(database, "posts", id!).withConverter(blogConverter);
+  // Create a variable 'postRef' by calling the doc function and passing in the database, the collection name and the document ID, and using the withConverter function to apply the blogConverter.
+
   const [post, loading, error] = useDocumentData(postRef);
+  // Use the useDocumentData hook and passing in the postRef variable to retrieve the post data, and destructuring the returned values into 'post', 'loading', and 'error' variables.
+
   const acceptPost = async (authorId: string) => {
+    // Define a function 'acceptPost' that accepts a parameter 'authorId' of type string
+
+    // Use the query, collection and where functions to create an 'authorQuery' variable
     const authorQuery = query(
       collection(database, "users"),
       where("uid", "==", authorId),
       limit(1)
     );
+
+    // Use the updateDoc function to update the status of the post document
     updateDoc(doc(database, "posts", id!), {
       status: "approved",
     });
+
+    // Use the getDocs function to retrieve the author data and await the result
     const querySnapshot = await getDocs(authorQuery);
+    // Iterate over the retrieved data
     querySnapshot.forEach((docData) => {
+      // Use the updateDoc function to update the author data and add a new notification
       updateDoc(doc(database, "users", docData.id), {
         notifications: [
           ...docData.data().notifications,
@@ -43,8 +56,9 @@ export const useAdminPostApprovalOptions = () => {
           },
         ],
         isChecked: true,
-      });
+      }); 
     });
+    // Use the navigate function to navigate to the pendingposts page
     navigate("/pendingposts");
   };
 
@@ -83,5 +97,5 @@ export const useAdminPostApprovalOptions = () => {
     navigate("/pendingposts");
   };
 
-  return { post, loading, error,  acceptPost, rejectPost };
+  return { post, loading, error, acceptPost, rejectPost };
 };

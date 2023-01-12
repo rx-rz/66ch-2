@@ -13,17 +13,19 @@ import { database } from "src/config/firebaseConfig";
 import { Blog, blogConverter } from "src/utils";
 
 export const usePaginatedPosts = () => {
-  // Initialize state variables for posts, lastDoc, and empty using the useState hook
-  const [posts, setPosts] = useState<Blog[] | null>(null); // 'posts' is initialized with a null value, and setPosts is a function to update the state
+  /* Initialize state variables for posts, lastDoc, and empty
+   using the useState hook */
+  const [posts, setPosts] = useState<Blog[] | null>(null);
   const [lastDoc, setLastDoc] = useState<QueryDocumentSnapshot<Blog> | null>(
     null
-  ); // 'lastDoc' is initialized with a null value, and setLastDoc is a function to update the state
-  const [empty, setEmpty] = useState(false); // 'empty' is initialized with a false value, and setEmpty is a function to update the state
+  );
+  const [empty, setEmpty] = useState(false);
 
   useEffect(() => {
-    // Use the useEffect hook to execute the following code when the component is mounted
-
-    // Create a paginatedPosts variable using the query, collection, orderBy, where, and limit functions
+    /*Create a paginatedPosts variable using the
+     query, collection, orderBy, where, and limit functions. 
+     You can read more on how data can be called from the 
+     Firestore database in the Google Firebase documetation. */
     const paginatedPosts = query(
       collection(database, "posts"),
       orderBy("dateCreated", "asc"),
@@ -44,17 +46,14 @@ export const usePaginatedPosts = () => {
         setLastDoc(lastDoc);
       });
     };
-    // Call the getPaginatedPosts function
     getPaginatedPosts();
   }, []);
 
   const fetchMore = async () => {
-    // Define a function to fetch more posts
-
-    // Use the query, collection, where, startAfter and limit functions to create a newPosts variable
+    /*Use the query, collection, where, startAfter and limit 
+    functions to create a newPosts variable */
     const newPosts = query(
       collection(database, "posts"),
-      // orderBy("dateCreated", "asc"),
       where("status", "==", "approved"),
       startAfter(lastDoc),
       limit(17)
@@ -71,7 +70,7 @@ export const usePaginatedPosts = () => {
         const posts = doc.docs.map((doc) => doc.data());
         // Set the lastDoc as the last element of the docs array
         const lastDoc = doc.docs[doc.docs.length - 1];
-        // Update the posts state variable using the setPosts function, by concatenating the previous state with the new posts
+        /* Update the posts state variable using the setPosts function, by concatenating the previous state with the new posts */
         setPosts((listOfposts) => [...listOfposts!, ...posts]);
         setLastDoc(lastDoc);
       }
