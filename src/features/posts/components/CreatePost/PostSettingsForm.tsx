@@ -55,6 +55,7 @@ export default function PostSettingsForm({
     description: string;
   };
   const handleSave = (data: PostSettingProps) => {
+    // Edit post settings
     editPostSettings({
       tag: data.tag,
       description: data.description,
@@ -73,18 +74,26 @@ export default function PostSettingsForm({
     "Tourism",
     "Entertainment",
   ];
+  // state for selected file
   const [file, setFile] = useState<File | any>(null);
+  // Optimize image file
   const { imageFile } = useOptimizeImage(file);
+  // Upload image to server and get url, progress and error
   const { url, progress, error } = usePostImage(imageFile);
 
+  // Allowed file types
   const types = ["image/jpg", "image/jpeg", "image/png"];
+
   const handleChange = (e: File) => {
+    // Get selected file
     let selectedFile = e;
     if (selectedFile) {
+      // check if file type is allowed
       if (types.includes(selectedFile.type)) {
         setFile(selectedFile);
       } else {
         setFile(null);
+        // Toast error message
         errorToast();
       }
     }
@@ -104,6 +113,8 @@ export default function PostSettingsForm({
       <Form onSubmit={handleSave} className="w-11/12 mx-auto my-24">
         {({ register, formState, setValue }) => (
           <>
+            {/*if the draft description and tag appear, set the values
+           of the description and tag boxes with the given data */}
             {draft && setValue("description", `${draft.description}`)}
             {draft && setValue("tag", `${draft.tag}`)}
             <FileUploader handleChange={handleChange} name="File">

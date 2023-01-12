@@ -103,6 +103,7 @@ export const PostContentForm = ({
               )}
             />
 
+            {/*If there is no Image URL or description or tag, a message is shown on the UI to notify the user of this fact. */}
             {!imageUrl && !description && !tag && (
               <p className="md:text-xl md:mt-4 mt-4 ">
                 Please specify the needed settings for the blog post in the post
