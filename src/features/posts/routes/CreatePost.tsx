@@ -15,16 +15,23 @@ type PostSettingProps = {
 };
 
 export default function CreatePost() {
+  // Create a ref for settings element
   const settings = useRef<HTMLDivElement>(null);
+  //  destructuring the id from useParams hook, if not present set default value
   const { id = "@!@#$%^&*()(*&^%#@#$%%" } = useParams();
+  // reference to the drafts document with the given id
   const draftRef = doc(database, "drafts", id);
+  // fetch the draft data
   const [draft] = useDocument(draftRef);
+  // create a state variable to hold post settings
   const [postSettings, setPostSettings] = useState<PostSettingProps>();
 
+  // toggle the visibility of settings menu
   const handleMenuToggle = () => {
     settings.current!.classList.toggle("hidden");
   };
 
+  // update postSettings state variable
   const editPostSettings = (postSettings: PostSettingProps) => {
     setPostSettings(postSettings);
   };

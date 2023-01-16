@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { useForm } from "react-hook-form";
 import { TextAreaField, Form, ReplyCard } from "src/components";
 import { useCreateReply } from "../../api/useCreateReply";
 

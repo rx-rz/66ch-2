@@ -14,30 +14,43 @@ export const SearchPosts = () => {
   const [blogs, setBlogs] = useState<Blog[] | null>(null);
 
   const handleSearch = () => {
-    data &&
+    // Check if data exists before filtering
+    if (data) {
+      // Filter data based on certain criteria
+      // and set the filtered data as the new state for "blogs"
       setBlogs(
         data.filter(
           (doc) =>
+            // Check if the document's status is "approved"
+            // and if the author's name includes the search term (case-insensitive)
             (doc.status === "approved" &&
               doc.author.name
                 .toLowerCase()
                 .includes(searchTerm.toLowerCase())) ||
+            // OR if the document's description includes the search term (case-insensitive)
             doc.description.toLowerCase().includes(searchTerm) ||
+            // OR if the document's tag includes the search term (case-insensitive)
             doc.tag.toLowerCase().includes(searchTerm)
         )
       );
+    }
   };
 
   useEffect(() => {
-    data &&
-      postTag &&
+    // check if data and postTag exists before filtering
+    if (data && postTag) {
+      // Filter data based on certain criteria
+      // and set the filtered data as the new state for "blogs"
       setBlogs(
         data.filter(
           (doc) =>
+            // Check if the document's status is "approved"
+            // and if the document's tag includes the search tag (case-insensitive)
             doc.status === "approved" &&
             doc.tag.toLowerCase().includes(postTag!.toLowerCase())
         )
       );
+    }
   }, [postTag, data]);
 
   return (

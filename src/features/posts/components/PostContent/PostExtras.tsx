@@ -13,7 +13,7 @@ export const PostExtras = () => {
 
   if (otherPosts) {
     return (
-      <div className="mx-auto my-10 md:my-20 w-[95%] mx-auto">
+      <div className=" my-10 md:my-20 w-[95%] mx-auto">
         <h1 className=" font-supreme  font-bold opacity-90 mb-8 md:text-3xl  text-2xl">
           Related Posts
         </h1>
