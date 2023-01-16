@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useUserContext } from "src/context";
-import moment from "moment"
-
+import moment from "moment";
 
 export default function ProfileBanner() {
   const { user } = useUserContext()!;
