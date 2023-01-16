@@ -53,15 +53,17 @@ export const AppRoutes = () => {
     { path: "/pendingposts", element: <PendingPosts /> },
   ];
 
+  // check if the user is not null
   const element = useRoutes(
     user === null
-      ? [...commonRoutes]
-      : [...commonRoutes, ...authenticatedRoutes]
+      ? // if user is null, use the common routes
+        [...commonRoutes]
+      : // if user is not null, use the common routes and the authenticated routes
+        [...commonRoutes, ...authenticatedRoutes]
   );
 
   return (
     <AnimatePresence mode="wait" initial={false}>
-      {" "}
       <Suspense
         fallback={
           <div className="h-screen flex items-center justify-center">

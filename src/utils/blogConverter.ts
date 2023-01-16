@@ -22,14 +22,20 @@ export type Blog = {
 };
 
 export const blogConverter: FirestoreDataConverter<Blog> = {
+  // convert the blog object to a Firestore document
   toFirestore(blog: WithFieldValue<Blog>): DocumentData {
+    // return only the author field
     return { author: blog.author };
   },
+  // convert the Firestore document to a blog object
   fromFirestore(
     snapshot: QueryDocumentSnapshot,
     options: SnapshotOptions
   ): Blog {
+    // get the data from the snapshot
     const data = snapshot.data(options);
+    // return an object that contains all the fields of the blog
+    // including the author's name and id, the tag, the id, the postContent, postTitle, dateCreated, and other fields
     return {
       author: { name: data.author.name, id: data.author.id },
       tag: data.tag,

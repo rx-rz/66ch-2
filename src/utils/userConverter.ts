@@ -24,14 +24,20 @@ export type User = {
 };
 
 export const userConverter: FirestoreDataConverter<User> = {
+  // convert the user object to a Firestore document
   toFirestore(user: WithFieldValue<User>): DocumentData {
+    // return the uid and role fields
     return { uid: user.uid, role: user.role };
   },
+  // convert the Firestore document to a user object
   fromFirestore(
     snapshot: QueryDocumentSnapshot,
     options: SnapshotOptions
   ): User {
+    // get the data from the snapshot
     const data = snapshot.data(options);
+    // return an object that contains all the fields of the user
+    // including the name, role, photoURL, uid, ref, dateCreated, notifications, and id
     return {
       name: data.name,
       role: data.role,
