@@ -59,14 +59,21 @@ export const useUpdateProfile = () => {
   const { url, progress } = usePostImage(file);
 
   useEffect(() => {
+    // Log current user in the console
     console.log(currentUser);
   }, [currentUser]);
+
   const handleImageChange = (e: File) => {
+    // assign the selected file to a variable
     let selectedFile = e;
+    // check if the selected file is not null
     if (selectedFile) {
+      // check if the file type is included in the types array
       if (types.includes(selectedFile.type)) {
+        // set the file state
         setFile(selectedFile);
       } else {
+        // set the file state
         setFile(selectedFile);
       }
     }
@@ -74,12 +81,24 @@ export const useUpdateProfile = () => {
 
   const handleProfileUpdate = async (data: UpdateFormValues) => {
     setPending(true);
+    /* Call updateProfile function and pass in the user object, as well as an object 
+    with the displayName and photoURL properties.The displayName is a 
+    concatenation of the firstName and lastName, using a fallback value of 
+    "First Name" and "Last Name" respectively if they are null.
+    The photoURL property is set to the URL value if it's not null, 
+    otherwise it keeps the current user's photoURL. `*/
     await updateProfile(user!, {
       displayName:
         (data.firstName ?? "First Name") + " " + (data.lastName ?? "Last Name"),
       photoURL: url ?? user!.photoURL,
     });
 
+    /* Call updateDoc function, passing in the doc object, database, "users", and the current user's id. 
+    An object with name and photoURL properties is passed as the second argument.
+    The name property is a concatenation of the firstName and lastName, 
+    using the fallback value of namesOfUser![0] and namesOfUser![1] respectively
+     if they are null. The photoURL property is set to the URL value if it's not null,
+      otherwise it keeps the current user's photoURL. */
     await updateDoc(doc(database, "users", currentUser!.id), {
       name:
         (data.firstName ?? namesOfUser![0]) +
@@ -132,5 +151,11 @@ export const useUpdateProfile = () => {
     navigate("/profile");
   };
 
-  return { handleImageChange, handleProfileUpdate, namesOfUser, pending, progress };
+  return {
+    handleImageChange,
+    handleProfileUpdate,
+    namesOfUser,
+    pending,
+    progress,
+  };
 };
