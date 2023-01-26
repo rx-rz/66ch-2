@@ -17,7 +17,7 @@ export const Footer = () => {
           <h1 className="my-8">66ch Magazine. © 2022.</h1>
           <div className="flex justify-evenly   mt-10">
             <a
-              href="https://www.twitter.com/temiloluwa_js"
+              href="https://www.twitter.com/_rxrz"
               className="my-2 transition-colors duration-300 hover:text-blue-600"
             >
               Twitter
